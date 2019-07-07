@@ -1,24 +1,24 @@
 var jsonItems =
 [
   {
-    "id": "CalculateZValue",
-    "name": "CalculateZValue",
+    "id": "Webscraping",
+    "name": "Webscraping",
     "children": [
       {
-        "id": "CalculateZValue.html",
-        "page": "CalculateZValue.html",
+        "id": "Webscraping.html",
+        "page": "Webscraping.html",
         "name": "html",
         "file": "html"
       },
       {
-        "id": "CalculateZValue.Rmd",
-        "page": "CalculateZValue.Rmd",
+        "id": "Webscraping.Rmd",
+        "page": "Webscraping.Rmd",
         "name": "Rmd",
         "file": "md"
       },
       {
-        "id": "CalculateZValue.pdf",
-        "page": "CalculateZValue.pdf",
+        "id": "Webscraping.pdf",
+        "page": "Webscraping.pdf",
         "name": "pdf",
         "file": "pdf"
       }
