@@ -1,0 +1,29 @@
+# Here is a _Title_  
+
+Then we have some display math...
+
+$$
+z = \frac{x-\mu}{\sigma} = 4
+$$ 
+
+Now here is some inline math \(\frac{2}{3}\) which should be 2/3.
+
+Here is some display math inline r expressions:   
+
+$$
+\frac{x}{4}=\frac{`r 2+3`}{4} = `r 3/4` 
+$$ 
+
+An inline r expression... `r 2+3`... which should be 6. 
+
+Here is inline math with inline r expression... $\frac{`r 3`}{2}$... it should be 3/2: 
+
+```{r uniform, echo=FALSE, collapse=TRUE}
+hist(runif(10)) 
+```
+
+# That is it!!!
+
+```{r rnorm, echo=FALSE, collapse=TRUE}
+hist(rnorm(10)) 
+```

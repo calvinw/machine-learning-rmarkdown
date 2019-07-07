@@ -1,0 +1,80 @@
+---
+title: "Image Latex Demo"
+output:
+  html_document:
+    theme: readable 
+params:
+  a:
+    input: slider
+    label: This is a
+    max: 50
+    min: 1
+    step: 3
+    value: 12
+  b:
+    input: slider
+    label: This is b
+    max: 50
+    min: 1
+    step: 3
+    value: 45
+  mu:
+    value: 23 
+  sigma:
+    value: 12 
+  x:
+    value: 22.2 
+---
+
+```{r params, echo=FALSE}
+    a<-params$a; 
+    b<-params$b; 
+    x<-params$x; 
+    mu<-params$mu; 
+    numer<-(x-mu); 
+    sigma<-params$sigma; 
+    z<-(x-mu)/sigma
+```
+
+\begin{align}
+A & = \frac{\pi r^2}{2} \\
+ & = \frac{1}{2} \pi r^2
+\end{align}
+
+\begin{align*}
+ f(x)  &= a x^2+b x +c   &   g(x)  &= d x^3 \\
+ f'(x) &= 2 a x +b       &   g'(x) &= 3 d x^2
+\end{align*}
+
+\begin{align*}
+ f(x) &= (x+a)(x+b) \\
+      &= x^2 + (a+b)x + ab
+\end{align*}
+
+\begin{align*} 
+z & =\frac{x-\mu}{\sigma} \\
+  & =\frac{`r x`-`r mu`}{`r sigma`} \\
+  & =\frac{`r numer`}{`r sigma`} \\
+  & =`r z`  
+\end{align*} 
+
+This example shows creating data URL versions of images for graphics and formulas. Use the webtex argument to pandoc to point to the service that will make the graphics.  
+
+This is good for copying and pasting into some email clients (gmail,etc)  
+
+Display LaTeX rendered at data URL images:  
+
+$$
+z =\frac{a}{b}
+  =\frac{`r a`}{`r b`}
+$$
+
+Why is the above rendered on the left side, instead of the middle asdfasf?
+
+Inline: \(z = b - a =`r b`-`r a` = `r b-a`\) Text after on same line  
+
+Finally below is a dataURL embedded image:  
+
+```{r area, echo=FALSE}
+plot(cars)
+```

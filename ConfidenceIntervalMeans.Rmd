@@ -1,0 +1,62 @@
+---
+title: "Confidence Interval for Means - $\\sigma$ Known" 
+params:
+  xbar:
+    value: 44
+  sigma:
+    value: 10 
+  n:
+    value: 23 
+  confidence:
+    value: 0.98
+---
+```{r params, include=FALSE}
+#params
+xbar<-params$xbar 
+sigma<-params$sigma 
+n<-params$n
+confidence<-params$confidence
+#computed values
+zstar <- -1*qnorm((1.0-confidence)/2.0) 
+sqrtOfN <- sqrt(n)
+E <- zstar * (sigma)/sqrtOfN
+xbarMinusE <- xbar - E
+xbarPlusE <- xbar + E
+```
+
+Find a **`r confidence*100`%** confidence interval when the sample mean is $\bar x=`r xbar`$, the sample size is $n = `r n`$, and the standard deviation for the population is known to be $\sigma=`r sigma`$.
+
+We can use the formula for finding the error $E$ since we know the standard deviation:   
+
+$$
+E = (z^\star)\frac{\sigma}{\sqrt{n}}
+$$
+
+First using the confidence level ( **`r confidence*100`%** ) we lookup (or compute) the appropriate critical $z^\star$ for the situation:
+
+$$
+z^\star=`r zstar`
+$$
+
+Plugging that in together with the other values we get:
+
+\begin{align*}
+E & = (z^\star)\frac{\sigma}{\sqrt{n}} \\
+  & = (`r round(zstar,3)`)(\frac{`r sigma`}{\sqrt{`r n`}}) \\ 
+  & = (`r round(zstar,3)`)(\frac{`r sigma`}{`r round(sqrtOfN,3)`}) \\
+  & = (`r round(zstar,3)`)(`r round(sigma/sqrtOfN,3)`) \\
+  & = `r round(E,3)`
+\end{align*}
+
+Then we find the two endpoints:
+
+\begin{align*}
+\bar x - E = `r xbar`-`r round(E,3)` = `r round(xbar-E,3)` \\  
+\bar x + E = `r xbar`+`r round(E,3)` = `r round(xbar+E,3)`   
+\end{align*}
+
+So the confidence interval is 
+$$
+(`r round(xbarMinusE,2)`,`r round(xbarPlusE,2)`)
+$$
+

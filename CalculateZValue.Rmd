@@ -1,0 +1,25 @@
+---
+params:
+  mu:
+    value: 50 
+  sigma:
+    value: 13 
+  x:
+    value: 22
+---
+```{r params, echo=FALSE}
+x<-params$x; 
+mu<-params$mu; 
+numer<-(x-mu); 
+sigma<-params$sigma; 
+z<-(x-mu)/sigma
+```
+
+Suppose that:$\mu=`r mu`$, $\sigma=`r sigma`$ and $x = `r x`$. Then we can find the value of z as follows:
+
+$$
+z=\frac{x-\mu}{\sigma}
+ =\frac{`r x`-`r mu`}{`r sigma`}
+ =\frac{`r numer`}{`r sigma`}
+ =`r z` 
+$$
