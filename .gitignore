@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+*.html
+!header.html
+!index.html
+!page.html
+*.pdf
+*.local
+lsAll
+allFiles
+node_modules/*
+changed.txt
