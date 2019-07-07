@@ -3,8 +3,8 @@ image: r-base
 pages:
   stage: deploy
   script:
-  - apt-get update 
-  - apt-get -y install pandoc
+  - apt-get update
+  - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev pandoc
   - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
   - Rscript -e "install.packages('rmarkdown')"
   - Rscript -e "install.packages('rvest')"
