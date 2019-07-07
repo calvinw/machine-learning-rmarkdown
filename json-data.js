@@ -15,12 +15,6 @@ var jsonItems =
         "page": "Webscraping.Rmd",
         "name": "Rmd",
         "file": "md"
-      },
-      {
-        "id": "Webscraping.pdf",
-        "page": "Webscraping.pdf",
-        "name": "pdf",
-        "file": "pdf"
       }
     ]
   }

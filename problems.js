@@ -22,7 +22,7 @@ fs.readdir(dirPath, function(err, files){
 	  children: [
 	    { id: htmlFile , page: htmlFile, name: 'html', file: 'html' },
 	    { id: rmdFile, page: rmdFile, name: 'Rmd', file: 'md' },
-	    { id: pdfFile, page: pdfFile, name: 'pdf', file: 'pdf'}
+//	    { id: pdfFile, page: pdfFile, name: 'pdf', file: 'pdf'}
 	  ]
 	};
 	arr.push(item);

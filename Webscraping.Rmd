@@ -1,25 +1,32 @@
----
-params:
-  mu:
-    value: 50 
-  sigma:
-    value: 13 
-  x:
-    value: 22
----
-```{r params, echo=FALSE}
-x<-params$x; 
-mu<-params$mu; 
-numer<-(x-mu); 
-sigma<-params$sigma; 
-z<-(x-mu)/sigma
+
+# Webscraping with rvest
+
+Here we will show how to do webscraping with rvest and the chrome extension selector gadget.
+First make sure that you install the rvest package:
+
+```{r eval=FALSE, echo=TRUE, results='hide', message=FALSE}
+install.packages("rvest")
 ```
 
-Suppose that:$\mu=`r mu`$, $\sigma=`r sigma`$ and $x = `r x`$. Then we can find the value of z as follows:
+Then once we do this we pick a site we want to get data from. We will follow a technique very similar to the following great explanation of how to do this:
 
-$$
-z=\frac{x-\mu}{\sigma}
- =\frac{`r x`-`r mu`}{`r sigma`}
- =\frac{`r numer`}{`r sigma`}
- =`r z` 
-$$
+[Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/)
+
+```{r message=FALSE}
+library("rvest")
+url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers'
+webpage <- read_html(url)
+```
+
+Then we use the selector gadget to the part of the website we want to get 
+
+```{r}
+content <- html_nodes(webpage,'#tiles-con .title')
+length(content) # double check 48 products
+```
+
+Lets print out what we found so far:
+
+```{r}
+html_text(content)
+```

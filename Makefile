@@ -4,7 +4,7 @@ PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 #DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 export PATH := /bin:/usr/bin:/opt/R/3.4.4/lib/R/bin:$(PATH) 
 
-all : $(HTML_FILES) $(PDF_FILES)
+all : $(HTML_FILES)
 	@echo All files are now up to date
 
 clean : 
