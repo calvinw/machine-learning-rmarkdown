@@ -16,13 +16,15 @@ fs.readdir(dirPath, function(err, files){
       var htmlFile = name + '.html'
       var rmdFile = name + '.Rmd'
       var pdfFile = name + '.pdf'
+      var ipynbFile = name + '.ipynb'
 	var item = {
 	  id: name,
 	  name: name,
 	  children: [
 	    { id: htmlFile , page: htmlFile, name: 'html', file: 'html' },
 	    { id: rmdFile, page: rmdFile, name: 'Rmd', file: 'md' },
-//	    { id: pdfFile, page: pdfFile, name: 'pdf', file: 'pdf'}
+	    { id: pdfFile, page: pdfFile, name: 'pdf', file: 'pdf'},
+	    { id: ipynbFile, page: ipynbFile, name: 'ipynb', file: 'text'}
 	  ]
 	};
 	arr.push(item);

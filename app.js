@@ -21,6 +21,13 @@ app.use(function(req, res, next) {
        res.setHeader('Content-Disposition', header);
        res.setHeader('Content-Type', "text/plain;charset=UTF-8");
      }
+     else if(path.extname(req.url) === 'ipynb') {
+       var basename = path.basename(req.url);
+       var header = 'inline; filename="' + basename + '"';
+       //console.log("header is " + header);
+       res.setHeader('Content-Disposition', header);
+       res.setHeader('Content-Type', "text/plain;charset=UTF-8");
+     }
      next();
 })
 

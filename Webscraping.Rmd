@@ -1,7 +1,8 @@
 
 # Webscraping with rvest
 
-Here we will show how to do webscraping with rvest and the chrome extension selector gadget.
+Here we will show how to do webscraping with rvest and the chrome extension selector gadget. This technique is borrowed from the great explanation at: [Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/) and is basically a simplified version of that description
+
 First make sure that you install the rvest package:
 
 ```{r eval=FALSE, echo=TRUE, results='hide', message=FALSE}
@@ -10,7 +11,6 @@ install.packages("rvest")
 
 Then once we do this we pick a site we want to get data from. We will follow a technique very similar to the following great explanation of how to do this:
 
-[Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/)
 
 ```{r message=FALSE}
 library("rvest")
@@ -18,15 +18,47 @@ url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers'
 webpage <- read_html(url)
 ```
 
-Then we use the selector gadget to the part of the website we want to get 
+Now we use the selector gadget to find the part of the website we want to get. Selector gadget is a chrome extension that allows you to grab a css selector for a part of a website that you want to collect in your data. First we get the titles as follows: 
 
 ```{r}
-content <- html_nodes(webpage,'#tiles-con .title')
-length(content) # double check 48 products
+titleNodes <- html_nodes(webpage,'#tiles-con .title')
+titles <- html_text(titleNodes)
+length(titles) # double check 48 products
+head(titles)
 ```
-
-Lets print out what we found so far:
+Next we look for the prices...
 
 ```{r}
-html_text(content)
+priceNodes <- html_nodes(webpage,'.price')
+prices <- html_text(priceNodes)
+length(prices) # double check 48 products
+head(prices)
 ```
+
+So we are going to split each of these price strings into 2 strings:
+
+```{r}
+prices <- strsplit(prices, split='\u00A0')
+head(prices)
+str(prices[[1]])
+```
+
+That looks great. Lets put each of these prices into its own vector so we can make a dataframe. 
+
+```{r}
+n<- length(titles)
+current <- character(n)
+original <- character(n)
+for(i in 1:n) {
+    current[i] = prices[[i]][1]
+    original[i] = prices[[i]][2]
+}
+head(current)
+head(original)
+```
+
+```{r}
+df <-data.frame("name" = titles, "original" =  original, "current"= current)
+head(df)
+```
+

@@ -20,7 +20,6 @@
 	  border: none;
 	}
   </style> 
-  <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
   <script src="json-data.js"></script>
 </head>
 <body>
@@ -32,7 +31,7 @@
 	  <v-icon v-if="!item.file">
 	    mdi-file
 	  </v-icon>
-	  <v-icon v-else @click="display(item.id)">
+	  <v-icon v-else @click="display(item)">
 	    {{ files[item.file] }}
 	  </v-icon>
       </template>
@@ -40,7 +39,7 @@
 	    <div v-if="!item.file">
 		{{item.name}}
 	    </div>
-	    <div v-else @click="display(item.id)">
+	    <div v-else @click="display(item)">
 		{{item.name}}
 	    </div>
       </template>
@@ -53,13 +52,14 @@
     <v-content>
       <v-container fluid fill-height fill-width>
         <v-layout justify-center align-center >
-	    <iframe id="theIframe" v-bind:src="page"></iframe>
+	   <iframe id="theIframe" v-bind:src="page"></iframe> 
         </v-layout>
       </v-container>
     </v-content>
   </v-app>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
 
@@ -70,33 +70,29 @@
 	      console.log("preparing socket io");
 	      var self = this;
 	      var socket = io();
-	      socket.on("load-event", function (page) {
+	      socket.on("load-event", function (filename) {
 		console.log("got the load event");
-	        console.log(page);
-
-		//var iframe = document.getElementById("theIframe");
-		//iframe.src = "http://localhost:3000/" + filename;
-		//window.location.href = "http://localhost:3000/" + data;
-
-		//self.page = "http://localhost:3000/" + filename;
-		self.load(page);
+	        console.log(filename);
+		self.load(filename);
 	      });
 	  },
 	methods: { 
-	    display: function(page) {
+	    display: function(item) {
 	       //ui is already set correctly for this. 
-	       this.page = page;
+		console.log("url : " + item.page);
+	       this.page = item.page;
 	    },
-	    load: function(page) {
-		    if(this.page === page) {
+	    load: function(filename) {
+		    if(this.id === id) {
 			console.log("load: update forced");
 			var iframe = document.getElementById("theIframe");
-			iframe.src = "http://localhost:3000/" + page;
+			var src = iframe.src;
+			iframe.src = src;
 		    }
 		    else {
 		      console.log("load: no forced update");
 		      console.log("need to adjust ui open and active");
-		      console.log(page);
+		      console.log(id);
 		      this.page = page;
 		      var base = this.page.substring(0, this.page.lastIndexOf('.'));
 		      this.open = [base];
@@ -104,25 +100,17 @@
 		    }
 	    }
 	},
-	// computed: {
-	//     open: function() {
-	// 	console.log("open for " + this.page);
-	// 	return [3];
-	//     },
-	//     active: function() {
-	// 	console.log("active for " + this.page);
-	// 	return [301];
-	//     }
-	// },
      data: () => ({
 	  drawer: null,
-	  page: "Webscraping.html",
+	  //jupyterpage: "http://localhost:8888/notebooks/Webscraping.ipynb",
+	  page: "http://localhost:3000/Webscraping.html",
 	  open: ["Webscraping"],
 	  active: ["Webscraping.html"],
 	  files: {
 	    html: 'mdi-code-tags',
 	    md: 'mdi-markdown',
-	    pdf: 'mdi-file-pdf'
+	    pdf: 'mdi-file-pdf',
+	    ipynb: 'mdi-notebook'
 	  },
 	 items: jsonItems 
 	})
