@@ -24,7 +24,7 @@ Now we use the selector gadget to find the part of the website we want to get. S
 titleNodes <- html_nodes(webpage,'#tiles-con .title')
 titles <- html_text(titleNodes)
 length(titles) # double check 48 products
-head(titles)
+titles
 ```
 Next we look for the prices...
 
@@ -57,7 +57,9 @@ head(current)
 head(original)
 ```
 
+Finally lets make a dataframe of our fields. We have to clean up the titles array, since it sometimes has weird unicode in it. (Like Money Bags unicode). We want to have pure text. 
 ```{r}
+titles <- iconv(titles, to="ASCII", sub="")
 df <-data.frame("name" = titles, "original" =  original, "current"= current)
 head(df)
 ```
