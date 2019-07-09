@@ -26,12 +26,12 @@
   <div id="app">
   <v-app id="inspire">
     <v-navigation-drawer fixed v-model="drawer" app >
-  <v-treeview activatable :items="items" :active="active" :open="open" open-on-click>
+  <v-treeview activatable :items="items" :active.sync="active" :open.sync="open" open-on-click>
       <template v-slot:prepend="{item, open}">
 	  <v-icon v-if="!item.file">
 	    mdi-file
 	  </v-icon>
-	  <v-icon v-else @click="display(item)">
+	  <v-icon v-else>
 	    {{ files[item.file] }}
 	  </v-icon>
       </template>
@@ -39,7 +39,7 @@
 	    <div v-if="!item.file">
 		{{item.name}}
 	    </div>
-	    <div v-else @click="display(item)">
+	    <div v-else>
 		{{item.name}}
 	    </div>
       </template>
@@ -71,46 +71,36 @@
 	      var self = this;
 	      var socket = io();
 	      socket.on("load-event", function (filename) {
-		console.log("got the load event");
-	        console.log(filename);
-		self.load(filename);
+		console.log("got the load event: " + filename);
+		self.active = [filename];	
+		// var base = filename.substring(0, filename.lastIndexOf('.')); 
+		// self.open = [base]; 
 	      });
 	  },
 	methods: { 
-	    display: function(item) {
-	       //ui is already set correctly for this. 
-		console.log("url : " + item.page);
-	       this.page = item.page;
-	    },
-	    load: function(filename) {
-		    if(this.id === id) {
-			console.log("load: update forced");
-			var iframe = document.getElementById("theIframe");
-			var src = iframe.src;
-			iframe.src = src;
-		    }
-		    else {
-		      console.log("load: no forced update");
-		      console.log("need to adjust ui open and active");
-		      console.log(id);
-		      this.page = page;
-		      var base = this.page.substring(0, this.page.lastIndexOf('.'));
-		      this.open = [base];
-		      this.active = [this.page];
-		    }
+	},
+	computed: {
+	    page: function() {
+		console.log("updating page !!!");
+		if(this.active.length ===1) {
+		    console.log("updating url");
+		    return "http://localhost:3000/" + this.active[0];
+		}
+		else {
+		    console.log("updating to null string");
+		    return "";
+		}
 	    }
 	},
      data: () => ({
 	  drawer: null,
-	  //jupyterpage: "http://localhost:8888/notebooks/Webscraping.ipynb",
-	  page: "http://localhost:3000/Webscraping.html",
 	  open: ["Webscraping"],
 	  active: ["Webscraping.html"],
 	  files: {
-	    html: 'mdi-code-tags',
+	    html: 'mdi-file-xml',
 	    md: 'mdi-markdown',
 	    pdf: 'mdi-file-pdf',
-	    ipynb: 'mdi-notebook'
+	 //   ipynb: 'mdi-file'
 	  },
 	 items: jsonItems 
 	})

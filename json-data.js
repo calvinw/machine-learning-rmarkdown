@@ -21,12 +21,6 @@ var jsonItems =
         "page": "http://localhost:3000/Webscraping.pdf",
         "name": "pdf",
         "file": "pdf"
-      },
-      {
-        "id": "Webscraping.ipynb",
-        "page": "http://localhost:8888/notebooks/Webscraping.ipynb",
-        "name": "ipynb",
-        "file": "text"
       }
     ]
   }

@@ -1,7 +1,8 @@
 SOURCES=$(shell find . -name "*.Rmd")
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
+#IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
+IPYNB_FILES =
 #DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 export PATH := /bin:/usr/bin:/opt/R/3.4.4/lib/R/bin:$(PATH) 
 
@@ -9,12 +10,8 @@ all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES)
 	@echo All files are now up to date
 
 clean : 
-	@echo Removing html files...	
-	rm -f $(HTML_FILES) 
-	@echo Removing pdf files...	
-	rm -f $(PDF_FILES) 
-	@echo Removing ipynb files...	
-	rm -f $(IPYNB_FILES) 
+	@echo Removing html, pdf and ipynb files...	
+	rm -f $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) 
 
 allFiles:
 	find -name '*.Rmd' | sort > allFiles 
@@ -35,8 +32,12 @@ allFiles:
 	jupytext $< --to notebook --set-kernel ir
 	@echo ipynb is rendered...	
 
+data: 
+	node problems.js > json-data.js
+
 server: 
-	make -j watch node jupyter
+#	make -j watch nodeapp jupyter
+	make -j watch nodeapp
 
 watch:
 	@echo Watching .Rmd files...	
@@ -47,7 +48,7 @@ jupyter:
 	@echo Launching Jupyter 
 	jupyter notebook --no-browser 
 
-node: 
+nodeapp: 
 	@echo Launching app.js 
 	node app.js
 
