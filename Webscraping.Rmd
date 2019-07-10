@@ -9,8 +9,7 @@ First make sure that you install the rvest package:
 install.packages("rvest")
 ```
 
-Then once we do this we pick a site we want to get data from. We will follow a technique very similar to the following great explanation of how to do this:
-
+Then once we do this we pick a site we want to get data from. We want to pull some data from poshmark and compare original prices with the current price, maybe to find excellent bargins. We use the `read_html` method from the rvest package. We will look in the category Jackets and Coats-Blazers, and we will just use the data we find on the first page: 
 
 ```{r message=FALSE}
 library("rvest")
@@ -18,14 +17,21 @@ url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers'
 webpage <- read_html(url)
 ```
 
-Now we use the selector gadget to find the part of the website we want to get. Selector gadget is a chrome extension that allows you to grab a css selector for a part of a website that you want to collect in your data. First we get the titles as follows: 
+Now we use the Selector Gadget to find the part of the website we want to get. [Selector Gadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=en) is a chrome extension(go ahead and install it) that allows you to grab a css selector for a part of a website that you want to collect in your data. The link above has some screenshots of this in action and there are good [videos](https://www.youtube.com/watch?v=oqNTfWrGdbk) on YouTube showing how to use it as well. 
+
+First we get the titles using `html_nodes` and the selector `#tiles-con .title` which wegot from using SelectorGadget: 
 
 ```{r}
 titleNodes <- html_nodes(webpage,'#tiles-con .title')
-titles <- html_text(titleNodes)
-length(titles) # double check 48 products
+length(titleNodes) # double check 48 products
 ```
-We have to clean up the titles array, since it sometimes has weird unicode in it. (Like Money Bags unicode). We want to have pure text.
+
+It looks like it is the right length at least. So probably we got the data we wanted. Next we don't need the html structure of what we pulled but we just want the text inside the tags so we use `html_text` to get that.
+
+```{r}
+titles <- html_text(titleNodes)
+```
+We have to clean up the titles array, since it sometimes has weird unicode in it. (Like Money Bags unicode). We want to have pure text:
 
 ```{r}
 titles <- iconv(titles, to="ASCII", sub="")
@@ -40,7 +46,7 @@ length(prices) # double check 48 products
 head(prices)
 ```
 
-So we are going to split each of these price strings into 2 strings:
+I wasn't able to find a way to pull each price separately the way they were written in the html, so we are going to have to split each of the price strings into 2 strings. Its difficult to tell but the strings above with the two prices are actually the prices and a "non breaking space" between them. That is the way they were coded in the html. A nonbreaking space looks like this `&nbsp;` and you will see it in the html if you look carefully. It turns out that the unicode for this non-breaking space is `\u00A0` so the code that splits the string based on that separator is this: 
 
 ```{r}
 prices <- strsplit(prices, split='\u00A0')
