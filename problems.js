@@ -17,17 +17,15 @@ fs.readdir(dirPath, function(err, files){
       var rmdFile = name + '.Rmd'
       var pdfFile = name + '.pdf'
       var ipynbFile = name + '.ipynb'
-      var webserverURL = "http://localhost:3000/";
-      var jupyterURL = "http://localhost:8888/notebooks/";
 
 	var item = {
 	  id: name,
 	  name: name,
 	  children: [
-	    { id: htmlFile , page: webserverURL + htmlFile, name: 'html', file: 'html' },
-	    { id: rmdFile, page: webserverURL + rmdFile, name: 'Rmd', file: 'md' },
-	    { id: pdfFile, page: webserverURL + pdfFile, name: 'pdf', file: 'pdf'},
-//	    { id: ipynbFile, page: jupyterURL + ipynbFile, name: 'ipynb', file: 'notebook'}
+	    { id: htmlFile , name: 'html', file: 'html' },
+	    { id: rmdFile, name: 'Rmd', file: 'md' },
+	    { id: pdfFile, name: 'pdf', file: 'pdf'},
+//	    { id: ipynbFile, name: 'ipynb', file: 'ipynb'}
 	  ]
 	};
 	arr.push(item);

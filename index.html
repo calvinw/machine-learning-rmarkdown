@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,22 +27,22 @@
   <div id="app">
   <v-app id="inspire">
     <v-navigation-drawer fixed v-model="drawer" app >
-  <v-treeview activatable :items="items" :active.sync="active" :open.sync="open" open-on-click>
+  <v-treeview activatable :items="items" :active.sync="active" :open="open" open-on-click>
       <template v-slot:prepend="{item, open}">
 	  <v-icon v-if="!item.file">
-	    mdi-file
+	    mdi-folder
 	  </v-icon>
 	  <v-icon v-else>
 	    {{ files[item.file] }}
 	  </v-icon>
       </template>
       <template v-slot:label="{item}">
-	    <div v-if="!item.file">
-		{{item.name}}
-	    </div>
-	    <div v-else>
-		{{item.name}}
-	    </div>
+	  <div v-if="item.file === 'ipynb'">
+	      <span v-on:click='clicked()'>ipynb</span> 
+	  </div>
+	  <div v-else>
+	    {{item.name}}
+	  </div>
       </template>
   </v-treeview>
     </v-navigation-drawer>
@@ -50,9 +51,12 @@
       <v-toolbar-title> {{page}}</v-toolbar-title>
     </v-toolbar>
     <v-content>
+	<!--     <div> -->
+	<!-- {{page}} -->
+	<!--     </div> -->
       <v-container fluid fill-height fill-width>
         <v-layout justify-center align-center >
-	   <iframe id="theIframe" v-bind:src="page"></iframe> 
+	   <iframe id="theIframe" :src="page"></iframe>
         </v-layout>
       </v-container>
     </v-content>
@@ -72,22 +76,24 @@
 	      var socket = io();
 	      socket.on("load-event", function (filename) {
 		console.log("got the load event: " + filename);
-		self.active = [filename];	
-		// var base = filename.substring(0, filename.lastIndexOf('.')); 
-		// self.open = [base]; 
+		  Vue.set(self.active, 0, filename)
 	      });
 	  },
 	methods: { 
+	    clicked: function() {
+		window.open("http://www.google.com");
+		console.log("I was clicked");
+	    }
 	},
 	computed: {
 	    page: function() {
 		console.log("updating page !!!");
 		if(this.active.length ===1) {
-		    console.log("updating url");
+		    console.log("updating url: this.active[0] is: "+this.active[0]);
 		    return this.active[0];
 		}
 		else {
-		    console.log("updating to null string");
+		    console.log("updating page to null string");
 		    return "";
 		}
 	    }
@@ -100,7 +106,7 @@
 	    html: 'mdi-file-xml',
 	    md: 'mdi-markdown',
 	    pdf: 'mdi-file-pdf',
-	 //   ipynb: 'mdi-file'
+	    ipynb: 'mdi-file'
 	  },
 	 items: jsonItems 
 	})
