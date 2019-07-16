@@ -25,7 +25,7 @@ fs.readdir(dirPath, function(err, files){
 	    { id: htmlFile , name: 'html', file: 'html' },
 	    { id: rmdFile, name: 'Rmd', file: 'md' },
 	    { id: pdfFile, name: 'pdf', file: 'pdf'},
-//	    { id: ipynbFile, name: 'ipynb', file: 'ipynb'}
+	    { id: ipynbFile, name: 'ipynb', file: 'ipynb'}
 	  ]
 	};
 	arr.push(item);

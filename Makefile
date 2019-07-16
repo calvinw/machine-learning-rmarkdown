@@ -1,8 +1,8 @@
 SOURCES=$(shell find . -name "*.Rmd")
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-#IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
-IPYNB_FILES =
+IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
+#IPYNB_FILES =
 #DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 export PATH := /bin:/usr/bin:/opt/R/3.4.4/lib/R/bin:$(PATH) 
 
@@ -36,8 +36,7 @@ data:
 	node problems.js > json-data.js
 
 server: 
-#	make -j watch nodeapp jupyter
-	make -j watch nodeapp
+	make -j watch nodeapp jupyter
 
 watch:
 	@echo Watching .Rmd files...	

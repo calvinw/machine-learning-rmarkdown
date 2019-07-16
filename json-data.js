@@ -18,6 +18,11 @@ var jsonItems =
         "id": "Webscraping.pdf",
         "name": "pdf",
         "file": "pdf"
+      },
+      {
+        "id": "Webscraping.ipynb",
+        "name": "ipynb",
+        "file": "ipynb"
       }
     ]
   }

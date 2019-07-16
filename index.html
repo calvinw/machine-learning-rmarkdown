@@ -38,7 +38,7 @@
       </template>
       <template v-slot:label="{item}">
 	  <div v-if="item.file === 'ipynb'">
-	      <span v-on:click='clicked()'>ipynb</span> 
+	      <span v-on:click='clicked(item)'>ipynb</span> 
 	  </div>
 	  <div v-else>
 	    {{item.name}}
@@ -56,7 +56,7 @@
 	<!--     </div> -->
       <v-container fluid fill-height fill-width>
         <v-layout justify-center align-center >
-	   <iframe id="theIframe" :src="page"></iframe>
+	   <iframe id="theIframe" :key="key" :src="page"></iframe>
         </v-layout>
       </v-container>
     </v-content>
@@ -77,12 +77,16 @@
 	      socket.on("load-event", function (filename) {
 		console.log("got the load event: " + filename);
 		  Vue.set(self.active, 0, filename)
+		  self.key = Date.now();
 	      });
 	  },
 	methods: { 
-	    clicked: function() {
-		window.open("http://www.google.com");
+	    clicked: function(item) {
 		console.log("I was clicked");
+		if(this.ipythonMode === "jupyter")
+		    window.open("http://localhost:8888/notebooks/" +item.id);
+		else if(this.ipythonMode === "colab")
+		    window.open("http://google.com")
 	    }
 	},
 	computed: {
@@ -90,7 +94,13 @@
 		console.log("updating page !!!");
 		if(this.active.length ===1) {
 		    console.log("updating url: this.active[0] is: "+this.active[0]);
-		    return this.active[0];
+		    filename = this.active[0];
+		    const ext = filename.substring(filename.lastIndexOf('.')+1, filename.length)
+		    if(ext === 'ipynb') 
+			return "";
+		    else {
+			return this.active[0];
+		    }
 		}
 		else {
 		    console.log("updating page to null string");
@@ -99,7 +109,9 @@
 	    }
 	},
      data: () => ({
+	  ipythonMode: "jupyter",
 	  drawer: null,
+	  key: null,
 	  open: ["Webscraping"],
 	  active: ["Webscraping.html"],
 	  files: {
