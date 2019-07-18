@@ -85,8 +85,10 @@
 		console.log("I was clicked");
 		if(this.ipythonMode === "jupyter")
 		    window.open("http://localhost:8888/notebooks/" +item.id);
-		else if(this.ipythonMode === "colab")
-		    window.open("http://google.com")
+		else if(this.ipythonMode === "colab") {
+		    const googleFileId = "1lwfP70xO-MUZEMWUqbd-eDMS1FRxG20w"
+		    window.open("https://colab.research.google.com/drive/" + googleFileId)
+		}
 	    }
 	},
 	computed: {
@@ -109,7 +111,7 @@
 	    }
 	},
      data: () => ({
-	  ipythonMode: "jupyter",
+	  ipythonMode: "colab",
 	  drawer: null,
 	  key: null,
 	  open: ["Webscraping"],

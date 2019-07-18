@@ -1,6 +1,8 @@
 SOURCES=$(shell find . -name "*.Rmd")
-HTML_FILES = $(SOURCES:%.Rmd=%.html)
-PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
+#HTML_FILES = $(SOURCES:%.Rmd=%.html)
+HTML_FILES =
+#PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
+PDF_FILES =
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 #IPYNB_FILES =
 #DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
@@ -30,13 +32,14 @@ allFiles:
 %.ipynb : %.Rmd
 	@echo Calling jupytext...	
 	jupytext $< --to notebook --set-kernel ir
-	@echo ipynb is rendered...	
+	@echo ipynb is rendered...uploading to google	
+	node google-app.js $@ 1s1I1ujfB21_JDPecLl49STBxPAUznViZ
 
 data: 
 	node problems.js > json-data.js
 
 server: 
-	make -j watch nodeapp jupyter
+	make -j watch nodeapp
 
 watch:
 	@echo Watching .Rmd files...	
