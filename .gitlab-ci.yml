@@ -14,6 +14,8 @@ pages:
   - mkdir .public
   - cp -r * .public
   - mv .public public
+  - rm -rf public/credentials.json public/google-app.js public/app.js public/google-ids.json
+
   artifacts:
     paths:
     - public

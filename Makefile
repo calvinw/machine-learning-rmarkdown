@@ -6,6 +6,7 @@ PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 #IPYNB_FILES =
 #DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
+#GOOGLE_UPLOAD = yes
 
 export PATH := /bin:/usr/bin:/opt/R/3.4.4/lib/R/bin:$(PATH) 
 
@@ -33,8 +34,11 @@ allFiles:
 %.ipynb : %.Rmd
 	@echo Calling jupytext...	
 	jupytext $< --to notebook --set-kernel ir
-	@echo ipynb is rendered...uploading to google	
+	@echo ipynb is rendered...
+ifdef GOOGLE_UPLOAD
+	@echo uploading to google
 	node google-app.js $@
+endif
 
 data: 
 	node problems.js > data.json
@@ -45,7 +49,7 @@ server:
 watch:
 	@echo Watching .Rmd files...	
 	@echo Will call make on changes...	
-	while true; do ls *.Rmd | entr make; done
+	while true; do ls *.Rmd | entr make GOOGLE_UPLOAD=yes; done
 
 jupyter: 
 	@echo Launching Jupyter 
