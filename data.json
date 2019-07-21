@@ -1,0 +1,83 @@
+[
+  {
+    "id": "4_R_Calculator_on_Steroids",
+    "name": "4_R_Calculator_on_Steroids",
+    "children": [
+      {
+        "id": "4_R_Calculator_on_Steroids.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1cjw0dlz8e_sQorUOYa2iJV4G0QBqj3ju"
+      }
+    ]
+  },
+  {
+    "id": "DataFrames",
+    "name": "DataFrames",
+    "children": [
+      {
+        "id": "DataFrames.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "DataFrames.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "DataFrames.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "DataFrames.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
+      }
+    ]
+  },
+  {
+    "id": "Webscraping",
+    "name": "Webscraping",
+    "children": [
+      {
+        "id": "Webscraping.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "Webscraping.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "Webscraping.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "Webscraping.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
+      }
+    ]
+  }
+]

@@ -1,14 +1,23 @@
 const fs = require('fs');
 const readline = require('readline');
+const path = require('path');
 const {google} = require('googleapis');
 
-if (process.argv.length != 4) {
-  console.error('usage: node app.js fileName googleFileId');
+if (process.argv.length != 3) {
+  console.error('usage: node app.js fileName');
   process.exit(1);
 }
 
 const fileName = process.argv[2]; 
-const googleFileId = process.argv[3];
+var parsed = path.parse(fileName);
+var base = parsed.name;
+
+let googleidsdata = fs.readFileSync('google-ids.json');
+let googleids = JSON.parse(googleidsdata);
+const googleFileId = googleids[base]; 
+
+console.log("fileName is: " + fileName);
+console.log("googleFileId is: " + googleFileId);
 
 // If modifying these scopes, delete token.json.
 //const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];

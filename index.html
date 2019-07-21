@@ -21,7 +21,7 @@
 	  border: none;
 	}
   </style> 
-  <script src="json-data.js"></script>
+  <!-- <script src="json&#45;data.js"></script> -->
 </head>
 <body>
   <div id="app">
@@ -79,6 +79,20 @@
 		  Vue.set(self.active, 0, filename)
 		  self.key = Date.now();
 	      });
+
+	      console.log("loading json items data");
+	      fetch('./data.json')
+	      .then(response => {
+		return response.json()
+	      })
+	      .then(data => {
+		// Work with JSON data here
+		console.log(data)
+		self.items = data;
+	      })
+	      .catch(err => {
+	        console.log("there was an error reading items json");
+	      })
 	  },
 	methods: { 
 	    clicked: function(item) {
@@ -86,8 +100,7 @@
 		if(this.ipythonMode === "jupyter")
 		    window.open("http://localhost:8888/notebooks/" +item.id);
 		else if(this.ipythonMode === "colab") {
-		    const googleFileId = "1lwfP70xO-MUZEMWUqbd-eDMS1FRxG20w"
-		    window.open("https://colab.research.google.com/drive/" + googleFileId)
+		    window.open("https://colab.research.google.com/drive/" + item.googleId)
 		}
 	    }
 	},
@@ -122,7 +135,7 @@
 	    pdf: 'mdi-file-pdf',
 	    ipynb: 'mdi-file'
 	  },
-	 items: jsonItems 
+	 items: null 
 	})
     })
   </script>

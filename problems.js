@@ -9,6 +9,10 @@ fs.readdir(dirPath, function(err, files){
     var id = 1;
     var arr = [];
   //console.log(filesList);
+    //
+    let googleidsdata = fs.readFileSync('google-ids.json');
+    let googleids = JSON.parse(googleidsdata);
+
     for(f of filesList){
       var parsed = path.parse(f);
       var name = parsed.name;
@@ -17,6 +21,7 @@ fs.readdir(dirPath, function(err, files){
       var rmdFile = name + '.Rmd'
       var pdfFile = name + '.pdf'
       var ipynbFile = name + '.ipynb'
+      var googleId = googleids[name]; 
 
 	var item = {
 	  id: name,
@@ -25,13 +30,12 @@ fs.readdir(dirPath, function(err, files){
 	    { id: htmlFile , name: 'html', file: 'html' },
 	    { id: rmdFile, name: 'Rmd', file: 'md' },
 	    { id: pdfFile, name: 'pdf', file: 'pdf'},
-	    { id: ipynbFile, name: 'ipynb', file: 'ipynb'}
+	    { id: ipynbFile, name: 'ipynb', file: 'ipynb', googleId: googleId}
 	  ]
 	};
 	arr.push(item);
 	id++;
       //console.log(name);
     }
-    console.log("var jsonItems =");
     console.log(JSON.stringify(arr, null, 2));
 });

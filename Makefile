@@ -1,11 +1,12 @@
 SOURCES=$(shell find . -name "*.Rmd")
-#HTML_FILES = $(SOURCES:%.Rmd=%.html)
-HTML_FILES =
-#PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-PDF_FILES =
+HTML_FILES = $(SOURCES:%.Rmd=%.html)
+#HTML_FILES =
+PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
+#PDF_FILES =
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 #IPYNB_FILES =
 #DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
+
 export PATH := /bin:/usr/bin:/opt/R/3.4.4/lib/R/bin:$(PATH) 
 
 all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES)
@@ -33,10 +34,10 @@ allFiles:
 	@echo Calling jupytext...	
 	jupytext $< --to notebook --set-kernel ir
 	@echo ipynb is rendered...uploading to google	
-	node google-app.js $@ 1s1I1ujfB21_JDPecLl49STBxPAUznViZ
+	node google-app.js $@
 
 data: 
-	node problems.js > json-data.js
+	node problems.js > data.json
 
 server: 
 	make -j watch nodeapp
