@@ -5,7 +5,7 @@ pages:
   script:
   - apt-get update
   - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev pandoc python-pip
-  - pip install jupyter-client
+  - pip install jupyter
   - pip install jupytext --upgrade
   - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
   - Rscript -e "install.packages('rmarkdown')"
