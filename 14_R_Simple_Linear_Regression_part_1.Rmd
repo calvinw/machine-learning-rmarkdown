@@ -1,0 +1,42 @@
+This notebook follows along with the following video:   
+
+[R - Simple Linear Regression (part 1) ](https://www.youtube.com/watch?v=wnIlld_8lSg&list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&index=14)
+
+Like the previous video
+we load up our file by using Rcurl instead of like he does in his videos. The loads the Rcurl library
+
+First make sure RCurl is installed.
+
+```{r eval=FALSE}
+install.packages("RCurl")
+```
+
+Then make sure it is loaded:
+
+```{r}
+library("RCurl")
+```
+
+We read in the dataframe like we have before. 
+
+```{r}
+textString<-getURL("https://raw.githubusercontent.com/LiviuSosu/Machine-Learning/f647ce8db0ecd9e41240b2cbeee90425c80c0e65/R/Simple%20Linear%20Regression%20Datasets/rent.csv")
+
+rent<-read.csv(text=textString)
+```
+
+```{r}
+str(rent)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+plot(rent ~ size, data=rent)
+```
+
+```{r}
+cor(rent$rent, rent$size)
+```

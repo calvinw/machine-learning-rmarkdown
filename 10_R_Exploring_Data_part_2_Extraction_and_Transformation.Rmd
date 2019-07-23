@@ -1,0 +1,104 @@
+This notebook follows along with the following video:   
+
+[Exploring Data(part 2) - Extraction & Transformation) ](https://www.youtube.com/watch?v=v11SWrC6qGk&list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&index=10)
+
+Like the previous video we load up our file by using Rcurl instead of like he does in his video. 
+
+First make sure RCurl is installed.
+
+```{r eval=FALSE}
+install.packages("RCurl")
+```
+
+Then make sure it is loaded:
+
+```{r}
+library("RCurl")
+```
+
+Bascially Instead of reading from the local computer we will read it from online and then read it in to the data frame as follows
+
+```{r}
+textString<-getURL("https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/usedcars.csv")
+df<-read.csv(text=textString, stringsAsFactors=FALSE)
+```
+
+Next we convert the transmission field in the data to a factor: In the video he mentions having done this. So the code below does this.
+
+```{r}
+df$transmission<-factor(df$transmission)
+```
+
+So now you can start with the video at [0:42](https://youtu.be/v11SWrC6qGk?list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&t=42)
+
+```{r}
+str(df)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+subset(df, color %in% "Yellow")
+```
+
+```{r}
+subset(df, mileage > 100000)
+```
+
+```{r}
+subset(df, transmission %in% "MANUAL")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+head(df$color)
+```
+
+```{r}
+df$color[1]
+```
+
+```{r}
+df$color[1:3]
+```
+
+```{r}
+df$color[100]
+```
+
+```{r}
+table(df$color)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+df[1,]
+```
+
+```{r}
+df[1,3]
+```
+
+```{r}
+df[c(1,3,6), 5]
+```
+
+```{r}
+df[c(1,3,6), "color"]
+```
+
+```{r}
+df[c(1,3,6), c("color","transmission")]
+```
+
+```{r}
+df[c(1,3,6), -c(5,6)]
+```

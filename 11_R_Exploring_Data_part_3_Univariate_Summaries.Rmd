@@ -1,0 +1,107 @@
+This notebook follows along with the following video:   
+
+[Exploring Data(part 3) - Univariate Summaries ](https://www.youtube.com/watch?v=EVmuPZgTf2U&list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&index=11)
+
+Like the previous video
+we load up our file by using Rcurl instead of like he does in his videos. The following code sets this up.
+
+First make sure RCurl is installed.
+
+```{r eval=FALSE}
+install.packages("RCurl")
+```
+
+Then make sure it is loaded:
+
+```{r}
+library("RCurl")
+```
+
+Bascially Instead of reading from the local computer we will read it from online and then read it in to the data frame as follows
+
+```{r}
+textString<-getURL("https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/usedcars.csv")
+df<-read.csv(text=textString, stringsAsFactors=FALSE)
+```
+
+Now you can start at [1:40](https://youtu.be/EVmuPZgTf2U?list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&t=100) with the same dataframe as in the video
+
+```{r}
+str(df)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+head(df$transmission)
+```
+
+```{r}
+df$transmission <- factor(df$transmission)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+str(df)
+```
+
+```{r}
+table(df$transmission)
+```
+
+```{r}
+length(df$transmission)
+```
+
+```{r}
+table(df$transmission)/length(df$transmission)
+```
+
+```{r}
+pie(table(df$transmission))
+```
+
+```{r}
+barplot(table(df$transmission))
+```
+
+```{r}
+head(df$mileage)
+```
+
+```{r}
+mean(df$mileage)
+```
+
+```{r}
+median(df$mileage)
+```
+
+```{r}
+var(df$mileage)
+```
+
+```{r}
+sd(df$mileage)
+```
+
+```{r}
+range(df$mileage)
+```
+
+```{r}
+hist(df$mileage)
+```
+
+```{r}
+boxplot(df$mileage)
+```
+
+```{r}
+boxplot(df$mileage, horizontal=TRUE)
+```

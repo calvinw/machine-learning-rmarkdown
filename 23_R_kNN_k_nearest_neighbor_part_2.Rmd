@@ -1,0 +1,55 @@
+This notebook follows along with the following video:   
+
+[R - kNN - k nearest neighbor (part 2) ](https://www.youtube.com/watch?v=DkLNb0CXw84&list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&index=23)
+
+The following code will setup the environment so it is like at the end of part 1 of the kNN technique:
+
+```{r}
+data(iris)
+set.seed(9850)
+invisible(runif(5))                  #must re-run this since we did this before 
+gp<-runif(nrow(iris))
+iris <- iris[order(gp),]
+normalize <- function(X) {
+    return ( (X-min(X)) / (max(X)-min(X)) )
+}
+iris_n <- as.data.frame(lapply(iris[,c(1,2,3,4)], normalize))
+```
+
+```{r}
+str(iris)
+```
+
+```{r}
+head(iris)
+```
+
+```{r}
+iris_train <- iris_n[1:129,]
+iris_test <- iris_n[130:150,]
+```
+
+```{r}
+iris_train_target <- iris[1:129,5]
+iris_test_target <- iris[130:150,5]
+```
+
+```{r}
+require(class)
+```
+
+```{r}
+sqrt(150)
+```
+
+```{r}
+m1 <- knn(train=iris_train, test=iris_test, cl=iris_train_target, k=3)
+```
+
+```{r}
+m1
+```
+
+```{r}
+table(iris_test_target, m1)
+```

@@ -5,13 +5,13 @@ Here we will show how to do webscraping with rvest and the chrome extension sele
 
 First make sure that you install the rvest package:
 
-```{r eval=FALSE, echo=TRUE, results='hide', message=FALSE}
+```{r}
 install.packages("rvest")
 ```
 
 Then once we do this we pick a site we want to get data from. We want to pull some data from [http://poshmark.com](http://poshmark.com) and compare original prices with the current price, maybe to find excellent bargins. We use the `read_html` method from the rvest package. We will look in the category Jackets and Coats-Blazers, and we will just use the data we find on the first page: 
 
-```{r message=FALSE}
+```{r}
 library("rvest")
 url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers'
 webpage <- read_html(url)

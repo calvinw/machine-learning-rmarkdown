@@ -1,0 +1,80 @@
+This notebook accompanies the video here: 
+
+[R Data Structures (part 1) - vectors and factors](https://www.youtube.com/watch?v=kL0-k_NrIls&list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&index=8)
+
+```{r}
+gpa<-c(3.45, 3.97, 2.98, 4)
+```
+
+```{r}
+gpa
+```
+
+```{r}
+str(gpa)
+```
+
+```{r}
+gpa[1]
+```
+
+```{r}
+gpa[3]
+```
+
+```{r}
+gpa[1:3]
+```
+
+```{r}
+first_name<- c("Alice", "Alex", "Maria", "John")
+first_name
+```
+
+```{r}
+str(first_name)
+```
+
+```{r}
+first_name[2]
+```
+
+```{r}
+first_name[2:3]
+```
+
+```{r}
+pass<-c(TRUE,FALSE,TRUE, TRUE)
+pass
+```
+
+```{r}
+str(pass)
+```
+
+```{r}
+pass[2:4]
+```
+
+```{r}
+gender<-c("F","M","F","M")
+str(gender)
+```
+
+```{r}
+gender<-factor(gender, levels=c("M","F"))
+gender
+```
+
+```{r}
+str(gender)
+```
+
+```{r}
+fcolor <- factor(c("black","red", "red", "blue"))
+fcolor
+```
+
+```{r}
+str(fcolor)
+```

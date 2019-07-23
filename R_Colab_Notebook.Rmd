@@ -1,0 +1,7 @@
+This is a text cell. Double Click on it to edit it.  
+The next cell below is a code cell. Enter code in it.   
+To run the code click on the Run Cell button
+
+```{r}
+print("Hello World")
+```
