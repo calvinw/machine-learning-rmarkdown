@@ -10,6 +10,7 @@ pages:
   - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
   - Rscript -e "install.packages('rmarkdown')"
   - Rscript -e "install.packages('rvest')"
+  - Rscript -e "install.packages('RCurl')"
   - Rscript -e "install.packages('IRkernel')"
   - Rscript -e "IRkernel::installspec()"
   - make
