@@ -4,7 +4,7 @@
 <head>
   <link href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <style> 
 	body, html {
@@ -64,20 +64,22 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
 
   <script>
     new Vue({
       el: '#app',
 	  created: function () {
 	      console.log("preparing socket io");
+
 	      var self = this;
 	      var socket = io();
 	      socket.on("load-event", function (filename) {
 		console.log("got the load event: " + filename);
 		  Vue.set(self.active, 0, filename)
 		  self.key = Date.now();
+		  window.scrollTo(0, document.body.scrollHeight);
 	      });
 
 	      console.log("loading json items data");
@@ -127,8 +129,8 @@
 	  ipythonMode: "colab",
 	  drawer: null,
 	  key: null,
-	  open: ["Webscraping"],
-	  active: ["Webscraping.html"],
+	  open: ["Elasticity"],
+	  active: ["Elaticity.html"],
 	  files: {
 	    html: 'mdi-file-xml',
 	    md: 'mdi-markdown',

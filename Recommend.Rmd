@@ -1,0 +1,47 @@
+
+# Elasticity 
+
+This notebook is from the following, and is just a simplified version of it:
+[Price Elasticity with R](http://www.salemmarafi.com/code/price-elasticity-with-r)   
+
+Also see here: [Pricing Analysis Example](https://rstudio-pubs-static.s3.amazonaws.com/185880_f9e3e3ee84314609b531524dfa3f4f1b.html) 
+
+First make sure RCurl is installed.
+
+```{r eval=FALSE}
+install.packages("RCurl")
+```
+
+Then make sure it is loaded:
+
+```{r}
+library("RCurl")
+```
+
+We use the getURL function from the RCurl package to load the data from the website. It is returned to us as a text string. 
+
+```{r}
+#textString<-getURL("http://www.salemmarafi.com/wp-content/uploads/2014/06/supermarket.csv")
+textString<-getURL("https://raw.githubusercontent.com/PacktPublishing/Jupyter-for-Data-Science/master/Chapter01/grapeJuice.csv")
+df<-read.csv(text=textString)
+```
+
+Here is the structure of the data set.
+
+```{r}
+str(df)
+```
+
+Here are the first few terms 
+
+```{r}
+head(df, 10)
+```
+
+Lets look at the  
+
+```{r}
+par(mfrow=c(1,2))
+boxplot(df$sales,main="Boxplot for sales data", xlab="grape sales")
+hist(df$sales,main='histogram plot for sales data',xlab='grape sales',prob=T)
+```

@@ -1,0 +1,14 @@
+<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.js"></script>
+<script>
+     // document.onload = function () {
+	//    scrollingElement = (document.scrollingElement || document.body);
+	//    scrollingElement.scrollTop = scrollingElement.scrollHeight;
+     // }
+     console.log("preparing socket io");
+      var socket = io();
+      socket.on("load-event", function (filename) {
+	console.log("got the load event: " + filename);
+	  location.reload();
+	  //window.scrollTo(0, document.body.scrollHeight);
+      });
+</script>

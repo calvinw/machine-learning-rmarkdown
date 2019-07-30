@@ -5,7 +5,7 @@ Here we will show how to do webscraping with rvest and the chrome extension sele
 
 First make sure that you install the rvest package:
 
-```{r}
+```{r eval=FALSE}
 install.packages("rvest")
 ```
 

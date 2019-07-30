@@ -1,0 +1,205 @@
+---
+title: "Elasticity and Maximizing Profits"
+output:
+  md_document: 
+    preserve_yaml: false
+  html_document:
+    includes:
+      in_header: header.html
+---
+This notebook is an expanded version of the analysis done here: 
+[Price Elasticity with R](http://www.salemmarafi.com/code/price-elasticity-with-r)   
+
+Also you can see this page as well for a similar version:
+[Pricing Analysis Example](https://rstudio-pubs-static.s3.amazonaws.com/185880_f9e3e3ee84314609b531524dfa3f4f1b.html) 
+
+First make sure RCurl is installed.
+
+```{r eval=FALSE}
+install.packages("RCurl")
+```
+
+Then make sure it is loaded:
+
+```{r}
+library("RCurl")
+```
+
+We use the getURL function from the RCurl package to load the data from the website. It is returned to us as a text string. 
+
+```{r}
+url<- "http://www.salemmarafi.com/wp-content/uploads/2014/06/supermarket.csv"
+textString<-getURL(url)
+df<-read.csv(text=textString)
+```
+
+Here is the structure of the data set.
+
+```{r}
+str(df)
+```
+
+First we have 30 observations for demand and price for eggs. Then we have 30 observations of the ad type that was run, where 0 means featured the cookies poster and 1 means featured the eggs poster. Finally we have data on the price of cookies.  
+
+Here is the data: 
+
+```{r}
+df
+```
+
+Let's start with a summary of the data:  
+
+```{r}
+summary(df)
+```
+
+The mean demand is `r mean(df$Sales)` and the mean price is about \$`r mean(df$Price.Eggs)`   
+
+Lets look at the distribution of demand. 
+
+```{r}
+par(mfrow=c(1,2))
+boxplot(df$Sales,main="Boxplot for Egg Sales", xlab="Egg Sales")
+hist(df$Sales,main='Histogram for Egg Sales',xlab='Egg Sales',prob=T)
+```
+
+There are no outliers or other unusual data to speak of here. 
+
+Lets look at the correlations between the variables.
+
+```{r}
+cor(df)
+pairs(df, pch=20)
+```
+
+It looks like there is a strong correlation between sales and own price. We expected that of course.
+
+There is a weaker correlation between egg sales and price of cookies. 
+
+Let's model using all the predictors:
+ 
+```{r}
+model <- lm(Sales~Price.Eggs+Ad.Type+Price.Cookies, df)
+summary(model)
+b<-round(unname(coefficients(model)),2)
+b
+```
+
+This shows the coefficients for the various predictors. 
+
+Price of eggs, the ad type and price of cookies are all significant with p-value less than .05.    
+
+The multiple regression equation is:    
+
+$$
+`r {
+    B<-round(b,2);
+    signB2 <- ifelse(B[2]<0,"","+");
+    signB3 <- ifelse(B[3]<0,"","+");
+    signB4 <- ifelse(B[4]<0,"","+");
+
+    # Q = B[1] + B[2](Peggs) + B[3](AdType) + B[4](Pcookies) 
+
+    sprintf("Q=%s %s %s(P_{eggs}) %s %s(AdType) %s %s(P_{cookies})",
+	    B[1], signB2, B[2], signB3, B[3], signB4, B[4]) 
+   }`  
+$$
+
+Next we show the calculation of the price elasticity: For price elasticity we compute the percent change in quantity divided by the percent change in price. 
+
+$$
+\text{Price Elasticity} = \frac{\frac{\Delta Q}{Q}}{\frac{\Delta P_{eggs}}{P_{eggs}}}
+			=(\frac{\Delta Q}{\Delta P_{eggs}})(\frac{P_{eggs}}{Q})
+$$
+
+For the first part $\frac{\Delta Q}{\Delta P_{eggs}}$, this is just the multiple regression coefficient describing the rate of change of $Q$ as $P_{eggs}$ changes. That is actually just the coefficient from the multiple regression equation! So that is just $b[2] = `r b[2]`$. For $\frac{P_{eggs}}{Q}$, we will use the mean of the price of eggs and the mean of sales which we saw in the summary of the data above for that. 
+
+Let's compute the values:
+
+```{r}
+priceEggs <- mean(df$Price.Eggs)
+priceEggs
+quantity <- mean(df$Sales)
+quantity
+priceElasticity <- b[2]* (priceEggs/quantity)
+priceElasticity
+```
+
+The equation looks like this: 
+
+$$
+`r {
+    B<-round(b,2);
+    P<- round(priceEggs,2);
+    Q <- round(quantity,2);
+    PE <- round(priceElasticity, 2);
+
+    # PriceElasticity = (deltaQ/Q)/(deltaP/P) = (deltaQ/deltaP)(P/Q) = ... 
+
+    first <- "\\frac{\\frac{\\Delta Q}{Q}}{\\frac{\\Delta P_{eggs}}{P_{eggs}}}"
+    second <- "\\frac{\\Delta Q}{\\Delta P_{eggs}}\\frac{P_{eggs}}{Q}"
+
+    sprintf("\\text{Price Elasticity} = %s = %s = %s(\\frac{%s}{%s}) = %s", 
+	    first, second, B[2], P, Q, PE)  
+   }`
+$$
+
+This suggests that a 1% decrease in price of eggs will increase egg sales by 2.4%.
+
+Next is the calculation of the Cross Price Elasticity: For cross-price elasticity of eggs with cookies we compute the percent change in quantity of eggs divided by the percent change in the price of cookies: 
+
+```{r}
+PriceCookies <- mean(df$Price.Cookies)
+Quantity <- mean(df$Sales)
+CrossPriceElasticity <- b[4]*PriceCookies/Quantity
+CrossPriceElasticity
+```
+
+The equation looks like this: 
+
+$$
+`r {
+    B<-round(b,2);
+    P <- round(PriceCookies,2);
+    Q <- round(Quantity,2);
+    CPE <- round(CrossPriceElasticity, 2);
+
+    # CrossPriceElasticity = (deltaQ/Q)/(deltaP/P) = (deltaQ/deltaP)(P/Q) = ... 
+
+    first <- "\\frac{\\frac{\\Delta Q}{Q}}{\\frac{\\Delta P_{cookies}}{P_{cookies}}}"
+    second <- "\\frac{\\Delta Q}{\\Delta P_{cookies}}\\frac{P_{cookies}}{Q}"
+
+    sprintf("\\text{Cross Price Elasticity} = %s = %s = %s(\\frac{%s}{%s}) = %s", 
+	    first, second, B[4], P, Q, CPE);  
+   }`
+$$
+
+This suggests that 1% decrease in cookies price will increase the egg sales by 1.3%, and that cookies and eggs are compliments.
+
+For setting the optimal price we need some values for $P_{cookies}$ and $AdType$. Suppose the current cookies price is $P_{cookies}=4.37$ and the $AdType = 0$ for featuring the cookies. We plug these into the multiple regression equation:
+
+$$   
+Q =  137.37 -16.118(P_{eggs}) + 4.147(0) - 8.711(4.37) 
+  =  99.30 - 16.118(P_{eggs}) 
+$$
+
+So the demand equation we will use to maximize profit is this:
+
+$$   
+Q =  99.30 - 16.118(P_{eggs}) 
+$$
+
+Suppose the unit cost of eggs is $1.50. Then here is the profit function:
+
+```{r}
+profit <- function(p) {(p-1.50)*(99.30-16.118*p)}
+curve(profit, from=0, to =8, main="Profit Function", xlab="Price", ylab="Profit")
+```
+
+Finally we optimize the profit function:
+
+```{r}
+optimize(profit, lower=0, upper=8, maximum=TRUE)
+```
+
+The maximum profit occurs when the price is \$3.83 and the Profit is \$87.53.
