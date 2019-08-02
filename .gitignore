@@ -13,3 +13,4 @@ lsAll
 allFiles
 node_modules/*
 changed.txt
+token.json

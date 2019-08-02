@@ -1,0 +1,69 @@
+---
+title: "Python Examples"
+jupyter:
+  kernelspec:
+    display_name: "Python 3" 
+    language: python 
+    name: python3 
+output:
+  html_document:
+    includes:
+      in_header: header.html
+---
+
+```{r echo=TRUE}
+library("reticulate")
+use_condaenv("base", conda = "/home/calvinw/miniconda3/bin/conda")
+matplotlib <- import("matplotlib")
+matplotlib$use("Agg", force = TRUE)
+py_config()
+#source("setupPython.R")
+```
+
+```{python}
+import pandas as pd
+url="http://www.salemmarafi.com/wp-content/uploads/2014/06/supermarket.csv"
+df=pd.read_csv(url)
+print(df)
+df.corr()
+```
+
+This illustrates how to generate python notebooks (for colab) from rmarkdown files.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2*np.pi*t)
+plt.plot(t, s)
+
+plt.xlabel('time is on our side (s)')
+plt.ylabel('voltage (mV)')
+plt.title('About as simple as it gets, folks')
+plt.grid(True)
+plt.show()
+```
+
+Lets compute a z-score:
+```{python}
+x = 4 
+y = 32
+mu = 4
+sigma = 7
+numerator = x-mu
+z = numerator/sigma
+print(z)
+```
+$$
+z = \frac{x-\mu}{\sigma} 
+  = \frac{`r py$x`-`r py$mu`}{`r py$sigma`} 
+  = \frac{`r py$numerator`}{`r py$sigma`} 
+  = `r py$z`
+$$
+
+Here is some latex code with inline evaluations: x = `r py$x` and y = `r py$y` below:
+$$ 
+z = x + y = `r py$x` + `r py$y` = `r py$x + py$y`
+$$
+

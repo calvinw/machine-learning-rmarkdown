@@ -1,8 +1,11 @@
 ---
 title: "Elasticity and Maximizing Profits"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
 output:
-  md_document: 
-    preserve_yaml: false
   html_document:
     includes:
       in_header: header.html
@@ -91,18 +94,17 @@ Price of eggs, the ad type and price of cookies are all significant with p-value
 
 The multiple regression equation is:    
 
-$$
-`r {
+```{r echo=FALSE}
     B<-round(b,2);
-    signB2 <- ifelse(B[2]<0,"","+");
-    signB3 <- ifelse(B[3]<0,"","+");
-    signB4 <- ifelse(B[4]<0,"","+");
-
-    # Q = B[1] + B[2](Peggs) + B[3](AdType) + B[4](Pcookies) 
-
-    sprintf("Q=%s %s %s(P_{eggs}) %s %s(AdType) %s %s(P_{cookies})",
-	    B[1], signB2, B[2], signB3, B[3], signB4, B[4]) 
-   }`  
+    op2 <- ifelse(B[2]<0,"","+");
+    op3 <- ifelse(B[3]<0,"","+");
+    op4 <- ifelse(B[4]<0,"","+");
+```
+$$
+    Q = `r B[1]` `r op2` 
+        `r B[2]`(P_{eggs}) `r op3` 
+	`r B[3]`(AdType) `r op4` 
+	`r B[4]`(P_{cookies}) 
 $$
 
 Next we show the calculation of the price elasticity: For price elasticity we compute the percent change in quantity divided by the percent change in price. 
@@ -127,21 +129,18 @@ priceElasticity
 
 The equation looks like this: 
 
-$$
-`r {
+```{r echo=FALSE}
     B<-round(b,2);
     P<- round(priceEggs,2);
     Q <- round(quantity,2);
     PE <- round(priceElasticity, 2);
-
-    # PriceElasticity = (deltaQ/Q)/(deltaP/P) = (deltaQ/deltaP)(P/Q) = ... 
-
-    first <- "\\frac{\\frac{\\Delta Q}{Q}}{\\frac{\\Delta P_{eggs}}{P_{eggs}}}"
-    second <- "\\frac{\\Delta Q}{\\Delta P_{eggs}}\\frac{P_{eggs}}{Q}"
-
-    sprintf("\\text{Price Elasticity} = %s = %s = %s(\\frac{%s}{%s}) = %s", 
-	    first, second, B[2], P, Q, PE)  
-   }`
+```
+$$
+\text{PriceElasticity} =
+    \frac{ \frac{\Delta Q}{Q} }{ \frac{\Delta P_{eggs}}{P_{eggs}} } =
+    \frac{\Delta Q}{\Delta P_{eggs}} \frac{P_{eggs}}{Q} =
+    (`r B[2]`)(\frac{`r P`}{`r Q`}) =
+    `r PE`
 $$
 
 This suggests that a 1% decrease in price of eggs will increase egg sales by 2.4%.
@@ -157,42 +156,65 @@ CrossPriceElasticity
 
 The equation looks like this: 
 
-$$
-`r {
+```{r echo=FALSE}
     B<-round(b,2);
     P <- round(PriceCookies,2);
     Q <- round(Quantity,2);
     CPE <- round(CrossPriceElasticity, 2);
-
-    # CrossPriceElasticity = (deltaQ/Q)/(deltaP/P) = (deltaQ/deltaP)(P/Q) = ... 
-
-    first <- "\\frac{\\frac{\\Delta Q}{Q}}{\\frac{\\Delta P_{cookies}}{P_{cookies}}}"
-    second <- "\\frac{\\Delta Q}{\\Delta P_{cookies}}\\frac{P_{cookies}}{Q}"
-
-    sprintf("\\text{Cross Price Elasticity} = %s = %s = %s(\\frac{%s}{%s}) = %s", 
-	    first, second, B[4], P, Q, CPE);  
-   }`
+```
+$$
+\text{CrossPriceElasticity} =
+    \frac{ \frac{\Delta Q}{Q} }{ \frac{\Delta P_{cookies}}{P_{cookies}} } =
+    \frac{\Delta Q}{\Delta P_{cookies}} \frac{P_{cookies}}{Q} =
+    (`r B[4]`)(\frac{`r P`}{`r Q`}) =
+    `r CPE`
 $$
 
 This suggests that 1% decrease in cookies price will increase the egg sales by 1.3%, and that cookies and eggs are compliments.
 
-For setting the optimal price we need some values for $P_{cookies}$ and $AdType$. Suppose the current cookies price is $P_{cookies}=4.37$ and the $AdType = 0$ for featuring the cookies. We plug these into the multiple regression equation:
+```{r echo=FALSE}
+meanCookies <- round(mean(df$Price.Cookies),2)
+```
+For setting the optimal price we need some values for $P_{cookies}$ and $AdType$. Suppose the current cookies price is $P_{cookies}=`r meanCookies`$ and the $AdType = 0$ for featuring the cookies. We plug these into the multiple regression equation:
 
-$$   
-Q =  137.37 -16.118(P_{eggs}) + 4.147(0) - 8.711(4.37) 
-  =  99.30 - 16.118(P_{eggs}) 
+```{r echo=FALSE}
+    B<-round(b,2);
+    op2 <- ifelse(B[2]<0,"","+");
+    op3 <- ifelse(B[3]<0,"","+");
+    op4 <- ifelse(B[4]<0,"","+");
+```
+$$
+    Q = `r B[1]` `r op2` 
+        `r B[2]`(P_{eggs}) `r op3` 
+	`r B[3]`(0) `r op4` 
+	`r B[4]`(`r meanCookies`) 
 $$
 
-So the demand equation we will use to maximize profit is this:
+So the slope and intercept for the simplified demand equation we will use is this:
 
+```{r}
+slope<- b[2]
+slope
+intercept <- b[1] + b[4]*PriceCookies
+intercept
+```
+
+So our new equation is just this:
+
+```{r echo=FALSE}
+eqnIntercept <- round(intercept,2)
+eqnSlope<-round(slope,2)
+```
 $$   
-Q =  99.30 - 16.118(P_{eggs}) 
+Q  = `r eqnIntercept` `r op2` `r eqnSlope`(P_{eggs})
 $$
 
 Suppose the unit cost of eggs is $1.50. Then here is the profit function:
 
 ```{r}
-profit <- function(p) {(p-1.50)*(99.30-16.118*p)}
+profit <- function(p) {
+    (p-1.50)*(intercept+slope*p)
+}
 curve(profit, from=0, to =8, main="Profit Function", xlab="Price", ylab="Profit")
 ```
 
@@ -203,3 +225,7 @@ optimize(profit, lower=0, upper=8, maximum=TRUE)
 ```
 
 The maximum profit occurs when the price is \$3.83 and the Profit is \$87.53.
+
+So we would advise to set the price of eggs to \$3.83
+
+$$ -3 $$

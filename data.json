@@ -378,6 +378,60 @@
     ]
   },
   {
+    "id": "Elasticity",
+    "name": "Elasticity",
+    "children": [
+      {
+        "id": "Elasticity.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "Elasticity.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "Elasticity.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "Elasticity.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
+      }
+    ]
+  },
+  {
+    "id": "Python",
+    "name": "Python",
+    "children": [
+      {
+        "id": "Python.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "Python.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "Python.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "Python.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1Q5UXIX9fSDxD6dVMI2pnd_3pqnZyQe_S"
+      }
+    ]
+  },
+  {
     "id": "R_Colab_Notebook",
     "name": "R_Colab_Notebook",
     "children": [

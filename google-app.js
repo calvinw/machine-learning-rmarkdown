@@ -3,21 +3,10 @@ const readline = require('readline');
 const path = require('path');
 const {google} = require('googleapis');
 
-if (process.argv.length != 3) {
-  console.error('usage: node app.js fileName');
+if (process.argv.length < 3) {
+  console.error('usage: node google-app.js [..files...]');
   process.exit(1);
 }
-
-const fileName = process.argv[2]; 
-var parsed = path.parse(fileName);
-var base = parsed.name;
-
-let googleidsdata = fs.readFileSync('google-ids.json');
-let googleids = JSON.parse(googleidsdata);
-const googleFileId = googleids[base]; 
-
-console.log("fileName is: " + fileName);
-console.log("googleFileId is: " + googleFileId);
 
 // If modifying these scopes, delete token.json.
 //const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
@@ -32,7 +21,7 @@ const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Drive API.
-  authorize(JSON.parse(content), updateFile);
+  authorize(JSON.parse(content), updateFiles);
 });
 
 /**
@@ -85,22 +74,50 @@ function getAccessToken(oAuth2Client, callback) {
   });
 }
 
-function updateFile(auth) {
+const googlecolabidsdata = fs.readFileSync('google-colab-ids.json');
+const google_colab_ids = JSON.parse(googlecolabidsdata);
+
+const googledocxidsdata = fs.readFileSync('google-docx-ids.json');
+const google_docx_ids = JSON.parse(googledocxidsdata);
+
+function updateFiles(auth) {
 
   const drive = google.drive({version: 'v3', auth});
 
-   drive.files.update(
-     {
-       media: {
-         body: fs.createReadStream(fileName),
-       },
-	 fileId: googleFileId 
-     },
-    (err, res) => {
-	if (err)  {
-	    return console.log('The API returned an error: ' + err);
-	}
-	console.log(res.data);
-      }
-  );
+   for(i = 2; i < process.argv.length; i++) {
+	let fileName = process.argv[i]; 
+	let parsed = path.parse(fileName);
+	let base = parsed.name;
+	let ext = parsed.ext;
+        let googleFileId = "";
+
+	if(ext === '.ipynb')
+	    googleFileId = google_colab_ids[base]; 
+        else if(ext === '.docx')
+	    googleFileId = google_docx_ids[base]; 
+        else if(ext === '.rtf')
+	    googleFileId = google_docx_ids[base]; 
+
+	console.log("updating");
+	console.log("fileName is: " + fileName);
+	console.log("base is: " + base);
+	console.log("ext is: " + ext);
+	console.log("googleFileId is: " + googleFileId);
+
+	   drive.files.update(
+	     {
+	       media: {
+		 body: fs.createReadStream(fileName),
+	       },
+		 fileId: googleFileId 
+	     },
+	    (err, res) => {
+		if (err)  {
+		    return console.log('The API returned an error: ' + err);
+		}
+		console.log(res.data);
+	      }
+	  );
+    }
+    console.log("all done");
 }
