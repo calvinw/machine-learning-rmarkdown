@@ -13,6 +13,7 @@ pages:
   - Rscript -e "install.packages('RCurl')"
   - Rscript -e "install.packages('C50')"
   - Rscript -e "install.packages('rpart')"
+  - Rscript -e "install.packages('reticulate')"
   - Rscript -e "install.packages('IRkernel')"
   - Rscript -e "IRkernel::installspec()"
   - make
