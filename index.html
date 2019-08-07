@@ -112,10 +112,15 @@
 		    console.log("updating url: this.active[0] is: "+this.active[0]);
 		    filename = this.active[0];
 		    const ext = filename.substring(filename.lastIndexOf('.')+1, filename.length)
-		    if(ext === 'ipynb') 
+		    if(ext === 'ipynb') { 
 			return "";
-		    else {
+		    }
+		    else if (ext === "Rmd") {
+			console.log("Rmd clicked");
 			return this.active[0];
+		    }
+		    else {
+			return "builds/"+ this.active[0];
 		    }
 		}
 		else {
@@ -128,8 +133,8 @@
 	  ipythonMode: "colab",
 	  drawer: null,
 	  key: null,
-	  open: ["Elasticity"],
-	  active: ["Elaticity.html"],
+	  open: [],
+	  active: [],
 	  files: {
 	    html: 'mdi-file-xml',
 	    md: 'mdi-markdown',

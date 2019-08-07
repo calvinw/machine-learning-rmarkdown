@@ -4,9 +4,12 @@ pages:
   stage: deploy
   script:
   - apt-get update
-  - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev pandoc python-pip
-  - pip install jupyter
-  - pip install jupytext --upgrade
+  - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev pandoc python-pip3
+  - pip3 install jupyter
+  - pip3 install jupytext --upgrade
+  - pip3 install matplotlib
+  - pip3 install pandas 
+  - pip3 install numpy 
   - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
   - Rscript -e "install.packages('rmarkdown')"
   - Rscript -e "install.packages('rvest')"
@@ -18,9 +21,11 @@ pages:
   - Rscript -e "IRkernel::installspec()"
   - make
   - mkdir .public
-  - cp -r * .public
+  - cp -r builds .public
+  - cp -r index.html .public
+  - cp -r data.json .public
+  - cp *.Rmd .public
   - mv .public public
-  - rm -rf public/credentials.json public/google-app.js public/app.js public/google-ids.json
 
   artifacts:
     paths:
