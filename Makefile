@@ -52,13 +52,13 @@ builds/%.ipynb : builds/%.md
 data: 
 	node problems.js > data.json
 
-server: 
+server:
 	make -j watch nodeapp
 
 watch:
 	@echo Watching .Rmd files...	
 	@echo Will call make on changes...	
-	while true; do ls *.Rmd | entr make SERVER=yes; done
+	while true; do ls *.Rmd | entr make -j1 SERVER=yes; done
 
 googlecolab:
 	@echo uploading ipynb files to google
@@ -78,4 +78,4 @@ nodeapp:
 	@echo Launching app.js 
 	node app.js
 
-.PHONY: all allpdf clean allFiles
+.PHONY: all clean
