@@ -4,11 +4,6 @@ PDF_FILES = $(SOURCES:%.Rmd=builds/%.pdf)
 IPYNB_FILES = $(SOURCES:%.Rmd=builds/%.ipynb)
 MD_FILES = $(SOURCES:%.Rmd=builds/%.md)
 DOCX_FILES = $(SOURCES:%.Rmd=builds/%.docx)
-#HTML_FILES = builds/Python.html
-# PDF_FILES = builds/Python.pdf
-# IPYNB_FILES = builds/Python.ipynb
-# MD_FILES = builds/Python.md
-# DOCX_FILES = builds/Python.docx
 
 export PATH :=.:/bin:/usr/bin:/opt/R/3.4.4/lib/R/bin:$(PATH)
 export RETICULATE_PYTHON=/usr/bin/python3

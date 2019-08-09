@@ -14,5 +14,6 @@ allFiles
 node_modules/*
 changed.txt
 token.json
+credentials.json
 figure/
 builds/
