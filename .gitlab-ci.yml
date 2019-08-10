@@ -21,10 +21,9 @@ pages:
   - Rscript -e "IRkernel::installspec()"
   - make
   - mkdir .public
-  - cp -r builds .public
-  - cp -r index.html .public
+  - cp -r *.Rmd *.html *.ipynb *.docx *.pdf *.md .public
+  - rm .public/header.html
   - cp -r data.json .public
-  - cp *.Rmd .public
   - mv .public public
 
   artifacts:
