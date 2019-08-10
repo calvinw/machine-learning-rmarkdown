@@ -4,9 +4,9 @@ R_SOURCES=$(shell find . -name "*.Rmd" ! -name "Py*.Rmd")
 SOURCES = $(R_SOURCES) $(PYTHON_SOURCES)
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
-PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
+IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
+PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
 UPDATE_COLAB=false
