@@ -13,6 +13,8 @@ fs.readdir(dirPath, function(err, files){
     //
     let googlecolabidsdata = fs.readFileSync('google-colab-ids.json');
     let googlecolabids = JSON.parse(googlecolabidsdata);
+    let googledocxidsdata = fs.readFileSync('google-docx-ids.json');
+    let googledocxids = JSON.parse(googledocxidsdata);
 
     for(f of filesList){
       var parsed = path.parse(f);
@@ -22,7 +24,10 @@ fs.readdir(dirPath, function(err, files){
       var rmdFile = name + '.Rmd'
       var pdfFile = name + '.pdf'
       var ipynbFile = name + '.ipynb'
+      var docxFile = name + '.docx'
+	
       var googlecolabId = googlecolabids[name]; 
+      var googledocxId = googledocxids[name]; 
 
 	var item = {
 	  id: name,
@@ -31,7 +36,8 @@ fs.readdir(dirPath, function(err, files){
 	    { id: htmlFile , name: 'html', file: 'html' },
 	    { id: rmdFile, name: 'Rmd', file: 'md' },
 	    { id: pdfFile, name: 'pdf', file: 'pdf'},
-	    { id: ipynbFile, name: 'ipynb', file: 'ipynb', googleId: googlecolabId}
+	    { id: ipynbFile, name: 'ipynb', file: 'ipynb', googleId: googlecolabId},
+	    { id: docxFile, name: 'docx', file: 'docx', googleId: googledocxId}
 	  ]
 	};
 	arr.push(item);

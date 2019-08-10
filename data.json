@@ -1,113 +1,5 @@
 [
   {
-    "id": "4_R_Calculator_on_Steroids",
-    "name": "4_R_Calculator_on_Steroids",
-    "children": [
-      {
-        "id": "4_R_Calculator_on_Steroids.html",
-        "name": "html",
-        "file": "html"
-      },
-      {
-        "id": "4_R_Calculator_on_Steroids.Rmd",
-        "name": "Rmd",
-        "file": "md"
-      },
-      {
-        "id": "4_R_Calculator_on_Steroids.pdf",
-        "name": "pdf",
-        "file": "pdf"
-      },
-      {
-        "id": "4_R_Calculator_on_Steroids.ipynb",
-        "name": "ipynb",
-        "file": "ipynb",
-        "googleId": "1OtZnBPA-pLQIB1fA5zfSjjTL1ypKshjD"
-      }
-    ]
-  },
-  {
-    "id": "7_R_Data_Structures_part_1_vectors_and_factors",
-    "name": "7_R_Data_Structures_part_1_vectors_and_factors",
-    "children": [
-      {
-        "id": "7_R_Data_Structures_part_1_vectors_and_factors.html",
-        "name": "html",
-        "file": "html"
-      },
-      {
-        "id": "7_R_Data_Structures_part_1_vectors_and_factors.Rmd",
-        "name": "Rmd",
-        "file": "md"
-      },
-      {
-        "id": "7_R_Data_Structures_part_1_vectors_and_factors.pdf",
-        "name": "pdf",
-        "file": "pdf"
-      },
-      {
-        "id": "7_R_Data_Structures_part_1_vectors_and_factors.ipynb",
-        "name": "ipynb",
-        "file": "ipynb",
-        "googleId": "1obKfCHckLukJ-IQ_NmU_VbsRxYtvPDse"
-      }
-    ]
-  },
-  {
-    "id": "8_R_Data_Structures_part_2_data_frames",
-    "name": "8_R_Data_Structures_part_2_data_frames",
-    "children": [
-      {
-        "id": "8_R_Data_Structures_part_2_data_frames.html",
-        "name": "html",
-        "file": "html"
-      },
-      {
-        "id": "8_R_Data_Structures_part_2_data_frames.Rmd",
-        "name": "Rmd",
-        "file": "md"
-      },
-      {
-        "id": "8_R_Data_Structures_part_2_data_frames.pdf",
-        "name": "pdf",
-        "file": "pdf"
-      },
-      {
-        "id": "8_R_Data_Structures_part_2_data_frames.ipynb",
-        "name": "ipynb",
-        "file": "ipynb",
-        "googleId": "1-suN_odehinXIcepGOVHScMSRTeUCjE5"
-      }
-    ]
-  },
-  {
-    "id": "9_R_Exploring_Data_part_1_Import_data_in_R",
-    "name": "9_R_Exploring_Data_part_1_Import_data_in_R",
-    "children": [
-      {
-        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.html",
-        "name": "html",
-        "file": "html"
-      },
-      {
-        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.Rmd",
-        "name": "Rmd",
-        "file": "md"
-      },
-      {
-        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.pdf",
-        "name": "pdf",
-        "file": "pdf"
-      },
-      {
-        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.ipynb",
-        "name": "ipynb",
-        "file": "ipynb",
-        "googleId": "1I4jjpkbPfVWeb5v8FuYmEEZJxB7QLyaf"
-      }
-    ]
-  },
-  {
     "id": "10_R_Exploring_Data_part_2_Extraction_and_Transformation",
     "name": "10_R_Exploring_Data_part_2_Extraction_and_Transformation",
     "children": [
@@ -131,6 +23,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1yVfzMN7RekKMHK9eMrlDPGEq0GUxoE5K"
+      },
+      {
+        "id": "10_R_Exploring_Data_part_2_Extraction_and_Transformation.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -158,6 +56,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1U8wZe84KbWo0Ki0gzt8EJPJPv2YyUv-v"
+      },
+      {
+        "id": "11_R_Exploring_Data_part_3_Univariate_Summaries.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -185,6 +89,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1Dt_iXz0mrgs8Lltrl0rCNAmEIS8Ejcir"
+      },
+      {
+        "id": "12_R_Exploring_Data_part_4_Bivariate_Summaries.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -212,6 +122,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "12q1k1VemeTX1Eh7q0k0NQU3z1ASq0-m5"
+      },
+      {
+        "id": "13_R_Exploring_Data_part_5_Multivariate_Summaries.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -239,6 +155,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1Dw_mIUHZaIRWUG7nzVu-l0Qi22V3nIq4"
+      },
+      {
+        "id": "14_R_Simple_Linear_Regression_part_1.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -266,6 +188,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1rp4AOU9XFZuf3-zUFv5B_YsQG7IRoq-5"
+      },
+      {
+        "id": "15_R_Simple_Linear_Regression_part_2.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -293,6 +221,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1Ijb6EN9Ytu8Ns5biTKQD55nkNlWg4Zmt"
+      },
+      {
+        "id": "22_R_kNN_k_nearest_neighbor_part_1.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -320,6 +254,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1Y003I86jdR5TELQ9fuElclKylyUNqnYP"
+      },
+      {
+        "id": "23_R_kNN_k_nearest_neighbor_part_2.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -347,6 +287,144 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1sd31qPePLAPYUG3nByQok__7itbx9R3v"
+      },
+      {
+        "id": "24_R_Classification_Trees_part_1_using_C50.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
+      }
+    ]
+  },
+  {
+    "id": "4_R_Calculator_on_Steroids",
+    "name": "4_R_Calculator_on_Steroids",
+    "children": [
+      {
+        "id": "4_R_Calculator_on_Steroids.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1OtZnBPA-pLQIB1fA5zfSjjTL1ypKshjD"
+      },
+      {
+        "id": "4_R_Calculator_on_Steroids.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
+      }
+    ]
+  },
+  {
+    "id": "7_R_Data_Structures_part_1_vectors_and_factors",
+    "name": "7_R_Data_Structures_part_1_vectors_and_factors",
+    "children": [
+      {
+        "id": "7_R_Data_Structures_part_1_vectors_and_factors.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "7_R_Data_Structures_part_1_vectors_and_factors.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "7_R_Data_Structures_part_1_vectors_and_factors.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "7_R_Data_Structures_part_1_vectors_and_factors.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1obKfCHckLukJ-IQ_NmU_VbsRxYtvPDse"
+      },
+      {
+        "id": "7_R_Data_Structures_part_1_vectors_and_factors.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
+      }
+    ]
+  },
+  {
+    "id": "8_R_Data_Structures_part_2_data_frames",
+    "name": "8_R_Data_Structures_part_2_data_frames",
+    "children": [
+      {
+        "id": "8_R_Data_Structures_part_2_data_frames.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "8_R_Data_Structures_part_2_data_frames.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "8_R_Data_Structures_part_2_data_frames.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "8_R_Data_Structures_part_2_data_frames.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1-suN_odehinXIcepGOVHScMSRTeUCjE5"
+      },
+      {
+        "id": "8_R_Data_Structures_part_2_data_frames.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
+      }
+    ]
+  },
+  {
+    "id": "9_R_Exploring_Data_part_1_Import_data_in_R",
+    "name": "9_R_Exploring_Data_part_1_Import_data_in_R",
+    "children": [
+      {
+        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1I4jjpkbPfVWeb5v8FuYmEEZJxB7QLyaf"
+      },
+      {
+        "id": "9_R_Exploring_Data_part_1_Import_data_in_R.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -374,6 +452,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
+      },
+      {
+        "id": "DataFrames.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -401,6 +485,45 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
+      },
+      {
+        "id": "Elasticity.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": "1fItZjEXgRxiTu77KUDoCLEhnfCV-TCG-2CbiG3naaEs"
+      }
+    ]
+  },
+  {
+    "id": "Python",
+    "name": "Python",
+    "children": [
+      {
+        "id": "Python.html",
+        "name": "html",
+        "file": "html"
+      },
+      {
+        "id": "Python.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "Python.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "Python.ipynb",
+        "name": "ipynb",
+        "file": "ipynb",
+        "googleId": "1Q5UXIX9fSDxD6dVMI2pnd_3pqnZyQe_S"
+      },
+      {
+        "id": "Python.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": "1JEF1e4jk-gFu8Z4ze_jav5aPLW02CNLu"
       }
     ]
   },
@@ -428,6 +551,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1vrFCupBGr9zJMjUwUHXXPyBue46BTfqh"
+      },
+      {
+        "id": "R_Colab_Notebook.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   },
@@ -455,6 +584,12 @@
         "name": "ipynb",
         "file": "ipynb",
         "googleId": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
+      },
+      {
+        "id": "Webscraping.docx",
+        "name": "docx",
+        "file": "docx",
+        "googleId": ""
       }
     ]
   }

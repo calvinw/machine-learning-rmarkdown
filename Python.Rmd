@@ -1,16 +1,15 @@
 ---
-title: "Python Examples"
+title: "Python Example"
 jupyter:
   kernelspec:
-    display_name: "Python 3" 
-    language: python 
-    name: python3 
+    display_name: Python 3
+    language: python
+    name: python3
 ---
 
-```{r echo=FALSE}
-library("reticulate")
-matplotlib <- import("matplotlib")
-matplotlib$use("Agg", force = TRUE)
+```{r include=FALSE}
+#This code is needed to set up matplotlib, dont show it anywhere 
+source('setupReticulate.R')
 ```
 
 ```{python}
@@ -27,7 +26,7 @@ This illustrates how to generate python notebooks (for colab) from rmarkdown fil
 import matplotlib.pyplot as plt
 import numpy as np
 
-t = np.arange(0.0, 2.0, 0.01)
+t = np.arange(0.0, 15.0, 0.01)
 s = 1 + np.sin(2*np.pi*t)
 plt.plot(t, s)
 
@@ -40,7 +39,7 @@ plt.show()
 
 Lets compute a z-score:
 ```{python}
-x = 4 
+x = 5 
 y = 32
 mu = 4
 sigma = 7

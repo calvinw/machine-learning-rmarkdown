@@ -39,6 +39,9 @@
 	  <div v-if="item.file === 'ipynb'">
 	      <span v-on:click='clicked(item)'>ipynb</span> 
 	  </div>
+	  <div v-else-if="item.file === 'docx'">
+	      <span v-on:click='clicked(item)'>docx</span> 
+	  </div>
 	  <div v-else>
 	    {{item.name}}
 	  </div>
@@ -98,10 +101,15 @@
 	methods: { 
 	    clicked: function(item) {
 		console.log("I was clicked");
-		if(this.ipythonMode === "jupyter")
-		    window.open("http://localhost:8888/notebooks/" +item.id);
-		else if(this.ipythonMode === "colab") {
-		    window.open("https://colab.research.google.com/drive/" + item.googleId)
+		if(item.file === 'ipynb') {
+		    if(this.ipythonMode === "jupyter")
+			window.open("http://localhost:8888/notebooks/" +item.id);
+		    else if(this.ipythonMode === "colab") {
+			window.open("https://colab.research.google.com/drive/" + item.googleId)
+		    }
+		}
+		else if(item.file === 'docx') {
+		   window.open("https://docs.google.com/document/d/" + item.googleId +"/edit")
 		}
 	    }
 	},
@@ -115,12 +123,14 @@
 		    if(ext === 'ipynb') { 
 			return "";
 		    }
+		    else if (ext === "docx") {
+			return "";
+		    }
 		    else if (ext === "Rmd") {
-			console.log("Rmd clicked");
 			return this.active[0];
 		    }
 		    else {
-			return "builds/"+ this.active[0];
+			return this.active[0];
 		    }
 		}
 		else {

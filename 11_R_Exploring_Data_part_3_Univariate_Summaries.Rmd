@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 This notebook follows along with the following video:   
 
 [Exploring Data(part 3) - Univariate Summaries ](https://www.youtube.com/watch?v=EVmuPZgTf2U&list=PLjPbBibKHH18I0mDb_H4uP3egypHIsvMn&index=11)
