@@ -13,15 +13,10 @@ const io = require('socket.io')(http);
 
 //need this so .Rmd files display without browser trying to download
 app.use(function(req, res, next) {
-    //Fix the content type and dispositon of Rmd files - ugh!
-     if(path.extname(req.url) === ".Rmd") {
-       var basename = path.basename(req.url);
-       var header = 'inline; filename="' + basename + '"';
-       //console.log("header is " + header);
-       res.setHeader('Content-Disposition', header);
-       res.setHeader('Content-Type', "text/plain;charset=UTF-8");
-     }
-     else if(path.extname(req.url) === 'ipynb') {
+    //Fix the content type and dispositon of Rmd and ipynb files - ugh!
+     var ext = path.extname(req.url)
+
+     if(ext === ".Rmd" || ext === '.ipynb') {
        var basename = path.basename(req.url);
        var header = 'inline; filename="' + basename + '"';
        //console.log("header is " + header);

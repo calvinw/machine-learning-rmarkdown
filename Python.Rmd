@@ -8,7 +8,8 @@ jupyter:
 ---
 
 ```{r include=FALSE}
-#This code is needed to set up matplotlib, dont show it anywhere 
+#This code is needed to set up reticulate and matplotlib, dont show it anywhere 
+#No python code here
 source('setupReticulate.R')
 ```
 

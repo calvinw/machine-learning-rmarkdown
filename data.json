@@ -4,14 +4,14 @@
     "name": "Elasticity",
     "children": [
       {
-        "id": "Elasticity.html",
-        "name": "html",
-        "file": "html"
-      },
-      {
         "id": "Elasticity.Rmd",
         "name": "Rmd",
         "file": "md"
+      },
+      {
+        "id": "Elasticity.html",
+        "name": "html",
+        "file": "html"
       },
       {
         "id": "Elasticity.pdf",
@@ -37,14 +37,14 @@
     "name": "Python",
     "children": [
       {
-        "id": "Python.html",
-        "name": "html",
-        "file": "html"
-      },
-      {
         "id": "Python.Rmd",
         "name": "Rmd",
         "file": "md"
+      },
+      {
+        "id": "Python.html",
+        "name": "html",
+        "file": "html"
       },
       {
         "id": "Python.pdf",
@@ -66,18 +66,49 @@
     ]
   },
   {
-    "id": "Webscraping",
-    "name": "Webscraping",
+    "id": "Simple",
+    "name": "Simple",
     "children": [
       {
-        "id": "Webscraping.html",
+        "id": "Simple.Rmd",
+        "name": "Rmd",
+        "file": "md"
+      },
+      {
+        "id": "Simple.html",
         "name": "html",
         "file": "html"
       },
       {
+        "id": "Simple.pdf",
+        "name": "pdf",
+        "file": "pdf"
+      },
+      {
+        "id": "Simple.ipynb",
+        "name": "ipynb",
+        "file": "ipynb"
+      },
+      {
+        "id": "Simple.docx",
+        "name": "docx",
+        "file": "docx"
+      }
+    ]
+  },
+  {
+    "id": "Webscraping",
+    "name": "Webscraping",
+    "children": [
+      {
         "id": "Webscraping.Rmd",
         "name": "Rmd",
         "file": "md"
+      },
+      {
+        "id": "Webscraping.html",
+        "name": "html",
+        "file": "html"
       },
       {
         "id": "Webscraping.pdf",

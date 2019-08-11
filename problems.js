@@ -33,8 +33,8 @@ fs.readdir(dirPath, function(err, files){
 	  id: name,
 	  name: name,
 	  children: [
-	    { id: htmlFile , name: 'html', file: 'html' },
 	    { id: rmdFile, name: 'Rmd', file: 'md' },
+	    { id: htmlFile , name: 'html', file: 'html' },
 	    { id: pdfFile, name: 'pdf', file: 'pdf'},
 	    { id: ipynbFile, name: 'ipynb', file: 'ipynb', googleId: googlecolabId},
 	    { id: docxFile, name: 'docx', file: 'docx', googleId: googledocxId}

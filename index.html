@@ -36,15 +36,7 @@
 	  </v-icon>
       </template>
       <template v-slot:label="{item}">
-	  <div v-if="item.file === 'ipynb'">
-	      <span v-on:click='clicked(item)'>ipynb</span> 
-	  </div>
-	  <div v-else-if="item.file === 'docx'">
-	      <span v-on:click='clicked(item)'>docx</span> 
-	  </div>
-	  <div v-else>
 	    {{item.name}}
-	  </div>
       </template>
   </v-treeview>
     </v-navigation-drawer>
@@ -59,6 +51,9 @@
       <v-container fluid fill-height fill-width>
         <v-layout justify-center align-center >
 	   <iframe id="theIframe" :key="key" :src="page"></iframe>
+	   <!-- <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https://file.io/8cuoLJ"></iframe> -->
+	   <!-- <iframe src="https://docs.google.com/gview?url=https://file.io/jFytdJ"></iframe> -->
+
         </v-layout>
       </v-container>
     </v-content>
@@ -111,6 +106,16 @@
 		else if(item.file === 'docx') {
 		   window.open("https://docs.google.com/document/d/" + item.googleId +"/edit")
 		}
+	    },
+	    findChild: function(filename){
+		for(let i=0; i < this.items.length; i++) {
+		    let children = this.items[i].children
+		    for(let j=0; j < children.length; j++) {
+			let child = children[j];
+			if(child.id === filename) 
+			    return child;
+		    }
+		}
 	    }
 	},
 	computed: {
@@ -118,16 +123,18 @@
 		console.log("updating page !!!");
 		if(this.active.length ===1) {
 		    console.log("updating url: this.active[0] is: "+this.active[0]);
-		    filename = this.active[0];
+		    let filename = this.active[0];
 		    const ext = filename.substring(filename.lastIndexOf('.')+1, filename.length)
-		    if(ext === 'ipynb') { 
-			return "";
-		    }
-		    else if (ext === "docx") {
-			return "";
-		    }
-		    else if (ext === "Rmd") {
-			return this.active[0];
+		    if(ext === "docx") {
+			if(location.hostname === 'localhost' || 
+			   location.hostname === '127.0.0.1') {
+			   return filename;
+			}
+			else {
+			  let wordViewer = "https://view.officeapps.live.com/op/embed.aspx?src="
+			  let docUrl = "https://calvinw.gitlab.io/machine-learning-rmarkdown/" + filename
+			  return wordViewer + docUrl;
+			}
 		    }
 		    else {
 			return this.active[0];
@@ -149,7 +156,8 @@
 	    html: 'mdi-file-xml',
 	    md: 'mdi-markdown',
 	    pdf: 'mdi-file-pdf',
-	    ipynb: 'mdi-file'
+	    ipynb: 'mdi-file',
+	    docx: 'mdi-file-word'
 	  },
 	 items: null 
 	})
