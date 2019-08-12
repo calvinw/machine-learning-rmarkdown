@@ -67,12 +67,12 @@ watch:
 
 googlecolab:
 	@echo uploading ipynb files to google
-	node google-app.js $(IPYNB_FILES)
+	node google-upload.js $(IPYNB_FILES)
 	@echo done uploading to google
 
 googledocx:
 	@echo uploading docx files to google
-	node google-app.js $(DOCX_FILES)
+	node google-upload.js $(DOCX_FILES)
 	@echo done uploading to google
 
 nodeapp: 
