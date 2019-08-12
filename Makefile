@@ -1,7 +1,5 @@
 SHELL:=/bin/bash
-PYTHON_SOURCES=$(shell find . -name "Py*.Rmd")
-R_SOURCES=$(shell find . -name "*.Rmd" ! -name "Py*.Rmd")
-SOURCES = $(R_SOURCES) $(PYTHON_SOURCES)
+SOURCES=$(shell find . -name "*.Rmd")
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
@@ -9,11 +7,10 @@ IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
-UPDATE_COLAB=false
-UPDATE_GOOGLEDOCS=false
+UPDATE_COLAB=true
+UPDATE_GOOGLEDOCS=true
 
 export PATH :=.:/bin:/usr/bin:$(PATH)
-export RETICULATE_PYTHON=/usr/bin/python3
 
 all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
 	@echo All files are now up to date
@@ -46,20 +43,15 @@ endif
 	Rscript -e 'rmarkdown::render("$<", "word_document")'
 	@echo docx render is finished...	
 ifeq ($(UPDATE_GOOGLEDOCS),true) 
-	node google-app.js $@
+	node google-upload.js $@
 endif
 
 %.ipynb : %.md
-	$(eval rname=$(findstring $*,$(R_SOURCES)))
-	$(eval pyname=$(findstring $*,$(PYTHON_SOURCES)))
-	@if [ $* = "$(rname)" ]; then \
-	    jupytext $< --to notebook --set-kernel ir; \
-	elif [ $* = "$(pyname)" ]; then \
-	    jupytext $< --to notebook --set-kernel python3; \
-	fi;
+	@echo Calling render for ipynb...	
+	jupytext $< --to notebook --set-kernel ir;
 	@echo ipynb render is finished...
 ifeq ($(UPDATE_COLAB),true) 
-	node google-app.js $@
+	node google-upload.js $@
 endif
 
 data: 

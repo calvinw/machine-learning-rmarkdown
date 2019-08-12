@@ -95,8 +95,6 @@ function updateFiles(auth) {
 	    googleFileId = google_colab_ids[base]; 
         else if(ext === '.docx')
 	    googleFileId = google_docx_ids[base]; 
-        else if(ext === '.rtf')
-	    googleFileId = google_docx_ids[base]; 
 
 	console.log("updating");
 	console.log("fileName is: " + fileName);
