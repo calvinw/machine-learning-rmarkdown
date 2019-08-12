@@ -3,10 +3,13 @@
 .RData
 .Ruserdata
 *.html
+*.md
+*.ipynb
+*.pdf
+*.docx
 !header.html
 !index.html
 !page.html
-*.pdf
 *.local
 lsAll
 allFiles
