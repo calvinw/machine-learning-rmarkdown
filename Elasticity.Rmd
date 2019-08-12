@@ -222,4 +222,6 @@ optimize(profit, lower=0, upper=8, maximum=TRUE)
 
 The maximum profit occurs when the price is \$3.83 and the Profit is \$87.53.
 
-So we would advise to set the price of eggs to \$3.83
+So we would advise to set the price of eggs to \$3.83.
+
+That is where the maximum profit should occur!!
