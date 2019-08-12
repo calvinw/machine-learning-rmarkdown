@@ -1,10 +1,16 @@
-
-# Simple Rmarkdown 
-
-Here is some setup code that should be hidden:
+---
+title: "Simple Rmarkdown"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+ 
+Here is some setup code that should be hidden when rendered:
 
 ```{r setup, include=FALSE}
-plot(rnorm(30))
+knitr::opts_chunk$set(fig.width=3, fig.height=3)
 ```
 
 ```{r}

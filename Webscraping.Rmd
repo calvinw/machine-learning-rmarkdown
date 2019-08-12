@@ -1,5 +1,11 @@
-
-# Webscraping with rvest
+---
+title: "Webscraping with rvest"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
 
 Here we will show how to do webscraping with rvest and the chrome extension selector gadget. This technique is borrowed from the great explanation at: [Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/) and is basically a simplified version of that description
 
