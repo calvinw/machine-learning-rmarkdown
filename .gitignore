@@ -10,6 +10,7 @@
 !header.html
 !index.html
 !page.html
+!opensInOtherWindow.html
 *.local
 lsAll
 allFiles
