@@ -41,20 +41,21 @@ retail<-gsub(" retail","", retail)
 retail
 ```
 
-That looks pretty good now. Next lets work on rental price. This is given as a range of values on the website, so we will need to pull that range, and then deal with the high and low values of the range:
+That looks pretty good now. Next lets work on rental price. This is given as a range of values on the website, so we will need to pull that range, and then deal with the high and low values of the range of the rental price:
 
 ```{r}
 nodes <- html_nodes(webpage,'.product-card-price__regular')
-ranges <- html_text(nodes)
-ranges
+rental <- html_text(nodes)
+rental
 ```
 
 We have to remove this funny dash in the string. Then we use something that just extracts the low price. That is what we will work with for now. We could take an average of the high and low values with a little more work, but okay:
 
 ```{r}
-ranges <- strsplit(ranges, " – ",)
-ranges
-lower <- sapply(ranges, function(x) x[1])
+rental <- strsplit(rental, " – ",)
+lower <- sapply(rental, function(x) x[1])
+upper <- sapply(rental, function(x) x[2])
+upper
 lower
 ```
 
@@ -75,19 +76,19 @@ Now for this vector of urls, lets actually read the html from each of the pages,
 webpages <- lapply(pageUrls, read_html)
 ```
 
-Now there is a function called `lapply` that lets you pass in a list or vector and it will apply a function you provide to this list and return the results of that. In this case we pass in a function that does exactly what we did above when we read the url (a page that is) then found the price and rental ranges
+Now there is a function called `lapply` that lets you pass in a list or vector and it will apply a function you provide to this list and return the results of that. In this case we pass in a function that does exactly what we did above when we read the url (a page that is) then found the retail and rental ranges
 
-Here is are the prices:
+Here are the retail prices:
 
 ```{r}
-price <- lapply(webpages,
+retail <- lapply(webpages,
                 function(webpage){
                     nodes<-html_nodes(webpage, '.product-card-price__retail-quiet')
                     price <- html_text(nodes) 
 		    price<-gsub(" retail","", price)
                 })
-price <- unlist(price)
-price
+retail <- unlist(retail)
+retail
 ```
 
 Here is are the rental amounts (the lower of the range):
@@ -96,9 +97,9 @@ Here is are the rental amounts (the lower of the range):
 lower <- lapply(webpages,
                 function(webpage){
 		    nodes <- html_nodes(webpage,'.product-card-price__regular')
-		    ranges <- html_text(nodes)
-		    ranges <- strsplit(ranges, " – ",)
-		    lower <- sapply(ranges, function(x) x[1])
+		    rental <- html_text(nodes)
+		    rental <- strsplit(rental, " – ",)
+		    lower <- sapply(rental, function(x) x[1])
                 })
 lower <- unlist(lower)
 lower
@@ -107,29 +108,29 @@ lower
 Finally lets clean up the dollar sign and the comma if numbers are over 1,000:
 
 ```{r}
-price <-gsub(",","", price)
+retail <-gsub(",","", retail)
 lower <-gsub(",","", lower)
 
-price <-gsub("\\$","", price)
+retail <-gsub("\\$","", retail)
 lower <-gsub("\\$","", lower)
 ```
 
 Now we should be all set, lets turn them into numbers!
 
 ```{r}
-price <- as.numeric(price)
+retail <- as.numeric(retail)
 lower <- as.numeric(lower)
 ```
 
 ```{r}
-df = data.frame(price, lower)
+df = data.frame(retail, lower)
 df
 ```
 
 Just for fun, do you think we can predict the rental price of something if we know the retail price?
 
 ```{r}
-plot(price, lower, pch=20)
+plot(retail, lower, pch=20)
 ```
 
 Looks pretty good...
@@ -143,7 +144,7 @@ summary(model)
 Nice... What about what percent the rental is of the retail:
 
 ```{r}
-percentage <- lower/price
+percentage <- lower/retail
 percentage
 ```
 

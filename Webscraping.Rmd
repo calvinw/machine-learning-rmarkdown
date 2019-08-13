@@ -62,21 +62,28 @@ str(prices[[1]])
 
 That looks great. Lets put each of these prices into its own vector so we can make a dataframe. 
 
+This next function takes the list of prices, and uses the function given on it. The first function `function(l) l[1]` just takes an list as argument, and then gets the first item on the list and returns it. It does this for each list item passed to it. So the result is a vector of all the "first" entries from each entry in the list. 
+
+Likewise `function(l) l[2]` just gets the second entry from each of lists passed to it. So this will extract the second price in each of the list items in prices:
+
 ```{r}
-n<- length(titles)
-current <- character(n)
-original <- character(n)
-for(i in 1:n) {
-    current[i] = prices[[i]][1]
-    original[i] = prices[[i]][2]
-}
+current <- sapply(prices, function(l) l[1])
+original <- sapply(prices, function(l) l[2])
+```
+
+Let's take a look and make sure we have the right things:
+
+```{r}
 head(current)
 head(original)
 ```
 
+Looks great now...
+
 Finally lets make a dataframe of our fields.  
+
 ```{r}
 df <-data.frame("name" = titles, "original" =  original, "current"= current)
-head(df)
+head(df,15)
 ```
 
