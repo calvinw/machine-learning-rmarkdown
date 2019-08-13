@@ -36,123 +36,92 @@
       },
       {
         "id": 11,
-        "name": "WebscrapeMultiplePages",
-        "children": [
-          {
-            "id": 12,
-            "name": "WebscrapeMultiplePages.Rmd",
-            "file": "Rmd"
-          },
-          {
-            "id": 13,
-            "name": "WebscrapeMultiplePages.html",
-            "file": "html"
-          },
-          {
-            "id": 14,
-            "name": "WebscrapeMultiplePages.pdf",
-            "file": "pdf"
-          },
-          {
-            "id": 15,
-            "name": "WebscrapeMultiplePages.ipynb",
-            "file": "ipynb"
-          },
-          {
-            "id": 16,
-            "name": "WebscrapeMultiplePages.docx",
-            "file": "docx"
-          }
-        ]
-      },
-      {
-        "id": 18,
         "name": "Simple",
         "children": [
           {
-            "id": 19,
+            "id": 12,
             "name": "Simple.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 20,
+            "id": 13,
             "name": "Simple.html",
             "file": "html"
           },
           {
-            "id": 21,
+            "id": 14,
             "name": "Simple.pdf",
             "file": "pdf"
           },
           {
-            "id": 22,
+            "id": 15,
             "name": "Simple.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 23,
+            "id": 16,
             "name": "Simple.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 25,
+        "id": 18,
         "name": "KMeans",
         "children": [
           {
-            "id": 26,
+            "id": 19,
             "name": "KMeans.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 27,
+            "id": 20,
             "name": "KMeans.html",
             "file": "html"
           },
           {
-            "id": 28,
+            "id": 21,
             "name": "KMeans.pdf",
             "file": "pdf"
           },
           {
-            "id": 29,
+            "id": 22,
             "name": "KMeans.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 30,
+            "id": 23,
             "name": "KMeans.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 32,
+        "id": 25,
         "name": "Elasticity",
         "children": [
           {
-            "id": 33,
+            "id": 26,
             "name": "Elasticity.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 34,
+            "id": 27,
             "name": "Elasticity.html",
             "file": "html"
           },
           {
-            "id": 35,
+            "id": 28,
             "name": "Elasticity.pdf",
             "file": "pdf"
           },
           {
-            "id": 36,
+            "id": 29,
             "name": "Elasticity.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 37,
+            "id": 30,
             "name": "Elasticity.docx",
             "file": "docx"
           }
@@ -172,24 +141,18 @@
       },
       {
         "id": 17,
-        "name": "WebscrapeMultiplePages",
-        "file": "colab",
-        "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"
-      },
-      {
-        "id": 24,
         "name": "Simple",
         "file": "colab",
         "googleid": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
       },
       {
-        "id": 31,
+        "id": 24,
         "name": "KMeans",
         "file": "colab",
         "googleid": "1DHndwLNxq8vTQlu1_cQ9vwLEao2X_FhM"
       },
       {
-        "id": 38,
+        "id": 31,
         "name": "Elasticity",
         "file": "colab",
         "googleid": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
