@@ -1,0 +1,88 @@
+---
+title: "Webscraping Multiple Pages"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+This technique is taken from here: [Webscraping Multiple Pages](https://rstudio-pubs-static.s3.amazonaws.com/287509_dde580b0adf94bae8a7994d7ae0cb849.html)
+
+This related page is also a nice example of webscraping prices: [ML Books - Price Scraping](http://rpubs.com/Marcelobn/ML_books)
+
+Prices and names of products are very interesting things to scrape from websites. That is what we want to do here. Often times there are page after page of products so we would like to find a way to scrape multiple pages of the same kind of data.
+
+```{r eval=FALSE}
+install.packages("rvest")
+```
+
+Make sure we load the library rvest first:
+
+```{r}
+library("rvest")
+```
+
+No we just pull one page of data like before. And look for the price. 
+
+```{r}
+library("rvest")
+url <- "https://www.schutz.com.br/store/c/newin"
+webpage <- read_html(url)
+nodes <- html_nodes(webpage,'.price-discount')
+price <- html_text(nodes) 
+head(price)
+```
+
+We can see we need to get rid of the `\r\n\t\t R$ ` for each of the entries: 
+
+```{r}
+price <- gsub('[\r\n\t\t R$ ]',"", price)
+head(price)
+```
+Next we do the names as well.
+
+```{r}
+nodes <- html_nodes(webpage,'.sch-text-transform-none')
+name <- html_text(nodes) 
+head(name)
+```
+
+Now lets see if we can pull multiple pages for of this data. 
+
+First lets take a look at the following construct:
+
+```{r}
+pageUrls<-paste0('https://www.schutz.com.br/store/c/newin?q=%3Acreation-time&page=', 0:1)
+pageUrls
+```
+
+What this does is just make a vector of length 2 with the urls of the first two pages that we want in here. We can look at the structure of urls to see this too: 
+
+```{r}
+str(pageUrls)
+```
+
+Yes, vector of character strings of length 2. 
+
+Now there is a function called `lapply` that lets you pass in a list or vector and it will apply a function you provide to this list and return the results of that. In this case we pass in a function that does exactly what we did above read a url (a page that is) then find the price-discount nodes, then pull out the text we want from that, then clean it up and remove the funny characters:
+
+```{r}
+price <- lapply(paste0('https://www.schutz.com.br/store/c/newin?q=%3Acreation-time&page=', 0:1),
+                function(url){
+                    webpage<-read_html(url) 
+                    nodes<-html_nodes(webpage, ".price-discount")
+                    price <- html_text(nodes) 
+                    gsub('[\r\n\t R$ ]', '', price)
+                })
+price
+```
+
+We see that we have a list of length 2, now with the set of prices from page 1 as the first entry of the list and the set of prices from page 2 as the second entry of the list. We just want a big vector of the prices, so we `unlist` the list and that makes it a vector:
+
+```{r}
+price<- unlist(price)
+price
+```
+
+Wow that is great. Now we should be able to do this for as many pages as there are at the website. Say we wanted to do this for 10 pages, we could use the vector `0:10` 

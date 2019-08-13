@@ -36,61 +36,123 @@
       },
       {
         "id": 12,
-        "name": "Simple",
+        "name": "WebscrapeMultiplePages",
         "children": [
           {
             "id": 13,
-            "name": "Simple.Rmd",
+            "name": "WebscrapeMultiplePages.Rmd",
             "file": "Rmd"
           },
           {
             "id": 14,
-            "name": "Simple.html",
+            "name": "WebscrapeMultiplePages.html",
             "file": "html"
           },
           {
             "id": 15,
-            "name": "Simple.pdf",
+            "name": "WebscrapeMultiplePages.pdf",
             "file": "pdf"
           },
           {
             "id": 16,
-            "name": "Simple.ipynb",
+            "name": "WebscrapeMultiplePages.ipynb",
             "file": "ipynb"
           },
           {
             "id": 17,
-            "name": "Simple.docx",
+            "name": "WebscrapeMultiplePages.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 20,
-        "name": "Elasticity",
+        "name": "Simple",
         "children": [
           {
             "id": 21,
-            "name": "Elasticity.Rmd",
+            "name": "Simple.Rmd",
             "file": "Rmd"
           },
           {
             "id": 22,
-            "name": "Elasticity.html",
+            "name": "Simple.html",
             "file": "html"
           },
           {
             "id": 23,
-            "name": "Elasticity.pdf",
+            "name": "Simple.pdf",
             "file": "pdf"
           },
           {
             "id": 24,
-            "name": "Elasticity.ipynb",
+            "name": "Simple.ipynb",
             "file": "ipynb"
           },
           {
             "id": 25,
+            "name": "Simple.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "name": "KMeans",
+        "children": [
+          {
+            "id": 29,
+            "name": "KMeans.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 30,
+            "name": "KMeans.html",
+            "file": "html"
+          },
+          {
+            "id": 31,
+            "name": "KMeans.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 32,
+            "name": "KMeans.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 33,
+            "name": "KMeans.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "name": "Elasticity",
+        "children": [
+          {
+            "id": 37,
+            "name": "Elasticity.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 38,
+            "name": "Elasticity.html",
+            "file": "html"
+          },
+          {
+            "id": 39,
+            "name": "Elasticity.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 40,
+            "name": "Elasticity.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 41,
             "name": "Elasticity.docx",
             "file": "docx"
           }
@@ -110,12 +172,24 @@
       },
       {
         "id": 18,
+        "name": "WebscrapeMultiplePages",
+        "file": "colab",
+        "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"
+      },
+      {
+        "id": 26,
         "name": "Simple",
         "file": "colab",
         "googleid": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
       },
       {
-        "id": 26,
+        "id": 34,
+        "name": "KMeans",
+        "file": "colab",
+        "googleid": "1DHndwLNxq8vTQlu1_cQ9vwLEao2X_FhM"
+      },
+      {
+        "id": 42,
         "name": "Elasticity",
         "file": "colab",
         "googleid": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
@@ -134,12 +208,24 @@
       },
       {
         "id": 19,
+        "name": "WebscrapeMultiplePages",
+        "file": "googledoc",
+        "googleid": "1KIJ36fknEa9kfUSgYBaHyv2bkhgmRT33"
+      },
+      {
+        "id": 27,
         "name": "Simple",
         "file": "googledoc",
         "googleid": "1n0NbrhB5ks7ulUbhUkByFE3XKDz8N0LX"
       },
       {
-        "id": 27,
+        "id": 35,
+        "name": "KMeans",
+        "file": "googledoc",
+        "googleid": "1yljeXftVUQcztTOrHQ3axotFY-cKe9zP"
+      },
+      {
+        "id": 43,
         "name": "Elasticity",
         "file": "googledoc",
         "googleid": "18GtftOhz9JHzwqo85pEd0nltATgsNE7F"
