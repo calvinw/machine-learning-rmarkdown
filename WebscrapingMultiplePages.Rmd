@@ -27,7 +27,7 @@ Now first we just pull one page of data like before. And look for the prices. We
 
 ```{r}
 library("rvest")
-url <- "https://www.renttherunway.com/c/dresses?filters%5Bzip_code%5D=08601&sort=recommended&_=1565675148850&page=1"
+url <- "https://www.renttherunway.com/c/dresses?page=1"
 webpage <- read_html(url)
 nodes <- html_nodes(webpage,'.product-card-price__retail-quiet')
 retail <- html_text(nodes)
@@ -55,8 +55,8 @@ We have to remove this funny dash in the string. Then we use something that just
 rental <- strsplit(rental, " – ",)
 lower <- sapply(rental, function(x) x[1])
 upper <- sapply(rental, function(x) x[2])
-upper
 lower
+upper
 ```
 
 Now lets see if we can pull multiple pages for of this data. 
