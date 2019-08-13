@@ -35,124 +35,124 @@
         ]
       },
       {
-        "id": 12,
+        "id": 11,
         "name": "WebscrapeMultiplePages",
         "children": [
           {
-            "id": 13,
+            "id": 12,
             "name": "WebscrapeMultiplePages.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 14,
+            "id": 13,
             "name": "WebscrapeMultiplePages.html",
             "file": "html"
           },
           {
-            "id": 15,
+            "id": 14,
             "name": "WebscrapeMultiplePages.pdf",
             "file": "pdf"
           },
           {
-            "id": 16,
+            "id": 15,
             "name": "WebscrapeMultiplePages.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 17,
+            "id": 16,
             "name": "WebscrapeMultiplePages.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 20,
+        "id": 18,
         "name": "Simple",
         "children": [
           {
-            "id": 21,
+            "id": 19,
             "name": "Simple.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 22,
+            "id": 20,
             "name": "Simple.html",
             "file": "html"
           },
           {
-            "id": 23,
+            "id": 21,
             "name": "Simple.pdf",
             "file": "pdf"
           },
           {
-            "id": 24,
+            "id": 22,
             "name": "Simple.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 25,
+            "id": 23,
             "name": "Simple.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 28,
+        "id": 25,
         "name": "KMeans",
         "children": [
           {
-            "id": 29,
+            "id": 26,
             "name": "KMeans.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 30,
+            "id": 27,
             "name": "KMeans.html",
             "file": "html"
           },
           {
-            "id": 31,
+            "id": 28,
             "name": "KMeans.pdf",
             "file": "pdf"
           },
           {
-            "id": 32,
+            "id": 29,
             "name": "KMeans.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 33,
+            "id": 30,
             "name": "KMeans.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 36,
+        "id": 32,
         "name": "Elasticity",
         "children": [
           {
-            "id": 37,
+            "id": 33,
             "name": "Elasticity.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 38,
+            "id": 34,
             "name": "Elasticity.html",
             "file": "html"
           },
           {
-            "id": 39,
+            "id": 35,
             "name": "Elasticity.pdf",
             "file": "pdf"
           },
           {
-            "id": 40,
+            "id": 36,
             "name": "Elasticity.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 41,
+            "id": 37,
             "name": "Elasticity.docx",
             "file": "docx"
           }
@@ -171,25 +171,25 @@
         "googleid": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
       },
       {
-        "id": 18,
+        "id": 17,
         "name": "WebscrapeMultiplePages",
         "file": "colab",
         "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"
       },
       {
-        "id": 26,
+        "id": 24,
         "name": "Simple",
         "file": "colab",
         "googleid": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
       },
       {
-        "id": 34,
+        "id": 31,
         "name": "KMeans",
         "file": "colab",
         "googleid": "1DHndwLNxq8vTQlu1_cQ9vwLEao2X_FhM"
       },
       {
-        "id": 42,
+        "id": 38,
         "name": "Elasticity",
         "file": "colab",
         "googleid": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"

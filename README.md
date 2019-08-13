@@ -54,25 +54,19 @@ npm install
 
 which uses the package.json file in this directory.
 
-We use a node app called google-upload.js to: 
+We use a node app called google-upload.js to upload the built .ipynb to Google Colab (really just Google Drive) 
 
-1. upload the built .ipynb to Google Colab (really just Google Drive) 
-2. upload the built .docx to Google Drive 
-
-If you would like to make it so that you can automatically upload the ipynb and docx files to your Google Colab and Google Docs you will have to create a credentials.json file and place it in this directory. Go to the googles developer console, and create one in a similar fashion to this document from google:  
+If you would like to make it so that you can automatically upload the ipynb files to your Google Drive you will have to create a credentials.json file and place it in this directory. Go to the googles developer console, and create one in a similar fashion to this document from google:  
 
 [Google Drive API Quickstart](https://developers.google.com/drive/api/v3/quickstart/nodejs)
 
-This is basically the example we began with that became our google-upload.js. You will need to create a credentials.json like they do in that example. When you run google-upload.js it will upload to your versions of the Google Colab notebooks or Google Docs in your google drive.
+This is basically the example we began with that became our google-upload.js. You will need to create a credentials.json like they do in that example. When you run google-upload.js it will upload to your versions of the Google Colab notebooks in your google drive.
 
-Before you run the google-upload.js, you should create a Google Colab file for each Rmd you create and also a Google Doc (.docx version) as well. You can "make a copy" of our google versions of these if you want, they should be viewable (but not editable) by the world [Machine Learning Rmarkdown folder](https://drive.google.com/open?id=1LduI2mOMabByvQRS2JPpMwttTeYyb9Og)
+Before you run the google-upload.js, you should create a Google Colab file for each Rmd you create You can "make a copy" of our google versions of these if you want, they should be viewable (but not editable) by the world [Machine Learning Rmarkdown folder](https://drive.google.com/open?id=1LduI2mOMabByvQRS2JPpMwttTeYyb9Og)
 
-Then you use your own googleids from your copies and replace the ones in:
+Then you use your own googleids from your copies and replace the ones in google-colab-ids.json
 
-1. google-colab-ids.json
-2. google-docx-ids.json
-
-Note google-upload.js app does not create any Google Docs for you, just uploads and saves to existing ones after they are rendered by the make process.
+Note google-upload.js app does not create any Google Docs for you, just uploads and saves to existing ones after they are rendered by the make process. (Hopefully we will change this in the future so it creates colab files in a folder and its all more automated. 
 
 Once you have your own versions of the google ids you want to use, you can upload the current built versions of the ipynb like this:
 
@@ -83,14 +77,6 @@ node google-upload.js Simple.ipynb
 This reads the googleid for the Colab document for Simple from google-colab-ids.json and uploads the Simple.ipynb to that file in your google drive. 
 
 When you run this you will ask you to authenticate the app and allow it to access your Google Drive. For this it uses the credentials.json you made above. It creates a token.json as you do this and that will be used on subsequent runs of the tool. This is the same process that the quickstart example from google above uses, so refer to that if you need more info on this process.. 
-
-For the docx version you can do this:
-
-```bash
-node google-upload.js Simple.docx
-```
-
-This reads the googleid for the Docs document for Simple from google-docx-ids.json and uploads the Simple.docx to that file into google drive.
 
 The files we use in google drive are at this link: 
 

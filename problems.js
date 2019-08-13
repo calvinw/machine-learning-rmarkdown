@@ -16,8 +16,6 @@ fs.readdir(dirPath, function(err, files){
     //
     let googlecolabidsdata = fs.readFileSync('google-colab-ids.json');
     let googlecolabids = JSON.parse(googlecolabidsdata);
-    let googledocxidsdata = fs.readFileSync('google-docx-ids.json');
-    let googledocxids = JSON.parse(googledocxidsdata);
 
     for(f of filesList){
       var parsed = path.parse(f);
@@ -30,7 +28,6 @@ fs.readdir(dirPath, function(err, files){
       var docxFile = name + '.docx'
 	
       var googlecolabId = googlecolabids[name]; 
-      var googledocxId = googledocxids[name]; 
 
 	var fileItem = {
 	  id: id++,
@@ -53,14 +50,6 @@ fs.readdir(dirPath, function(err, files){
 	     googleid: googlecolabId,
 	};
 	colabsArray.push(colabItem);
-
-	var docItem = {
-	     id: id++, 
-	     name: name, 
-	     file: 'googledoc', 
-	     googleid: googledocxId,
-	};
-	docsArray.push(docItem);
     }
 
     let myJson = [ 
@@ -74,11 +63,6 @@ fs.readdir(dirPath, function(err, files){
 	    name: "Colab Links",
 	    children: colabsArray 
 	},
-	// {
-	//     id: 3,
-	//     name: "GoogleDoc Links",
-	//     children: docsArray 
-	// }
     ];
 		    
     console.log(JSON.stringify(myJson, null, 2));

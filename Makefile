@@ -8,7 +8,6 @@ PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
 UPDATE_COLAB=false
-UPDATE_GOOGLEDOCS=false
 
 export PATH :=.:/bin:/usr/bin:$(PATH)
 
@@ -42,9 +41,6 @@ endif
 	@echo Calling render for docx...	
 	Rscript -e 'rmarkdown::render("$<", "word_document")'
 	@echo docx render is finished...	
-ifeq ($(UPDATE_GOOGLEDOCS),true) 
-	node google-upload.js $@
-endif
 
 %.ipynb : %.md
 	@echo Calling render for ipynb...	
@@ -68,11 +64,6 @@ watch:
 googlecolab:
 	@echo uploading ipynb files to google
 	node google-upload.js $(IPYNB_FILES)
-	@echo done uploading to google
-
-googledocx:
-	@echo uploading docx files to google
-	node google-upload.js $(DOCX_FILES)
 	@echo done uploading to google
 
 nodeapp: 
