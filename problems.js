@@ -7,7 +7,7 @@ fs.readdir(dirPath, function(err, files){
     return path.extname(e).toLowerCase() === '.rmd'
   });
 
-    filesList = filesList.reverse();
+    //filesList = filesList.reverse();
     var id = 4;
     var filesArray = [];
     var colabsArray = [];

@@ -77,9 +77,6 @@ function getAccessToken(oAuth2Client, callback) {
 const googlecolabidsdata = fs.readFileSync('google-colab-ids.json');
 const google_colab_ids = JSON.parse(googlecolabidsdata);
 
-const googledocxidsdata = fs.readFileSync('google-docx-ids.json');
-const google_docx_ids = JSON.parse(googledocxidsdata);
-
 function updateFiles(auth) {
 
   const drive = google.drive({version: 'v3', auth});
@@ -93,8 +90,6 @@ function updateFiles(auth) {
 
 	if(ext === '.ipynb')
 	    googleFileId = google_colab_ids[base]; 
-        else if(ext === '.docx')
-	    googleFileId = google_docx_ids[base]; 
 
 	console.log("updating");
 	console.log("fileName is: " + fileName);

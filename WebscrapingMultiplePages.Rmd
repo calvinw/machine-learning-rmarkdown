@@ -1,0 +1,162 @@
+---
+title: "Webscraping Multiple Pages"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+This technique is taken from here: [Webscraping Multiple Pages](https://rstudio-pubs-static.s3.amazonaws.com/287509_dde580b0adf94bae8a7994d7ae0cb849.html)
+
+This related page is also a nice example of webscraping prices: [ML Books - Price Scraping](http://rpubs.com/Marcelobn/ML_books)
+
+Prices, discounts, and names of products are very interesting things to scrape from websites. That is what we want to do here. Often times there are page after page of products so we would like to find a way to scrape multiple pages of the same kind of data.
+
+```{r eval=FALSE}
+install.packages("rvest")
+```
+
+Make sure we load the library rvest first:
+
+```{r}
+library("rvest")
+```
+
+Now first we just pull one page of data like before. And look for the prices. We will get a page off of renttherunway.com, we are interested in comparing the retail price for something and the "one-time" rental that renttherunway charges for those not signed up for their service. You can use the Selector Gadget in chrome to see what css selectors you need. Here the retail price is identified by the `.product-card-price__retail-quiet` selector, and the range of rental prices is in the `.product-card-price__regular` selector
+
+```{r}
+library("rvest")
+url <- "https://www.renttherunway.com/c/dresses?filters%5Bzip_code%5D=08601&sort=recommended&_=1565675148850&page=1"
+webpage <- read_html(url)
+nodes <- html_nodes(webpage,'.product-card-price__retail-quiet')
+retail <- html_text(nodes)
+retail
+```
+
+We can see we need to get rid of the ` retail` and later on the \$. We leave it in for the moment:
+
+```{r}
+retail<-gsub(" retail","", retail)
+retail
+```
+
+That looks pretty good now. Next lets work on rental price. This is given as a range of values on the website, so we will need to pull that range, and then deal with the high and low values of the range:
+
+```{r}
+nodes <- html_nodes(webpage,'.product-card-price__regular')
+ranges <- html_text(nodes)
+ranges
+```
+
+We have to remove this funny dash in the string. Then we use something that just extracts the low price. That is what we will work with for now. We could take an average of the high and low values with a little more work, but okay:
+
+```{r}
+ranges <- strsplit(ranges, " – ",)
+ranges
+lower <- sapply(ranges, function(x) x[1])
+lower
+```
+
+Now lets see if we can pull multiple pages for of this data. 
+
+First lets take a look at the following construct:
+
+```{r}
+pageUrls<-paste0('https://www.renttherunway.com/c/dresses?page=', 1:3)
+pageUrls
+```
+
+What this does is just make a vector of length 3 with the urls of the first three pages that we want to pull.
+
+Now for this vector of urls, lets actually read the html from each of the pages, and store that in the webpages vector. Then we can use that to process each field we want from the different pages.
+
+```{r}
+webpages <- lapply(pageUrls, read_html)
+```
+
+Now there is a function called `lapply` that lets you pass in a list or vector and it will apply a function you provide to this list and return the results of that. In this case we pass in a function that does exactly what we did above when we read the url (a page that is) then found the price and rental ranges
+
+Here is are the prices:
+
+```{r}
+price <- lapply(webpages,
+                function(webpage){
+                    nodes<-html_nodes(webpage, '.product-card-price__retail-quiet')
+                    price <- html_text(nodes) 
+		    price<-gsub(" retail","", price)
+                })
+price <- unlist(price)
+price
+```
+
+Here is are the rental amounts (the lower of the range):
+
+```{r}
+lower <- lapply(webpages,
+                function(webpage){
+		    nodes <- html_nodes(webpage,'.product-card-price__regular')
+		    ranges <- html_text(nodes)
+		    ranges <- strsplit(ranges, " – ",)
+		    lower <- sapply(ranges, function(x) x[1])
+                })
+lower <- unlist(lower)
+lower
+```
+
+Finally lets clean up the dollar sign and the comma if numbers are over 1,000:
+
+```{r}
+price <-gsub(",","", price)
+lower <-gsub(",","", lower)
+
+price <-gsub("\\$","", price)
+lower <-gsub("\\$","", lower)
+```
+
+Now we should be all set, lets turn them into numbers!
+
+```{r}
+price <- as.numeric(price)
+lower <- as.numeric(lower)
+```
+
+```{r}
+df = data.frame(price, lower)
+df
+```
+
+Just for fun, do you think we can predict the rental price of something if we know the retail price?
+
+```{r}
+plot(price, lower, pch=20)
+```
+
+Looks pretty good...
+
+```{r}
+options("scipen"=100, "digits"=4)
+model<-lm(lower ~., data=df)
+summary(model)
+```
+
+Nice... What about what percent the rental is of the retail:
+
+```{r}
+percentage <- lower/price
+percentage
+```
+
+Whats the range you can expect?
+
+```{r}
+descriptive<-summary(percentage)
+descriptive
+```
+
+Looks like....
+
+**For one time rental only...The runway can be yours for from `r round(100*min(percentage),0)`% to `r round(100*max(percentage),0)`% of the retail price!!!!**
+
+Nice!
+
