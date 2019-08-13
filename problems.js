@@ -1,6 +1,5 @@
 var fs = require('fs');
 var path = require('path');
-var yaml = require('js-yaml');
 var dirPath = path.resolve(__dirname); // path to your directory goes here
 var filesList;
 fs.readdir(dirPath, function(err, files){
@@ -75,11 +74,11 @@ fs.readdir(dirPath, function(err, files){
 	    name: "Colab Links",
 	    children: colabsArray 
 	},
-	{
-	    id: 3,
-	    name: "GoogleDoc Links",
-	    children: docsArray 
-	}
+	// {
+	//     id: 3,
+	//     name: "GoogleDoc Links",
+	//     children: docsArray 
+	// }
     ];
 		    
     console.log(JSON.stringify(myJson, null, 2));

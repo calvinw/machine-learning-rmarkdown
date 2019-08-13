@@ -195,41 +195,5 @@
         "googleid": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
       }
     ]
-  },
-  {
-    "id": 3,
-    "name": "GoogleDoc Links",
-    "children": [
-      {
-        "id": 11,
-        "name": "Webscraping",
-        "file": "googledoc",
-        "googleid": "1k0HN7tyo9k2RjJ2rfp5JIfPvYJhzRd1o"
-      },
-      {
-        "id": 19,
-        "name": "WebscrapeMultiplePages",
-        "file": "googledoc",
-        "googleid": "1KIJ36fknEa9kfUSgYBaHyv2bkhgmRT33"
-      },
-      {
-        "id": 27,
-        "name": "Simple",
-        "file": "googledoc",
-        "googleid": "1n0NbrhB5ks7ulUbhUkByFE3XKDz8N0LX"
-      },
-      {
-        "id": 35,
-        "name": "KMeans",
-        "file": "googledoc",
-        "googleid": "1yljeXftVUQcztTOrHQ3axotFY-cKe9zP"
-      },
-      {
-        "id": 43,
-        "name": "Elasticity",
-        "file": "googledoc",
-        "googleid": "18GtftOhz9JHzwqo85pEd0nltATgsNE7F"
-      }
-    ]
   }
 ]
