@@ -23,7 +23,7 @@ Make sure we load the library rvest first:
 library("rvest")
 ```
 
-Now first we just pull one page of data like before. And look for the prices. We will get a page off of renttherunway.com, we are interested in comparing the retail price for something and the "one-time" rental that renttherunway charges for those not signed up for their service. You can use the Selector Gadget in chrome to see what css selectors you need. Here the retail price is identified by the `.product-card-price__retail-quiet` selector, and the range of rental prices is in the `.product-card-price__regular` selector
+Now first we just pull one page of data like before. And look for the prices. We will get a page off of [Rent the Runway] (https://www.renttherunway.com), we are interested in comparing the retail price for something and the "one-time" rental that renttherunway charges for those not signed up for their service. You can use the Selector Gadget in chrome to see what css selectors you need to grab the retail price and the range that the piece would rent for. Here the retail price is identified by the selector `.product-card-price__retail-quiet`, and the range of rental prices is in the selector `.product-card-price__regular`
 
 ```{r}
 library("rvest")
@@ -85,7 +85,7 @@ retail <- lapply(webpages,
 	    function(webpage){
 		nodes<-html_nodes(webpage, '.product-card-price__retail-quiet')
 		price <- html_text(nodes) 
-		price<-gsub(" retail","", price)
+		gsub(" retail","", price)
 	    })
 retail <- unlist(retail)
 retail
@@ -94,57 +94,57 @@ retail
 Here is are the rental amounts (the lower of the range):
 
 ```{r}
-lower <- lapply(webpages,
+rental <- lapply(webpages,
 	    function(webpage){
 		nodes <- html_nodes(webpage,'.product-card-price__regular')
-		rental <- html_text(nodes)
-		rental <- strsplit(rental, " – ",)
-		lower <- sapply(rental, function(x) x[1])
+		range <- html_text(nodes)
+		range <- strsplit(range, " – ",)
+		sapply(range, function(x) x[1])
 	    })
-lower <- unlist(lower)
-lower
+rental <- unlist(rental)
+
 ```
 
 Finally lets clean up the dollar sign and the comma if numbers are over 1,000:
 
 ```{r}
 retail <-gsub(",","", retail)
-lower <-gsub(",","", lower)
+rental <-gsub(",","", rental)
 
 retail <-gsub("\\$","", retail)
-lower <-gsub("\\$","", lower)
+rental <-gsub("\\$","", rental)
 ```
 
 Now we should be all set, lets turn them into numbers!
 
 ```{r}
 retail <- as.numeric(retail)
-lower <- as.numeric(lower)
+rental <- as.numeric(rental)
 ```
 
 ```{r}
-df = data.frame(retail, lower)
+df = data.frame(retail, rental)
 df
 ```
 
 Just for fun, do you think we can predict the rental price of something if we know the retail price?
 
 ```{r}
-plot(retail, lower, pch=20)
+plot(retail, rental, pch=20)
 ```
 
 Looks pretty good...
 
 ```{r}
 options("scipen"=100, "digits"=4)
-model<-lm(lower ~., data=df)
+model<-lm(rental ~ retail, data=df)
 summary(model)
 ```
 
 Nice... What about what percent the rental is of the retail:
 
 ```{r}
-percentage <- lower/retail
+percentage <- rental/retail
 percentage
 ```
 
