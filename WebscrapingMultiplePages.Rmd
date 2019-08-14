@@ -82,11 +82,11 @@ Here are the retail prices:
 
 ```{r}
 retail <- lapply(webpages,
-                function(webpage){
-                    nodes<-html_nodes(webpage, '.product-card-price__retail-quiet')
-                    price <- html_text(nodes) 
-		    price<-gsub(" retail","", price)
-                })
+	    function(webpage){
+		nodes<-html_nodes(webpage, '.product-card-price__retail-quiet')
+		price <- html_text(nodes) 
+		price<-gsub(" retail","", price)
+	    })
 retail <- unlist(retail)
 retail
 ```
@@ -95,12 +95,12 @@ Here is are the rental amounts (the lower of the range):
 
 ```{r}
 lower <- lapply(webpages,
-                function(webpage){
-		    nodes <- html_nodes(webpage,'.product-card-price__regular')
-		    rental <- html_text(nodes)
-		    rental <- strsplit(rental, " – ",)
-		    lower <- sapply(rental, function(x) x[1])
-                })
+	    function(webpage){
+		nodes <- html_nodes(webpage,'.product-card-price__regular')
+		rental <- html_text(nodes)
+		rental <- strsplit(rental, " – ",)
+		lower <- sapply(rental, function(x) x[1])
+	    })
 lower <- unlist(lower)
 lower
 ```
