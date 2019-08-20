@@ -7,7 +7,7 @@ IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
-UPDATE_COLAB=false
+COLAB_UPLOADS=
 
 export PATH :=.:/bin:/usr/bin:$(PATH)
 
@@ -46,9 +46,7 @@ endif
 	@echo Calling render for ipynb...	
 	jupytext $< --to notebook --set-kernel ir;
 	@echo ipynb render is finished...
-ifeq ($(UPDATE_COLAB),true) 
-	node google-upload.js $@
-endif
+	$(if $(findstring $@, $(COLAB_UPLOADS)), node google-upload.js $@)
 
 data: 
 	node problems.js > data.json
@@ -61,7 +59,7 @@ watch:
 	@echo Will call make on changes...	
 	while true; do ls *.Rmd | entr make -j1 SERVER=yes; done
 
-googlecolab:
+colaball:
 	@echo uploading ipynb files to google
 	node google-upload.js $(IPYNB_FILES)
 	@echo done uploading to google
