@@ -67,9 +67,9 @@
 	      var socket = io();
 	      socket.on("load-event", function (filename) {
 		console.log("got the load event: " + filename);
-		  //Vue.set(self.active, 0, filename)
+		  Vue.set(self.active, 0, filename)
 		  //self.key = Date.now();
-		  //window.scrollTo(0, document.body.scrollHeight);
+		  window.scrollTo(0, document.body.scrollHeight);
 		  location.reload();
 	      });
 

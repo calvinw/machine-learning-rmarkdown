@@ -5,155 +5,186 @@
     "children": [
       {
         "id": 4,
-        "name": "WebscrapingMultiplePages",
+        "name": "Calculator",
         "children": [
           {
             "id": 5,
-            "name": "WebscrapingMultiplePages.Rmd",
+            "name": "Calculator.Rmd",
             "file": "Rmd"
           },
           {
             "id": 6,
-            "name": "WebscrapingMultiplePages.html",
+            "name": "Calculator.html",
             "file": "html"
           },
           {
             "id": 7,
-            "name": "WebscrapingMultiplePages.pdf",
+            "name": "Calculator.pdf",
             "file": "pdf"
           },
           {
             "id": 8,
-            "name": "WebscrapingMultiplePages.ipynb",
+            "name": "Calculator.ipynb",
             "file": "ipynb"
           },
           {
             "id": 9,
-            "name": "WebscrapingMultiplePages.docx",
+            "name": "Calculator.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 11,
-        "name": "Webscraping",
+        "name": "Elasticity",
         "children": [
           {
             "id": 12,
-            "name": "Webscraping.Rmd",
+            "name": "Elasticity.Rmd",
             "file": "Rmd"
           },
           {
             "id": 13,
-            "name": "Webscraping.html",
+            "name": "Elasticity.html",
             "file": "html"
           },
           {
             "id": 14,
-            "name": "Webscraping.pdf",
+            "name": "Elasticity.pdf",
             "file": "pdf"
           },
           {
             "id": 15,
-            "name": "Webscraping.ipynb",
+            "name": "Elasticity.ipynb",
             "file": "ipynb"
           },
           {
             "id": 16,
-            "name": "Webscraping.docx",
+            "name": "Elasticity.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 18,
-        "name": "Simple",
-        "children": [
-          {
-            "id": 19,
-            "name": "Simple.Rmd",
-            "file": "Rmd"
-          },
-          {
-            "id": 20,
-            "name": "Simple.html",
-            "file": "html"
-          },
-          {
-            "id": 21,
-            "name": "Simple.pdf",
-            "file": "pdf"
-          },
-          {
-            "id": 22,
-            "name": "Simple.ipynb",
-            "file": "ipynb"
-          },
-          {
-            "id": 23,
-            "name": "Simple.docx",
-            "file": "docx"
-          }
-        ]
-      },
-      {
-        "id": 25,
         "name": "KMeans",
         "children": [
           {
-            "id": 26,
+            "id": 19,
             "name": "KMeans.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 27,
+            "id": 20,
             "name": "KMeans.html",
             "file": "html"
           },
           {
-            "id": 28,
+            "id": 21,
             "name": "KMeans.pdf",
             "file": "pdf"
           },
           {
-            "id": 29,
+            "id": 22,
             "name": "KMeans.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 30,
+            "id": 23,
             "name": "KMeans.docx",
             "file": "docx"
           }
         ]
       },
       {
+        "id": 25,
+        "name": "Simple",
+        "children": [
+          {
+            "id": 26,
+            "name": "Simple.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 27,
+            "name": "Simple.html",
+            "file": "html"
+          },
+          {
+            "id": 28,
+            "name": "Simple.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 29,
+            "name": "Simple.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 30,
+            "name": "Simple.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
         "id": 32,
-        "name": "Elasticity",
+        "name": "Webscraping",
         "children": [
           {
             "id": 33,
-            "name": "Elasticity.Rmd",
+            "name": "Webscraping.Rmd",
             "file": "Rmd"
           },
           {
             "id": 34,
-            "name": "Elasticity.html",
+            "name": "Webscraping.html",
             "file": "html"
           },
           {
             "id": 35,
-            "name": "Elasticity.pdf",
+            "name": "Webscraping.pdf",
             "file": "pdf"
           },
           {
             "id": 36,
-            "name": "Elasticity.ipynb",
+            "name": "Webscraping.ipynb",
             "file": "ipynb"
           },
           {
             "id": 37,
-            "name": "Elasticity.docx",
+            "name": "Webscraping.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 40,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 41,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 42,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 43,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 44,
+            "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
         ]
@@ -166,33 +197,39 @@
     "children": [
       {
         "id": 10,
-        "name": "WebscrapingMultiplePages",
+        "name": "Calculator",
         "file": "colab",
-        "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"
+        "googleid": "1-VNTRUJ6P3VAHQuQusiNwiUtuc8KCr7z"
       },
       {
         "id": 17,
-        "name": "Webscraping",
+        "name": "Elasticity",
         "file": "colab",
-        "googleid": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
+        "googleid": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
       },
       {
         "id": 24,
-        "name": "Simple",
-        "file": "colab",
-        "googleid": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
-      },
-      {
-        "id": 31,
         "name": "KMeans",
         "file": "colab",
         "googleid": "1DHndwLNxq8vTQlu1_cQ9vwLEao2X_FhM"
       },
       {
-        "id": 38,
-        "name": "Elasticity",
+        "id": 31,
+        "name": "Simple",
         "file": "colab",
-        "googleid": "1Y-bK6MhZNFKRBBT5GILYbGOjPdpqpAop"
+        "googleid": "1TEGYodUo-iDIc0S1kE2NwiL3jgimS1Vy"
+      },
+      {
+        "id": 38,
+        "name": "Webscraping",
+        "file": "colab",
+        "googleid": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
+      },
+      {
+        "id": 45,
+        "name": "WebscrapingMultiplePages",
+        "file": "colab",
+        "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"
       }
     ]
   }
