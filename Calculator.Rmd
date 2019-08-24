@@ -21,6 +21,10 @@ Multiplication:
 3*4
 ```
 
+```{r include=FALSE, eval=TRUE}
+knitr::knit_exit()
+```
+
 Subtraction:
 ```{r}
 3-4
