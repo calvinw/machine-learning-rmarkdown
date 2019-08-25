@@ -9,16 +9,16 @@ jupyter:
 
 Here we will show how to do webscraping with rvest and the chrome extension selector gadget. This technique is borrowed from the great explanation at: [Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/) and is basically a simplified version of that description
 
-First make sure that you install the rvest package:
+First make sure that you install and load the rvest package:
 
-```{r eval=FALSE}
-install.packages("rvest")
+```{r}
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
 ```
 
 Then once we do this we pick a site we want to get data from. We want to pull some data from [http://poshmark.com](http://poshmark.com) and compare original prices with the current price, maybe to find excellent bargins. We use the `read_html` method from the rvest package. We will look in the category Jackets and Coats-Blazers, and we will just use the data we find on the first page: 
 
 ```{r}
-library("rvest")
 url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers'
 webpage <- read_html(url)
 ```
@@ -84,6 +84,6 @@ Finally lets make a dataframe of our fields.
 
 ```{r}
 df <-data.frame("name" = titles, "original" =  original, "current"= current)
-head(df,15)
+df
 ```
 

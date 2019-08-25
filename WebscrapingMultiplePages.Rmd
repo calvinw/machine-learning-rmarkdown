@@ -13,13 +13,10 @@ This related page is also a nice example of webscraping prices: [ML Books - Pric
 
 Prices, discounts, and names of products are very interesting things to scrape from websites. That is what we want to do here. Often times there are page after page of products so we would like to find a way to scrape multiple pages of the same kind of data.
 
-```{r eval=FALSE}
-install.packages("rvest")
-```
-
-Make sure we load the library rvest first:
+Install rvest if needed and then load it:
 
 ```{r}
+if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
 

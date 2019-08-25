@@ -12,15 +12,10 @@ This notebook is an expanded version of the analysis done here:
 Also you can see this page as well for a similar version:
 [Pricing Analysis Example](https://rstudio-pubs-static.s3.amazonaws.com/185880_f9e3e3ee84314609b531524dfa3f4f1b.html) 
 
-First make sure RCurl is installed.
-
-```{r eval=FALSE}
-install.packages("RCurl")
-```
-
-Then make sure it is loaded:
+First make sure RCurl is installed (if needed) and loaded
 
 ```{r}
+if (!require("RCurl")) install.packages("RCurl")
 library("RCurl")
 ```
 

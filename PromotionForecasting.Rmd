@@ -7,21 +7,23 @@ jupyter:
     name: ir
 ---
 
-```{r eval=FALSE}
-install.packages("RCurl")
-```
+This example is taken from the book [Segmentation, Revenue Management and Pricing Analytics](https://www.amazon.com/Segmentation-Revenue-Management-Pricing-Analytics/dp/0415898331) by Tudor Bodea and Mark Ferguson
 
-Then make sure it is loaded:
+Make sure to install (if needed) RCurl and then load it:
+
 ```{r}
+if (!require("RCurl")) install.packages("RCurl")
 library("RCurl")
 ```
 
-We use the getURL and read the csv as a textstring:
+We use the getURL and read the data as a csv textstring:
 ```{r}
 url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Z4rEXAoVmrunY3BLJ5AX-ZH76U8bHpCCOu8mzziWK1X6WnJJiC2RmrWrLffGUxo9dCZD0HW1n15T/pub?gid=1471239210&single=true&output=csv"
 textString<-getURL(url)
 df<-read.csv(text=textString)
 ```
+
+This is the demand for 26 weeks of staple item like denim jeans. For this item there were various kinds of promotions. We would like to understand the effect of these promotions on the demand. 
 
 Here is the structure of the dataframe
 
@@ -29,14 +31,27 @@ Here is the structure of the dataframe
 str(df)
 ```
 
+To start there were two different markdown promotions:
+
+* p114 in the data stands for a 15% off promotion
+* p101 in the data stands for a 25% off promotion
+
+`p114` means the price was set to \$114.75 for the week. This is 15% of the retail price of \$135. `p101` means the price was set to \$101.25 for the week. This is 25% off. 
+
+In addition to that there were special event promotions on holidays. Some dates had both markdowns and special event promotions together. In two weeks there were markdown promotions without special events (week 10 and 24): 
+
 ```{r}
 df
 ```
+
+Lets take a look at the demand over time for the 26 weeks:
 
 ```{r}
 plot(df$week, df$demand, main="Demand for 26 Weeks", xlab="Week", ylab="Demand", type="l")
 points(df$week, df$demand, pch=19)
 ```
+
+Clearly you can see the effects of the markdowns and the special event promotions. Lets run a regression to see if the effects of the different promotions are significant:
 
 ```{r}
 options("scipen"=100, "digits"=4)
@@ -44,25 +59,48 @@ model <- lm(demand~p114+p101+specialEvents, df)
 summary(model)
 ```
 
-This means that both the markdowns and the holiday events have a significant linear relationship with demand. 
+This means that both the markdowns and the special events have a significant linear relationship with demand. 
 
 In particular:
 
-* when the 15% markdown is run it accounts for roughly an increase in 86 units of demand. 
-* when the 25% markdown is run it accounts for roughly an increase in 111 units of demand. 
-* special holiday event promotions accounts for roughly an increase in 69 units of demand. 
+* baseline demand is 58.90 
+* when the 15% markdown is run it accounts for roughly an increase in 86 units of demand 
+* when the 25% markdown is run it accounts for roughly an increase in 111 units of demand 
+* special holiday event promotions account for roughly an increase in 69 units of demand 
 
-What about a demand curve? Can we make one of these:
+What about a demand (or price response) curve? 
+
+It is not hard here to see from the model the estmated demand when each one of the markdowns are in effect by themselves.
+
+For 15% markdown we have:
+$$ 
+\text{Demand} = 58.90 + 85.60 = 144.50 
+$$
+
+For the 25% we have:
+$$ 
+\text{Demand} = 58.90 + 110.60 = 169.50 
+$$
+
+So we can use this demand and price data to think about a price response curve: 
+
 ```{r}
-plot(df$price, df$demand, main="Demand Curve", xlab="Price", ylab="Demand", type="p", pch=19)
-model2 <- lm(demand~price, df)
-abline(reg=model2)
+price <- c(135, 114.75, 101.25)
+demand <- c(58.9, 144.5, 169.50)
+```
+Here is the plot of the demand and price:
+
+```{r}
+plot(price, demand, main="Demand vs Price", xlab="Price", ylab="Demand", pch=19)
+model2 <- lm(demand~price)
+abline(model2)
 ```
 
-Here is the summary of the regression of demand and price.
+Now lets see model summary:
 
 ```{r}
 summary(model2)
 ```
 
-We could use this to do some price optimization and elasticity analysis. 
+The p-value for the price is 0.122, not particularly surpising given that we have just a small amount of data for this demand curve.
+
