@@ -25,11 +25,9 @@ For example, we can just print it out:
 ```{r}
 x
 ```
-
 ```{r include=FALSE, eval=FALSE}
 knitr::knit_exit()
 ```
-
 We can do arithmetic to it:
 ```{r}
 2*x

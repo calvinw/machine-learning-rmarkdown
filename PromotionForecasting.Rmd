@@ -1,0 +1,68 @@
+---
+title: "Promotion Forecasting"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r eval=FALSE}
+install.packages("RCurl")
+```
+
+Then make sure it is loaded:
+```{r}
+library("RCurl")
+```
+
+We use the getURL and read the csv as a textstring:
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Z4rEXAoVmrunY3BLJ5AX-ZH76U8bHpCCOu8mzziWK1X6WnJJiC2RmrWrLffGUxo9dCZD0HW1n15T/pub?gid=1471239210&single=true&output=csv"
+textString<-getURL(url)
+df<-read.csv(text=textString)
+```
+
+Here is the structure of the dataframe
+
+```{r}
+str(df)
+```
+
+```{r}
+df
+```
+
+```{r}
+plot(df$week, df$demand, main="Demand for 26 Weeks", xlab="Week", ylab="Demand", type="l")
+points(df$week, df$demand, pch=19)
+```
+
+```{r}
+options("scipen"=100, "digits"=4)
+model <- lm(demand~p114+p101+specialEvents, df)
+summary(model)
+```
+
+This means that both the markdowns and the holiday events have a significant linear relationship with demand. 
+
+In particular:
+
+* when the 15% markdown is run it accounts for roughly an increase in 86 units of demand. 
+* when the 25% markdown is run it accounts for roughly an increase in 111 units of demand. 
+* special holiday event promotions accounts for roughly an increase in 69 units of demand. 
+
+What about a demand curve? Can we make one of these:
+```{r}
+plot(df$price, df$demand, main="Demand Curve", xlab="Price", ylab="Demand", type="p", pch=19)
+model2 <- lm(demand~price, df)
+abline(reg=model2)
+```
+
+Here is the summary of the regression of demand and price.
+
+```{r}
+summary(model2)
+```
+
+We could use this to do some price optimization and elasticity analysis. 
