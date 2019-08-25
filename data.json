@@ -129,61 +129,92 @@
       },
       {
         "id": 32,
-        "name": "Webscraping",
+        "name": "Variables",
         "children": [
           {
             "id": 33,
-            "name": "Webscraping.Rmd",
+            "name": "Variables.Rmd",
             "file": "Rmd"
           },
           {
             "id": 34,
-            "name": "Webscraping.html",
+            "name": "Variables.html",
             "file": "html"
           },
           {
             "id": 35,
-            "name": "Webscraping.pdf",
+            "name": "Variables.pdf",
             "file": "pdf"
           },
           {
             "id": 36,
-            "name": "Webscraping.ipynb",
+            "name": "Variables.ipynb",
             "file": "ipynb"
           },
           {
             "id": 37,
-            "name": "Webscraping.docx",
+            "name": "Variables.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 39,
-        "name": "WebscrapingMultiplePages",
+        "name": "Webscraping",
         "children": [
           {
             "id": 40,
-            "name": "WebscrapingMultiplePages.Rmd",
+            "name": "Webscraping.Rmd",
             "file": "Rmd"
           },
           {
             "id": 41,
-            "name": "WebscrapingMultiplePages.html",
+            "name": "Webscraping.html",
             "file": "html"
           },
           {
             "id": 42,
-            "name": "WebscrapingMultiplePages.pdf",
+            "name": "Webscraping.pdf",
             "file": "pdf"
           },
           {
             "id": 43,
-            "name": "WebscrapingMultiplePages.ipynb",
+            "name": "Webscraping.ipynb",
             "file": "ipynb"
           },
           {
             "id": 44,
+            "name": "Webscraping.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 47,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 48,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 49,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 50,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 51,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
@@ -221,12 +252,18 @@
       },
       {
         "id": 38,
+        "name": "Variables",
+        "file": "colab",
+        "googleid": "19d1iEsVj3xBRqcztZZwLI5D-xtwbgFg9"
+      },
+      {
+        "id": 45,
         "name": "Webscraping",
         "file": "colab",
         "googleid": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
       },
       {
-        "id": 45,
+        "id": 52,
         "name": "WebscrapingMultiplePages",
         "file": "colab",
         "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"

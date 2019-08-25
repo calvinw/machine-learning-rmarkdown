@@ -21,7 +21,7 @@ Multiplication:
 3*4
 ```
 
-```{r include=FALSE, eval=TRUE}
+```{r include=FALSE, eval=FALSE}
 knitr::knit_exit()
 ```
 
@@ -79,15 +79,29 @@ sqrt(-25)
 
 It gives us a warning. `NaNs produced`. NaN stands for "Not a Number", so this is telling us that R does not know how to do this. The answer is not a number. Usually this is a sign of a mistake we have made entering in what we passed to the `sqrt` function. 
 
-You can call the factorial function.  
+You can call the round function:  
 ```{r}
-factorial(6)
+round(6.3)
 ```
 
-Factorial means you just multiple all integers up to that number together:
-
+You can call the ceiling function, what do you think this does?  
 ```{r}
-6*5*4*3*2*1
+ceiling(6.3)
+```
+
+You can call the floor function?  
+```{r}
+floor(6.8)
+```
+
+R knows about the number $\pi$ as well. It is built in:  
+```{r}
+pi
+```
+
+R has a remainder function. This just gives the remainder of $17/5$, which is $2$:   
+```{r}
+17%%5
 ```
 
 There are functions for taking logarithms and exponents of things. Here we take the log of 1000 to the base 10.
@@ -97,7 +111,7 @@ log10(1000)
 
 This log gives us a number so that when 10 is raised to that number we get 1000. So $10^3 = 1000$, which we know is true.
 
-Now we can check this by raising 10 to that power.
+Just to prove this let's raise 10 to that power:
 
 ```{r}
 10^(3)
@@ -137,4 +151,4 @@ Can R tell you if something is greater than something else?
 2 > 3
 ```
 
-Things like this are called "Booleans", and they are important in programming. You can make a program do something when one expression is greater than another, or if two things are equal you can make your program do one thing, but if they are not equal you can make your program do something else. We will see some of this later on...
+Things like this are called "Boolean expressions", and they are important in programming. You can make a program do something when one expression is greater than another, or if two things are equal you can make your program do one thing, but if they are not equal you can make your program do something else. We will see lots of examples of this later on...
