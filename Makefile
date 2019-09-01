@@ -7,7 +7,7 @@ IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
-COLAB_UPLOADS=
+COLAB_UPLOADS =
 
 export PATH :=.:/bin:/usr/bin:$(PATH)
 
