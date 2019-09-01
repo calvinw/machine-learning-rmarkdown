@@ -1,0 +1,112 @@
+---
+title: "Data Types"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+You can find out what data type a varaible holds by using the `class` function. 
+
+For the following the data type is 'numeric'. Examples are 3.2, -2.34, 0.0
+ 
+```{r}
+x<-3.2
+class(x)
+```
+
+The data type of a text or string is called 'character'. Examples are "Bob", "We are the champions", "Fee Fi Fo" 
+
+```{r}
+y<-"hello there"
+class(y)
+```
+
+```{r include=FALSE, eval=FALSE}
+knitr::knit_exit()
+```
+
+The data type of something that holds 'TRUE' or 'FALSE' is 'logical'. This is Rs name for Booleans. 
+```{r}
+z<-TRUE
+class(z)
+```
+
+There is a type for integers (..., -3,-2,-1,0,1,2,3,...), you have to use an L after the integer 
+```{r}
+a<-3L
+class(a)
+```
+
+If you do not use an L, then R will make it a 'numeric' type:
+```{r}
+b<-3
+class(3)
+```
+
+It turns out that an integer is also a numeric type
+```{r}
+b<-3L
+is.integer(b)
+is.numeric(b)
+```
+
+But not 'numeric' variables are not necessarily 'integer' types. 3.4 is not an integer, is `is.integer` returns `FALSE`
+```{r}
+c<-3.4
+is.numeric(c)
+is.integer(c)
+```
+
+You can change a variables type if you need to using these functions:
+
+1.  `as.numeric` to make it a numeric
+1.  `as.integer` to make it an integer
+1.  `as.character` to make it a string 
+1.  `as.logical` to make it a boolean 
+
+Below we make the variable `a`, which starts as an 'integer' into a 'numeric'. We just re-assign it to do so.
+```{r}
+a<-3L
+is.integer(a)
+a<-as.numeric(a)
+is.numeric(a)
+is.integer(a)
+```
+
+One reason for having types is so that R can check if you are doing things that make sense.  
+For example adding two numeric types makes sense
+```{r}
+d<-3.4
+e<-4.23
+d+e
+```
+
+But adding two strings (with type 'character') does not:
+```{r, error=TRUE}
+f<-"Goodbye"
+g<-"Cruel World"
+f+g
+```
+
+The error is telling us we cannot use `+` on two strings
+
+Lets try adding an 'integer' and a 'numeric'
+
+```{r}
+h<-3L
+i<-2.3
+h+i
+```
+
+That seems to work fine.
+
+Finally what happens if we add a 'numeric' and a 'character' type: 
+
+```{r, error=TRUE}
+k<-3.2
+l<-"hello"
+k+l
+```
+
