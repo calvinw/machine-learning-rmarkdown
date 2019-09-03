@@ -16,7 +16,7 @@ x<-c(3,7.4,-3, 3.2)
 x
 ```
 
-This vector has class 'numeric' and length 4:
+This vector has class 'numeric' and has 4 elements. We can see by using the `length` function:
 
 ```{r}
 class(x)
@@ -33,7 +33,7 @@ str(x)
 knitr::knit_exit()
 ```
 
-The following vector has class 'character' and the length is 3:
+The following vector has class 'character' and its length is 3:
 
 ```{r}
 y<-c("Goodbye", "Hello", "Goodnight")
@@ -42,7 +42,7 @@ class(y)
 length(y)
 ```
 
-The following vector has class 'logical' and the length is 5:
+The following vector has class 'logical' and its length is 5:
 
 ```{r}
 z<-c(TRUE, FALSE, TRUE, FALSE, FALSE)
@@ -50,7 +50,7 @@ z
 class(z)
 length(z)
 ```
-Notice each vector has to have the same types for each of its components.  
+Notice each vector has to have the same type for each of its elements.  
 
 1.  `x` is a vector of class 'numeric'
 1.  `y` is a vector of class 'character'
@@ -66,20 +66,52 @@ a
 str(a)
 ```
 
-```{r}
-```
+At first it looks like this worked, but notice how each element is a 'character' now:
 
 ```{r}
+class(a)
 ```
 
-```{r}
-```
+What happened? Here we tried to create a vector whose elements were different types.  
+
+When we did that R went ahead and did it, but it made each element a string. 
+
+Some of the big advantages of vectors has to do with math we can do with them. It turns out that vectors can simplify a lot of the calculations you might want to do in data science.   
+
+Lets try to add two vectors:
 
 ```{r}
+x<-c(2,4,3,1)
+y<-c(3,6,1,9)
+x+y
 ```
 
+What about multiplying them together:
+
 ```{r}
+w<-c(2,4,3,1)
+z<-c(3,6,1,9)
+w*z
 ```
+
+Or multiplying a vector by a number:
+
+```{r}
+a<-c(2,4,3,1)
+5*a
+```
+
+Suppose we want to access the elements in a vector. You can access the elements in a vector by using the "subscript" notation. This means you refer to the different elements using an index:
+
+```{r}
+b<-c(4,3,-1,2)
+b[1]
+b[2]
+b[3]
+b[4]
+```
+
+The first index is 1 and the last index is 4 for this vector. In some programming languages the first element in a vector would be refered to with an index of 0, not 1.
 
 ```{r}
 ```
