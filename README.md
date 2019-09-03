@@ -4,7 +4,7 @@ The examples are shown at the pages link for this project:
 
 [Machine Learning Rmarkdown](https://calvinw.gitlab.io/machine-learning-rmarkdown/)
 
-Each Rmd file can be rendered to all of the following formats if desired: 
+Each Rmd file can be rendered to each of the following formats if desired: 
 1. html
 1. pdf 
 1. md
@@ -13,32 +13,33 @@ Each Rmd file can be rendered to all of the following formats if desired:
 
 The ipynb files can be uploaded and opened in [Google Colab](https://colab.research.google.com/) once they are created. Each one specifies the correct kernel (R) for Colab to use.  
 
-These ipynb files are created by a command line tool called [jupytext](https://github.com/mwouts/jupytext).  
+These ipynb files are created by pandoc [pandoc]().  
 
-Jupytext allows converting from rmarkdown or (regular) markdown to ipynb formats.
+pandoc can convert from markdown (md) to ipynb formats.
 
-We use `rmarkdown::render` in our Makefile to render the html, pdf, md and docx versions of our files, then `jupytext` to render from md to ipynb.
+We use `rmarkdown::render` in our Makefile to render the html, pdf, md and docx versions of our files, then `pandoc` renders from md to ipynb.
 
-[Jupyter](https://jupyter.org/) must be installed as well since it is used to create the R kernel version of the ipynb formats. Also the R kernel of Jupyter is used in the R versions of the ipynb Colab formats. This kernel choice works in Google Colab, though it is not advertised yet.   
+The R kernel of Jupyter is used in the R versions of the ipynb Colab formats. This kernel choice works in Google Colab, though it is not advertised yet.   
 
 To see what the project depends on look at the .gitlab-ci.yml file since that is a recipe to install pre-reqs for this project. Roughly the relevant things to install are as follows:
 
 We just show installing these from the command line. If you are in RStudio you can use the Terminal window there. 
 
-Here roughly is what is needed
+Here roughly is what is needed:
 
 ```bash
-apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev pandoc python3-pip
-pip3 install jupyter jupytext
+apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev
+wget "https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb"
+dpkg -i pandoc-2.7.3-1-amd64.deb
 wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
 Rscript -e "install.packages('rmarkdown')"
 Rscript -e "install.packages('rvest')"
 Rscript -e "install.packages('RCurl')"
-Rscript -e "install.packages('IRkernel')"
-Rscript -e "IRkernel::installspec()"
+Rscript -e "install.packages('C50')"
+Rscript -e "install.packages('rpart')"
 ```
 
-Then from the command line build it this way: 
+Then from the command line build it this way:
 
 ```bash
 make 
