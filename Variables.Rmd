@@ -33,14 +33,14 @@ We can do arithmetic to it:
 2*x
 ```
 
-Notice this is 6 since x currently is 3. So $2*x=2*3=6$
+Notice this is 6 since x currently is 3. So $2x=2(3)=6$
 
 We can do a calculation using x and store the result in another variable:
 ```{r}
 y<-5*x
 ```
 
-Now y will have a value after we do this. What is the current value of y? Since the current value of x is 3, the value of y should be $5*3=15$. Lets print it out to see if that is true:
+Now y will have a value after we do this. What is the current value of y? Since the current value of x is 3, the value of y should be $5(3)=15$. Lets print it out to see if that is true:
 ```{r}
 y
 ```
@@ -89,7 +89,7 @@ Now we change z and print it out:
 z<-2*w + 4
 z
 ```
-Since w was 5 above, the new value of z is $2*(5) + 4 = 14$
+Since w was 5 above, the new value of z is $2(5) + 4 = 14$
 
 Usually for variable assignments, the left hand side is just the variable we are setting while the right hand side can be any mathematical expression. We can use about anything on the right hand side during an assignment. Functions, $\pi$, other variables...
 ```{r}

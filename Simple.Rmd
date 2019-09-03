@@ -7,8 +7,6 @@ jupyter:
     name: ir
 ---
 
-## Simple Rmarkdown
-
 Here is some setup code that should be hidden when rendered:
 
 ```{r setup, include=FALSE}

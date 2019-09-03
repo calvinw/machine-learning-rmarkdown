@@ -7,8 +7,6 @@ jupyter:
     name: ir
 ---
 
-## Calculator
-
 R can do calculations, just like a calculator:
 
 Addition:

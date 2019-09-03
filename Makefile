@@ -46,7 +46,7 @@ endif
 
 %.ipynb : %.md
 	@echo Calling render for ipynb...	
-	/usr/bin/pandoc $< -o $@
+	pandoc $< -o $@
 	@echo ipynb render is finished...
 	$(if $(findstring $@, $(COLAB_UPLOADS)), node google-upload.js $@)
 
