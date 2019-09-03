@@ -222,61 +222,92 @@
       },
       {
         "id": 53,
-        "name": "Webscraping",
+        "name": "Vectors",
         "children": [
           {
             "id": 54,
-            "name": "Webscraping.Rmd",
+            "name": "Vectors.Rmd",
             "file": "Rmd"
           },
           {
             "id": 55,
-            "name": "Webscraping.html",
+            "name": "Vectors.html",
             "file": "html"
           },
           {
             "id": 56,
-            "name": "Webscraping.pdf",
+            "name": "Vectors.pdf",
             "file": "pdf"
           },
           {
             "id": 57,
-            "name": "Webscraping.ipynb",
+            "name": "Vectors.ipynb",
             "file": "ipynb"
           },
           {
             "id": 58,
-            "name": "Webscraping.docx",
+            "name": "Vectors.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 60,
-        "name": "WebscrapingMultiplePages",
+        "name": "Webscraping",
         "children": [
           {
             "id": 61,
-            "name": "WebscrapingMultiplePages.Rmd",
+            "name": "Webscraping.Rmd",
             "file": "Rmd"
           },
           {
             "id": 62,
-            "name": "WebscrapingMultiplePages.html",
+            "name": "Webscraping.html",
             "file": "html"
           },
           {
             "id": 63,
-            "name": "WebscrapingMultiplePages.pdf",
+            "name": "Webscraping.pdf",
             "file": "pdf"
           },
           {
             "id": 64,
-            "name": "WebscrapingMultiplePages.ipynb",
+            "name": "Webscraping.ipynb",
             "file": "ipynb"
           },
           {
             "id": 65,
+            "name": "Webscraping.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 67,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 68,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 69,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 70,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 71,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 72,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
@@ -332,12 +363,18 @@
       },
       {
         "id": 59,
+        "name": "Vectors",
+        "file": "colab",
+        "googleid": "1d2Q3FWOlPWB6NzZyfknN8_Ov0HRqZSgn"
+      },
+      {
+        "id": 66,
         "name": "Webscraping",
         "file": "colab",
         "googleid": "1s1I1ujfB21_JDPecLl49STBxPAUznViZ"
       },
       {
-        "id": 66,
+        "id": 73,
         "name": "WebscrapingMultiplePages",
         "file": "colab",
         "googleid": "1tJyhhsghocGRiJxFCo7b8NYch1lXUOWQ"

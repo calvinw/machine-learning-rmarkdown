@@ -33,14 +33,14 @@ We can do arithmetic to it:
 2*x
 ```
 
-Notice this is 6 since x currently is 3. So $2*x=2*3=6$
+Notice this is 6 since x currently is 3 and \( 2(x)=2(3)=6 \)
 
 We can do a calculation using x and store the result in another variable:
 ```{r}
 y<-5*x
 ```
 
-Now y will have a value after we do this. What is the current value of y? Since the current value of x is 3, the value of y should be $5*3=15$. Lets print it out to see if that is true:
+Now y will have a value after we do this. What is the current value of y? Since the current value of x is 3, the value of y should be \( 5(3)=15 \). Lets print it out to see if that is true:
 ```{r}
 y
 ```
@@ -57,8 +57,7 @@ One thing you might wonder is that if you change the value of x at some point, d
 y
 ```
 
-No. It doesn't. This y still has the same value it had before which is $5(3) = 15$ since at the time we assigned y the x was equal to 3. 
-
+No. It doesn't. This y still has the same value it had before which is \( 5(3) = 15 \) since at the time we assigned y the x was equal to 3. 
 If we want y to update, we would have to assign it again to give it a new value:
 
 ```{r}
@@ -71,7 +70,7 @@ Now we can see that its value is updated.
 y
 ```
 
-It has the value $5(2) = 10$ now since currently the x is assigned to be 2. 
+It has the value \( 5(2) = 10 \) now since currently the x is assigned to be 2. 
 
 This shows how variables work. As programs are being run, each variable has a current value, which you can check by just typing the name of the variable and executing that line of code. 
 
@@ -89,15 +88,15 @@ Now we change z and print it out:
 z<-2*w + 4
 z
 ```
-Since w was 5 above, the new value of z is $2*(5) + 4 = 14$
+Since w was 5 above, the new value of z is \( 2(5) + 4 = 14 \)
 
-Usually for variable assignments, the left hand side is just the variable we are setting while the right hand side can be any mathematical expression. We can use about anything on the right hand side during an assignment. Functions, $\pi$, other variables...
+Usually for variable assignments, the left hand side is just the variable we are setting while the right hand side can be any mathematical expression. We can use about anything on the right hand side during an assignment. Functions, \( \pi \), other variables...
 ```{r}
 z<-sqrt(2*w + 4)
 z
 ```
 
-Above we are taking the square root of 14, or in symbols $\sqrt{14}$.
+Above we are taking the square root of 14, or in symbols \( \sqrt{14} \).
 
 Other programming languages use `=` to do variable assignments but R usually uses the "arrow" which is typed as two symbols. 
 

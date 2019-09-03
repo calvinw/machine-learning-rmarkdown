@@ -7,7 +7,7 @@ jupyter:
     name: ir
 ---
 
-You can find out what data type a varaible holds by using the `class` function. 
+You can find out what data type a variable holds by using the `class` function. 
 
 For the following the data type is 'numeric'. Examples are 3.2, -2.34, 0.0
  
@@ -16,24 +16,47 @@ x<-3.2
 class(x)
 ```
 
-The data type of a text or string is called 'character'. Examples are "Bob", "We are the champions", "Fee Fi Fo" 
+`class` is one function that gives info on the data type of an object. Another interesting function is called `str`.  
+
+This function is called the "structure" function and and also gives information about the object you pass to it.   
+Lets see what it gives here: 
+
+```{r}
+str(x)
+```
+
+This says that  `x` is a numeric type and has value 3.2.
+
+The data type of a text or string is 'character'.    
+
+Examples are "Bob", "We are the champions", "Fee Fi Fo" 
 
 ```{r}
 y<-"hello there"
 class(y)
+z<-"XXXYYYZZZ"
+class(z)
 ```
 
 ```{r include=FALSE, eval=FALSE}
 knitr::knit_exit()
 ```
 
-The data type of something that holds 'TRUE' or 'FALSE' is 'logical'. This is Rs name for Booleans. 
+The data type of something that holds 'TRUE' or 'FALSE' is 'logical'.   
+This is Rs name for Booleans, things that can just be TRUE or FALSE.  
+
+
 ```{r}
 z<-TRUE
+r<-FALSE
 class(z)
+class(r)
 ```
 
-There is a type for integers (..., -3,-2,-1,0,1,2,3,...), you have to use an L after the integer 
+There is also a type for integers (..., -3,-2,-1,0,1,2,3,...), it is not used as frequently as "numeric".   
+
+To create a integer type, you have to use an L after the integer:   
+
 ```{r}
 a<-3L
 class(a)
@@ -64,7 +87,7 @@ You can change a variables type if you need to using these functions:
 1.  `as.numeric` to make it a numeric
 1.  `as.integer` to make it an integer
 1.  `as.character` to make it a string 
-1.  `as.logical` to make it a boolean 
+1.  `as.logical` to make it a boolean
 
 Below we make the variable `a`, which starts as an 'integer' into a 'numeric'. We just re-assign it to do so.
 ```{r}
@@ -84,7 +107,7 @@ d+e
 ```
 
 But adding two strings (with type 'character') does not:
-```{r, error=TRUE}
+```{r,error=TRUE}
 f<-"Goodbye"
 g<-"Cruel World"
 f+g

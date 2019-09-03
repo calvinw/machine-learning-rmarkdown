@@ -1,11 +1,12 @@
 SHELL:=/bin/bash
 SOURCES=$(shell find . -name "*.Rmd")
+SOURCES=Calculator.Rmd
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
-PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
+# PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
+# DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
 COLAB_UPLOADS =
 
@@ -20,7 +21,7 @@ clean :
 
 %.html : %.Rmd
 	@echo Calling render for html..
-	Rscript -e 'rmarkdown::render("$<", "html_document")'
+	Rscript -e 'rmarkdown::render("$<","html_document")'
 	@echo html render is finished...	
 ifdef SERVER
 	@echo Send message to browser to reload html $@ ...
@@ -29,7 +30,8 @@ endif
 
 %.md : %.Rmd
 	@echo Calling render for md...
-	Rscript rendermd.R $< $@
+	Rscript -e 'rmarkdown::render("$<", "github_document")'
+	#Rscript rendermd.R $< $@
 	@echo md render is finished...
 
 %.pdf : %.Rmd

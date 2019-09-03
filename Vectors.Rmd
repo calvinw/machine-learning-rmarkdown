@@ -1,0 +1,104 @@
+---
+title: "Vectors"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Vectors are lists of elements of the same type. They are an extremely important data structure in R.  
+
+Vectors are created using the `c` function, which stands for "combine".
+ 
+```{r}
+x<-c(3,7.4,-3, 3.2)
+x
+```
+
+This vector has class 'numeric' and length 4:
+
+```{r}
+class(x)
+length(x)
+```
+
+Lets take a look at the 'structure' of x using the `str` function:
+
+```{r}
+str(x)
+```
+
+```{r include=FALSE, eval=FALSE}
+knitr::knit_exit()
+```
+
+The following vector has class 'character' and the length is 3:
+
+```{r}
+y<-c("Goodbye", "Hello", "Goodnight")
+y
+class(y)
+length(y)
+```
+
+The following vector has class 'logical' and the length is 5:
+
+```{r}
+z<-c(TRUE, FALSE, TRUE, FALSE, FALSE)
+z
+class(z)
+length(z)
+```
+Notice each vector has to have the same types for each of its components.  
+
+1.  `x` is a vector of class 'numeric'
+1.  `y` is a vector of class 'character'
+1.  `z` is a vector of class 'logical'
+
+What would happen if we try to combine components that had different classes?
+```{r, error=TRUE}
+a<-c(TRUE, 4.5, "hello")
+a
+```
+
+```{r}
+str(a)
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
