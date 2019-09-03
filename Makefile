@@ -1,5 +1,5 @@
 SHELL:=/bin/bash
-SOURCES=$(shell find . -name "*.Rmd")
+SOURCES =$(shell find . -name "*.Rmd")
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
@@ -20,8 +20,8 @@ clean :
 
 %.html : %.Rmd
 	@echo Calling render for html..
-	Rscript -e 'rmarkdown::render("$<", "html_document")'
-	@echo html render is finished...	
+	Rscript renderRmd.R $< html_document
+	@echo html render is finished...
 ifdef SERVER
 	@echo Send message to browser to reload html $@ ...
 	-echo $@ | nc -q .01 localhost 4000
@@ -29,22 +29,24 @@ endif
 
 %.md : %.Rmd
 	@echo Calling render for md...
-	Rscript rendermd.R $< $@
+	Rscript renderRmdToMd.R $<
+	@sed -i 's/``` r/``` code/g' $@
+	@sed -i 's/``` python/```python/g' $@
 	@echo md render is finished...
 
 %.pdf : %.Rmd
-	@echo Calling render for pdf...	
-	Rscript -e 'rmarkdown::render("$<", "pdf_document")'
-	@echo pdf render is finished...	
+	@echo Calling render for pdf..
+	Rscript renderRmd.R $< pdf_document
+	@echo pdf render is finished...
 
 %.docx : %.Rmd
 	@echo Calling render for docx...	
-	Rscript -e 'rmarkdown::render("$<", "word_document")'
+	Rscript renderRmd.R $< word_document
 	@echo docx render is finished...	
 
 %.ipynb : %.md
 	@echo Calling render for ipynb...	
-	jupytext $< --to notebook --set-kernel ir;
+	/usr/bin/pandoc $< -o $@
 	@echo ipynb render is finished...
 	$(if $(findstring $@, $(COLAB_UPLOADS)), node google-upload.js $@)
 
