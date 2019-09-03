@@ -11,7 +11,7 @@ R can do calculations, just like a calculator:
 
 Addition:
  
-```{r}
+```{r hello}
 3+4
 ```
 
@@ -40,13 +40,13 @@ Exponents:
 10^2
 ```
 
-Remember $$ 10^2=10 10=100 $$ 
+Remember  $10^2=10(10)=100$
 
 ```{r}
 3^4
 ```
 
-This is 3 raised to the power 4. Remember $3^4=3*3*3*3=9*9=81$
+This is 3 raised to the power 4. Remember $3^4=(3)(3)(3)(3)=81$ 
 
 ```{r}
 3*3*3*3
@@ -54,11 +54,8 @@ This is 3 raised to the power 4. Remember $3^4=3*3*3*3=9*9=81$
 
 You can call functions, like taking a square root.  
 
-`sqrt(16)` means the same as 
-$$
-\sqrt{ 16 } 
-$$
-
+`sqrt(16)` means the same as: 
+$$ \sqrt{ 16 } $$
 which we know is just 4.
 
 ```{r}
