@@ -1,5 +1,5 @@
 r = getOption("repos") 
-r["CRAN"] = "http://cran.r-project.org"
+r["CRAN"] = "https://cran.case.edu/"
 options(repos = r)
 rm(r)
 install.packages("RCurl")
