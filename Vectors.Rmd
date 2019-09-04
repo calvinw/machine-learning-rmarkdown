@@ -113,23 +113,70 @@ b[4]
 
 The first index is 1 and the last index is 4 for this vector. In some programming languages the first element in a vector would be refered to with an index of 0, not 1.
 
+What happens if we use a negative index?
 ```{r}
+b[-1]
+b[-2]
+```
+
+`b[-1]` removes the first element of the vector
+`b[-2]` removes the second element of the vector
+
+```{r}
+b[5]
+```
+
+This returns `NA`, which means "not applicable". `NA` is a type that usually means "missing data" for some reason. Often times in data science you are collecting data but some of it is deleted or missing. For that you would use `NA`. 
+
+```{r}
+d<-c(3,5,NA)
+d
+str(d)
+```
+
+Vectors are convenient for applying functions that depend on a list of numbers. For examples the `mean` and `median` of  a set of numbers. 
+
+```{r}
+v<-c(65, 77, 89, 54, 78, 82)
+mean(v)
+median(v)
+```
+Other examples are the `min` and `max` of a set of numbers:
+
+```{r}
+min(v)
+max(v)
+```
+
+Some functions will apply the function to each element in the vector individually. For example `sqrt`:
+```{r}
+w<- c(9,16,25)
+z<-sqrt(w)
+z
 ```
 
 ```{r}
+# Accessing vector elements using position.
+t <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
+
+# This says take the 2nd, 3rd, and 6th elements and form a vecdor `u`
+u <- t[c(2,3,6)]
+u
+
+# Accessing vector elements using logical indexing.
+v <- t[c(TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)]
+v
+
+# Accessing vector elements using negative indexing.
+x <- t[c(-2,-5)]
+x
+
+# Accessing vector elements using 0/1 indexing.
+y <- t[c(4,0,1)]
+y
 ```
 
-```{r}
-```
-
-```{r}
-```
-
-```{r}
-```
-
-```{r}
-```
+R has an easy way to make special vectors called sequences. The notation goes like this `start:end`. Then this creates a vector that starts with first element start` and goes up to the last element `end`. It goes up by 1 by default, but you can change this so that it increments by other values as well, like 2 or 5 or whatever. This is sort of like 'counting by 2s" 
 
 ```{r}
 ```

@@ -17,37 +17,28 @@ all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
 clean :
 	@echo Removing html, md, pdf, docx and ipynb files...	
 	rm -f $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
+	rm -rf *_files figure 
 
 %.html : %.Rmd
-	@echo Calling render for html..
-	Rscript renderRmd.R $< html_document
-	@echo html render is finished...
+	@Rscript renderRmd.R $< html_document
 ifdef SERVER
 	@echo Send message to browser to reload html $@ ...
 	-echo $@ | nc -q .01 localhost 4000
 endif
 
 %.md : %.Rmd
-	@echo Calling render for md...
-	Rscript renderRmdToMd.R $<
+	@Rscript renderRmdToMd.R $<
 	@sed -i 's/``` r/``` code/g' $@
-	@sed -i 's/``` python/```python/g' $@
-	@echo md render is finished...
+	@sed -i 's/``` python/```code/g' $@
 
 %.pdf : %.Rmd
-	@echo Calling render for pdf..
-	Rscript renderRmd.R $< pdf_document
-	@echo pdf render is finished...
+	@Rscript renderRmd.R $< pdf_document
 
 %.docx : %.Rmd
-	@echo Calling render for docx...	
-	Rscript renderRmd.R $< word_document
-	@echo docx render is finished...	
+	@Rscript renderRmd.R $< word_document
 
 %.ipynb : %.md
-	@echo Calling render for ipynb...	
 	pandoc $< -o $@
-	@echo ipynb render is finished...
 	$(if $(findstring $@, $(COLAB_UPLOADS)), node google-upload.js $@)
 
 data: 
