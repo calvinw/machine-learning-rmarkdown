@@ -8,6 +8,7 @@
 *.pdf
 *.docx
 *_files
+!ipynb/*.ipynb
 !header.html
 !index.html
 !page.html
