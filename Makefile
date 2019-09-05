@@ -7,17 +7,15 @@ IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
 
-COLAB_UPLOADS =
-
 export PATH :=.:/bin:/usr/bin:$(PATH)
 
 all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
 	@echo All files are now up to date
 
 clean :
-	@echo Removing html, md, pdf, docx and ipynb files...	
-	rm -f $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
-	rm -rf *_files figure 
+	@echo Removing html, md, pdf, docx files...	
+	rm -f $(HTML_FILES) $(PDF_FILES) $(MD_FILES) $(DOCX_FILES)
+	rm -rf *_files figure
 
 %.html : %.Rmd
 	@Rscript renderRmd.R $< html_document
@@ -39,7 +37,6 @@ endif
 
 %.ipynb : %.md
 	pandoc $< -o $@
-	$(if $(findstring $@, $(COLAB_UPLOADS)), node google-upload.js $@)
 
 data: 
 	node problems.js > data.json
@@ -51,11 +48,6 @@ watch:
 	@echo Watching .Rmd files...	
 	@echo Will call make on changes...	
 	while true; do ls *.Rmd | entr make -j1 SERVER=yes; done
-
-colaball:
-	@echo uploading ipynb files to google
-	node google-upload.js $(IPYNB_FILES)
-	@echo done uploading to google
 
 nodeapp: 
 	@echo Launching app.js 
