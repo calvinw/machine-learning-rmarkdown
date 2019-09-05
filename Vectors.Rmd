@@ -153,31 +153,3 @@ Some functions will apply the function to each element in the vector individuall
 w<- c(9,16,25)
 z<-sqrt(w)
 z
-```
-
-```{r}
-# Accessing vector elements using position.
-t <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
-
-# This says take the 2nd, 3rd, and 6th elements and form a vecdor `u`
-u <- t[c(2,3,6)]
-u
-
-# Accessing vector elements using logical indexing.
-v <- t[c(TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)]
-v
-
-# Accessing vector elements using negative indexing.
-x <- t[c(-2,-5)]
-x
-
-# Accessing vector elements using 0/1 indexing.
-y <- t[c(4,0,1)]
-y
-```
-
-R has an easy way to make special vectors called sequences. The notation goes like this `start:end`. Then this creates a vector that starts with first element start` and goes up to the last element `end`. It goes up by 1 by default, but you can change this so that it increments by other values as well, like 2 or 5 or whatever. This is sort of like 'counting by 2s" 
-
-```{r}
-```
-
