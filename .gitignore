@@ -4,7 +4,6 @@
 .Ruserdata
 *.html
 *.md
-*.ipynb
 *.pdf
 *.docx
 *_files
