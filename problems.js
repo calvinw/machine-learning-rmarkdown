@@ -11,11 +11,9 @@ fs.readdir(dirPath, function(err, files){
     var id = 4;
     var filesArray = [];
     var colabsArray = [];
-    var docsArray = [];
+    var bindersArray = [];
   //console.log(filesList);
     //
-    let googlecolabidsdata = fs.readFileSync('google-colab-ids.json');
-    let googlecolabids = JSON.parse(googlecolabidsdata);
 
     for(f of filesList){
       var parsed = path.parse(f);
@@ -27,8 +25,6 @@ fs.readdir(dirPath, function(err, files){
       var ipynbFile = name + '.ipynb'
       var docxFile = name + '.docx'
 	
-      var googlecolabId = googlecolabids[name]; 
-
 	var fileItem = {
 	  id: id++,
 	  name: name,
@@ -46,10 +42,16 @@ fs.readdir(dirPath, function(err, files){
 	var colabItem = {
 	     id: id++, 
 	     name: name, 
-	     file: 'colab', 
-	     googleid: googlecolabId,
+	     file: 'colab'
 	};
 	colabsArray.push(colabItem);
+
+	var binderItem = {
+	     id: id++, 
+	     name: name, 
+	     file: 'binder'
+	};
+	bindersArray.push(binderItem);
     }
 
     let myJson = [ 
@@ -62,6 +64,11 @@ fs.readdir(dirPath, function(err, files){
 	    id: 2,
 	    name: "Colab Links",
 	    children: colabsArray 
+	},
+	{
+	    id: 3,
+	    name: "Binder Links",
+	    children: bindersArray 
 	},
     ];
 		    
