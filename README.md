@@ -1,10 +1,12 @@
-This project includes different rmarkdown machine learning documents 
+This project includes utilities and content for an introductory machine learning course taught using R. 
 
-The examples are shown at the pages link for this project:  
+The examples are at the pages link for this project:  
 
-[Machine Learning Rmarkdown](https://calvinw.gitlab.io/machine-learning-rmarkdown/)
+[https://calvinw.gitlab.io/machine-learning-rmarkdown/)](https://calvinw.gitlab.io/machine-learning-rmarkdown/)
 
-Each Rmd file can be rendered to the following formats if desired: 
+The primary format for all content is Rmarkdown (Rmd) files. 
+
+Each Rmd file can be rendered by a makefile to the following formats if desired: 
 
 1. html
 1. pdf 
@@ -13,11 +15,11 @@ Each Rmd file can be rendered to the following formats if desired:
 1. Colab Notebook (ipynb)
 1. Binder Jupyter Notebook (ipynb)
 
-R's rmarkdown and knitr packages are used to render the html, pdf, docx and md versions of our files from the Rmd. Then the ipynb files are created by using pandoc [pandoc](https://pandoc.org/) to convert from the markdown (md) file created above to a ipynb format. Recent versions of pandoc can create ipynb files from markdown (md) files [see example](https://pandoc.org/try/?text=---%0Atitle%3A+%22Calculator%22%0Ajupyter%3A%0A++kernelspec%3A%0A++++display_name%3A+R%0A++++language%3A+R%0A++++name%3A+ir%0A---%0A%23+Lorem+ipsum%0A%0A**Lorem+ipsum**+dolor+sit+amet%2C+consectetur+adipiscing+elit.+Nunc+luctus%0Abibendum+felis+dictum+sodales.%0A%0A%60%60%60+code%0Aa%3C-3%0Ab%3C-4%0Aa%0Ab%0A%60%60%60%0A**Lorem+ipsum**+dolor+sit+amet%2C+consectetur+adipiscing+elit.+Nunc+luctus%0Abibendum+felis+dictum+sodales.%0A%0A%60%60%60+code%0Aplot(runif(20))%0A%60%60%60&from=markdown&to=ipynb).  
+R's rmarkdown and knitr packages are used to render the html, pdf, docx and md versions from the corresponding Rmd. Then ipynb versions are created by using [pandoc](https://pandoc.org/) to convert from markdown (md) version to the ipynb. This is possible since recent versions of pandoc can create ipynb from markdown [see example](https://pandoc.org/try/?text=---%0Atitle%3A+%22Calculator%22%0Ajupyter%3A%0A++kernelspec%3A%0A++++display_name%3A+R%0A++++language%3A+R%0A++++name%3A+ir%0A---%0A%23+Lorem+ipsum%0A%0A**Lorem+ipsum**+dolor+sit+amet%2C+consectetur+adipiscing+elit.+Nunc+luctus%0Abibendum+felis+dictum+sodales.%0A%0A%60%60%60+code%0Aa%3C-3%0Ab%3C-4%0Aa%0Ab%0A%60%60%60%0A**Lorem+ipsum**+dolor+sit+amet%2C+consectetur+adipiscing+elit.+Nunc+luctus%0Abibendum+felis+dictum+sodales.%0A%0A%60%60%60+code%0Aplot(runif(20))%0A%60%60%60&from=markdown&to=ipynb).  
 
-The ipynb files can be uploaded and opened in [Google Colab](https://colab.research.google.com/) or in [Binder](https://mybinder.org/) once they are created. Each one specifies the correct kernel (R) for Colab or Binder to use.  
+Once the ipynb files are committed to a Gitlab (or Github) repo they can then be opened in [Google Colab](https://colab.research.google.com/) or in [Binder](https://mybinder.org/).
 
-The ipynb files are saved in a github (a mirror of this repo) and Google Colab and Binder can run ipynb files stored in github repos.
+We currently mirror this repo to a [github repo](https://github.com/calvinw/machine-learning-rmarkdown) since Google Colab and Binder are able to open ipynb files stored in github repos.
 
 The R kernel of Jupyter is used in the R versions of the ipynb Colab formats. This kernel choice works in Google Colab, though it is not advertised yet.   
 
