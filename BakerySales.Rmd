@@ -1,0 +1,50 @@
+---
+title: "Bakery Sales"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+First make sure RCurl is installed.
+
+```{r}
+if (!require("RCurl")) install.packages("RCurl")
+library("RCurl")
+```
+
+We use the getURL function from the RCurl package to load the data from the website. It is returned to us as a text string. 
+
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3t-anI3_buZrdM_AnbXT9HUssfzBbiC9on_3C4G5gZMQay3sbZ3SwEHKyTIZaer4J96DZoBZdvl_i/pub?gid=0&single=true&output=csv"
+textString<-getURL(url)
+df<-read.csv(text=textString, row.names=1, stringsAsFactor=FALSE)
+```
+
+Here is the structure of the data set.
+
+```{r}
+str(df)
+```
+
+```{r}
+row.names(df)
+```
+
+```{r}
+options(scipen = 999)
+linearMod <- lm(MonthlySalesYen ~ FloorSpaceTsubo + DistanceToNearestStationMeters + ShopManagerAge, data=df)
+summary(linearMod)
+```
+
+```{r}
+cor(df)
+pairs(df, pch=20)
+```
+
+```{r}
+linearMod <- lm(MonthlySalesYen ~ FloorSpaceTsubo + DistanceToNearestStationMeters, data=df)
+summary(linearMod)
+```
+
