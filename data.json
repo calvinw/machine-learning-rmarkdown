@@ -4,372 +4,403 @@
     "name": "Files",
     "children": [
       {
-        "id": 4,
+        "id": 10,
         "name": "Calculator",
         "children": [
           {
-            "id": 5,
+            "id": 11,
             "name": "Calculator.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 6,
+            "id": 12,
             "name": "Calculator.html",
             "file": "html"
           },
           {
-            "id": 7,
+            "id": 13,
             "name": "Calculator.pdf",
             "file": "pdf"
           },
           {
-            "id": 8,
+            "id": 14,
             "name": "Calculator.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 9,
+            "id": 15,
             "name": "Calculator.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 12,
+        "id": 18,
         "name": "DataTypes",
         "children": [
           {
-            "id": 13,
+            "id": 19,
             "name": "DataTypes.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 14,
+            "id": 20,
             "name": "DataTypes.html",
             "file": "html"
           },
           {
-            "id": 15,
+            "id": 21,
             "name": "DataTypes.pdf",
             "file": "pdf"
           },
           {
-            "id": 16,
+            "id": 22,
             "name": "DataTypes.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 17,
+            "id": 23,
             "name": "DataTypes.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 20,
+        "id": 26,
         "name": "Elasticity",
         "children": [
           {
-            "id": 21,
+            "id": 27,
             "name": "Elasticity.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 22,
+            "id": 28,
             "name": "Elasticity.html",
             "file": "html"
           },
           {
-            "id": 23,
+            "id": 29,
             "name": "Elasticity.pdf",
             "file": "pdf"
           },
           {
-            "id": 24,
+            "id": 30,
             "name": "Elasticity.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 25,
+            "id": 31,
             "name": "Elasticity.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 28,
+        "id": 34,
         "name": "Factors",
         "children": [
           {
-            "id": 29,
+            "id": 35,
             "name": "Factors.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 30,
+            "id": 36,
             "name": "Factors.html",
             "file": "html"
           },
           {
-            "id": 31,
+            "id": 37,
             "name": "Factors.pdf",
             "file": "pdf"
           },
           {
-            "id": 32,
+            "id": 38,
             "name": "Factors.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 33,
+            "id": 39,
             "name": "Factors.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 36,
+        "id": 42,
         "name": "KMeans",
         "children": [
           {
-            "id": 37,
+            "id": 43,
             "name": "KMeans.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 38,
+            "id": 44,
             "name": "KMeans.html",
             "file": "html"
           },
           {
-            "id": 39,
+            "id": 45,
             "name": "KMeans.pdf",
             "file": "pdf"
           },
           {
-            "id": 40,
+            "id": 46,
             "name": "KMeans.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 41,
+            "id": 47,
             "name": "KMeans.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 44,
+        "id": 50,
         "name": "PromotionForecasting",
         "children": [
           {
-            "id": 45,
+            "id": 51,
             "name": "PromotionForecasting.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 46,
+            "id": 52,
             "name": "PromotionForecasting.html",
             "file": "html"
           },
           {
-            "id": 47,
+            "id": 53,
             "name": "PromotionForecasting.pdf",
             "file": "pdf"
           },
           {
-            "id": 48,
+            "id": 54,
             "name": "PromotionForecasting.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 49,
+            "id": 55,
             "name": "PromotionForecasting.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 52,
+        "id": 58,
         "name": "Sequences",
         "children": [
           {
-            "id": 53,
+            "id": 59,
             "name": "Sequences.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 54,
+            "id": 60,
             "name": "Sequences.html",
             "file": "html"
           },
           {
-            "id": 55,
+            "id": 61,
             "name": "Sequences.pdf",
             "file": "pdf"
           },
           {
-            "id": 56,
+            "id": 62,
             "name": "Sequences.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 57,
+            "id": 63,
             "name": "Sequences.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 60,
+        "id": 66,
         "name": "Simple",
         "children": [
           {
-            "id": 61,
+            "id": 67,
             "name": "Simple.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 62,
+            "id": 68,
             "name": "Simple.html",
             "file": "html"
           },
           {
-            "id": 63,
+            "id": 69,
             "name": "Simple.pdf",
             "file": "pdf"
           },
           {
-            "id": 64,
+            "id": 70,
             "name": "Simple.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 65,
+            "id": 71,
             "name": "Simple.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 68,
+        "id": 74,
+        "name": "Subsetting",
+        "children": [
+          {
+            "id": 75,
+            "name": "Subsetting.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 76,
+            "name": "Subsetting.html",
+            "file": "html"
+          },
+          {
+            "id": 77,
+            "name": "Subsetting.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 78,
+            "name": "Subsetting.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 79,
+            "name": "Subsetting.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 82,
         "name": "Variables",
         "children": [
           {
-            "id": 69,
+            "id": 83,
             "name": "Variables.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 70,
+            "id": 84,
             "name": "Variables.html",
             "file": "html"
           },
           {
-            "id": 71,
+            "id": 85,
             "name": "Variables.pdf",
             "file": "pdf"
           },
           {
-            "id": 72,
+            "id": 86,
             "name": "Variables.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 73,
+            "id": 87,
             "name": "Variables.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 76,
+        "id": 90,
         "name": "Vectors",
         "children": [
           {
-            "id": 77,
+            "id": 91,
             "name": "Vectors.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 78,
+            "id": 92,
             "name": "Vectors.html",
             "file": "html"
           },
           {
-            "id": 79,
+            "id": 93,
             "name": "Vectors.pdf",
             "file": "pdf"
           },
           {
-            "id": 80,
+            "id": 94,
             "name": "Vectors.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 81,
+            "id": 95,
             "name": "Vectors.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 84,
+        "id": 98,
         "name": "Webscraping",
         "children": [
           {
-            "id": 85,
+            "id": 99,
             "name": "Webscraping.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 86,
+            "id": 100,
             "name": "Webscraping.html",
             "file": "html"
           },
           {
-            "id": 87,
+            "id": 101,
             "name": "Webscraping.pdf",
             "file": "pdf"
           },
           {
-            "id": 88,
+            "id": 102,
             "name": "Webscraping.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 89,
+            "id": 103,
             "name": "Webscraping.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 92,
+        "id": 106,
         "name": "WebscrapingMultiplePages",
         "children": [
           {
-            "id": 93,
+            "id": 107,
             "name": "WebscrapingMultiplePages.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 94,
+            "id": 108,
             "name": "WebscrapingMultiplePages.html",
             "file": "html"
           },
           {
-            "id": 95,
+            "id": 109,
             "name": "WebscrapingMultiplePages.pdf",
             "file": "pdf"
           },
           {
-            "id": 96,
+            "id": 110,
             "name": "WebscrapingMultiplePages.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 97,
+            "id": 111,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
@@ -382,62 +413,67 @@
     "name": "Colab Links",
     "children": [
       {
-        "id": 10,
+        "id": 16,
         "name": "Calculator",
         "file": "colab"
       },
       {
-        "id": 18,
+        "id": 24,
         "name": "DataTypes",
         "file": "colab"
       },
       {
-        "id": 26,
+        "id": 32,
         "name": "Elasticity",
         "file": "colab"
       },
       {
-        "id": 34,
+        "id": 40,
         "name": "Factors",
         "file": "colab"
       },
       {
-        "id": 42,
+        "id": 48,
         "name": "KMeans",
         "file": "colab"
       },
       {
-        "id": 50,
+        "id": 56,
         "name": "PromotionForecasting",
         "file": "colab"
       },
       {
-        "id": 58,
+        "id": 64,
         "name": "Sequences",
         "file": "colab"
       },
       {
-        "id": 66,
+        "id": 72,
         "name": "Simple",
         "file": "colab"
       },
       {
-        "id": 74,
+        "id": 80,
+        "name": "Subsetting",
+        "file": "colab"
+      },
+      {
+        "id": 88,
         "name": "Variables",
         "file": "colab"
       },
       {
-        "id": 82,
+        "id": 96,
         "name": "Vectors",
         "file": "colab"
       },
       {
-        "id": 90,
+        "id": 104,
         "name": "Webscraping",
         "file": "colab"
       },
       {
-        "id": 98,
+        "id": 112,
         "name": "WebscrapingMultiplePages",
         "file": "colab"
       }
@@ -448,62 +484,67 @@
     "name": "Jupyter Links",
     "children": [
       {
-        "id": 11,
+        "id": 17,
         "name": "Calculator",
         "file": "jupyter"
       },
       {
-        "id": 19,
+        "id": 25,
         "name": "DataTypes",
         "file": "jupyter"
       },
       {
-        "id": 27,
+        "id": 33,
         "name": "Elasticity",
         "file": "jupyter"
       },
       {
-        "id": 35,
+        "id": 41,
         "name": "Factors",
         "file": "jupyter"
       },
       {
-        "id": 43,
+        "id": 49,
         "name": "KMeans",
         "file": "jupyter"
       },
       {
-        "id": 51,
+        "id": 57,
         "name": "PromotionForecasting",
         "file": "jupyter"
       },
       {
-        "id": 59,
+        "id": 65,
         "name": "Sequences",
         "file": "jupyter"
       },
       {
-        "id": 67,
+        "id": 73,
         "name": "Simple",
         "file": "jupyter"
       },
       {
-        "id": 75,
+        "id": 81,
+        "name": "Subsetting",
+        "file": "jupyter"
+      },
+      {
+        "id": 89,
         "name": "Variables",
         "file": "jupyter"
       },
       {
-        "id": 83,
+        "id": 97,
         "name": "Vectors",
         "file": "jupyter"
       },
       {
-        "id": 91,
+        "id": 105,
         "name": "Webscraping",
         "file": "jupyter"
       },
       {
-        "id": 99,
+        "id": 113,
         "name": "WebscrapingMultiplePages",
         "file": "jupyter"
       }

@@ -1,0 +1,94 @@
+---
+title: "Subsetting"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Suppose we want to just pick some of our data from a vector or other data type? How can we do this?
+
+In R this is called "subsetting". Lets see an example. Lets get the 1st, 3rd and 5th elements from the vector and make a new vector out of this: 
+
+```{r}
+x <- c(3,5,9,6,7,8,4,5)
+y <- x[c(1,3,5)]
+length(x)
+length(y)
+print(y)
+```
+
+Now lets see about getting the 2nd through the 4th elements by using the sequence notation 2:4 
+
+```{r}
+z <- c(12,11,8,4,3)
+w <- z[2:4]
+length(w)
+print(w)
+```
+
+We can use negative numbers to exclude things from vectors. This one excludes the 2nd element from the vector. 
+
+```{r}
+t <- c(3,4,2,9)
+w <- t[-2]
+length(w)
+print(w)
+```
+
+Here we exclude the 1st and the 3rd elements from the vector.
+
+```{r}
+s <- c(3,4,2,9)
+z <- s[c(-1,-3)]
+length(z)
+print(z)
+```
+
+Lets also look at a very important application of booleans (called "logicals" in R) of how to subset for certain conditions.  
+Suppose we have a vector and we would like to just take all the values on the list that were greater than something. Like suppose we want to take all values that are greater than 5: 
+
+```{r}
+u <- c(8,4,6,12,3)
+v <- u[u > 5]
+length(v)
+print(v)
+```
+
+This leaves us with just a new vector with that is `8 6 12`.
+
+```{r}
+m <- c(-1,4,-2,0,12,3)
+n <- m[m < 0]
+length(n)
+print(n)
+```
+This leaves us with just a new vector that has all the negative numbers on the list. 
+
+Finally lets try an example where we have related data on several vectors. Below we have data from 5 people with their age and gender recorded. Here is what the data looks like:
+
+```{r}
+ID <- c(1001,1002,1003,1004,1005)
+AGE <- c(18,35,26,42,22)
+GENDER <- c("M","F","M","F","F")
+```
+
+We have IDs for each person as well.
+
+Find a vector of ages that are greater than 25:
+
+```{r}
+AGE[AGE > 25]
+```
+
+Find a vector of ids where age is greater than 25:
+
+```{r}
+ID[AGE > 25]
+```
+Find a vector of ids where age is greater than 25 and gender is "F":
+
+```{r}
+ID [ AGE > 25 & GENDER == "F"] 
+```
