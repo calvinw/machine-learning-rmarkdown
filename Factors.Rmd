@@ -41,6 +41,7 @@ Now suppose we want to tell R how to number the levels and we want "low" to be 1
 ```{r}
 v<- c("high", "medium", "medium", "high", "low")
 f<- factor(v, levels=c("low", "medium", "high"))
+str(v)
 str(f)
 ```
 
