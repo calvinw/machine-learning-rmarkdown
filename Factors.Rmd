@@ -83,5 +83,5 @@ It is possible to redefine the values in the factor, but this is rarely done. Su
 
 ```{r}
 f[3] <- "low"
-f
+print(f)
 ```

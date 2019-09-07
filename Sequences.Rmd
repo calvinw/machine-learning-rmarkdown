@@ -13,7 +13,7 @@ For example suppose we want a vector with just "1,2,3,4,5,6" on it.
 
 ```{r}
 a <- 1:6
-a
+print(a)
 ```
 
 The notation `1:6` means the same here as `c(1,2,3,4,5,6)`. That is we create a vector using the combine function `c` with the 6 numbers we want. This is called a "sequence" in R, since the numbers are listed in order.  
@@ -25,33 +25,33 @@ What happens if we want to make the numbers "count down" from something:
 
 ```{r}
 b <- 6:1
-b
+print(b)
 ```
 
 Can we start at something other than 1:
 
 ```{r}
 c <- 4:9
-c
+print(c)
 ```
 
 Can we start at a negative number 
 
 ```{r}
 d <- -3:4
-d
+print(d)
 ```
 
 If we use the `seq` function we an create sequences and "count by" whatever value we want. Below we start at 3 and count by 2s up to 21. 
 
 ```{r}
 e <- seq(from=3, to=21, by=2) 
-e
+print(e)
 ```
 
 Now lets count by 5, starting at 0 and go up to 50:
 
 ```{r}
 f <- seq(from=0, to=50, by=5) 
-f
+print(f)
 ```
