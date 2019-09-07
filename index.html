@@ -179,8 +179,8 @@
 			window.open(url, "_blank")
 		        return "opensInOtherWindow.html";
 		    }
-		    else if(ext === "binder") {
-			let baseUrl = "https://mybinder.org/v2/gh/calvinw/machine-learning-rmarkdown/master?filepath=";
+		    else if(ext === "jupyter") {
+			let baseUrl = "https://nbviewer.jupyter.org/github/calvinw/machine-learning-rmarkdown/blob/master/"
 			let url = baseUrl + item.name + ".ipynb"; 
 			window.open(url, "_blank")
 		        return "opensInOtherWindow.html";

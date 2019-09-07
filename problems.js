@@ -11,7 +11,7 @@ fs.readdir(dirPath, function(err, files){
     var id = 4;
     var filesArray = [];
     var colabsArray = [];
-    var bindersArray = [];
+    var jupyterArray = [];
   //console.log(filesList);
     //
 
@@ -46,12 +46,12 @@ fs.readdir(dirPath, function(err, files){
 	};
 	colabsArray.push(colabItem);
 
-	var binderItem = {
+	var jupyterItem = {
 	     id: id++, 
 	     name: name, 
-	     file: 'binder'
+	     file: 'jupyter'
 	};
-	bindersArray.push(binderItem);
+	jupyterArray.push(jupyterItem);
     }
 
     let myJson = [ 
@@ -67,8 +67,8 @@ fs.readdir(dirPath, function(err, files){
 	},
 	{
 	    id: 3,
-	    name: "Binder Links",
-	    children: bindersArray 
+	    name: "Jupyter Links",
+	    children: jupyterArray 
 	},
     ];
 		    
