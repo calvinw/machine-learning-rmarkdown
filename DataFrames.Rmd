@@ -1,0 +1,86 @@
+---
+title: "Data Frames"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Data frames are the most used data structure in R. They are essentially equivalent to the rows and columns in a spreadsheet. Each row is a different record from a set of records, and each column in a different attribute or property from that set of records. 
+
+In R the columns are vectors, and so each element in a particular column is the same data type.
+
+Lets start with a simple example that has data describing the Day, Date and Temperature for some area:
+
+```{r}
+Day <- c("Saturday", "Sunday", "Monday", "Tuesday", "Wednesday")
+Date <- c("Jul 4", "Jul 5", "Jul 6", "Jul 7", "Jul 8")
+Temp <- c(75, 86, 83, 83, 87)
+```
+
+Notice how each vector has the same length. This is important when you are creating Data frames.
+
+```{r}
+length(Day)
+length(Date)
+length(Temp)
+```
+
+So these will be the 3 columns in this data frame. One for the day of the week, one for the date, and one for the temperature that day:
+
+```{r}
+weather <- data.frame(Day, Date, Temp)
+str(weather)
+```
+
+We can see that R does not know that the factor Day should have 7 levels. That might be okay, depends on what we are doing with the data.
+
+```{r}
+weather
+```
+
+If we try to create a data frame with different length vectors, we get an error message.
+
+Here we try it with a vector of length 5 and one of length 2.
+
+```{r, error=TRUE}
+data.frame(x = 1:5, y = 1:2) 
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+
+```
+
+```{r}
+```
+
+```{r}
+```
+
+
+```{r}
+```
+
+```{r}
