@@ -77,9 +77,8 @@ str(newOriginal)
 Cool. That looks fine. Okay lets remove the $ sign from the original and current columns now: 
 
 ```{r}
-items$original<-gsub("$","", items$original, fixed=TRUE)
+items$original<-gsub("$","", items$original, fixed=TRUE) 
 items$current<-gsub("$","", items$current, fixed=TRUE)
-
 str(items)
 ```
 
