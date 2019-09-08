@@ -87,4 +87,18 @@ f[3] <- "low"
 print(f)
 ```
 
-Often times we have to convert from a vector of strings ("characters") to a factor. Lets see how to do that. 
+Often times we have to convert from a factor to a vector of strings. Lets see how to do that. Lets set up a factor using 3 names: 
+
+
+```{r}
+namesFactor<- factor(c("Vera", "Sam", "Elizabeth"))
+str(namesFactor)
+```
+
+R says this factor has 3 levels, but that is actually silly. Lets convert this back to a string: 
+
+```{r}
+namesStrings<- as.character(namesFactor)
+str(namesStrings)
+```
+

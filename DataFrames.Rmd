@@ -11,7 +11,7 @@ Data frames are the most used data structure in R. They are essentially equivale
 
 In R the columns are vectors, and so each element in a particular column is the same data type.
 
-Here is an example
+Here is an example where the different columns are given by 4 vectors:
 
 ```{r}
 name <- c("James", "Sally", "Rupert", "Octavia", "Belinda") 
@@ -19,7 +19,7 @@ age <- c(23, 43, 19, 21, 33)
 isStudent <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
 favColor <- c("red", "green", "blue", "yellow", "orange")
 
-customers <- data.frame(name, age, isStudent, favColor)
+customers <- data.frame(name, age, isStudent, favColor, stringsAsFactors=FALSE)
 ```
 
 Notice how each vector has the same length. This is important when you are creating Data frames.
@@ -31,12 +31,10 @@ length(isStudent)
 length(favColor)
 ```
 
-If we try to create a data frame with different length vectors, we get an error message.
+What does the structure of the data frame look like:
 
-Here we try it with a vector of length 5 and one of length 2.
-
-```{r, error=TRUE}
-data.frame(x = 1:5, y = 1:2) 
+```{r}
+str(customers)
 ```
 
 Lets look at the first few items in the data frame
@@ -45,33 +43,83 @@ Lets look at the first few items in the data frame
 head(customers)
 ```
 
-```{r}
+If we try to create a data frame with different length vectors, we get an error message.
+
+Here we try it with a vector of length 5 and one of length 2.
+
+```{r, error=TRUE}
+data.frame(x = 1:5, y = 1:2) 
 ```
 
-```{r}
-```
+Now there are various ways to refer to the rows and the columns in a data frame. Each of the columns we can refer to by using a dollar sign. Here is the name column:
 
 ```{r}
+customers$name
 ```
+
+And the ages column:
 
 ```{r}
+customers$age
 ```
 
+We can also refer to one particular entry in the data frame by using indices. The first index is for the row and the second index is for the column.
 
-```{r}
-```
-
-```{r}
-```
+For example this is the entry in the 2nd row and the 3rd column:
 
 ```{r}
+customers[2,3]
 ```
 
-```{r}
-```
+Here is the entry for the 4th row and the 1st column:
 
 ```{r}
+customers[4,1]
 ```
+
+This is the 2nd row in its entirety:
+
+```{r}
+customers[2,]
+```
+
+We can use a sequence to get a range of rows or columns. This is the 2nd through 4th rows:
+
+```{r}
+customers[2:4,]
+```
+
+If you want to you can create a new data frame and exclude some rows
+
+```{r}
+bestCustomers <- customers[3:5,]
+str(bestCustomers)
+```
+
+This has the same fields (columns) as the original data frame but it excludes some of the rows.
+
+You can remove a column of data by just setting it to NULL:
+
+```{r}
+customers$favColor <- NULL
+str(customers)
+```
+
+You can add a column of data by just setting it as one of the fields of the data frame:
+
+```{r}
+favMusic <- c("jazz", "classical", "electronic", "country", "electronic")
+customers$favMusic <- favMusic 
+str(customers)
+```
+
+Finally you can get some info on the data in a data frame:
+
+```{r}
+summary(customers)
+```
+
+You can see here that is shows the mean age is 27.8 and the min and the max of the ages are 19 and 43. There are 3 who are students and 2 who are not. For name and favMusic there is not much it can tell us. It says those are "character" types and there are 5 of them. 
 
 ```{r}
 ```
