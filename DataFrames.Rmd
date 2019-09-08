@@ -11,33 +11,24 @@ Data frames are the most used data structure in R. They are essentially equivale
 
 In R the columns are vectors, and so each element in a particular column is the same data type.
 
-Lets start with a simple example that has data describing the Day, Date and Temperature for some area:
+Here is an example
 
 ```{r}
-Day <- c("Saturday", "Sunday", "Monday", "Tuesday", "Wednesday")
-Date <- c("Jul 4", "Jul 5", "Jul 6", "Jul 7", "Jul 8")
-Temp <- c(75, 86, 83, 83, 87)
+name <- c("James", "Sally", "Rupert", "Octavia", "Belinda") 
+age <- c(23, 43, 19, 21, 33) 
+isStudent <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+favColor <- c("red", "green", "blue", "yellow", "orange")
+
+customers <- data.frame(name, age, isStudent, favColor)
 ```
 
 Notice how each vector has the same length. This is important when you are creating Data frames.
 
 ```{r}
-length(Day)
-length(Date)
-length(Temp)
-```
-
-So these will be the 3 columns in this data frame. One for the day of the week, one for the date, and one for the temperature that day:
-
-```{r}
-weather <- data.frame(Day, Date, Temp)
-str(weather)
-```
-
-We can see that R does not know that the factor Day should have 7 levels. That might be okay, depends on what we are doing with the data.
-
-```{r}
-weather
+length(name)
+length(age)
+length(isStudent)
+length(favColor)
 ```
 
 If we try to create a data frame with different length vectors, we get an error message.
@@ -47,6 +38,25 @@ Here we try it with a vector of length 5 and one of length 2.
 ```{r, error=TRUE}
 data.frame(x = 1:5, y = 1:2) 
 ```
+
+Lets look at the first few items in the data frame
+
+```{r}
+head(customers)
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
 
 ```{r}
 ```

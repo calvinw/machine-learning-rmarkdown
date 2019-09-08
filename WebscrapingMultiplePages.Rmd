@@ -34,7 +34,7 @@ retail
 We can see we need to get rid of the ` retail` and later on the \$. We leave it in for the moment:
 
 ```{r}
-retail<-gsub(" retail","", retail)
+retail<-gsub(" retail","", retail, fixed=TRUE)
 retail
 ```
 
@@ -108,8 +108,8 @@ Finally lets clean up the dollar sign and the comma if numbers are over 1,000:
 retail <-gsub(",","", retail)
 rental <-gsub(",","", rental)
 
-retail <-gsub("\\$","", retail)
-rental <-gsub("\\$","", rental)
+retail <-gsub("$","", retail, fixed=TRUE)
+rental <-gsub("$","", rental, fixed=TRUE)
 ```
 
 Now we should be all set, lets turn them into numbers!

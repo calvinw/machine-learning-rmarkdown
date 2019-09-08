@@ -86,3 +86,5 @@ It is possible to redefine the values in the factor, but this is rarely done. Su
 f[3] <- "low"
 print(f)
 ```
+
+Often times we have to convert from a vector of strings ("characters") to a factor. Lets see how to do that. 
