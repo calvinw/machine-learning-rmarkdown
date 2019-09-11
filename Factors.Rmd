@@ -23,6 +23,7 @@ Now suppose we have some data that is from the second example above. This is dat
 v<- c("high", "medium", "medium", "high", "low")
 f<- factor(v)
 class(f)
+length(f)
 str(f)
 ```
 
@@ -41,50 +42,60 @@ Now suppose we want to tell R how to number the levels and we want "low" to be 1
 ```{r}
 v<- c("high", "medium", "medium", "high", "low")
 f<- factor(v, levels=c("low", "medium", "high"))
-str(v)
 str(f)
+f
 ```
 
-This looks a little better, and matches what we expect. 
+This looks a little better, and matches more what we expect. 
 
-What if we actually now have another level in the data, "super". Lets see if R can handle that:   
-
-```{r}
-v<- c("high", "medium", "medium", "high", "low")
-f<- factor(v, levels=c("low", "medium", "high", "super"))
-str(f)
-```
-
-Now it thinks there are 4 levels. So it knows there are potentially 4 levels even though our particular data set only has 3 of the levels.
-
-For the components of a factor, we can access those like we can access the components in a vector:
+However there is still a problem, the problem is that we cannot compare levels and for this example we many want to. Lets look at two of the values in the vector:
 
 ```{r}
 f[1]
-```
-
-```{r}
 f[2]
 ```
 
-```{r}
-f[3]
+```{r, error=TRUE}
+f[1] > f[2]
 ```
-
-Note how R tells us how many levels this factor has when it prints out a particular element in the factor. This is so we have some context for what the data could be.
-
-Since factors are sort of like vectors, f also has a length as well which is what we expect:
+If we want this to work we have to make the factor "ordered". The way to do that is to use `order = TRUE` when we define the factor: 
 
 ```{r}
-length(f)
+v<- c("high", "medium", "medium", "high", "low")
+g<- factor(v, levels=c("low", "medium", "high"), order = TRUE)
+str(g)
 ```
+
+Now lets try what we did before:
+
+```{r}
+g[1]
+g[2]
+```
+
+This time this should work and actually give us `TRUE` or `FALSE`
+
+```{r}
+g[1] > g[2]
+```
+
+Now what if we add another potential level in the data, "super". Lets see if R can handle that:
+
+```{r}
+v<- c("high", "medium", "medium", "high", "low")
+h<- factor(v, levels=c("low", "medium", "high", "super"), ordered = TRUE)
+str(h)
+```
+
+Now it thinks there are 4 levels. So it knows there are potentially 4 levels even though our particular data set only has 3 of the levels. That is because we specified the levels.
+
 Here the length is 5 which corresponds to the number of data values we have. 
 
 It is possible to redefine the values in the factor, but this is rarely done. Suppose we found out that the 3rd entry in our factor was supposed to be "low". 
 
 ```{r}
-f[3] <- "low"
-print(f)
+h[3] <- "low"
+print(h)
 ```
 
 Often times we have to convert from a factor to a vector of strings. Lets see how to do that. Lets set up a factor using 3 names: 
@@ -95,7 +106,7 @@ namesFactor<- factor(c("Vera", "Sam", "Elizabeth"))
 str(namesFactor)
 ```
 
-R says this factor has 3 levels, but that is actually silly. Lets convert this back to a string: 
+R says this factor has 3 levels, but that is actually silly, since names dont come with just 3 levels. So it makes better since to have this be a character vector. 
 
 ```{r}
 namesStrings<- as.character(namesFactor)
