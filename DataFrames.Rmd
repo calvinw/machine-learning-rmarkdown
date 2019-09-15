@@ -121,24 +121,3 @@ summary(customers)
 
 You can see here that is shows the mean age is 27.8 and the min and the max of the ages are 19 and 43. There are 3 who are students and 2 who are not. For name and favMusic there is not much it can tell us. It says those are "character" types and there are 5 of them. 
 
-```{r}
-```
-
-```{r}
-```
-
-```{r}
-
-```
-
-```{r}
-```
-
-```{r}
-```
-
-
-```{r}
-```
-
-```{r}
