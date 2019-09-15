@@ -19,7 +19,7 @@ Create a dataframe for this data:
 | Tanya |  3.6 | AMC | 212 323 3040 |
 | Hubert |  3.4 | FBM | 718 232 9392 |
 
-Call the data frame `myDataFrame`:
+Call the data frame `myDataFrame` and use the `data.frame` function. You will probably need to make some appropriate vectors to be the columns of your dataframe:
 
 ```{r, eval=FALSE, include=blanks}
 PUT CODE HERE
@@ -179,7 +179,7 @@ Your data frame should now look like this:
 PUT CODE HERE
 ```
 ```{r, include=solution}
-myDataFrame$ID = factor(c(1001,1002,1003))
+myDataFrame$ID <- factor(c(1001,1002,1003))
 ```
 
 Print out the structure of the new data frame using `str`:
