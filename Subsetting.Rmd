@@ -69,9 +69,9 @@ This leaves us with just a new vector that has all the negative numbers on the l
 Finally lets try an example where we have related data on several vectors. Below we have data from 5 people with their age and gender recorded. Here is what the data looks like:
 
 ```{r}
-ID <- c(1001,1002,1003,1004,1005)
-AGE <- c(18,35,26,42,22)
-GENDER <- c("M","F","M","F","F")
+id <- c(1001,1002,1003,1004,1005)
+age <- c(18,35,26,42,22)
+gender <- c("M","F","M","F","F")
 ```
 
 We have IDs for each person as well.
@@ -79,16 +79,16 @@ We have IDs for each person as well.
 Find a vector of ages that are greater than 25:
 
 ```{r}
-AGE[AGE > 25]
+age[age > 25]
 ```
 
 Find a vector of ids where age is greater than 25:
 
 ```{r}
-ID[AGE > 25]
+id[age > 25]
 ```
 Find a vector of ids where age is greater than 25 and gender is "F":
 
 ```{r}
-ID [ AGE > 25 & GENDER == "F"] 
+id [age > 25 & gender == "F"] 
 ```

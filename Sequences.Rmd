@@ -22,6 +22,9 @@ Sequences are a great way to get certain vectors where the numbers have some pat
 
 What happens if we want to make the numbers "count down" from something:
 
+```{r include=FALSE, eval=FALSE}
+knitr::knit_exit()
+```
 
 ```{r}
 b <- 6:1

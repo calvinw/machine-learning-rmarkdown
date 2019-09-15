@@ -2,7 +2,6 @@ SHELL:=/bin/bash
 SOURCES =$(shell find . -name "*.Rmd")
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
-
 MD_FILES = $(SOURCES:%.Rmd=%.md)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
