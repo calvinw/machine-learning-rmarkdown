@@ -1,0 +1,62 @@
+---
+title: "Online Retail Sales"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+First make sure RCurl is installed.
+
+```{r}
+if (!require("RCurl")) install.packages("RCurl")
+library("RCurl")
+```
+
+We use the getURL function from the RCurl package to load the data from the website. It is returned to us as a text string. 
+
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSBMMo1WqiPTMrLRZehkv6st1dGPRbmp1joc9-I5o8TBSODufU2vkSj1SnRUGfCm4aVkAxJr0theY2K/pub?gid=1557949930&single=true&output=csv"
+textString<-getURL(url)
+df<-read.csv(text=textString, stringsAsFactor=FALSE)
+```
+
+Which of the columns should be factors?
+
+Here is the structure of the data set.
+
+```{r}
+str(df)
+```
+
+Lets print out a few lines to see what we have:
+```{r}
+kable(head(df, 25))
+```
+
+Lets see what we want to analyze first
+
+```{r}
+summary(df$UnitPrice)
+```
+
+```{r}
+summary(df$Quantity)
+```
+
+```{r}
+summary(df$ID)
+```
+
+```{r}
+table(df$Country)
+```
+
+```{r}
+barplot(table(df$Country))
+```
+
+```{r}
+```
+

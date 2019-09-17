@@ -1,0 +1,246 @@
+---
+title: "Data Frames Workout"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+```{r, include=FALSE}
+blanks<-FALSE
+solution<-TRUE
+```
+
+Create a dataframe for this data:
+
+|  Name  |  GPA | Major |  Phone    |
+|:------:|:----:|:---:|:------------:|
+| Alexa |  3.7 | FBM | 212 398 2375 |
+| Tanya |  3.6 | AMC | 212 323 3040 |
+| Hubert |  3.4 | FBM | 718 232 9392 |
+
+Call the data frame `myDataFrame` and use the `data.frame` function. You will probably need to make some appropriate vectors to be the columns of your dataframe:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame <- data.frame(Name=c("Alexa", "Tanya", "Hubert"),
+			  GPA=c(3.7, 3.6, 3.4),
+			  Major=c("FBM", "AMC", "FBM"),
+			  Phone=c("212 398 2375", "212 323 3040", "718 232 9392"),
+			  stringsAsFactors=FALSE)
+```
+
+Print out the structure of your data frame using `str`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(myDataFrame)
+```
+
+Print the number of rows with the `nrow` function
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+nrow(myDataFrame)
+```
+
+Print the number of columns with the `ncol` function
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+ncol(myDataFrame)
+```
+
+Now print out the first few lines of the data frame using `head`. In this case it will be all the data, since `head` prints the first 6 lines, and this data has less than 6 lines.
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+head(myDataFrame)
+```
+
+Use a dollar sign to access and print out just the `GPA` column: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame$GPA
+```
+
+Use a dollar sign to access and print out just the `Phone` column: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame$Phone
+```
+
+Make sure that: 
+
+1.  Name is "character"
+1.  GPA is "numeric"
+1.  Major is a "factor"  
+1.  Phone is "character"
+
+(Redefine some columns below if you need to using `as.character` or `as.factor`)
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame$Major <- as.factor(myDataFrame$Major)
+```
+
+Print out the (new) structure of your data frame using `str`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(myDataFrame)
+```
+
+Use the `summary` function to print out a summary of the data frame data:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+summary(myDataFrame)
+```
+
+Extract the element in the 2nd row and 3rd column by using `dataFrame[,]`, and using the right index or indices inside the square brackets: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame[2,3]
+```
+
+Extract the entire second row of data by using `myDataFrame[,]`, and again using the right index or indices inside the square brackets: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame[2,]
+```
+
+Extract the entire second column of data by using `myDataFrame[,]`, and again using the right index or indices inside the square brackets: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame[,2]
+```
+
+Delete the column "Major" from the data frame:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame$Major <- NULL
+```
+
+Print out the structure of your data frame showing the column above removed: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(myDataFrame)
+```
+
+Finally add a column (with data type "factor") called "ID" 
+Your data frame should now look like this:  
+
+|  Name  |  GPA |  Phone       | ID  |
+|:------:|:----:|:------------:|:---:|
+| Alexa |  3.7 | 212 398 2375 | 1001 |
+| Tanya |  3.6 | 212 323 3040 | 1002 |
+| Hubert |  3.4 | 718 232 9392 | 1003 |
+
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame$ID <- factor(c(1001,1002,1003))
+```
+
+Print out the structure of the new data frame using `str`:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(myDataFrame)
+```
+
+Print out the dataframe using `head` now:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+head(myDataFrame)
+```
+
+Use subsetting to select only those rows with `GPA > 3.5`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame[myDataFrame$GPA  > 3.5,]
+```
+
+Try to move the last column so that it is the first column
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame <- myDataFrame[c("ID", "Name", "Phone", "GPA")]
+```
+
+Print out the data frame using `head` to make sure ID is first:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+head(myDataFrame)
+```
+
+Change Tanyas GPA in the dataframe to be `3.98`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+myDataFrame[2,4] <- 3.98
+```
+
+Print out the data frame using `head` to make sure her GPA is changed:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+head(myDataFrame)
+```
