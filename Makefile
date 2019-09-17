@@ -1,5 +1,5 @@
 SHELL:=/bin/bash
-SOURCES =$(shell find . -name "*.Rmd")
+SOURCES =$(shell find . -name "*.Rmd" ! -name WebscrapingMultiplePages.Rmd)
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
