@@ -346,154 +346,185 @@
       },
       {
         "id": 98,
-        "name": "Subsetting",
+        "name": "Strings",
         "children": [
           {
             "id": 99,
-            "name": "Subsetting.Rmd",
+            "name": "Strings.Rmd",
             "file": "Rmd"
           },
           {
             "id": 100,
-            "name": "Subsetting.html",
+            "name": "Strings.html",
             "file": "html"
           },
           {
             "id": 101,
-            "name": "Subsetting.pdf",
+            "name": "Strings.pdf",
             "file": "pdf"
           },
           {
             "id": 102,
-            "name": "Subsetting.ipynb",
+            "name": "Strings.ipynb",
             "file": "ipynb"
           },
           {
             "id": 103,
-            "name": "Subsetting.docx",
+            "name": "Strings.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 106,
-        "name": "Variables",
+        "name": "Subsetting",
         "children": [
           {
             "id": 107,
-            "name": "Variables.Rmd",
+            "name": "Subsetting.Rmd",
             "file": "Rmd"
           },
           {
             "id": 108,
-            "name": "Variables.html",
+            "name": "Subsetting.html",
             "file": "html"
           },
           {
             "id": 109,
-            "name": "Variables.pdf",
+            "name": "Subsetting.pdf",
             "file": "pdf"
           },
           {
             "id": 110,
-            "name": "Variables.ipynb",
+            "name": "Subsetting.ipynb",
             "file": "ipynb"
           },
           {
             "id": 111,
-            "name": "Variables.docx",
+            "name": "Subsetting.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 114,
-        "name": "Vectors",
+        "name": "Variables",
         "children": [
           {
             "id": 115,
-            "name": "Vectors.Rmd",
+            "name": "Variables.Rmd",
             "file": "Rmd"
           },
           {
             "id": 116,
-            "name": "Vectors.html",
+            "name": "Variables.html",
             "file": "html"
           },
           {
             "id": 117,
-            "name": "Vectors.pdf",
+            "name": "Variables.pdf",
             "file": "pdf"
           },
           {
             "id": 118,
-            "name": "Vectors.ipynb",
+            "name": "Variables.ipynb",
             "file": "ipynb"
           },
           {
             "id": 119,
-            "name": "Vectors.docx",
+            "name": "Variables.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 122,
-        "name": "Webscraping",
+        "name": "Vectors",
         "children": [
           {
             "id": 123,
-            "name": "Webscraping.Rmd",
+            "name": "Vectors.Rmd",
             "file": "Rmd"
           },
           {
             "id": 124,
-            "name": "Webscraping.html",
+            "name": "Vectors.html",
             "file": "html"
           },
           {
             "id": 125,
-            "name": "Webscraping.pdf",
+            "name": "Vectors.pdf",
             "file": "pdf"
           },
           {
             "id": 126,
-            "name": "Webscraping.ipynb",
+            "name": "Vectors.ipynb",
             "file": "ipynb"
           },
           {
             "id": 127,
-            "name": "Webscraping.docx",
+            "name": "Vectors.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 130,
-        "name": "WebscrapingMultiplePages",
+        "name": "Webscraping",
         "children": [
           {
             "id": 131,
-            "name": "WebscrapingMultiplePages.Rmd",
+            "name": "Webscraping.Rmd",
             "file": "Rmd"
           },
           {
             "id": 132,
-            "name": "WebscrapingMultiplePages.html",
+            "name": "Webscraping.html",
             "file": "html"
           },
           {
             "id": 133,
-            "name": "WebscrapingMultiplePages.pdf",
+            "name": "Webscraping.pdf",
             "file": "pdf"
           },
           {
             "id": 134,
-            "name": "WebscrapingMultiplePages.ipynb",
+            "name": "Webscraping.ipynb",
             "file": "ipynb"
           },
           {
             "id": 135,
+            "name": "Webscraping.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 138,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 139,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 140,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 141,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 142,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 143,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
@@ -562,26 +593,31 @@
       },
       {
         "id": 104,
-        "name": "Subsetting",
+        "name": "Strings",
         "file": "colab"
       },
       {
         "id": 112,
-        "name": "Variables",
+        "name": "Subsetting",
         "file": "colab"
       },
       {
         "id": 120,
-        "name": "Vectors",
+        "name": "Variables",
         "file": "colab"
       },
       {
         "id": 128,
-        "name": "Webscraping",
+        "name": "Vectors",
         "file": "colab"
       },
       {
         "id": 136,
+        "name": "Webscraping",
+        "file": "colab"
+      },
+      {
+        "id": 144,
         "name": "WebscrapingMultiplePages",
         "file": "colab"
       }
@@ -648,26 +684,31 @@
       },
       {
         "id": 105,
-        "name": "Subsetting",
+        "name": "Strings",
         "file": "jupyter"
       },
       {
         "id": 113,
-        "name": "Variables",
+        "name": "Subsetting",
         "file": "jupyter"
       },
       {
         "id": 121,
-        "name": "Vectors",
+        "name": "Variables",
         "file": "jupyter"
       },
       {
         "id": 129,
-        "name": "Webscraping",
+        "name": "Vectors",
         "file": "jupyter"
       },
       {
         "id": 137,
+        "name": "Webscraping",
+        "file": "jupyter"
+      },
+      {
+        "id": 145,
         "name": "WebscrapingMultiplePages",
         "file": "jupyter"
       }

@@ -1,0 +1,116 @@
+---
+title: "Strings"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Lets look at some functions that help you do things with strings ("characters") 
+
+## Concatenating strings
+
+This means you want to combine the strings together in some way. You can concatenate some strings together:
+
+```{r}
+paste("hello", "goodbye")
+```
+
+You can concatenate more than 2 strings if you want:
+
+```{r}
+paste("hello", "goodbye", "help")
+```
+
+What about if we want no spaces:
+
+```{r} 
+paste("hello", "goodbye", sep="")
+```
+
+`sep` stands for "separator". That is the character that separates the concatenated strings.
+
+What about if we want some other thing between our strings, like a comma:
+
+```{r} 
+paste("hello", "goodbye", "help", sep=",")
+```
+
+Or maybe a colon:
+
+```{r} 
+paste("hello", "goodbye", "help", sep=":")
+```
+
+What happens if we have 2 vectors of strings. Can we concatenate them element-wise?
+
+```{r} 
+y<-paste(c("hello ","goodbye "), c("wren", "violet"), sep=" ")
+str(y)
+```
+
+Or if we have a single string we need to concatenate with each string in a vector:
+
+```{r} 
+z<-paste("hello ", c("wren", "violet"), sep=" ")
+str(z)
+```
+
+If our strings are already in a vector, can we still concatenate them? Yes but this time we need the `collapse` argument instead. `collapse` is the argument we use when we want to combine different elements on a vector:
+
+```{r} 
+w<-paste(c("hello", "wren", "violet"), collapse=" ")
+str(w)
+```
+## Splitting strings
+
+Splitting strings has to do with breaking apart a string in some way. For example suppose you have the sentence "We are the champions" and you would like to break this up into a vector that had "We", "are", "the", and "champions" as the elements of the vector:
+
+```{r} 
+w<-strsplit("We are the champions", " ")
+str(w)
+```
+
+Here the part of the string that is used as the "separator" is just a space " ". Notice that the thing that is returned is a list. It is a list of length 1.   
+
+Here is another example of splitting "Williamson,Calvin" into the last name and first name. This time the "separator" is the comma:
+
+```{r} 
+w<-strsplit("Williamson,Calvin", ",")
+str(w)
+```
+
+`strsplit` will also work for vectors as well too. Suppose we had the following vectors of names and we wanted to get the last name and the first name for each of these: 
+
+```{r} 
+w<-strsplit(c("Williamson,Calvin", "Hwang,Maria", "Jalayer,Ardalan"), ", ")
+str(w)
+```
+
+Here the thing we get is a list of length three. The list has three vectors on it. Each vector has two strings on it, the last and first name of each person.
+
+Lets print out the last item on the list, it should be Jalayers last and first name. Remember to access items on a list you have to use the double brackets `[[ ]]` 
+
+```{r} 
+w[[3]]
+```
+
+## Substitutions in Strings 
+
+Let's look at some examples where we want to substitute some characters in a string for some others. So we want to replace one string with another.
+
+For example suppose we want to replace "Hello, there" with "Goodbye, there". In this case the function  `sub` can do this for us. It substitutes the first occurence of "Hello" with "Goodbye". 
+
+```{r} 
+originalString <- "Hello here, Hello there, Hello everywhere"
+newString<-sub("Hello", "Goodbye", originalString, fixed=TRUE)
+str(newString)
+```
+What if we want to replace all the occurences of "Hello" above with "Goodbye". There is a function for that, its called `gsub` which stands for "global substitution" 
+
+```{r} 
+firstString <- "Hello here, Hello there, Hello everywhere"
+secondString<-gsub("Hello", "Goodbye", firstString, fixed=TRUE)
+str(secondString)
+```
