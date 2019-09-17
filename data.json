@@ -561,6 +561,37 @@
           }
         ]
       },
+      {
+        "id": 154,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 155,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 156,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 157,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 158,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 159,
+            "name": "WebscrapingMultiplePages.docx",
+            "file": "docx"
+          }
+        ]
+      }
     ]
   },
   {
@@ -655,6 +686,11 @@
       {
         "id": 152,
         "name": "Webscraping",
+        "file": "colab"
+      },
+      {
+        "id": 160,
+        "name": "WebscrapingMultiplePages",
         "file": "colab"
       }
     ]
@@ -751,6 +787,11 @@
       {
         "id": 153,
         "name": "Webscraping",
+        "file": "jupyter"
+      },
+      {
+        "id": 161,
+        "name": "WebscrapingMultiplePages",
         "file": "jupyter"
       }
     ]
