@@ -7,8 +7,8 @@ jupyter:
     name: ir
 ---
 ```{r, include=FALSE}
-blanks<-FALSE
-solution<-TRUE
+blanks<-TRUE
+solution<-FALSE
 ```
 
 Create a dataframe for this data:
