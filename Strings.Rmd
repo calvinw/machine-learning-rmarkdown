@@ -84,7 +84,7 @@ str(w)
 `strsplit` will also work for vectors as well too. Suppose we had the following vectors of names and we wanted to get the last name and the first name for each of these: 
 
 ```{r} 
-w<-strsplit(c("Williamson,Calvin", "Hwang,Maria", "Jalayer,Ardalan"), ", ")
+w<-strsplit(c("Williamson,Calvin", "Hwang,Maria", "Jalayer,Ardalan"), ",")
 str(w)
 ```
 
