@@ -6,11 +6,16 @@ jupyter:
     language: R
     name: ir
 ---
-
+```{r}
+if (!require("RCurl")) install.packages("RCurl")
+library("RCurl")
+```
 Load the data as a csv file:
 
 ```{r}
-df<-read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSjtQqcKaaobKkhQXaP2b6gcbQkaKJabjPz2k_hfHj2VEqcSW-I0BiCRpz9VkoQgpcylTUNSp1Opt4P/pub?gid=1389299652&single=true&output=csv")
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSjtQqcKaaobKkhQXaP2b6gcbQkaKJabjPz2k_hfHj2VEqcSW-I0BiCRpz9VkoQgpcylTUNSp1Opt4P/pub?gid=1389299652&single=true&output=csv"
+textString<-getURL(url)
+df<-read.csv(text=textString)
 ```
 
 ```{r}
