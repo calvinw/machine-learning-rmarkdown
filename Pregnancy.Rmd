@@ -29,7 +29,7 @@ cv = function(x,y) {
   return (round(sqrt(chisq.test(x, y, correct=FALSE)$statistic /length(x)),2))
 }
 
-cramersv <- apply(df, 2, function(x) cv(x,dfFactors$PREGNANT))  
+cramersv <- apply(df, 2, function(x) cv(x,dfFactors$Pregnant))  
 cramersvDf<- data.frame(cramersv)
 cramersvDf
 ```
@@ -38,36 +38,36 @@ Let's run a logistic regression:
 
 ```{r}
 options("scipen"=100, "digits"=4)
-logisticModel <- glm(PREGNANT ~.,family=binomial(link='logit'),data=dfFactors)
+logisticModel <- glm(Pregnant ~.,family=binomial(link='logit'),data=dfFactors)
 summary(logisticModel)
 ```
 
-`Body.Pillow` and `Sea.Bands` are not significant in this model.
+`BodyPillow` and `SeaBands` are not significant in this model.
 
 
 What about computing correlations on the int versions: 
 
 ```{r}
-correlations <- apply(df, 2, function(x) cor(x,df$PREGNANT))  
+correlations <- apply(df, 2, function(x) cor(x,df$Pregnant))  
 correlationsDf<- data.frame(correlations)
 correlationsDf
 ```
 
 And then just regular regression: 
 ```{r}
-model <- lm(PREGNANT ~.,data=df)
+model <- lm(Pregnant ~.,data=df)
 summary(model)
 ```
 
 Lets look at some xtabs for 
 ```{r}
-xtabs(formula=~PREGNANT+Folic.Acid, data=dfFactors)
+xtabs(formula=~Pregnant+FolicAcid, data=dfFactors)
 ```
 
 ```{r}
-xtabs(formula=~PREGNANT+Maternity.Clothes, data=dfFactors)
+xtabs(formula=~Pregnant+MaternityClothes, data=dfFactors)
 ```
 
 ```{r}
-xtabs(formula=~PREGNANT+Birth.Control, data=dfFactors)
+xtabs(formula=~Pregnant+BirthControl, data=dfFactors)
 ```
