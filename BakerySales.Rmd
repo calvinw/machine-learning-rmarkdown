@@ -34,7 +34,7 @@ row.names(df)
 
 ```{r}
 options(scipen = 999)
-linearMod <- lm(MonthlySalesYen ~ FloorSpaceTsubo + DistanceToNearestStationMeters + ShopManagerAge, data=df)
+linearMod <- lm(Sales ~ Floor + Dist + Age, data=df)
 summary(linearMod)
 ```
 
@@ -44,7 +44,7 @@ pairs(df, pch=20)
 ```
 
 ```{r}
-linearMod <- lm(MonthlySalesYen ~ FloorSpaceTsubo + DistanceToNearestStationMeters, data=df)
+linearMod <- lm(Sales ~ Floor+ Dist, data=df)
 summary(linearMod)
 ```
 

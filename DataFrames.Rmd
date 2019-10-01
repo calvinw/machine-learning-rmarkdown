@@ -7,7 +7,15 @@ jupyter:
     name: ir
 ---
 
-Data frames are the most used data structure in R. They are essentially equivalent to the rows and columns in a spreadsheet. Each row is a different record from a set of records, and each column in a different attribute or property from that set of records. 
+Data frames are the most used data structure in R. They are essentially equivalent to the rows and columns in a spreadsheet. Each row is a different record from a set of records, and each column is a different attribute or property from that set of records. 
+
+| name    | age | isStudent | favColor |
+|---------|-----|-----------|----------|
+| James   | 23  | TRUE      | red      |
+| Sally   | 43  | FALSE     | green    |
+| Rupert  | 19  | TRUE      | blue     |
+| Octavia | 21  | TRUE      | yellow   |
+| Belinda | 33  | FALSE     | orange   |
 
 In R the columns are vectors, and so each element in a particular column is the same data type.
 
