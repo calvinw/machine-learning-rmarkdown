@@ -1,0 +1,23 @@
+---
+title: "Mysteria"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Create a dataframe for this data, which shows the advertising expenditures for stores and their sales together with the population size for the stores locations:
+
+| Adv Expenditures ($ thousands) | Pop Size  (millions) | Sales($ thousands) |
+|--------------------------------|----------------------|--------------------|
+| 50 | 5 | 350 |
+| 55 | 4 | 400 |
+| 100 | 8 | 500 |
+| 30 | 1.5 | 300 |
+| 25 | 3.5 | 350 |
+| 60 | 1 | 400 |
+
+Then run a multiple regression analyis for predicting Sales from Advertising Expenditures and Population Size for some stores. 
+
+

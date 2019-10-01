@@ -1,0 +1,26 @@
+---
+title: "Subscriptions"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Create a dataframe for this data:
+
+| Magazine | Reported(thousands) | Actual(thousands) |
+|------------|---------------------|-------------------|
+| YM | 621 | 299.6 |
+| CosmoGirl | 359.7 | 207.7 |
+| Rosie | 530 | 325 |
+| Esquire | 70.5 | 48.6 |
+| TeenPeople | 567 | 400.3 |
+| More | 125.5 | 91.2 |
+| Spin | 50.6 | 39.1 |
+| Vogue | 353.3 | 268.6 |
+| Elle | 263.6 | 214.3 |
+
+This data shows the reported annual subscriptions for several magazines and the real actual number of subscriptions. It turns out that magazines regularly inflate the numbers when reporting subscriptions, and will report more subscribers than they actually have. 
+
+Run a regression analysis to find out if it is possible to predict the actual subscriptions from the reported ones.

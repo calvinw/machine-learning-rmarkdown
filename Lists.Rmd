@@ -1,0 +1,34 @@
+---
+title: "Lists"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Lists are similar to vectors, except they can hold different types. 
+
+They are created with the `list` function. The following example has 4 different elements.
+
+1. The first element is a numeric data type
+1. The second element is a logical
+1. The third element is a integer 
+1. The fourth element is a character 
+
+```{r}
+myList<-list(32,TRUE,45L,"hello")
+str(myList)
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
