@@ -1,0 +1,144 @@
+---
+title: "R Exercises"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+blanks<-TRUE
+solution<-FALSE
+```
+
+Define a variable `x` and give it the value 24:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Define a variable `y` that is equal to `x + 5`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Define a vector `w` that has three strings in it: “fee”, “fi”, “fum” 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Change the 2nd entry of `w` to “foo” instead of “fi”. 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Define a new vector `k` by subsetting with the selection vector `c(1,3)`. 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Print out the length of `k` now after the subsetting
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Define a vector `v` that has elements: 10, 8, 3, 13, 24, 9, 3, 6, 7, 3
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Use subsetting to define a new vector `z` that only has entries that are bigger than 9:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Define two vectors called `id` and `age`. 
+
+In the `id` vector put 1001,1002,1003,1004,1005   
+
+In the `age` vector put  18,16,26,15,22    
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Use subsetting to find the ids that are bigger than 17
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+For the following data: 
+
+| custId | gender | spend |
+|--------|--------|-------|
+| 3203   | M      | 1200  |
+| 3209   | F      | 963   |
+| 3289   | M      | 356   |
+| 3256   | F      | 567   |
+
+Define a data frame with these columns:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+For Customer 3289, use index(es) to change the spend amount to 415.
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Print out just the `spend` column using the $ sign:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
+
+Remove the Spend column and replace it with a new column called `discount`:
+
+| discount |
+|----------|
+| 200      |
+| 100      |
+| 145      |
+| 200      |
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+```
