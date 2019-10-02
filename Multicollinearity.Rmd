@@ -1,0 +1,58 @@
+---
+title: "Multicollinearity in Ice Cream Sales"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r}
+options(repr.plot.width=4, repr.plot.height=4)
+options("scipen"=100, "digits"=4)
+```
+
+Suppose we have some data for gallons of ice cream sold and the temperatures on two different scales. Does this affect the regression model? Yes, since there is redundancy in the fahrenheit and celsius predictors that leads to what is called "collinearity". It may mean that the p-values for one or more of the predictors is large even when there is some correlation between the predictor and the outcome.   
+
+Usually one of the predictors needs to be excluded from the model to fix this. You can search for this kind of thing by looking at the correlation matrix in R.   
+
+Here is the original data:   
+
+```{r}
+fahrenheit <- c(73,65,81,90,75,77,82,93,86,79)
+celsius <- c(22,18,27,32,23,25,27,33,30,26)
+gallons <- c(110,95,135,160,97,105,120,175,140,121)
+```
+
+Let's create a data frame:
+
+```{r}
+dataFrame <- data.frame(fahrenheit, celsius, gallons)
+dataFrame
+```
+
+```{r}
+cor(dataFrame)
+plot(dataFrame)
+```
+```{r}
+model1 = lm(gallons~fahrenheit + celsius, data=dataFrame)
+summary(model1)
+```
+
+We see that both p-values are two big. We remove the predictor that has the highest p-value, which is `celsius`. 
+
+
+```{r}
+model2 = lm(gallons~fahrenheit, data=dataFrame)
+summary(model2)
+```
+
+We see now that `fahrenheit` is significant and the model looks good for one predictor. 
+
+Probably the model with just `celsius` would work as well. Just for comparison lets  run the model with just `celsius`: 
+
+```{r}
+model3 = lm(gallons~celsius, data=dataFrame)
+summary(model3)
+```

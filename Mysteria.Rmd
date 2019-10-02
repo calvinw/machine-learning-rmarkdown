@@ -7,7 +7,7 @@ jupyter:
     name: ir
 ---
 
-Create a dataframe for this data, which shows the advertising expenditures for stores and their sales together with the population size for the stores locations:
+A small cosmetics company Mysteria believes sales (in thousands of dollars) at its stores is affected by advertising expenditures and by the population size of the vicinity of the area. They collect data for 6 stores and get the following:
 
 | Adv Expenditures ($ thousands) | Pop Size  (millions) | Sales($ thousands) |
 |--------------------------------|----------------------|--------------------|
@@ -18,6 +18,114 @@ Create a dataframe for this data, which shows the advertising expenditures for s
 | 25 | 3.5 | 350 |
 | 60 | 1 | 400 |
 
+Create a dataframe for this data, which shows the advertising expenditures for stores and their sales together with the population size for the stores locations.
+
 Then run a multiple regression analyis for predicting Sales from Advertising Expenditures and Population Size for some stores. 
 
+Make sure to address the following:
+
+* Whether there is an overall significant linear relationship between sales (y) and advertising expenditures and population size (the x-variables).
+*  What are the p-values for each predictor (x-variable)? What is the best model based on your answer? Which x-variables would you recommend using in the best model?
+* Using your chosen model, predict the value of sales if the advertising expenditure is $40,000 and the population is 2 million. Also if the advertising expenditure is $30,000 and the population is 1.6 million.     
+
+
+```{r}
+ads<-c(50,55,100,30,25,60)
+pop<-c(5,4,8,1.5,3.5,1)
+sales<-c(350,400,500,300,350,400)
+
+df<-data.frame(ads, pop, sales)
+```
+
+```{r}
+str(df)
+```
+
+Lets look at the correlation coefficient R for correlation between ads and sales 
+
+```{r}
+R = cor(df$ads, df$sales)
+R
+R*R
+```
+
+Lets take a look at the scatterplot for ads and sales:
+
+```{r}
+plot(df$ads,df$sales, main="Ads and Sales", xlab="Ads", ylab="Sales", pch=19)
+```
+
+Here is the R squared for population  and sales
+
+```{r}
+R = cor(df$pop, df$sales)
+R
+R*R
+```
+
+Lets take a look at the scatterplot for population and sales:
+
+```{r}
+plot(df$pop,df$sales, main="Population and Sales", xlab="Population", ylab="Sales", pch=19)
+```
+
+The following shows the correlation matrix
+
+```{r}
+cor(df)
+```
+
+```{r}
+plot(df, upper.panel = NULL, pch = 19, cex.labels=1.25)
+```
+
+We can see that there is a fair amount of correlation between ads and population. This could affect which is the best model. 
+
+```{r}
+model1 = lm(sales ~ ads + pop, data=df)
+summary(model1)
+```
+Test for overall significant:
+
+$$ \large{\text{p-value} = ???} $$
+
+p-value for ads:
+
+$$ \large{\text{p-value} = ???} $$
+
+p-value for population:
+
+$$ \large{\text{p-value} = ???} $$
+
+We can see that population is not significant in this model. So we exclude it and run the regression again using only sales and ads:
+
+```{r}
+model2 = lm(sales ~ ads, data=df)
+summary(model2)
+```
+Test for overall significant of linear relationship:
+
+$$ \large{\text{p-value} = ???} $$
+
+The regression equation is this:
+
+$$ \large{y = m1(x1) + b} $$   
+    
+The standard error is:
+
+$$ \large{\text{standard error} = ???}  $$ 
+
+* Using your chosen model, predict the value of sales if the advertising expenditure is $40,000 and the population is 2 million. Also if the advertising expenditure is $30,000 and the population is 1.6 million. 
+
+Make some predictions when for: 
+
+1.   spending $40,000 on ads and a population of 2.0 million 
+2.   spending $35,000 on ads and a population of 1.6 million 
+2.   spending $50,000 on ads and a population of 3.6 million 
+
+```{r}
+predictors = data.frame(ads=c(40,35,50), pop=c(2.0,1.6,3.6))
+predictions<-predict(model2, predictors)
+round(predictions)
+```
 
