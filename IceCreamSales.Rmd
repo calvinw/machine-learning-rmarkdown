@@ -74,15 +74,15 @@ summary(model)
 
 The regression equation is this:
 
-$$ \large{y = m(x) + b} $$   
+$$ gallons = 2.99(temp) - 113.40 $$   
     
 The standard error is:
 
-$$ \large{\text{standard error} = ???}  $$ 
+$$ \text{standard error} = 10.5  $$ 
 
 Test for significant linear relationship:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = 0.000101 $$
 
 ```{r}
 plot(dataFrame, main="title here", xlab="x-axis label", ylab="y-axis label" , pch=19)

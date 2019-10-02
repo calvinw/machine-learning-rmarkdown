@@ -115,13 +115,13 @@ The standard error is:
 
 $$ \large{\text{standard error} = ???}  $$ 
 
-* Using your chosen model, predict the value of sales if the advertising expenditure is $40,000 and the population is 2 million. Also if the advertising expenditure is $30,000 and the population is 1.6 million. 
+Using your chosen model, predict the value of sales as follows.  
 
-Make some predictions when for: 
+Make predictions when: 
 
-1.   spending $40,000 on ads and a population of 2.0 million 
-2.   spending $35,000 on ads and a population of 1.6 million 
-2.   spending $50,000 on ads and a population of 3.6 million 
+1.   spending is \$40,000 on ads and a population of 2.0 million 
+2.   spending is \$35,000 on ads and a population of 1.6 million 
+2.   spending is \$50,000 on ads and a population of 3.6 million 
 
 ```{r}
 predictors = data.frame(ads=c(40,35,50), pop=c(2.0,1.6,3.6))

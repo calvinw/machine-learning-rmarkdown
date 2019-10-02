@@ -84,23 +84,23 @@ summary(model)
 
 The regression equation is this:
 
-$$ \large{y = m1(x1) + m2(x2) + b} $$   
+$$ sales = 13.08(radio) + 16.80(newspaper) + 156.43 $$   
     
 The standard error is:
 
-$$ \large{\text{standard error} = ???}  $$ 
+$$ \text{standard error} = 159 $$ 
 
 Test for overall significant of linear relationship:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = 0.00000015 $$
 
 p-value for Newspaper:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = 0.00000049 $$
 
 p-value for Radio:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = 0.00001831 $$
 
 
 Make some predictions for:

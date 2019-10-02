@@ -60,15 +60,15 @@ summary(model)
 
 The regression equation is this:
 
-$$ \large{y = m(x) + b} $$ 
+$$ sales = 1.67(squareFt) + 0.964 $$ 
 
 The standard error is:
 
-$$ \large{\text{standard error} = ???} $$
+$$ \text{standard error} = 0.966  $$
 
 Test for significant linear relationship:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = 0.000000182 $$
 
 ```{r}
 plot(dataFrame, main="Annual Sales vs Store Size", xlab="Square Footage(Thousands)", ylab="Annual Sales (Millions$)", pch=19)
