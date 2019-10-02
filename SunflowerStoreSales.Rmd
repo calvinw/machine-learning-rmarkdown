@@ -12,8 +12,6 @@ options(repr.plot.width=4, repr.plot.height=4)
 options("scipen"=100, "digits"=4)
 ```
 
-# Sunflower Store Sales Based on Store Size
-
 The sales for Sunflowers Apparel have increased during the past 12 years as the chain has expanded the number of stores open. Until now, Sunflowers managers selected sites based on subjective factors, such as the availability of a good lease or the perception that a location seemed ideal for an apparel store. Suppose you believe that the size of the store significantly contributes to store sales, and you want to use this relationship in the decision-making process. Use regression to forecast the sales of a proposed new store based on the size of that store:
 
 

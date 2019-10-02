@@ -33,7 +33,7 @@ Make sure to address the following:
 *  What are the p-values for each predictor (x-variable)? What is the best model based on your answer? Which x-variables would you recommend using in the best model?
 * Using your chosen model, predict the value of sales if the advertising expenditure is $40,000 and the population is 2 million. Also if the advertising expenditure is $30,000 and the population is 1.6 million.     
 
-```{r include=FALSE, eval=FALSE}
+```{r include=FALSE, eval=TRUE}
 knitr::knit_exit()
 ```
 
@@ -95,17 +95,17 @@ summary(model1)
 ```
 Test for overall significant:
 
-$$ \text{p-value} = ??? $$
+$$ \text{p-value} = .0385 $$
 
 p-value for ads:
 
-$$ \text{p-value} = ??? $$
+$$ \text{p-value} = .0484 $$
 
 p-value for population:
 
-$$ \text{p-value} = ??? $$
+$$ \text{p-value} = 0.7456 $$
 
-We can see that population is not significant in this model. So we exclude it and run the regression again using only sales and ads:
+We can see that population is not significant in this model. So we exclude it and run the regression again using only sales and ads. Part of the problem here is that ads and population have some collinearity.
 
 ```{r}
 model2 = lm(sales ~ ads, data=df)
@@ -113,15 +113,16 @@ summary(model2)
 ```
 Test for overall significant of linear relationship:
 
-$$ \text{p-value} = ??? $$
+$$ \text{p-value} = 0.00552 $$
 
 The regression equation is this:
 
-$$ y = m1(x1) + b $$   
+$$ sales =2.40(ads) + 255.58 $$   
+
     
 The standard error is:
 
-$$ \text{standard error} = ???  $$ 
+$$ \text{standard error} = 26.3  $$ 
 
 Using your chosen model, predict the value of sales as follows.  
 

@@ -24,6 +24,10 @@ celsius <- c(22,18,27,32,23,25,27,33,30,26)
 gallons <- c(110,95,135,160,97,105,120,175,140,121)
 ```
 
+```{r include=FALSE, eval=TRUE}
+knitr::knit_exit()
+```
+
 Let's create a data frame:
 
 ```{r}
