@@ -38,13 +38,13 @@ plot(dataFrame)
 We can enhance the graph a little by giving it a title, which you do with the `main` argument below. Then we can label the x-axis and the y-axis a little better by using `xlab` and `ylab`. This helps some.
 
 ```{r}
-plot(dataFrame, main="title here", xlab="x-axis label", ylab="y-axis label")
+plot(dataFrame, main="Ice Cream Sales", xlab="Temperature", ylab="Gallons Sold")
 ```
 
 If you want to make the points solid circles, that is the argument `pch=19`:
 
 ```{r}
-plot(dataFrame, main="title here", xlab="x-axis label", ylab="y-axis label", pch=19)
+plot(dataFrame, main="Ice Cream Sales", xlab="Temperature", ylab="Gallons Sold", pch=19)
 ```
 
 Lets compute the R-squared. First compute the R, which is called the correlation coefficient. Then square that to get the R-squared
@@ -85,7 +85,7 @@ Test for significant linear relationship:
 $$ \text{p-value} = 0.000101 $$
 
 ```{r}
-plot(dataFrame, main="title here", xlab="x-axis label", ylab="y-axis label" , pch=19)
+plot(dataFrame, main="Ice Cream Sales", xlab="Temperature", ylab="Gallons Sold" , pch=19)
 abline(model)
 ```
 
