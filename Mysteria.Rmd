@@ -31,7 +31,7 @@ Make sure to address the following:
 
 * Whether there is an overall significant linear relationship between sales (y) and advertising expenditures and population size (the x-variables).
 *  What are the p-values for each predictor (x-variable)? What is the best model based on your answer? Which x-variables would you recommend using in the best model?
-* Using your chosen model, predict the value of sales if the advertising expenditure is $40,000 and the population is 2 million. Also if the advertising expenditure is $30,000 and the population is 1.6 million.     
+* Using your chosen model, predict the value of sales if the advertising expenditure is \$40,000 and the population is 2 million. Also if the advertising expenditure is \$30,000 and the population is 1.6 million.     
 
 ```{r include=FALSE, eval=TRUE}
 knitr::knit_exit()
