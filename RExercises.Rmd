@@ -9,7 +9,7 @@ jupyter:
 
 ```{r, include=FALSE}
 blanks<-TRUE
-solution<-FALSE
+solution<-TRUE
 ```
 
 Define a variable `x` and give it the value 24:
