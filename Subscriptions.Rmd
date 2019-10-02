@@ -7,7 +7,13 @@ jupyter:
     name: ir
 ---
 
+```{r}
+options(repr.plot.width=4, repr.plot.height=4)
+options("scipen"=100, "digits"=4)
+```
+
 Create a dataframe for this data:
+
 
 | Magazine | Reported(thousands) | Actual(thousands) |
 |------------|---------------------|-------------------|
@@ -24,3 +30,68 @@ Create a dataframe for this data:
 This data shows the reported annual subscriptions for several magazines and the real actual number of subscriptions. It turns out that magazines regularly inflate the numbers when reporting subscriptions, and will report more subscribers than they actually have. 
 
 Run a regression analysis to find out if it is possible to predict the actual subscriptions from the reported ones.
+
+```{r include=FALSE, eval=FALSE}
+knitr::knit_exit()
+```
+
+```{r}
+reported <- c(621,359.7,530,70.5,567,125.5,50.6,353.3,263.6)
+actual <- c(299.6, 207.7,325,48.6,400.3,91.2,39.1,268.6,214.3)
+df<-data.frame(reported, actual)
+df
+```
+
+Lets look at the data:
+
+```{r}
+plot(df)
+```
+
+We can enhance the graph a little by giving it a title, which you do with the `main` argument below. Then we can label the x-axis and the y-axis a little better by using `xlab` and `ylab`. This helps some.
+
+```{r}
+plot(df, main="Actual vs Reported Subscriptions", xlab="Reported(000s)", ylab="Actual(000s)", pch=19)
+```
+
+Lets compute the R-squared. First compute the R, which is called the correlation coefficient. Then square that to get the R-squared
+
+```{r}
+R = cor(df$reported,df$actual)
+R
+R*R
+```
+
+We call `lm`. 
+
+```{r}
+model = lm(actual~reported, data=df)
+summary(model)
+```
+
+The regression equation is this:
+
+$$ actual = m(reported) +b $$   
+    
+The standard error is:
+
+$$ \text{standard error} = ???  $$ 
+
+Test for significant linear relationship:
+
+$$ \text{p-value} = ??? $$
+
+```{r}
+plot(df, main="Actual vs Reported Subscriptions", xlab="Reported(000s)", ylab="Actual(000s)", pch=19)
+abline(model)
+```
+
+Suppose we want to do some predictions for  equal to 89, 91 and 72.
+
+```{r}
+predictors = data.frame(temp=c(89,91,72))
+predictions<-predict(model, predictors)
+predictions
+```
+
+

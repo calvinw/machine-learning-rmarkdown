@@ -7,6 +7,11 @@ jupyter:
     name: ir
 ---
 
+```{r}
+options(repr.plot.width=4, repr.plot.height=4)
+options("scipen"=100, "digits"=4)
+```
+
 A small cosmetics company Mysteria believes sales (in thousands of dollars) at its stores is affected by advertising expenditures and by the population size of the vicinity of the area. They collect data for 6 stores and get the following:
 
 | Adv Expenditures ($ thousands) | Pop Size  (millions) | Sales($ thousands) |
@@ -28,6 +33,9 @@ Make sure to address the following:
 *  What are the p-values for each predictor (x-variable)? What is the best model based on your answer? Which x-variables would you recommend using in the best model?
 * Using your chosen model, predict the value of sales if the advertising expenditure is $40,000 and the population is 2 million. Also if the advertising expenditure is $30,000 and the population is 1.6 million.     
 
+```{r include=FALSE, eval=FALSE}
+knitr::knit_exit()
+```
 
 ```{r}
 ads<-c(50,55,100,30,25,60)
@@ -87,15 +95,15 @@ summary(model1)
 ```
 Test for overall significant:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = ??? $$
 
 p-value for ads:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = ??? $$
 
 p-value for population:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = ??? $$
 
 We can see that population is not significant in this model. So we exclude it and run the regression again using only sales and ads:
 
@@ -105,15 +113,15 @@ summary(model2)
 ```
 Test for overall significant of linear relationship:
 
-$$ \large{\text{p-value} = ???} $$
+$$ \text{p-value} = ??? $$
 
 The regression equation is this:
 
-$$ \large{y = m1(x1) + b} $$   
+$$ y = m1(x1) + b $$   
     
 The standard error is:
 
-$$ \large{\text{standard error} = ???}  $$ 
+$$ \text{standard error} = ???  $$ 
 
 Using your chosen model, predict the value of sales as follows.  
 
