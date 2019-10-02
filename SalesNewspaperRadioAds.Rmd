@@ -94,11 +94,11 @@ Test for overall significant of linear relationship:
 
 $$ \text{p-value} = 0.00000015 $$
 
-p-value for Newspaper:
+p-value for Radio:
 
 $$ \text{p-value} = 0.00000049 $$
 
-p-value for Radio:
+p-value for Newspaper:
 
 $$ \text{p-value} = 0.00001831 $$
 
