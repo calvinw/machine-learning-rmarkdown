@@ -1,5 +1,5 @@
 ---
-title: "Sales Based on Newspaper and Radio Ads"
+title: "Predicting Sales from Newspaper and Radio Ads"
 jupyter:
   kernelspec:
     display_name: R
@@ -7,38 +7,41 @@ jupyter:
     name: ir
 ---
 
-Just run this code block to set things up
+Just run this code block to set things up:
 
 ```{r}
 options(repr.plot.width=4, repr.plot.height=4)
 options("scipen"=100, "digits"=4)
-if (!require("RCurl")) install.packages("RCurl")
-library("RCurl")
+if(!require("readr")) install.packages("readr")
+library("readr")
 url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_oNaK_QKTtFQYdh7Pl17_prektSRuDVwRD71Vo8daBd0biyeG-Oiic4dMN_EL--voDWHAc5MmXNYH/pub?gid=0&single=true&output=csv"
-textString<-getURL(url)
-df<-read.csv(text=textString)
+df<-read.csv(url)
 ```
 
 As a result of the above, the dataframe df has the Sales, Radio and Newspaper Ads data loaded in
 
-#Sales Based on Radio and Newspaper Ads
 
+Just for convenience, lets define three variables to hold the columns:
 ```{r}
+
+Radio<-df$Radio
+Newspaper<-df$Newspaper
+Sales<-df$Sales
+
 str(df)
 ```
 
-Lets look at the correlation coefficient R for correlation between Newspaper and Sales
+Lets look at the correlation coefficient R for Newspaper and Sales
 
 ```{r}
-R = cor(df$Newspaper, df$Sales)
+R = cor(Newspaper, Sales)
 R
-R*R
 ```
 
-If we did regression between Newspaper and Sales we would get this Rsquared
+What about the scatterplot between them:
 
 ```{r}
-plot(df$Newspaper,df$Sales)
+plot(Newspaper,Sales)
 ```
 
 You can fix up the x-axis label by using `xlab` and the y-axis label by using `ylab`. Also you can give the graph a title.
@@ -48,47 +51,41 @@ You can give the whole graph a title using `main`
 You can also put in that they are filled dots instead of hollow by using `pch=19`
 
 ```{r}
-plot(df$Newspaper,df$Sales, main="Newspaper Expenditures and Sales", xlab="Newspaper Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
+plot(Newspaper,Sales, main="Newspaper Expenditures and Sales", xlab="Newspaper Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
 ```
 
-Here is the R squared for Radio and Sales
+Here is the correlation coefficient R for Radio and Sales
 
 ```{r}
-R = cor(df$Radio, df$Sales)
+R = cor(Radio, Sales)
 R
-R*R
 ```
+
+And here is the scatterplot for them:
 
 ```{r}
-plot(df$Radio,df$Sales, main="Radio Ad Expenditures and Sales", xlab="Radio Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
+plot(Radio,Sales, main="Radio Ad Expenditures and Sales", xlab="Radio Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
 ```
 
-The following shows the correlation matrix
+The following shows the correlation matrix and the scatterplots for all variables
 
 ```{r}
 cor(df)
-```
-
-```{r}
 plot(df)
 ```
+
+Lets fix up the plots a little just to look at the lower ones:
 
 ```{r}
 plot(df, upper.panel = NULL, pch = 19, cex.labels=1.25)
 ```
 
+Lets run our regression model:
+
 ```{r}
 model = lm(Sales ~ Radio + Newspaper, data=df)
 summary(model)
 ```
-
-The regression equation is this:
-
-$$ sales = 13.08(radio) + 16.80(newspaper) + 156.43 $$   
-    
-The standard error is:
-
-$$ \text{standard error} = 159 $$ 
 
 Test for overall significant of linear relationship:
 
@@ -102,11 +99,18 @@ p-value for Newspaper:
 
 $$ \text{p-value} = 0.00001831 $$
 
+The regression equation is this:
+
+$$ sales = 13.08(radio) + 16.80(newspaper) + 156.43 $$   
+    
+The standard error is:
+
+$$ \text{standard error} = 159 $$ 
 
 Make some predictions for:
 
-1.   spending 30,000 on Radio ads and 35,000 on Newspaper 
-2.   spending 35,000 on Radio ads and 45,000 on Newspaper 
+- spending 30,000 on Radio ads and 35,000 on Newspaper 
+- spending 35,000 on Radio ads and 45,000 on Newspaper 
 
 
 ```{r}

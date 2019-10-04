@@ -56,6 +56,10 @@ model = lm(sales~squareFt, data=dataFrame)
 summary(model)
 ```
 
+Test for significant linear relationship:
+
+$$ \text{p-value} = 0.000000182 $$
+
 The regression equation is this:
 
 $$ sales = 1.67(squareFt) + 0.964 $$ 
@@ -63,10 +67,6 @@ $$ sales = 1.67(squareFt) + 0.964 $$
 The standard error is:
 
 $$ \text{standard error} = 0.966  $$
-
-Test for significant linear relationship:
-
-$$ \text{p-value} = 0.000000182 $$
 
 ```{r}
 plot(dataFrame, main="Annual Sales vs Store Size", xlab="Square Footage(Thousands)", ylab="Annual Sales (Millions$)", pch=19)

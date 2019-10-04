@@ -9,18 +9,11 @@ jupyter:
 
 This example is taken from the book [Segmentation, Revenue Management and Pricing Analytics](https://www.amazon.com/Segmentation-Revenue-Management-Pricing-Analytics/dp/0415898331) by Tudor Bodea and Mark Ferguson
 
-Make sure to install (if needed) RCurl and then load it:
-
 ```{r}
-if (!require("RCurl")) install.packages("RCurl")
-library("RCurl")
-```
-
-We use the getURL and read the data as a csv textstring:
-```{r}
+if (!require("readr")) install.packages("readr")
+library("readr")
 url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Z4rEXAoVmrunY3BLJ5AX-ZH76U8bHpCCOu8mzziWK1X6WnJJiC2RmrWrLffGUxo9dCZD0HW1n15T/pub?gid=1471239210&single=true&output=csv"
-textString<-getURL(url)
-df<-read.csv(text=textString)
+df<-read.csv(url)
 ```
 
 This is the demand for 26 weeks of staple item like denim jeans. For this item there were various kinds of promotions. We would like to understand the effect of these promotions on the demand. 

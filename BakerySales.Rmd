@@ -7,44 +7,79 @@ jupyter:
     name: ir
 ---
 
-First make sure RCurl is installed.
-
 ```{r}
-if (!require("RCurl")) install.packages("RCurl")
-library("RCurl")
-```
-
-We use the getURL function from the RCurl package to load the data from the website. It is returned to us as a text string. 
-
-```{r}
+options(repr.plot.width=4, repr.plot.height=4)
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+library("readr")
 url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3t-anI3_buZrdM_AnbXT9HUssfzBbiC9on_3C4G5gZMQay3sbZ3SwEHKyTIZaer4J96DZoBZdvl_i/pub?gid=0&single=true&output=csv"
-textString<-getURL(url)
-df<-read.csv(text=textString, row.names=1, stringsAsFactor=FALSE)
+df<-read.csv(url, row.names=1, stringsAsFactor=FALSE)
 ```
+
+Complete the analysis by copying the Newspaper and Radio Ads and Sales example from earlier
+
+- Include graphics that show the scatterplots for everything you have
+- Include the outputs below as one of your text cells after you run the lm the first time. Fill in the m1, m2, m3 and b (since you first have 3 x variables)
+- Include the outputs below as one of your text cells after you run the lm the second time. Fill in the m1, m2, and b
 
 Here is the structure of the data set.
 
 ```{r}
 str(df)
-```
-
-```{r}
-row.names(df)
-```
-
-```{r}
-options(scipen = 999)
-linearMod <- lm(Sales ~ Floor + Dist + Age, data=df)
-summary(linearMod)
+df
 ```
 
 ```{r}
 cor(df)
-pairs(df, pch=20)
+plot(df, upper.panel=NULL, pch=19)
 ```
 
 ```{r}
-linearMod <- lm(Sales ~ Floor+ Dist, data=df)
-summary(linearMod)
+model1 <- lm(Sales ~ Floor + Dist + Age, data=df)
+summary(model1)
 ```
+
+Test for overall significant of linear relationship:
+
+$$ \text{p-value} = 0.000276 $$
+
+p-value for Floor:
+
+$$ \text{p-value} = 0.00067 $$
+
+p-value for Dist:
+
+$$ \text{p-value} = 0.00661 $$
+
+p-value for Age:
+
+$$ \text{p-value} = 0.50218 $$
+
+So we need to exclude Age from the model and rerun the analysis:
+
+```{r}
+model2 <- lm(Sales ~ Floor+ Dist, data=df)
+summary(model2)
+```
+
+Test for overall significant of linear relationship:
+
+$$ \text{p-value} = 0.0000384 $$
+
+p-value for Floor:
+
+$$ \text{p-value} = 0.00029 $$ 
+
+p-value for Dist:
+
+$$ \text{p-value} = 0.00330 $$ 
+
+The regression equation would be:
+
+$$ Sales = 41.5135(Floor) -0.3409(Dist) + 65.3239 $$   
+    
+The standard error is:
+
+$$ \text{standard error} = 24.4 $$ 
+
 
