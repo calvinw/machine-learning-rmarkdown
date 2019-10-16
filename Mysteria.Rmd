@@ -133,7 +133,7 @@ Make predictions when:
 2.   spending is \$50,000 on ads and a population of 3.6 million 
 
 ```{r}
-predictors = data.frame(ads=c(40,35,50), pop=c(2.0,1.6,3.6))
+predictors = data.frame(ads=c(40,35,50))
 predictions<-predict(model2, predictors)
 round(predictions)
 ```

@@ -1,0 +1,249 @@
+---
+title: "R Basics and DataFrames"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+```{r, include=FALSE}
+blanks<-TRUE
+solution<-FALSE
+```
+
+Define a variable `z` that has value 32:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+z <- 32
+```
+
+Define a variable `w` that is equal to `z/3`:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+w <- z/3 
+```
+
+Define a character vector `a` that has these strings on it "Hello", "Goodbye", "Goodnight", "Bye":
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+a<- c("Hello", "Goodbye", "Goodnight", "Bye")
+```
+
+Define a new vector variable `b` by subsetting that has just the 2nd and 4th strings from your `a` vector: (Make sure you use "subsetting" here to do this)
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+b<- a[c(2,4)]
+```
+
+Define a new vector variable `q` that has 3,-3,2,-1,0,-4,-6,3,-7,4,2,3,-2,-4,4 on it. 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+q<- c(3,-3,2,-1,0,-4,-6,3,-7,4,2,3,-2,-4,4) 
+```
+
+Define a new vector `r` by subsetting (you must use subsetting!) that has only negative values (less than 0) on it: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+r <- q[q<0]
+r
+```
+
+Next create a dataframe for this data:
+
+|  Name  |  GPA | Major |  Phone    |
+|:------:|:----:|:---:|:------------:|
+| Alexa |  3.7 | FBM | 212 398 2375 |
+| Tanya |  3.6 | AMC | 212 323 3040 |
+| Hubert |  3.4 | FBM | 718 232 9392 |
+
+Create a data frame `df` by using the `data.frame` function. You will probably need to make some appropriate vectors to be the columns of your dataframe. Use the argument `stringsAsFactors=FALSE` in your data.frame function:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df <- data.frame(Name=c("Alexa", "Tanya", "Hubert"),
+			  GPA=c(3.7, 3.6, 3.4),
+			  Major=c("FBM", "AMC", "FBM"),
+			  Phone=c("212 398 2375", "212 323 3040", "718 232 9392"),
+			  stringsAsFactors=FALSE)
+```
+
+Print out the structure of your data frame using `str`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(df)
+```
+
+Print out just the GPA column using $ sign:  
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df$GPA
+```
+
+
+Print out just the Phone column using $ sign:  
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df$Phone
+```
+Now print out the first few lines of the data frame using `head`. In this case it will be all the data, since `head` prints the first 6 lines, and this data has less than 6 lines.
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+head(df)
+```
+
+Use the `summary` function to print out a summary of the data frame data:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+summary(df)
+```
+
+Extract (print out) the element in the 2nd row and 3rd column by using `df[,]`, and using the right index or indices inside the square brackets: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df[2,3]
+```
+
+Extract (print out) the entire second row of data by using `df[,]`, and again using the right index or indices inside the square brackets: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df[2,]
+```
+
+Extract (print out) the entire second column of data by using `df[,]`, and again using the right index or indices inside the square brackets: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df[,2]
+```
+
+Delete the column "Major" from the data frame:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df$Major <- NULL
+```
+
+Print out the structure of your data frame showing the column above removed: 
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(df)
+```
+
+Finally add a column called "ID" 
+Your data frame should now look like this:  
+
+|  Name  |  GPA |  Phone       | ID  |
+|:------:|:----:|:------------:|:---:|
+| Alexa |  3.7 | 212 398 2375 | 1001 |
+| Tanya |  3.6 | 212 323 3040 | 1002 |
+| Hubert |  3.4 | 718 232 9392 | 1003 |
+
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df$ID <- c(1001,1002,1003)
+```
+
+Print out the structure of the new data frame using `str`:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(df)
+```
+
+Use subsetting to select only those rows with `GPA > 3.5`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df[df$GPA  > 3.5,]
+```
+
+Exchange the last column (ID) so that it is the first column now (anyway you want to do this is fine):
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df <- df[c("ID", "Name", "Phone", "GPA")]
+```
+
+Print out the data frame using `str` to make sure ID is first:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+str(df)
+```
+
+Change Tanyas GPA in the dataframe to be `3.98`
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+df[2,4] <- 3.98
+```
+
+Print out the data frame using `head` to make sure her GPA is changed:
+
+```{r, eval=FALSE, include=blanks}
+PUT CODE HERE
+```
+```{r, include=solution}
+head(df)
+```
