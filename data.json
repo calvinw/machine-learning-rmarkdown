@@ -98,403 +98,403 @@
       },
       {
         "id": 34,
-        "name": "DataFrameWorkout",
-        "children": [
-          {
-            "id": 35,
-            "name": "DataFrameWorkout.Rmd",
-            "file": "Rmd"
-          },
-          {
-            "id": 36,
-            "name": "DataFrameWorkout.html",
-            "file": "html"
-          },
-          {
-            "id": 37,
-            "name": "DataFrameWorkout.pdf",
-            "file": "pdf"
-          },
-          {
-            "id": 38,
-            "name": "DataFrameWorkout.ipynb",
-            "file": "ipynb"
-          },
-          {
-            "id": 39,
-            "name": "DataFrameWorkout.docx",
-            "file": "docx"
-          }
-        ]
-      },
-      {
-        "id": 42,
         "name": "DataFrames",
         "children": [
           {
-            "id": 43,
+            "id": 35,
             "name": "DataFrames.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 44,
+            "id": 36,
             "name": "DataFrames.html",
             "file": "html"
           },
           {
-            "id": 45,
+            "id": 37,
             "name": "DataFrames.pdf",
             "file": "pdf"
           },
           {
-            "id": 46,
+            "id": 38,
             "name": "DataFrames.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 47,
+            "id": 39,
             "name": "DataFrames.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 50,
+        "id": 42,
         "name": "DataTypes",
         "children": [
           {
-            "id": 51,
+            "id": 43,
             "name": "DataTypes.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 52,
+            "id": 44,
             "name": "DataTypes.html",
             "file": "html"
           },
           {
-            "id": 53,
+            "id": 45,
             "name": "DataTypes.pdf",
             "file": "pdf"
           },
           {
-            "id": 54,
+            "id": 46,
             "name": "DataTypes.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 55,
+            "id": 47,
             "name": "DataTypes.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 58,
+        "id": 50,
         "name": "Elasticity",
         "children": [
           {
-            "id": 59,
+            "id": 51,
             "name": "Elasticity.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 60,
+            "id": 52,
             "name": "Elasticity.html",
             "file": "html"
           },
           {
-            "id": 61,
+            "id": 53,
             "name": "Elasticity.pdf",
             "file": "pdf"
           },
           {
-            "id": 62,
+            "id": 54,
             "name": "Elasticity.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 63,
+            "id": 55,
             "name": "Elasticity.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 66,
+        "id": 58,
         "name": "Factors",
         "children": [
           {
-            "id": 67,
+            "id": 59,
             "name": "Factors.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 68,
+            "id": 60,
             "name": "Factors.html",
             "file": "html"
           },
           {
-            "id": 69,
+            "id": 61,
             "name": "Factors.pdf",
             "file": "pdf"
           },
           {
-            "id": 70,
+            "id": 62,
             "name": "Factors.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 71,
+            "id": 63,
             "name": "Factors.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 74,
+        "id": 66,
         "name": "IceCreamSales",
         "children": [
           {
-            "id": 75,
+            "id": 67,
             "name": "IceCreamSales.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 76,
+            "id": 68,
             "name": "IceCreamSales.html",
             "file": "html"
           },
           {
-            "id": 77,
+            "id": 69,
             "name": "IceCreamSales.pdf",
             "file": "pdf"
           },
           {
-            "id": 78,
+            "id": 70,
             "name": "IceCreamSales.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 79,
+            "id": 71,
             "name": "IceCreamSales.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 82,
+        "id": 74,
         "name": "KMeans",
         "children": [
           {
-            "id": 83,
+            "id": 75,
             "name": "KMeans.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 84,
+            "id": 76,
             "name": "KMeans.html",
             "file": "html"
           },
           {
-            "id": 85,
+            "id": 77,
             "name": "KMeans.pdf",
             "file": "pdf"
           },
           {
-            "id": 86,
+            "id": 78,
             "name": "KMeans.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 87,
+            "id": 79,
             "name": "KMeans.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 90,
+        "id": 82,
         "name": "Lists",
         "children": [
           {
-            "id": 91,
+            "id": 83,
             "name": "Lists.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 92,
+            "id": 84,
             "name": "Lists.html",
             "file": "html"
           },
           {
-            "id": 93,
+            "id": 85,
             "name": "Lists.pdf",
             "file": "pdf"
           },
           {
-            "id": 94,
+            "id": 86,
             "name": "Lists.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 95,
+            "id": 87,
             "name": "Lists.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 98,
+        "id": 90,
         "name": "Multicollinearity",
         "children": [
           {
-            "id": 99,
+            "id": 91,
             "name": "Multicollinearity.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 100,
+            "id": 92,
             "name": "Multicollinearity.html",
             "file": "html"
           },
           {
-            "id": 101,
+            "id": 93,
             "name": "Multicollinearity.pdf",
             "file": "pdf"
           },
           {
-            "id": 102,
+            "id": 94,
             "name": "Multicollinearity.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 103,
+            "id": 95,
             "name": "Multicollinearity.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 106,
+        "id": 98,
         "name": "Mysteria",
         "children": [
           {
-            "id": 107,
+            "id": 99,
             "name": "Mysteria.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 108,
+            "id": 100,
             "name": "Mysteria.html",
             "file": "html"
           },
           {
-            "id": 109,
+            "id": 101,
             "name": "Mysteria.pdf",
             "file": "pdf"
           },
           {
-            "id": 110,
+            "id": 102,
             "name": "Mysteria.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 111,
+            "id": 103,
             "name": "Mysteria.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 114,
+        "id": 106,
         "name": "OnlineRetailSales",
         "children": [
           {
-            "id": 115,
+            "id": 107,
             "name": "OnlineRetailSales.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 116,
+            "id": 108,
             "name": "OnlineRetailSales.html",
             "file": "html"
           },
           {
-            "id": 117,
+            "id": 109,
             "name": "OnlineRetailSales.pdf",
             "file": "pdf"
           },
           {
-            "id": 118,
+            "id": 110,
             "name": "OnlineRetailSales.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 119,
+            "id": 111,
             "name": "OnlineRetailSales.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 122,
+        "id": 114,
         "name": "Pregnancy",
         "children": [
           {
-            "id": 123,
+            "id": 115,
             "name": "Pregnancy.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 124,
+            "id": 116,
             "name": "Pregnancy.html",
             "file": "html"
           },
           {
-            "id": 125,
+            "id": 117,
             "name": "Pregnancy.pdf",
             "file": "pdf"
           },
           {
-            "id": 126,
+            "id": 118,
             "name": "Pregnancy.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 127,
+            "id": 119,
             "name": "Pregnancy.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 130,
+        "id": 122,
         "name": "PromotionForecasting",
         "children": [
           {
-            "id": 131,
+            "id": 123,
             "name": "PromotionForecasting.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 132,
+            "id": 124,
             "name": "PromotionForecasting.html",
             "file": "html"
           },
           {
-            "id": 133,
+            "id": 125,
             "name": "PromotionForecasting.pdf",
             "file": "pdf"
           },
           {
-            "id": 134,
+            "id": 126,
             "name": "PromotionForecasting.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 135,
+            "id": 127,
             "name": "PromotionForecasting.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 130,
+        "name": "RBasicsAndDataFrames",
+        "children": [
+          {
+            "id": 131,
+            "name": "RBasicsAndDataFrames.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 132,
+            "name": "RBasicsAndDataFrames.html",
+            "file": "html"
+          },
+          {
+            "id": 133,
+            "name": "RBasicsAndDataFrames.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 134,
+            "name": "RBasicsAndDataFrames.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 135,
+            "name": "RBasicsAndDataFrames.docx",
             "file": "docx"
           }
         ]
@@ -925,67 +925,67 @@
       },
       {
         "id": 40,
-        "name": "DataFrameWorkout",
-        "file": "colab"
-      },
-      {
-        "id": 48,
         "name": "DataFrames",
         "file": "colab"
       },
       {
-        "id": 56,
+        "id": 48,
         "name": "DataTypes",
         "file": "colab"
       },
       {
-        "id": 64,
+        "id": 56,
         "name": "Elasticity",
         "file": "colab"
       },
       {
-        "id": 72,
+        "id": 64,
         "name": "Factors",
         "file": "colab"
       },
       {
-        "id": 80,
+        "id": 72,
         "name": "IceCreamSales",
         "file": "colab"
       },
       {
-        "id": 88,
+        "id": 80,
         "name": "KMeans",
         "file": "colab"
       },
       {
-        "id": 96,
+        "id": 88,
         "name": "Lists",
         "file": "colab"
       },
       {
-        "id": 104,
+        "id": 96,
         "name": "Multicollinearity",
         "file": "colab"
       },
       {
-        "id": 112,
+        "id": 104,
         "name": "Mysteria",
         "file": "colab"
       },
       {
-        "id": 120,
+        "id": 112,
         "name": "OnlineRetailSales",
         "file": "colab"
       },
       {
-        "id": 128,
+        "id": 120,
         "name": "Pregnancy",
         "file": "colab"
       },
       {
-        "id": 136,
+        "id": 128,
         "name": "PromotionForecasting",
+        "file": "colab"
+      },
+      {
+        "id": 136,
+        "name": "RBasicsAndDataFrames",
         "file": "colab"
       },
       {
@@ -1076,67 +1076,67 @@
       },
       {
         "id": 41,
-        "name": "DataFrameWorkout",
-        "file": "jupyter"
-      },
-      {
-        "id": 49,
         "name": "DataFrames",
         "file": "jupyter"
       },
       {
-        "id": 57,
+        "id": 49,
         "name": "DataTypes",
         "file": "jupyter"
       },
       {
-        "id": 65,
+        "id": 57,
         "name": "Elasticity",
         "file": "jupyter"
       },
       {
-        "id": 73,
+        "id": 65,
         "name": "Factors",
         "file": "jupyter"
       },
       {
-        "id": 81,
+        "id": 73,
         "name": "IceCreamSales",
         "file": "jupyter"
       },
       {
-        "id": 89,
+        "id": 81,
         "name": "KMeans",
         "file": "jupyter"
       },
       {
-        "id": 97,
+        "id": 89,
         "name": "Lists",
         "file": "jupyter"
       },
       {
-        "id": 105,
+        "id": 97,
         "name": "Multicollinearity",
         "file": "jupyter"
       },
       {
-        "id": 113,
+        "id": 105,
         "name": "Mysteria",
         "file": "jupyter"
       },
       {
-        "id": 121,
+        "id": 113,
         "name": "OnlineRetailSales",
         "file": "jupyter"
       },
       {
-        "id": 129,
+        "id": 121,
         "name": "Pregnancy",
         "file": "jupyter"
       },
       {
-        "id": 137,
+        "id": 129,
         "name": "PromotionForecasting",
+        "file": "jupyter"
+      },
+      {
+        "id": 137,
+        "name": "RBasicsAndDataFrames",
         "file": "jupyter"
       },
       {
