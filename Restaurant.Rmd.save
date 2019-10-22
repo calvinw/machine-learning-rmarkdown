@@ -11,13 +11,9 @@ options("scipen"=100, "digits"=4)
 if(!require("readr")) install.packages("readr")
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
-if(!require("ISLR")) install.packages("ISLR")
 library("readr")
 library("rpart")
 library("rpart.plot")
-library("ISLR")
-Carseats
-str(Carseats)
 ```
 
 ```{r}
