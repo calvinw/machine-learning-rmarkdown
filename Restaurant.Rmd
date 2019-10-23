@@ -1,0 +1,56 @@
+---
+title: "Restaurant"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+```{r}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+library("readr")
+library("rpart")
+library("rpart.plot")
+```
+| Alternate | Bar | Fri/Sat | Hungry | Patrons | Price | Raining | Reservation | Type | WaitEstimate | WillWait |
+|-----------|-----|---------|--------|---------|-----------|---------|-------------|---------|--------------|----------|
+| Yes | No | No | Yes | Some | Expensive | No | Yes | French | 0-10 | Yes |
+| Yes | No | No | Yes | Full | Cheap | No | No | Thai | 30-60 | No |
+| No | Yes | No | No | Some | Cheap | No | No | Burger | 0-10 | Yes |
+| Yes | No | Yes | Yes | Full | Cheap | No | No | Thai | 10-30 | Yes |
+| Yes | No | Yes | No | Full | Expensive | No | Yes | French | >60 | No |
+| No | Yes | No | Yes | Some | Moderate | Yes | Yes | Italian | 0-10 | Yes |
+| No | Yes | No | No | None | Cheap | Yes | No | Burger | 0-10 | No |
+| No | No | No | Yes | Some | Moderate | Yes | Yes | Thai | 0-10 | Yes |
+| No | Yes | Yes | No | Full | Cheap | Yes | No | Burger | >60 | No |
+| Yes | Yes | Yes | Yes | Full | Expensive | No | Yes | Italian | 10-30 | No |
+| No | No | No | No | None | Cheap | No | No | Thai | 0-10 | No |
+| Yes | Yes | Yes | Yes | Full | Cheap | No | No | Burger | 30-60 | Yes |
+
+```{r}
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQvQ1hQJoj_3BmOV3uLWcDzwIw3GFhkS84NePBS57lnCmXSN86KU8kn4aQUE9rGsxJPMi32S55JBl9w/pub?gid=0&single=true&output=csv"
+traindf<-read.csv(url, stringsAsFactor=TRUE)
+```
+
+Now let's print out the training set to make sure we read it correctly:
+
+```{r}
+print(traindf)
+```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=10)
+model <- rpart(WillWait~., data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Create models for each individual predictor with maxdepth=1:w
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=5)
+model <- rpart(WillWait~Hungry, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```

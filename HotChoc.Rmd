@@ -1,0 +1,223 @@
+---
+title: "Hot Choc"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r}
+#options(repr.plot.width=3, repr.plot.height=3)
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+library("readr")
+library("rpart")
+library("rpart.plot")
+```
+
+## Building the Decision Tree using the training set
+
+
+First lets take a look at the data we will work with. Suppose we have the following weather data and want to predict when someone will buy hot chocolate given the weather conditions. For example will someone buy hot chocolate when the weather outlook is sunny and hot? Probably not. What about if it is rainy or humid?
+
+So here is the data we have, this will be our training data:
+
+- `Buys` is our result or outcome
+- `Outlook`, `Temp`, `Humid`, `Windy` are the predictors
+
+We hope that some of these predictors will help up predict the `Buys` column:   
+
+| Outlook  | Temp | Humid  | Windy | Buys |
+|----------|------|--------|-------|------|
+| sunny    | hot  | high   | no    | no   |
+| sunny    | hot  | high   | yes   | no   |
+| overcast | hot  | high   | no    | no   |
+| rainy    | mild | high   | no    | no   |
+| rainy    | cool | normal | no    | yes  |
+| rainy    | cool | normal | yes   | yes  |
+| overcast | cool | normal | yes   | yes  |
+| sunny    | mild | high   | no    | no   |
+| sunny    | cool | normal | no    | yes  |
+| rainy    | mild | normal | no    | yes  |
+| sunny    | mild | normal | yes   | no   |
+| overcast | hot  | normal | no    | no   |
+| rainy    | mild | high   | yes   | no   |
+    
+So we will use this data to build our model. Then after we build the model, we will test it using some different data, called the "testing" data. Once we test it we will be able to deterimine how accurate our model is.
+
+To start we read the training data above from a csv file and print out its structore:
+
+```{r}
+trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSfQk849ICHKNqacbvmG1PZQiCfGadL2TgeGn9aaCj0-luDgE5fZA9p6dPJj6RDrreXsCc2XYaFOmKU/pub?gid=0&single=true&output=csv"
+traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
+str(traindf)
+```
+Now let's print out the training set to make sure we read it correctly:
+
+```{r}
+print(traindf)
+```
+
+```{r, eval=F, include=F}
+# This code allows to write the data as a markdown table and then test it directly. 
+read.md <- function(file = clipr::read_clip(),
+                    delim = '|',
+                    stringsAsFactors = FALSE,
+                    strip.white = TRUE,
+                    ...){
+    if (length(file) > 1) {
+        lines <- file
+    } else if (grepl('\n', file)) {
+        con <- textConnection(file)
+        lines <- readLines(con)
+        close(con)
+    } else {
+        lines <- readLines(file)
+    }
+    lines <- lines[!grepl('^[\\:\\s\\+\\-\\=\\_\\|]*$', lines, perl = TRUE)]
+    lines <- gsub('(^\\s*?\\|)|(\\|\\s*?$)', '', lines)
+    utils::read.delim(text = paste(lines, collapse = '\n'), sep = delim,
+                      stringsAsFactors = stringsAsFactors,
+                      strip.white = strip.white, ...)
+#Put your training data frame here
+train<-'
+'
+traindf<-read.md(train, stringsAsFactors=TRUE)
+str(traindf)
+
+#Put your testing data frame here
+test<-'
+'
+testdf<-read.md(test, stringsAsFactors=TRUE) 
+str(testdf)
+```
+
+We will try to understand how to build up a decision tree for this example by just using one variable at a time to model the decision tree. 
+
+First lets take a look at a simple model that uses just `Outlook` to try to predict `Buys`. 
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Buys~Outlook, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Next lets look at a model that uses just `Temp` to try to predict `Buys`:
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Buys~Temp, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+What about if we use just `Humid` to try to predict `Buys`:
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Buys~Humid, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Finally what about if we use `Windy` to try to predict `Buys`:
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
+model <- rpart(Buys~Windy, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+What about if we use both `Temp` and `Outlook` together to predict `Buys`: 
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Temp+Outlook, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+What about if we use both `Temp` and `Humid` together to predict `Buys`: 
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Temp+Humid, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Which of these models above looks best and why? It is not always easy to tell actually!!
+
+Here is a model that uses all the predictors:
+
+```{r}
+control = rpart.control(minsplit=1)
+model <- rpart(Buys~Temp+Humid+Outlook+Windy, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+One nice thing about this model is that all the leaf nodes are "pure" now. That means that one of the numbers that lists the outcomes is 0 each time. That means that node either is all "yes"s or all "no"s. Nothing in the training set is incorrectly predicted by this model. 
+
+## Testing the Decision Tree model using the testing set
+
+Next let's look at some data that we can use as a testing set. This data we will use to evaluate how well the models we looked at above will do when they see "new" data. This gives a better idea of how accurate our model is.   So here is the data we will use as our testing data:     
+
+| Outlook  | Temp | Humid  | Windy | Buys |
+|----------|------|--------|-------|------|
+| sunny    | mild | high   | no    | no   |
+| rainy    | mild | normal | no    | yes  |
+| overcast | mild | high   | no    | yes  |
+| sunny    | mild | normal | yes   | yes  |
+| rainy    | cool | normal | yes   | yes  |
+| sunny    | mild | normal | no    | no   |
+| overcast | hot  | high   | no    | no   |
+| rainy    | cool | normal | no    | yes  |
+
+First we read the test set and look at its structure:
+
+```{r}
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSfQk849ICHKNqacbvmG1PZQiCfGadL2TgeGn9aaCj0-luDgE5fZA9p6dPJj6RDrreXsCc2XYaFOmKU/pub?gid=572053114&single=true&output=csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
+```
+
+And now print out the test set:
+
+```{r}
+print(testdf)
+```
+
+Now we are ready to do some predictions using the test dataframe:
+
+```{r}
+pred <- predict(model, newdata = testdf, type = 'class')
+str(pred)
+```
+
+So `pred` now holds our predictions.
+
+We can now compare those predictions (from our model) with the actual known results from the testing data. Here we are comparing how our model "predicted" on the test data with the "actual" outcomes that were included in the testing data. Here it is important that we know the actual outcomes on the testing data so we can see how we do. 
+
+Lets make a data frame that shows the prediction and the actuals: 
+
+```{r}
+comparedf <- data.frame(predictions=pred, actual=testdf$Buys)
+print(comparedf)
+```
+
+Now one thing we can calculate is the proportion of agreement. This is called the "accuracy" of the model. The accuracy is just 
+
+$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
+
+We can find it by making a vector of logicals: 
+```{r}
+agreement <- (pred == testdf$Buys)
+agreement
+```
+
+Finally using `mean` we can count the number of times the predictions agreed with the actual: 
+
+```{r}
+mean(agreement)
+```
+
+This is called the `accuracy` of the model.

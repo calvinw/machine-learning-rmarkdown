@@ -13,6 +13,8 @@ pages:
   - Rscript -e "install.packages('RCurl')"
   - Rscript -e "install.packages('C50')"
   - Rscript -e "install.packages('rpart')"
+  - Rscript -e "install.packages('rpart.plot')"
+  - Rscript -e "install.packages('readr')"
   - make
   - mkdir .public
   - cp -r *.Rmd *.html *.ipynb *.docx *.pdf *.md .public

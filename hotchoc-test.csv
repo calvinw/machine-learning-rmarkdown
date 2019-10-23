@@ -1,0 +1,9 @@
+Outlook,Temp,Humid,Windy,Buys
+sunny,mild,high,false,no
+rainy,mild,normal,false,yes
+overcast,mild,high,false,yes
+sunny,mild,normal,true,yes
+rainy,cool,normal,true,yes
+sunny,mild,normal,false,no
+overcast,hot,high,false,no
+rainy,cool,normal,false,yes
