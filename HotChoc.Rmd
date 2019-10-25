@@ -61,40 +61,6 @@ Now let's print out the training set to make sure we read it correctly:
 print(traindf)
 ```
 
-```{r, eval=F, include=F}
-# This code allows to write the data as a markdown table and then test it directly. 
-read.md <- function(file = clipr::read_clip(),
-                    delim = '|',
-                    stringsAsFactors = FALSE,
-                    strip.white = TRUE,
-                    ...){
-    if (length(file) > 1) {
-        lines <- file
-    } else if (grepl('\n', file)) {
-        con <- textConnection(file)
-        lines <- readLines(con)
-        close(con)
-    } else {
-        lines <- readLines(file)
-    }
-    lines <- lines[!grepl('^[\\:\\s\\+\\-\\=\\_\\|]*$', lines, perl = TRUE)]
-    lines <- gsub('(^\\s*?\\|)|(\\|\\s*?$)', '', lines)
-    utils::read.delim(text = paste(lines, collapse = '\n'), sep = delim,
-                      stringsAsFactors = stringsAsFactors,
-                      strip.white = strip.white, ...)
-#Put your training data frame here
-train<-'
-'
-traindf<-read.md(train, stringsAsFactors=TRUE)
-str(traindf)
-
-#Put your testing data frame here
-test<-'
-'
-testdf<-read.md(test, stringsAsFactors=TRUE) 
-str(testdf)
-```
-
 We will try to understand how to build up a decision tree for this example by just using one variable at a time to model the decision tree. 
 
 First lets take a look at a simple model that uses just `Outlook` to try to predict `Buys`. 
