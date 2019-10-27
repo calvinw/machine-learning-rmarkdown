@@ -1,5 +1,5 @@
 ---
-title: "Promotions"
+title: "Predicting Demand from Markdowns and Promotions"
 jupyter:
   kernelspec:
     display_name: R
@@ -12,12 +12,14 @@ options("scipen"=100, "digits"=4)
 if(!require("readr")) install.packages("readr")
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
 library("readr")
 library("rpart")
 library("rpart.plot")
+library("Metrics")
 ```
 
-## Building the Regression Tree using the training set
+## Building the Regression Tree with training set
 
 
 First lets take a look at the data we will work with. Suppose we have the following data from 15 months of demand for some product and want to predict the demand based on whether there was a markdown or not and also whether or not there was a promotion.
@@ -85,9 +87,9 @@ print(leaf2)
 Lets look at the mean demand and standard deviation from the entire training set, then compare that to the mean and the standard deviation in each leaf node. The question here is if each leaf node is more pure given that we perform this split on `promotion`. 
 
 ```{r}
-compare<-data.frame( train= c(mean(traindf$demand), sd(traindf$demand), nrow(traindf)), 
-		      leaf1= c(mean(leaf1$demand), sd(leaf1$demand), nrow(leaf1)), 
-		      leaf2= c(mean(leaf2$demand), sd(leaf2$demand), nrow(leaf2)))
+compare<-data.frame(train= c(mean(traindf$demand), sd(traindf$demand), nrow(traindf)), 
+		    leaf1= c(mean(leaf1$demand), sd(leaf1$demand), nrow(leaf1)), 
+		    leaf2= c(mean(leaf2$demand), sd(leaf2$demand), nrow(leaf2)))
 row.names(compare) <- c("mean", "std", "size")
 print(compare)
 ```
@@ -180,22 +182,22 @@ Next let's look at some data that we can use as a testing set. This data we will
 First we read the test set and look at its structure:
 
 ```{r}
-#testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSfQk849ICHKNqacbvmG1PZQiCfGadL2TgeGn9aaCj0-luDgE5fZA9p6dPJj6RDrreXsCc2XYaFOmKU/pub?gid=572053114&single=true&output=csv"
-#testdf<-read.csv(testurl, stringsAsFactors=TRUE)
-#str(testdf)
+testurl<-"promotions-test.csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
 ```
 
 And now print out the test set:
 
 ```{r}
-#print(testdf)
+print(testdf)
 ```
 
 Now we are ready to do some predictions using the test dataframe:
 
 ```{r}
-#pred <- predict(model, newdata = testdf, type = 'class')
-#str(pred)
+pred <- predict(model3, newdata = testdf)
+str(pred)
 ```
 
 So `pred` now holds our predictions.
@@ -205,24 +207,32 @@ We can now compare those predictions (from our model) with the actual known resu
 Lets make a data frame that shows the prediction and the actuals: 
 
 ```{r}
-#comparedf <- data.frame(predictions=pred, actual=testdf$Buys)
-#print(comparedf)
+comparedf <- data.frame(predictions=pred, actual=testdf$demand)
+print(comparedf)
 ```
 
-Now one thing we can calculate is the proportion of agreement. This is called the "accuracy" of the model. The accuracy is just 
-
-$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
-
-We can find it by making a vector of logicals: 
-```{r}
-#agreement <- (pred == testdf$Buys)
-#agreement
-```
-
-Finally using `mean` we can count the number of times the predictions agreed with the actual: 
+Here is the MAE for our predictions:
 
 ```{r}
-#mean(agreement)
+mape(testdf$demand, pred)
+mae(testdf$demand, pred)
+rmse(testdf$demand, pred)
 ```
 
-This is called the `accuracy` of the model.
+For comparison lets do the errors for model1
+
+```{r}
+pred <- predict(model1, newdata = testdf)
+mape(testdf$demand, pred)
+mae(testdf$demand, pred)
+rmse(testdf$demand, pred)
+```
+
+For comparison lets do the errors for model2
+
+```{r}
+pred <- predict(model2, newdata = testdf)
+mape(testdf$demand, pred)
+mae(testdf$demand, pred)
+rmse(testdf$demand, pred)
+```
