@@ -1,0 +1,82 @@
+---
+title: "Measuring Errors"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+We need to look at ways to measure how far off the predictions from our models are from our actuals. One reason we need to do this is that we want to be able to determine what the best model is in machine learning or predictive analtics. When there are several different models possible, which one is the best? This boils down to the one that has the smallest error when run and tested using the testing data set. 
+
+Remember the training data set you use when making the model, but then you test the model using the testing data set. When you test it, you measure its accuracy using one of the calculations below, depending on the kind of model it is and what you are trying to predict.
+
+### Mean Absolute Error (MAE)
+
+Lets find the mean absolute error (MAE) for a prediction and some actuals. This is useful if your prediction is a quantity, like in simple or multiple regression, or for predicting a time series (data where time is the horizontal axis), or some other numerical value:
+
+Lets look at an example. Assume we have a model that we have already made some predictions and now we want to judge how good the predictions are:
+
+```{r}
+predictions <- c(12,23,32,15,22)
+actuals <- c(11,27,30,13,25)
+compare<-data.frame(actuals=actuals,
+                    predictions=predictions)
+compare
+```
+
+We will use the function `mae` from the Metrics package:
+
+```{r}
+mae(actuals, predictions)
+```
+
+This tells us the average error we make by using our model to predict with.   
+
+Here are the details of this calculation by hand so you can see where it comes from:
+
+```{r}
+absError <- abs(predictions - actuals)
+info<-data.frame(actuals=actuals,
+                 predictions=predictions,
+                 absError=absError)
+info
+```
+
+Now we take the mean of the absolute errors:
+
+```{r}
+mean(absError)
+```
+
+### Mean Absolute Percentage Error (MAPE)
+
+Next let's find the mean absolute percentage error (MAPE) for a prediction and some actuals:
+
+```{r}
+mape(actuals, predictions)
+```
+
+```{r}
+absDeviation <- abs(predictions - actuals)
+percentErr<-absDeviation/actuals
+info<-data.frame(actuals=actuals,
+                 predictions=predictions,
+                 absDeviation=absDeviation,
+                 percentErr=round(percentErr,4)
+                 )
+info
+```
+
+Now we take the mean of the percentage errors:
+
+```{r}
+mean(percentErr)
+```
+
+This tells us on average how far off percentage wise the prediction is from the actual (using the actual as base)
