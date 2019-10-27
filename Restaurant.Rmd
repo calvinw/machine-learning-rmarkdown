@@ -87,8 +87,20 @@ Do a prediction for the testing data set using the model above:
 
 ```{r, eval=TRUE}
 pred <- predict(model, newdata = testdf, type = 'class')
+```
+
+Lets print out the predictions:
+
+```{r}
 print(pred)
 ```
+
+Lets compare these with the actuals:
+
+```{r}
+print(testdf$WillWait)
+```
+
 Make the agreement vector and calculate the accuracy which is the mean of the agreement vector:
 
 ```{r}

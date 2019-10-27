@@ -1,0 +1,121 @@
+---
+title: "Bicycle Rentals"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+
+```{r}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+library("readr")
+library("rpart")
+library("rpart.plot")
+```
+## Building a Regression Tree 
+
+So here is the data we have, this will be our training data:
+
+- `Rentals` is our result or outcome
+- `Season`, `Workday` are the predictors
+
+This data is from a bicycle rental shop in different seasons and for different kinds of days (work days vs weekends) This is different from a "classification" situation since we are trying to predict and amount (the number of rentals) rather than a category. But we can still make use of building a tree to do our predictions.
+
+Here is our training set:
+
+Lets read it in:
+
+```{r, eval=T, include=T}
+read.md <- function(file = clipr::read_clip(),
+                    delim = '|',
+                    stringsAsFactors = FALSE,
+                    strip.white = TRUE,
+                    ...){
+    if (length(file) > 1) {
+        lines <- file
+    } else if (grepl('\n', file)) {
+        con <- textConnection(file)
+        lines <- readLines(con)
+        close(con)
+    } else {
+        lines <- readLines(file)
+    }
+    lines <- lines[!grepl('^[\\:\\s\\+\\-\\=\\_\\|]*$', lines, perl = TRUE)]
+    lines <- gsub('(^\\s*?\\|)|(\\|\\s*?$)', '', lines)
+    utils::read.delim(text = paste(lines, collapse = '\n'), sep = delim,
+                      stringsAsFactors = stringsAsFactors,
+                      strip.white = strip.white, ...)
+}
+train<-'
+| ID | Season | WorkDay | Rentals |
+|----|--------|---------|---------|
+| 1  | winter | false   | 800     |
+| 2  | winter | false   | 826     |
+| 3  | winter | true    | 900     |
+| 4  | spring | false   | 2100    |
+| 5  | spring | true    | 4740    |
+| 6  | spring | true    | 4900    |
+| 7  | summer | false   | 3000    |
+| 8  | summer | true    | 5800    |
+| 9  | summer | true    | 6200    |
+| 10 | autumn | false   | 2901    |
+| 11 | autumn | false   | 2880    |
+| 12 | autumn | true    | 2820    |
+'
+traindf<-read.md(train, stringsAsFactors=TRUE)
+str(traindf)
+```
+
+```{r}
+#trainurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0xC0V1WOdTsy8RK5yHOskEbWjXSE9oHh-IvLoJyCNFR-IgchGRcLF-nK0USxC2irKXUJmNdpFwSCw/pub?gid=0&single=true&output=csv"
+#trainurl<-"exams.csv"
+#traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
+#str(traindf)
+```
+
+We are going to model this situation with a decision tree. 
+We will start by just trying to use `Season` to predict the result `Rentals`
+
+```{r}
+control <- rpart.control(minbucket=1)
+model1 <- rpart(Rentals~WorkDay+Season, data=traindf, method="anova", control=control)
+rpart.plot(model1)
+printcp(model1)
+```
+
+We about if we use `WorkDay` but let the tree grow a little:
+
+```{r}
+```
+
+## Testing the Regression Tree model using the testing set
+
+Now lets do some predictions using the test dataframe:
+
+Here we read the test set:
+
+```{r}
+#read the testing set
+#testurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0xC0V1WOdTsy8RK5yHOskEbWjXSE9oHh-IvLoJyCNFR-IgchGRcLF-nK0USxC2irKXUJmNdpFwSCw/pub?gid=289547774&single=true&output=csv"
+#testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+#str(testdf)
+```
+
+Now lets do our predictions:
+
+```{r}
+#pred <- predict(model1, newdata = testdf, type = 'vector')
+```
+
+Lets build a data frame so we can see the predictions and the actuals
+
+```{r}
+#predictionsVsActual <- data.frame(predictions=pred)
+#print(predictionsVsActual)
+```
+
