@@ -1,0 +1,45 @@
+---
+title: "Predicting Pregnancy"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+```{r}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+library("readr")
+library("rpart")
+library("rpart.plot")
+```
+Load the data as a csv file:
+
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSjtQqcKaaobKkhQXaP2b6gcbQkaKJabjPz2k_hfHj2VEqcSW-I0BiCRpz9VkoQgpcylTUNSp1Opt4P/pub?gid=1389299652&single=true&output=csv"
+dfAll<-read.csv(url)
+dt = sample(nrow(dfAll), nrow(dfAll)*.7)
+dftrain<-dfAll[dt,]
+dftest<-dfAll[-dt,]
+```
+
+```{r}
+str(dftrain)
+str(dftest)
+```
+
+```{r}
+control = rpart.control()
+model <- rpart(Pregnant~., data=dftrain, method="class", control=control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Compute the accuracy
+
+```{r}
+pred <- predict(model, newdata = dftest, type = 'class')
+agreement<- (pred == dftest$Pregnant)
+mean(agreement)
+```
