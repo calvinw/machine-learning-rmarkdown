@@ -16,6 +16,16 @@ We need to look at ways to measure how far off the predictions from our models a
 
 Remember the training data set you use when making the model, but then you test the model using the testing data set. When you test it, you measure its accuracy using one of the calculations below, depending on the kind of model it is and what you are trying to predict.
 
+Suppose we have this test dataset:
+
+| actuals | prediction | 
+|---------|------------|
+|     11  |     12     |
+|     27  |     23     |
+|     30  |     32     |
+|     13  |     15     |
+|     25  |     22     |
+
 ### Mean Absolute Error (MAE)
 
 Lets find the mean absolute error (MAE) for a prediction and some actuals. This is useful if your prediction is a quantity, like in simple or multiple regression, or for predicting a time series (data where time is the horizontal axis), or some other numerical value:
