@@ -7,15 +7,16 @@ jupyter:
     name: ir
 ---
 
-```{r}
-#options(repr.plot.width=3, repr.plot.height=3)
+```{r echo=T, results='hide', message=F, warning=F}
 options("scipen"=100, "digits"=4)
 if(!require("readr")) install.packages("readr")
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
 library("readr")
 library("rpart")
 library("rpart.plot")
+library("Metrics")
 ```
 
 ## Building the Decision Tree using the training set
@@ -166,7 +167,7 @@ We can now compare those predictions (from our model) with the actual known resu
 Lets make a data frame that shows the prediction and the actuals: 
 
 ```{r}
-comparedf <- data.frame(predictions=pred, actual=testdf$Buys)
+comparedf <- data.frame(actual=testdf$Buys, predictions=pred)
 print(comparedf)
 ```
 
@@ -174,16 +175,23 @@ Now one thing we can calculate is the proportion of agreement. This is called th
 
 $$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
 
-We can find it by making a vector of logicals: 
+We can find it by using the accuracy function in the `Metrics` package 
 ```{r}
-agreement <- (pred == testdf$Buys)
-agreement
+accuracy(testdf$Buys, pred)
 ```
 
-Finally using `mean` we can count the number of times the predictions agreed with the actual: 
+This is called the `accuracy` of the model. This is the proportion of times that the prediction agreed with the actual in the above.  
+
+We can get some more information by looking at the "confusion matrix"  
 
 ```{r}
-mean(agreement)
+table(actual=testdf$Buys, predictions=pred)
 ```
 
-This is called the `accuracy` of the model.
+- This says that there were 3 actuals that were no, and the model predicted 3 no's
+- There were 2 actuals that were yes, and the model predicted those 2 no's
+- Then there were 3 actuals that were yes, and model predicted those yes
+
+We will look into interpretations of this "confusion matrix:" in the future.
+
+

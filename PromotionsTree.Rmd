@@ -19,7 +19,7 @@ library("rpart.plot")
 library("Metrics")
 ```
 
-## Building the Regression Tree with training set
+## Building the Regression Tree Model 
 
 
 First lets take a look at the data we will work with. Suppose we have the following data from 15 months of demand for some product and want to predict the demand based on whether there was a markdown or not and also whether or not there was a promotion.
@@ -31,9 +31,9 @@ So here is the data we have, this will be our training data:
 | yes      | yes       | 74     |
 | no       | no        | 23     |
 | yes      | yes       | 61     |
-| yes      | yes       | 74     |
+| yes      | yes       | 59     |
 | no       | no        | 25     |
-| yes      | yes       | 61     |
+| yes      | yes       | 63     |
 | no       | yes       | 54     |
 | yes      | no        | 42     |
 | no       | yes       | 55     |
@@ -52,7 +52,8 @@ We hope that these predictors will help up predict the `demand`.
 To start we read the training data above from a csv file and print out its structore:
 
 ```{r}
-trainurl<-"promotions.csv"
+#trainurl<-"promotions.csv"
+trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTT6LcnhxE-mij5m5HHdLZ77YB1_teFiPUrM2uyafkGMUHs-zSKgylLnvgEOleRCB6jatqV1JjAczkp/pub?gid=0&single=true&output=csv"
 traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
 str(traindf)
 ```
@@ -175,14 +176,15 @@ model3 <- rpart(demand~markdown+promotion, data=traindf, method="anova", control
 rpart.plot(model3, type=4, extra=101)
 ```
 
-## Testing the Decision Tree model using the testing set
+## Testing the Regression Tree 
 
 Next let's look at some data that we can use as a testing set. This data we will use to evaluate how well the models we looked at above will do when they see "new" data. This gives a better idea of how accurate our model is.   So here is the data we will use as our testing data:     
 
 First we read the test set and look at its structure:
 
 ```{r}
-testurl<-"promotions-test.csv"
+# testurl<-"promotions-test.csv"
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTT6LcnhxE-mij5m5HHdLZ77YB1_teFiPUrM2uyafkGMUHs-zSKgylLnvgEOleRCB6jatqV1JjAczkp/pub?gid=1414619388&single=true&output=csv"
 testdf<-read.csv(testurl, stringsAsFactors=TRUE)
 str(testdf)
 ```
@@ -192,6 +194,8 @@ And now print out the test set:
 ```{r}
 print(testdf)
 ```
+
+### Testing `demand~markdown+promotion`
 
 Now we are ready to do some predictions using the test dataframe:
 
@@ -219,6 +223,8 @@ mae(testdf$demand, pred)
 rmse(testdf$demand, pred)
 ```
 
+### Testing `demand~promotion`
+
 Here is the actual and the predicted for model1: 
 
 ```{r}
@@ -234,6 +240,8 @@ mape(testdf$demand, pred)
 mae(testdf$demand, pred)
 rmse(testdf$demand, pred)
 ```
+
+### Testing `demand~markdown`
 
 Here is the actual and the predicted for model2: 
 

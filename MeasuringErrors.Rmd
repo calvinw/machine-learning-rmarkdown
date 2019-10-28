@@ -7,7 +7,7 @@ jupyter:
     name: ir
 ---
 
-```{r}
+```{r echo=T, results='hide', message=F, warning=F}
 if (!require("Metrics")) install.packages("Metrics")
 library("Metrics")
 ```
@@ -80,3 +80,34 @@ mean(percentErr)
 ```
 
 This tells us on average how far off percentage wise the prediction is from the actual (using the actual as base)
+
+### Root Mean Square Error (RMSE)
+
+This is an error measure that involves averaging the squares of the errors and then taking a square root: 
+
+
+```{r}
+rmse(actuals, predictions)
+```
+
+```{r}
+
+deviations<-predictions - actuals
+squaredDeviations <- deviations^2
+info<-data.frame(actuals=actuals,
+                 predictions=predictions,
+                 deviations=deviations,
+                 squaredDeviations=squaredDeviations)
+info
+```
+
+Now we take the mean of the percentage errors:
+
+```{r}
+sqrt(mean(squaredDeviations))
+```
+
+This gives us a typical size of an error or distance away the set of predictions is from the actual. This error has the property of that it penalizes large errors more.
+
+So for example if being off by 10 is more than twice as bad as being off by 5, use the RMSE. If being off by 10 is just twice as bad as being off by 5, then use MAE.
+
