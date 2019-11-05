@@ -1,0 +1,131 @@
+---
+title: "Predicting TShirt Size"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("class")) install.packages("class")
+if(!require("Metrics")) install.packages("Metrics")
+library("readr")
+library("Metrics")
+library("class")
+```
+
+## Predicting TShirt Size using KNN 
+
+
+First lets take a look at the data we will work with. 
+
+So here is the data we have, this will be our training data:
+
+- `Size` is our result or outcome
+- `Height`, `Weight` are the predictors
+
+We hope that we can predict the T Shirt size from the Height and Weight:   
+
+| Height | Weight | Size |
+|--------|--------|------|
+| 158    | 59     | M    |
+| 160    | 59     | M    |
+| 160    | 60     | M    |
+| 163    | 61     | M    |
+| 160    | 64     | L    |
+| 165    | 61     | L    |
+| 165    | 62     | L    |
+| 168    | 62     | L    |
+| 168    | 63     | L    |
+| 170    | 63     | L    |
+| 170    | 68     | L    |
+
+```{r}
+trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQb1-HxaC0FoyX5qGgAqcYRIVS5eZqwwfnECQucfqZ-Kn-65Pdacy80UX4K2AAJQH0WwgPd_OH_6Y7d/pub?gid=0&single=true&output=csv"
+traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
+str(traindf)
+```
+Now let's print out the training set to make sure we read it correctly:
+
+```{r}
+print(traindf)
+```
+
+Lets take a look at the data as well:
+
+```{r}
+plot(traindf$Height, traindf$Weight, col=traindf$Size, pch=19, xlim=c(155,175), ylim=c(55,70))
+```
+
+We also need a testing data set so here it is:
+
+| Height | Weight | Size |
+|--------|--------|------|
+| 158    | 58     | M    |
+| 158    | 63     | M    |
+| 163    | 60     | M    |
+| 163    | 64     | L    |
+| 165    | 65     | L    |
+| 168    | 66     | L    |
+| 170    | 64     | L    |
+
+```{r}
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQb1-HxaC0FoyX5qGgAqcYRIVS5eZqwwfnECQucfqZ-Kn-65Pdacy80UX4K2AAJQH0WwgPd_OH_6Y7d/pub?gid=15577345&single=true&output=csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
+```
+
+```{r}
+print(testdf)
+```
+
+Now lets extract the last column of the train dataset since we need it as the 'cl' argument in the knn function. We also remove the `Shirt` column from the data frames since knn expects the dataframes to have no result columns 
+
+```{r}
+train_target <- traindf[,3]
+traindf$Size <- NULL
+
+test_target <- testdf[,3]
+testdf$Size <- NULL
+
+set.seed(1234)
+prediction<-knn(traindf,testdf, cl=train_target, k=1)
+str(prediction)
+print(prediction)
+```
+
+```{r}
+testdf$Size <- test_target
+testdf$Prediction <- prediction
+print(testdf)
+```
+
+```{r}
+table(prediction=prediction,actual=test_target)
+accuracy(test_target, prediction)
+```
+
+```{r}
+height<-testdf$Height
+weight<-testdf$Weight
+plot(traindf$Height, 
+     traindf$Weight, 
+     col=train_target, 
+     pch=19, 
+     xlab="Height (cms)",
+     ylab="Weight (kgs)",
+     xlim=c(155,175), 
+     ylim=c(55,70))
+points(height[3], 
+       weight[3], 
+       pch=19, 
+       col="blue")
+points(height[2], 
+       weight[2], 
+       pch=19, 
+       col="orange")
+```
+

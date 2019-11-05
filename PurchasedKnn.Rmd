@@ -1,0 +1,152 @@
+---
+title: "Purchased Knn"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("knitr")) install.packages("knitr")
+if(!require("Metrics")) install.packages("Metrics")
+if(!require("class")) install.packages("class")
+library("readr")
+library("Metrics")
+library("class")
+library("knitr")
+knitr::opts_chunk$set(fig.width=5, fig.height=5)
+normalize <- function(x) {
+    return ( (x-min(x))/(max(x)-min(x)) )
+}
+```
+
+## Using Knn to decide if customer will Purchase based on email ad. 
+
+So here is the data we have, this will be our training data:
+
+- `Purchased` is our result or outcome
+- `Salary`, `Age` are the predictors
+
+This data is about what kinds of customers responded to an email add offering a special deal on a product. Were they high salary or low salary and what about their age? We would like to know if `Salary` and `Age` of the customer can predict whether they bought an item based on the offer they got.
+
+Here is our training set:
+
+| Salary | Age | Purchased |
+|--------|-----|-----------|
+| 53700  | 41  | no        |
+| 65300  | 37  | no        |
+| 48900  | 45  | yes       |
+| 64800  | 49  | yes       |
+| 69200  | 30  | yes       |
+| 55900  | 57  | yes       |
+| 48600  | 26  | no        |
+| 72000  | 60  | yes       |
+| 45300  | 34  | no        |
+| 69000  | 32  | yes       |
+| 73200  | 52  | yes       |
+
+Lets read it in:
+
+```{r}
+trainurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=0&single=true&output=csv"
+traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
+str(traindf)
+```
+
+```{r}
+print(traindf)
+```
+
+```{r}
+plot(traindf$Salary, traindf$Age, col=traindf$Purchased, 
+     pch=19,
+     xlab="Salary",
+     ylab="Age",
+     xlim=c(40000,80000), ylim=c(20,70))
+```
+
+We are going to model this situation using Knn.
+
+Here we read the test set:
+
+| Salary | Age | Purchased |
+|--------|-----|-----------|
+| 53900  | 45  | yes       |
+| 64800  | 49  | yes       |
+| 50000  | 32  | no        |
+| 55900  | 57  | yes       |
+| 55600  | 29  | no        |
+| 60000  | 25  | yes       |
+
+```{r}
+#read the testing set
+testurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=572053114&single=true&output=csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
+```
+
+```{r}
+print(testdf)
+```
+
+Now lets extract the last column of the train dataset since we need it as the 'cl' argument in the knn function. We also remove the `Shirt` column from the data frames since knn expects the dataframes to have no result columns 
+
+```{r}
+train_target <- traindf$Purchased 
+traindf$Purchased <- NULL
+
+test_target <- testdf$Purchased
+testdf$Purchased <- NULL
+
+traindf_n <- as.data.frame(lapply(traindf, normalize))
+testdf_n <- as.data.frame(lapply(testdf, normalize))
+
+set.seed(1234)
+prediction<-knn(traindf_n,testdf_n, cl=train_target, k=4)
+str(prediction)
+print(prediction)
+```
+
+```{r}
+testdf$Purchased <- test_target
+testdf$Prediction <- prediction
+print(testdf)
+```
+
+```{r}
+table(prediction=prediction,actual=test_target)
+accuracy(test_target, prediction)
+```
+
+```{r}
+salary<-normalize(testdf$Salary)
+age<-normalize(testdf$Age)
+plot(traindf_n$Salary, 
+     traindf_n$Age, 
+     col=train_target, 
+     pch=19, 
+     xlab="Salary",
+     ylab="Age")
+points(salary[1], 
+       age[1], 
+       pch=19, 
+       col="blue")
+```
+
+```{r}
+salary<-normalize(testdf$Salary)
+age<-normalize(testdf$Age)
+plot(traindf_n$Salary, 
+     traindf_n$Age, 
+     col=train_target, 
+     pch=19, 
+     xlab="Salary",
+     ylab="Age")
+points(salary[2], 
+       age[2], 
+       pch=19, 
+       col="blue")
+```

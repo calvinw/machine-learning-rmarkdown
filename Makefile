@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 SOURCES =$(shell find . -name "*.Rmd")
-#SOURCES = PromotionsTree.Rmd
+#SOURCES =PurchasedKnn.Rmd
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
@@ -16,6 +16,7 @@ export PATH :=.:/bin:/usr/bin:$(PATH)
 
 all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
 	@echo All files are now up to date
+	rm -rf *_files figure
 
 clean :
 	@echo Removing html, md, pdf, docx files...	
@@ -52,7 +53,8 @@ server:
 watch:
 	@echo Watching .Rmd files...	
 	@echo Will call make on changes...	
-	while true; do ls *.Rmd | entr make -j1 SERVER=yes; done
+	while true; do ls *.Rmd | entr make -j1; done
+	
 
 nodeapp: 
 	@echo Launching app.js 
