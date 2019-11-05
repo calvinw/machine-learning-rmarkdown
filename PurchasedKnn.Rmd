@@ -23,14 +23,14 @@ normalize <- function(x) {
 }
 ```
 
-## Using Knn to decide if customer will Purchase based on email ad. 
+## Using Knn to decide if customer will Purchase based on email ad campaign 
 
 So here is the data we have, this will be our training data:
 
 - `Purchased` is our result or outcome
 - `Salary`, `Age` are the predictors
 
-This data is about what kinds of customers responded to an email add offering a special deal on a product. Were they high salary or low salary and what about their age? We would like to know if `Salary` and `Age` of the customer can predict whether they bought an item based on the offer they got.
+This data is about what kinds of customers responded to an email ad offering a special deal on a product. Were they high salary or low salary and what about their age? We would like to know if `Salary` and `Age` of the customer can predict whether they bought an item based on the offer they received.
 
 Here is our training set:
 
@@ -56,9 +56,13 @@ traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
 str(traindf)
 ```
 
+Lets print it out to make sure it looks okay:
+
 ```{r}
 print(traindf)
 ```
+
+Lets take a look at a graph of the two predictors:
 
 ```{r}
 plot(traindf$Salary, traindf$Age, col=traindf$Purchased, 
@@ -68,9 +72,11 @@ plot(traindf$Salary, traindf$Age, col=traindf$Purchased,
      xlim=c(40000,80000), ylim=c(20,70))
 ```
 
-We are going to model this situation using Knn.
+We are going to model this situation using Knn (K nearest neighbors):
 
-Here we read the test set:
+Knn needs both the training and the test set passed to it:
+
+Here is our test set:
 
 | Salary | Age | Purchased |
 |--------|-----|-----------|
@@ -81,6 +87,8 @@ Here we read the test set:
 | 55600  | 29  | no        |
 | 60000  | 25  | yes       |
 
+Lets read it in:
+
 ```{r}
 #read the testing set
 testurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=572053114&single=true&output=csv"
@@ -88,27 +96,42 @@ testdf<-read.csv(testurl, stringsAsFactors=TRUE)
 str(testdf)
 ```
 
+Lets print it out:
+
 ```{r}
 print(testdf)
 ```
 
-Now lets extract the last column of the train dataset since we need it as the 'cl' argument in the knn function. We also remove the `Shirt` column from the data frames since knn expects the dataframes to have no result columns 
+Now lets extract the last column of the training dataset since we need it as the 'cl' argument in the knn function. We also remove the `Shirt` column from the data frames since knn expects the dataframes to have no result columns. 
 
 ```{r}
 train_target <- traindf$Purchased 
 traindf$Purchased <- NULL
 
+print(traindf)
+
 test_target <- testdf$Purchased
 testdf$Purchased <- NULL
+```
 
+Now before we run the Knn algorithm, we need to normalize (or rescale) the predictors:
+
+```{r}
 traindf_n <- as.data.frame(lapply(traindf, normalize))
 testdf_n <- as.data.frame(lapply(testdf, normalize))
+print(traindf_n)
+```
 
+Notice how the predictors are all normalized into the range 0.0 to 1.0
+
+```{r}
 set.seed(1234)
 prediction<-knn(traindf_n,testdf_n, cl=train_target, k=4)
 str(prediction)
 print(prediction)
 ```
+
+We put the actuals and predictions back into the testdf so we can check the accuracy:
 
 ```{r}
 testdf$Purchased <- test_target
