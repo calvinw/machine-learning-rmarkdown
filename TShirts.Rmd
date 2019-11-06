@@ -8,6 +8,7 @@ jupyter:
 ---
 
 ```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=4, repr.plot.height=4)
 options("scipen"=100, "digits"=4)
 if(!require("readr")) install.packages("readr")
 if(!require("knitr")) install.packages("knitr")
@@ -17,7 +18,7 @@ library("readr")
 library("Metrics")
 library("class")
 library("knitr")
-knitr::opts_chunk$set(fig.width=5, fig.height=5)
+knitr::opts_chunk$set(fig.width=4, fig.height=4)
 normalize <- function(x) {
     return ( (x-min(x))/(max(x)-min(x)) )
 }
@@ -131,14 +132,14 @@ Now lets examine the 1st data value in the test set:
 ```{r}
 plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
 points(normHeight[1], normWeight[1], pch=19, col="blue")
-testdf[1,]
+print(testdf[1,])
 ```
 Here is the 2nd data value in the testing set:
 
 ```{r}
 plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
 points(normHeight[2], normWeight[2], pch=19, col="blue")
-testdf[2,]
+print(testdf[2,])
 ```
 
 Here is the 3rd data value in the testing set:
@@ -146,7 +147,7 @@ Here is the 3rd data value in the testing set:
 ```{r}
 plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
 points(normHeight[3], normWeight[3], pch=19, col="blue")
-testdf[3,]
+print(testdf[3,])
 ```
 
 Here is the 4rd data value in the testing set:
@@ -154,7 +155,7 @@ Here is the 4rd data value in the testing set:
 ```{r}
 plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
 points(normHeight[4], normWeight[4], pch=19, col="blue")
-testdf[4,]
+print(testdf[4,])
 ```
 
 Here is the 5rd data value in the testing set:
@@ -162,5 +163,5 @@ Here is the 5rd data value in the testing set:
 ```{r}
 plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
 points(normHeight[5], normWeight[5], pch=19, col="blue")
-testdf[5,]
+print(testdf[5,])
 ```
