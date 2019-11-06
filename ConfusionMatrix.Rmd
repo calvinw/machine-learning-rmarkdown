@@ -1,0 +1,146 @@
+---
+title: "Confusion Matrix"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+###  Predictions and Actuals 
+
+Suppose we had a machine learning model, which was predicting a category like `yes` or `no` based on some predictors. For example the data might be this:     
+
+-  5 were predicted yes and they were actually yes 
+-  4  were predicted no and they were actually no 
+-  2  were predicted yes and they were actually no 
+-  1  were predicted no and they were actually yes 
+
+We can represent that in a table called a "confusion matrix" as follows:   
+
+| 		     | Actual Yes     | Actual No                  |
+|--------------------|----------------|----------------------------|
+|  **Predicted Yes** |  5             |  2                         |
+|  **Predicted No**  |  1             |  4                         |
+
+The different parts of this table have the following terms that go with them:
+
+| 		     | Actual Yes     | Actual No                  |
+|--------------------|----------------|----------------------------|
+|  **Predicted Yes** | True Positive  |  False  Positive           |
+|  **Predicted No**  | False Negative |  True  Negative            |
+
+-  __True Positive__ -- Predicted _positive_ and was actually _positive_
+-  __True Negative__ -- Predicted _negative_ and was actually _negative_ 
+-  __False Positive__ -- Predicted _positive_ and was actually _negative_
+-  __False Negative__ -- Predicted _negative_ and was actually _positive_ 
+
+Here are some abbreviations for these:
+
+| 		     | Actual Yes     | Actual No                  |
+|--------------------|----------------|----------------------------|
+|  **Predicted Yes** | TP             |  FP                        |
+|  **Predicted No**  | FN             |  TN                        |
+
+With this notation here are some things that help keep the interpretations clear:
+
+- T represents correctly classified
+- F represents incorrectly classified
+- P means it was predicted positive
+- N means it was predicted negative
+- TP and TN are correctly classified
+- FN and FP are misclassified
+
+### Accuracy 
+
+Accuracy is the idea of the proportion of correct predictions out of all predictions:
+
+We can find the accuracy from this table as follows:
+
+$$ accuracy = (TP+TN)/(TP+TN+FP+FN) $$
+
+Lets do the calculations with R.    
+
+First lets print out the actuals and the predicted as dataframe just to see what we havee:
+
+```{r}
+actuals   <- factor(c(T,F,T,F,T,T,T,F,T,F,T,F), levels=c(T,F))
+predicted <- factor(c(T,T,T,F,F,T,F,F,T,F,T,F), levels=c(T,F))
+df<- data.frame(predicted, actuals)
+df
+```
+
+Then we can compute the accuracy as follows using the `accuracy` function:
+
+```{r}
+accuracy(predicted, actuals)
+```
+
+Then we can compute the confusion matrix as follows:
+
+```{r}
+table(df)
+```
+
+### Identifying TP, TN, FP, and FN 
+
+Now lets try an example and see if we can identify "true positives", "true negatives", "false positives" and "false negatives".
+
+Picture 165 people standing in a line. Each person walks up to you, and you either predict "you have the disease" or "you don't have the disease". In reality, each person either has the disease or does not have the disease.
+
+Identify each of the following situations:
+
+- If you tell someone "you have the disease" and they don't have it. That's what happened with 10 of the people.
+- If you tell someone "you don't have the disease" and they don't have it. That's what happened with 50 people.
+- If you tell someone "you don't have the disease" and they do have it. That's what happened with 5 people.
+- If you tell someone "you have the disease" and they do have the disease. That's what happened with 100 of the people.
+
+| 		           | Has Disease | Doesn't Have |
+|--------------------------|-------------|--------------|
+|  **Predict Has Disease** |    ???      |     ???      |
+|  **Predict Doesn't Have**|    ???      |     ???      |
+
+### Sensitivity (True Positive Rate)
+
+If something is actually positive, how good is the classifier at predicting yes? 
+
+$$ sensitivity = TP/(FN+TP) $$   
+
+Example of when you want high sensitivity (want FN kept to minimum):
+classifying disease
+
+- TP Predict has disease and actually has disease
+- FN Predict doesnt have disease but actually has disease (this is bad)
+
+| 		           | Has Disease   | Doesn't                    |
+|--------------------------|---------------|----------------------------|
+|  **Predict Has Disease** |               |  Not so bad                |
+|  **Predict Doesn't**     |  This is bad  |                            |
+
+Note in this case: FP Predict does have disease but actually doesnt 
+
+### Specificity (True Negative Rate)
+
+If something is actually negative, how good is the classifier at predicting no? 
+
+$$ specificity = TN/(FP+TN) $$   
+
+Example of when you want high specifity (want FP kept to minimum):
+spam filter   
+
+- TN Predicted Not Spam and actually not Spam (goes to inbox)
+- FP Predicted Spam but Not Spam (goes in Spam box ...this is bad)
+
+Note in this case: FN Predict not Spam but actually is Spam (goes to inbox) 
+
+| 		      | Spam           | Not Spam                   |
+|---------------------|----------------|----------------------------|
+|  **Predicted Spam** |                |  This is bad               |
+|  **Predicted Not**  | Not so bad     |                            |
+
+

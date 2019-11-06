@@ -1,0 +1,71 @@
+---
+title: "Customer Satisfaction and Loyalty"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+library("readr")
+```
+This example comes from here: [Using Cluster Analysis for Market Segmentation](https://www.segmentationstudyguide.com/using-cluster-analysis-for-market-segmentation/)
+
+In this case there is no prediction made for the data. This is an example of "unsupervised" machine learning.
+
+Lets read in the data:
+
+```{r}
+url<-"cust-satisf-loyalty.csv"
+df<-read.csv(url, stringsAsFactors=TRUE)
+str(df)
+print(df)
+```
+Lets see a plot of the data as well:
+
+```{r}
+plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", xlim=c(0,100), ylim=c(0,100))
+```
+
+Here is the setup from that website:
+
+>Let’s assume that we have customer satisfaction (CSAT) scores of 1 to 99 (where 1 = very dissatisfied and 90 = very satisfied). And we have similar scores for the customer’s level of loyalty (1 = high switcher-low loyalty and 99 = non-switcher-high loyalty).
+
+Lets cluster into 3 clusters:
+
+```{r}
+set.seed(1)
+model<-kmeans(df,3)
+print(model)
+```
+
+```{r}
+plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
+print(model$cluster)
+```
+
+Lets cluster into 2 clusters:
+
+```{r}
+set.seed(1)
+model<-kmeans(df,2)
+plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
+```
+Lets cluster into 4 clusters:
+
+```{r}
+set.seed(1)
+model<-kmeans(df,4)
+plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
+```
+
+Lets cluster into 5 clusters:
+
+```{r}
+set.seed(1)
+model<-kmeans(df,5)
+plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
+```

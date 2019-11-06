@@ -1,6 +1,5 @@
 SHELL:=/bin/bash
 SOURCES =$(shell find . -name "*.Rmd")
-#SOURCES = PromotionsTree.Rmd
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
