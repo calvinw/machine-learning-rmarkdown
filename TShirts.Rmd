@@ -10,11 +10,17 @@ jupyter:
 ```{r echo=T, results='hide', message=F, warning=F}
 options("scipen"=100, "digits"=4)
 if(!require("readr")) install.packages("readr")
-if(!require("class")) install.packages("class")
+if(!require("knitr")) install.packages("knitr")
 if(!require("Metrics")) install.packages("Metrics")
+if(!require("class")) install.packages("class")
 library("readr")
 library("Metrics")
 library("class")
+library("knitr")
+knitr::opts_chunk$set(fig.width=5, fig.height=5)
+normalize <- function(x) {
+    return ( (x-min(x))/(max(x)-min(x)) )
+}
 ```
 
 ## Predicting TShirt Size using KNN 
@@ -85,17 +91,21 @@ print(testdf)
 Now lets extract the last column of the train dataset since we need it as the 'cl' argument in the knn function. We also remove the `Shirt` column from the data frames since knn expects the dataframes to have no result columns 
 
 ```{r}
-train_target <- traindf[,3]
+train_target <- traindf$Size
 traindf$Size <- NULL
 
-test_target <- testdf[,3]
+test_target <- testdf$Size 
 testdf$Size <- NULL
 
+traindf_n <- as.data.frame(lapply(traindf, normalize))
+testdf_n <- as.data.frame(lapply(testdf, normalize))
+
 set.seed(1234)
-prediction<-knn(traindf,testdf, cl=train_target, k=1)
-str(prediction)
+prediction<-knn(traindf_n,testdf_n, cl=train_target, k=3)
 print(prediction)
 ```
+
+We put the actuals and predictions back into the test data frame so we can check accuracy:
 
 ```{r}
 testdf$Size <- test_target
@@ -103,29 +113,54 @@ testdf$Prediction <- prediction
 print(testdf)
 ```
 
+Here is the confusion matrix and the accuracy:
+
 ```{r}
 table(prediction=prediction,actual=test_target)
 accuracy(test_target, prediction)
 ```
 
+First we normalize the predictors for those test values:
+
 ```{r}
-height<-testdf$Height
-weight<-testdf$Weight
-plot(traindf$Height, 
-     traindf$Weight, 
-     col=train_target, 
-     pch=19, 
-     xlab="Height (cms)",
-     ylab="Weight (kgs)",
-     xlim=c(155,175), 
-     ylim=c(55,70))
-points(height[3], 
-       weight[3], 
-       pch=19, 
-       col="blue")
-points(height[2], 
-       weight[2], 
-       pch=19, 
-       col="orange")
+normHeight<-normalize(testdf_n$Height)
+normWeight<-normalize(testdf_n$Weight)
+```
+Now lets examine the 1st data value in the test set:
+
+```{r}
+plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
+points(normHeight[1], normWeight[1], pch=19, col="blue")
+testdf[1,]
+```
+Here is the 2nd data value in the testing set:
+
+```{r}
+plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
+points(normHeight[2], normWeight[2], pch=19, col="blue")
+testdf[2,]
 ```
 
+Here is the 3rd data value in the testing set:
+
+```{r}
+plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
+points(normHeight[3], normWeight[3], pch=19, col="blue")
+testdf[3,]
+```
+
+Here is the 4rd data value in the testing set:
+
+```{r}
+plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
+points(normHeight[4], normWeight[4], pch=19, col="blue")
+testdf[4,]
+```
+
+Here is the 5rd data value in the testing set:
+
+```{r}
+plot(traindf_n$Height, traindf_n$Weight, col=train_target, pch=19, xlab="Height", ylab="Weight", xaxt='n', yaxt='n') 
+points(normHeight[5], normWeight[5], pch=19, col="blue")
+testdf[5,]
+```

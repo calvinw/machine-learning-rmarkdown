@@ -23,7 +23,7 @@ normalize <- function(x) {
 }
 ```
 
-## Using Knn to decide if customer will Purchase based on email ad campaign 
+## Using Knn to predict will Purchase
 
 So here is the data we have, this will be our training data:
 
@@ -72,6 +72,8 @@ plot(traindf$Salary, traindf$Age, col=traindf$Purchased,
      xlim=c(40000,80000), ylim=c(20,70))
 ```
 
+Red dots represent "yes" and black dots represent "no"
+
 We are going to model this situation using Knn (K nearest neighbors):
 
 Knn needs both the training and the test set passed to it:
@@ -85,7 +87,7 @@ Here is our test set:
 | 50000  | 32  | no        |
 | 55900  | 57  | yes       |
 | 55600  | 29  | no        |
-| 60000  | 25  | yes       |
+| 60000  | 25  | no        |
 
 Lets read it in:
 
@@ -102,19 +104,21 @@ Lets print it out:
 print(testdf)
 ```
 
-Now lets extract the last column of the training dataset since we need it as the 'cl' argument in the knn function. We also remove the `Shirt` column from the data frames since knn expects the dataframes to have no result columns. 
+Now lets extract the last column of the training dataset since we need it as the 'cl' argument in the knn function. We also remove the `Purchased` column from both the training and the testing data frames since knn expects these both to have no result column. 
+
+Before we remove it from each dataframe though we save it in a vector:   
 
 ```{r}
 train_target <- traindf$Purchased 
 traindf$Purchased <- NULL
 
-print(traindf)
-
 test_target <- testdf$Purchased
 testdf$Purchased <- NULL
+
+print(traindf)
 ```
 
-Now before we run the Knn algorithm, we need to normalize (or rescale) the predictors:
+Now before we run the Knn algorithm, we need to normalize (or rescale) the predictors.  The following code normalizes both the predictor columns in the each of our dataframes:
 
 ```{r}
 traindf_n <- as.data.frame(lapply(traindf, normalize))
@@ -124,14 +128,15 @@ print(traindf_n)
 
 Notice how the predictors are all normalized into the range 0.0 to 1.0
 
+Next we call the knn method, which creates the model using the training data, then does predictions for the testing data, and returns the predictions all at once. You must also pass a k value to tell the method how many "nearest neighbors" to use for the model.   
+
 ```{r}
 set.seed(1234)
-prediction<-knn(traindf_n,testdf_n, cl=train_target, k=4)
-str(prediction)
+prediction<-knn(traindf_n, testdf_n, cl=train_target, k=3)
 print(prediction)
 ```
 
-We put the actuals and predictions back into the testdf so we can check the accuracy:
+We put the actuals and predictions back into the test data frame so we can check accuracy:
 
 ```{r}
 testdf$Purchased <- test_target
@@ -139,37 +144,62 @@ testdf$Prediction <- prediction
 print(testdf)
 ```
 
+Here is the confusion matrix and the accuracy:
+
 ```{r}
 table(prediction=prediction,actual=test_target)
 accuracy(test_target, prediction)
 ```
 
-```{r}
-salary<-normalize(testdf$Salary)
-age<-normalize(testdf$Age)
-plot(traindf_n$Salary, 
-     traindf_n$Age, 
-     col=train_target, 
-     pch=19, 
-     xlab="Salary",
-     ylab="Age")
-points(salary[1], 
-       age[1], 
-       pch=19, 
-       col="blue")
-```
+Lets look at some plots of the test data values.    
+
+First we normalize the predictors for those test values:
 
 ```{r}
-salary<-normalize(testdf$Salary)
-age<-normalize(testdf$Age)
-plot(traindf_n$Salary, 
-     traindf_n$Age, 
-     col=train_target, 
-     pch=19, 
-     xlab="Salary",
-     ylab="Age")
-points(salary[2], 
-       age[2], 
-       pch=19, 
-       col="blue")
+normSalary<-normalize(testdf_n$Salary)
+normAge<-normalize(testdf_n$Age)
 ```
+Now lets examine the 1st data value in the test set:
+
+```{r}
+plot(traindf_n$Salary, traindf_n$Age, col=train_target, pch=19, xlab="Salary", ylab="Age", xaxt='n', yaxt='n') 
+points(normSalary[1], normAge[1], pch=19, col="blue")
+testdf[1,]
+```
+Here is the 2nd data value in the testing set:
+
+```{r}
+plot(traindf_n$Salary, traindf_n$Age, col=train_target, pch=19, xlab="Salary", ylab="Age", xaxt='n', yaxt='n') 
+points(normSalary[2], normAge[2], pch=19, col="blue")
+testdf[2,]
+```
+Here is the 3nd data value in the testing set:
+
+```{r}
+plot(traindf_n$Salary, traindf_n$Age, col=train_target, pch=19, xlab="Salary", ylab="Age", xaxt='n', yaxt='n') 
+points(normSalary[3], normAge[3], pch=19, col="blue")
+testdf[3,]
+```
+Here is the 4th data value in the testing set:
+
+```{r}
+plot(traindf_n$Salary, traindf_n$Age, col=train_target, pch=19, xlab="Salary", ylab="Age", xaxt='n', yaxt='n') 
+points(normSalary[4], normAge[4], pch=19, col="blue")
+testdf[4,]
+```
+Here is the 5th data value in the testing set:
+
+```{r}
+plot(traindf_n$Salary, traindf_n$Age, col=train_target, pch=19, xlab="Salary", ylab="Age", xaxt='n', yaxt='n') 
+points(normSalary[5], normAge[5], pch=19, col="blue")
+testdf[5,]
+```
+
+Here is the 6th data value in the testing set:
+
+```{r}
+plot(traindf_n$Salary, traindf_n$Age, col=train_target, pch=19, xlab="Salary", ylab="Age", xaxt='n', yaxt='n') 
+points(normSalary[6], normAge[6], pch=19, col="blue")
+testdf[6,]
+```
+

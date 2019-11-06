@@ -136,7 +136,7 @@ Here we read the test set:
 | 50000  | 32  | no        |
 | 55900  | 57  | yes       |
 | 55600  | 29  | no        |
-| 60000  | 25  | yes       |
+| 60000  | 25  | no        |
 
 ```{r}
 #read the testing set
