@@ -98,12 +98,14 @@ Identify each of the following situations:
 - If you tell someone "you have the disease" and they don't have it. That's what happened with 10 of the people.
 - If you tell someone "you don't have the disease" and they don't have it. That's what happened with 50 people.
 - If you tell someone "you don't have the disease" and they do have it. That's what happened with 5 people.
-- If you tell someone "you have the disease" and they do have the disease. That's what happened with 100 of the people.
+- If you tell someone "you have the disease" and they do have the disease. That's what happened with 100 of the people.        
 
-| 		           | Has Disease | Doesn't Have |
-|--------------------------|-------------|--------------|
-|  **Predict Has Disease** |    ???      |     ???      |
-|  **Predict Doesn't Have**|    ???      |     ???      |
+Fill in the following:   
+
+| 		           | Has Disease | Doesnt Have |
+|--------------------------|-------------|-------------|
+|  **Predict Has Disease** |     ???     |   ???       |
+|  **Predict Doesnt Have** |     ???     |   ???       |
 
 ### Sensitivity (True Positive Rate)
 
@@ -115,14 +117,16 @@ Example of when you want high sensitivity (want FN kept to minimum):
 classifying disease
 
 - TP Predict has disease and actually has disease
-- FN Predict doesnt have disease but actually has disease (this is bad)
+- FN Predict doesnt have disease but actually has disease (this is bad)     
 
-| 		           | Has Disease   | Doesn't                    |
+Here is the confusion matix for this example:   
+
+| 		           | Has Disease   | Doesnt                    |
 |--------------------------|---------------|----------------------------|
 |  **Predict Has Disease** |               |  Not so bad                |
 |  **Predict Doesn't**     |  This is bad  |                            |
 
-Note in this case: FP Predict does have disease but actually doesnt 
+Note in this case: FP means predicted to have disease but actually doesnt 
 
 ### Specificity (True Negative Rate)
 
@@ -136,11 +140,11 @@ spam filter
 - TN Predicted Not Spam and actually not Spam (goes to inbox)
 - FP Predicted Spam but Not Spam (goes in Spam box ...this is bad)
 
-Note in this case: FN Predict not Spam but actually is Spam (goes to inbox) 
+Here is the confusion matix for this example:   
 
 | 		      | Spam           | Not Spam                   |
 |---------------------|----------------|----------------------------|
 |  **Predicted Spam** |                |  This is bad               |
 |  **Predicted Not**  | Not so bad     |                            |
 
-
+Note in this case: FN means predicted not spam but actually is spam   
