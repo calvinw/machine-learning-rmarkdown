@@ -66,13 +66,13 @@ summary(model)
 
 Lets look at some xtabs for 
 ```{r}
-xtabs(formula=~Pregnant+FolicAcid, data=dfFactors)
+#xtabs(formula=~Pregnant+FolicAcid, data=dfFactors)
 ```
 
 ```{r}
-xtabs(formula=~Pregnant+MaternityClothes, data=dfFactors)
+#xtabs(formula=~Pregnant+MaternityClothes, data=dfFactors)
 ```
 
 ```{r}
-xtabs(formula=~Pregnant+BirthControl, data=dfFactors)
+#xtabs(formula=~Pregnant+BirthControl, data=dfFactors)
 ```
