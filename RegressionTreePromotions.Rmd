@@ -49,7 +49,7 @@ To start there were two different markdown promotions:
 * p114 in the data stands for a 15% off promotion
 * p101 in the data stands for a 25% off promotion
 
-`p114` means the price was set to \$114.75 for the week. This is 15% of the retail price of \$135. `p101` means the price was set to \$101.25 for the week. This is 25% off. 
+`p114` means the price was set to 114.75 dollars for the week. This is 15% of the retail price of 135 dollars. `p101` means the price was set to 101.25 dollars for the week. This is 25% off. 
 
 In addition to that there were special event promotions on holidays. Some dates had both markdowns and special event promotions together. In two weeks there were markdown promotions without special events (week 10 and 24): 
 
