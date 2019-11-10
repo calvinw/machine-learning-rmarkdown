@@ -532,217 +532,217 @@
       },
       {
         "id": 146,
-        "name": "Pregnancy",
-        "children": [
-          {
-            "id": 147,
-            "name": "Pregnancy.Rmd",
-            "file": "Rmd"
-          },
-          {
-            "id": 148,
-            "name": "Pregnancy.html",
-            "file": "html"
-          },
-          {
-            "id": 149,
-            "name": "Pregnancy.pdf",
-            "file": "pdf"
-          },
-          {
-            "id": 150,
-            "name": "Pregnancy.ipynb",
-            "file": "ipynb"
-          },
-          {
-            "id": 151,
-            "name": "Pregnancy.docx",
-            "file": "docx"
-          }
-        ]
-      },
-      {
-        "id": 154,
         "name": "PromotionForecasting",
         "children": [
           {
-            "id": 155,
+            "id": 147,
             "name": "PromotionForecasting.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 156,
+            "id": 148,
             "name": "PromotionForecasting.html",
             "file": "html"
           },
           {
-            "id": 157,
+            "id": 149,
             "name": "PromotionForecasting.pdf",
             "file": "pdf"
           },
           {
-            "id": 158,
+            "id": 150,
             "name": "PromotionForecasting.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 159,
+            "id": 151,
             "name": "PromotionForecasting.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 162,
+        "id": 154,
         "name": "PromotionsTree",
         "children": [
           {
-            "id": 163,
+            "id": 155,
             "name": "PromotionsTree.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 164,
+            "id": 156,
             "name": "PromotionsTree.html",
             "file": "html"
           },
           {
-            "id": 165,
+            "id": 157,
             "name": "PromotionsTree.pdf",
             "file": "pdf"
           },
           {
-            "id": 166,
+            "id": 158,
             "name": "PromotionsTree.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 167,
+            "id": 159,
             "name": "PromotionsTree.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 170,
+        "id": 162,
         "name": "Purchased",
         "children": [
           {
-            "id": 171,
+            "id": 163,
             "name": "Purchased.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 172,
+            "id": 164,
             "name": "Purchased.html",
             "file": "html"
           },
           {
-            "id": 173,
+            "id": 165,
             "name": "Purchased.pdf",
             "file": "pdf"
           },
           {
-            "id": 174,
+            "id": 166,
             "name": "Purchased.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 175,
+            "id": 167,
             "name": "Purchased.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 178,
+        "id": 170,
         "name": "PurchasedKnn",
         "children": [
           {
-            "id": 179,
+            "id": 171,
             "name": "PurchasedKnn.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 180,
+            "id": 172,
             "name": "PurchasedKnn.html",
             "file": "html"
           },
           {
-            "id": 181,
+            "id": 173,
             "name": "PurchasedKnn.pdf",
             "file": "pdf"
           },
           {
-            "id": 182,
+            "id": 174,
             "name": "PurchasedKnn.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 183,
+            "id": 175,
             "name": "PurchasedKnn.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 186,
+        "id": 178,
         "name": "RBasicsAndDataFrames",
         "children": [
           {
-            "id": 187,
+            "id": 179,
             "name": "RBasicsAndDataFrames.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 188,
+            "id": 180,
             "name": "RBasicsAndDataFrames.html",
             "file": "html"
           },
           {
-            "id": 189,
+            "id": 181,
             "name": "RBasicsAndDataFrames.pdf",
             "file": "pdf"
           },
           {
-            "id": 190,
+            "id": 182,
             "name": "RBasicsAndDataFrames.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 191,
+            "id": 183,
             "name": "RBasicsAndDataFrames.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 194,
+        "id": 186,
         "name": "RExercises",
         "children": [
           {
-            "id": 195,
+            "id": 187,
             "name": "RExercises.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 196,
+            "id": 188,
             "name": "RExercises.html",
             "file": "html"
           },
           {
-            "id": 197,
+            "id": 189,
             "name": "RExercises.pdf",
             "file": "pdf"
           },
           {
-            "id": 198,
+            "id": 190,
             "name": "RExercises.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 199,
+            "id": 191,
             "name": "RExercises.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 194,
+        "name": "RegressionTreePromotions",
+        "children": [
+          {
+            "id": 195,
+            "name": "RegressionTreePromotions.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 196,
+            "name": "RegressionTreePromotions.html",
+            "file": "html"
+          },
+          {
+            "id": 197,
+            "name": "RegressionTreePromotions.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 198,
+            "name": "RegressionTreePromotions.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 199,
+            "name": "RegressionTreePromotions.docx",
             "file": "docx"
           }
         ]
@@ -1336,37 +1336,37 @@
       },
       {
         "id": 152,
-        "name": "Pregnancy",
-        "file": "colab"
-      },
-      {
-        "id": 160,
         "name": "PromotionForecasting",
         "file": "colab"
       },
       {
-        "id": 168,
+        "id": 160,
         "name": "PromotionsTree",
         "file": "colab"
       },
       {
-        "id": 176,
+        "id": 168,
         "name": "Purchased",
         "file": "colab"
       },
       {
-        "id": 184,
+        "id": 176,
         "name": "PurchasedKnn",
         "file": "colab"
       },
       {
-        "id": 192,
+        "id": 184,
         "name": "RBasicsAndDataFrames",
         "file": "colab"
       },
       {
-        "id": 200,
+        "id": 192,
         "name": "RExercises",
+        "file": "colab"
+      },
+      {
+        "id": 200,
+        "name": "RegressionTreePromotions",
         "file": "colab"
       },
       {
@@ -1542,37 +1542,37 @@
       },
       {
         "id": 153,
-        "name": "Pregnancy",
-        "file": "jupyter"
-      },
-      {
-        "id": 161,
         "name": "PromotionForecasting",
         "file": "jupyter"
       },
       {
-        "id": 169,
+        "id": 161,
         "name": "PromotionsTree",
         "file": "jupyter"
       },
       {
-        "id": 177,
+        "id": 169,
         "name": "Purchased",
         "file": "jupyter"
       },
       {
-        "id": 185,
+        "id": 177,
         "name": "PurchasedKnn",
         "file": "jupyter"
       },
       {
-        "id": 193,
+        "id": 185,
         "name": "RBasicsAndDataFrames",
         "file": "jupyter"
       },
       {
-        "id": 201,
+        "id": 193,
         "name": "RExercises",
+        "file": "jupyter"
+      },
+      {
+        "id": 201,
+        "name": "RegressionTreePromotions",
         "file": "jupyter"
       },
       {

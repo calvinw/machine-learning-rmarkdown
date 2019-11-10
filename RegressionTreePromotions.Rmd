@@ -1,0 +1,131 @@
+---
+title: "Regression Tree for Promotions"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+blanks<-TRUE
+solution<-FALSE
+```
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
+library("readr")
+library("rpart")
+library("rpart.plot")
+library("Metrics")
+```
+
+This example is taken from the book [Segmentation, Revenue Management and Pricing Analytics](https://www.amazon.com/Segmentation-Revenue-Management-Pricing-Analytics/dp/0415898331) by Tudor Bodea and Mark Ferguson
+
+
+We have worked with this data before, but this time we use a regression tree using a decision tree.
+
+Read in the data from here:
+
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Z4rEXAoVmrunY3BLJ5AX-ZH76U8bHpCCOu8mzziWK1X6WnJJiC2RmrWrLffGUxo9dCZD0HW1n15T/pub?gid=1471239210&single=true&output=csv"
+traindf<-read.csv(url)
+```
+
+This is the demand for 26 weeks of staple item like denim jeans. For this item there were various kinds of promotions. We would like to understand the effect of these promotions on the demand. 
+
+Here is the structure of the dataframe
+
+```{r}
+str(traindf)
+```
+
+To start there were two different markdown promotions:
+
+* p114 in the data stands for a 15% off promotion
+* p101 in the data stands for a 25% off promotion
+
+`p114` means the price was set to 114.75 dollars for the week. This is 15% of the retail price of 135 dollars. `p101` means the price was set to 101.25 dollars for the week. This is 25% off. 
+
+In addition to that there were special event promotions on holidays. Some dates had both markdowns and special event promotions together. In two weeks there were markdown promotions without special events (week 10 and 24): 
+
+```{r}
+traindf
+```
+
+Lets take a look at the demand over time for the 26 weeks:   
+
+```{r}
+plot(traindf$week, traindf$demand, main="Demand for 26 Weeks", xlab="Week", ylab="Demand", type="l")
+points(traindf$week, traindf$demand, pch=19)
+```
+
+Clearly you can see the effects of the markdowns and the special event promotions. 
+
+Run a regression tree analysis (using the `rpart` function) like in the BicycleRentals  notebook from Week 9 lectures:
+
+Note use the model `demand~p114+p101+specialEvents` in your rpart function:
+
+```{r include=blanks, eval=FALSE}
+control <- rpart.control(minbucket=1)
+# Fill this in below using the rpart function (see BicycleRentals example) 
+model <-  PUT CODE HERE 
+rpart.plot(model, type=4, extra=101)
+```
+```{r include=solution}
+control <- rpart.control(minbucket=1)
+model <- rpart(demand~p114+p101+specialEvents, data=traindf, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
+```
+
+Now use your tree to make predictions for each of the following: (just follow the tree from the top and see what the prediction is for each of these situations: 
+
+1. 15% markdown and no special event (p114=1, p101=0,specialEvents=0)
+2. 25% markdown and no special event (p114=0, p101=1,specialEvents=0)
+3. 15% markdown and a special event (p114=1, p101=0,specialEvents=1)
+4. 25% markdown and a special event (p114=0, p101=1,specialEvents=1)
+
+Now lets look at the actual demand for the next few weeks (27-33). We will use this as our testing data and see how good our model is: 
+
+First lets read in the testing data:
+
+```{r}
+testurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Z4rEXAoVmrunY3BLJ5AX-ZH76U8bHpCCOu8mzziWK1X6WnJJiC2RmrWrLffGUxo9dCZD0HW1n15T/pub?gid=715128008&single=true&output=csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
+```
+
+Lets take a look at it:
+
+```{r}
+testdf
+```
+
+Now lets do a prediction using our model from above:
+
+```{r include=blanks, eval=FALSE}
+# Fill this in below using the predict function (see BicycleRentals example) 
+pred <- PUT CODE HERE 
+```
+```{r include=solution, eval=solution}
+pred <- predict(model, newdata = testdf, type = 'vector')
+```
+
+Lets build a data frame so we can see the predictions and the actuals
+
+```{r, eval=solution}
+info <- data.frame(actual=testdf$demand, predictions=pred)
+print(info)
+```
+
+Lets calculate the MAPE, MAE, and RMSE
+
+```{r, eval=solution}
+mape(testdf$demand,pred)
+mae(testdf$demand,pred)
+rmse(testdf$demand,pred)
+```

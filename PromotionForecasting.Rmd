@@ -7,11 +7,15 @@ jupyter:
     name: ir
 ---
 
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if (!require("readr")) install.packages("readr")
+library("readr")
+```
+
 This example is taken from the book [Segmentation, Revenue Management and Pricing Analytics](https://www.amazon.com/Segmentation-Revenue-Management-Pricing-Analytics/dp/0415898331) by Tudor Bodea and Mark Ferguson
 
 ```{r}
-if (!require("readr")) install.packages("readr")
-library("readr")
 url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Z4rEXAoVmrunY3BLJ5AX-ZH76U8bHpCCOu8mzziWK1X6WnJJiC2RmrWrLffGUxo9dCZD0HW1n15T/pub?gid=1471239210&single=true&output=csv"
 df<-read.csv(url)
 ```

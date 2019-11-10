@@ -62,7 +62,7 @@ Accuracy is the idea of the proportion of correct predictions out of all predict
 
 We can find the accuracy from this table as follows:
 
-$$ accuracy = (TP+TN)/(TP+TN+FP+FN) $$
+$$ accuracy = \frac{TP+TN}{TP+TN+FP+FN} $$
 
 Lets do the calculations with R.    
 
@@ -95,10 +95,10 @@ Picture 165 people standing in a line. Each person walks up to you, and you eith
 
 Identify each of the following situations:
 
-- If you tell someone "you have the disease" and they don't have it. That's what happened with 10 of the people.
-- If you tell someone "you don't have the disease" and they don't have it. That's what happened with 50 people.
-- If you tell someone "you don't have the disease" and they do have it. That's what happened with 5 people.
-- If you tell someone "you have the disease" and they do have the disease. That's what happened with 100 of the people.        
+- If you tell someone "you have the disease" and they don't have it (10 people)
+- If you tell someone "you don't have the disease" and they don't have it (50 people)
+- If you tell someone "you don't have the disease" and they do have it (5 people)
+- If you tell someone "you have the disease" and they do have the disease (100 people)        
 
 Fill in the following:   
 
@@ -111,7 +111,7 @@ Fill in the following:
 
 If something is actually positive, how good is the classifier at predicting yes? 
 
-$$ sensitivity = TP/(FN+TP) $$   
+$$ sensitivity = \frac{TP}{FN+TP} $$   
 
 Example of when you want high sensitivity (want FN kept to minimum):
 classifying disease
@@ -132,7 +132,7 @@ Note in this case: FP means predicted to have disease but actually doesnt
 
 If something is actually negative, how good is the classifier at predicting no? 
 
-$$ specificity = TN/(FP+TN) $$   
+$$ specificity = \frac{TN}{FP+TN} $$   
 
 Example of when you want high specifity (want FP kept to minimum):
 spam filter   
