@@ -66,7 +66,7 @@ points(traindf$week, traindf$demand, pch=19)
 
 Clearly you can see the effects of the markdowns and the special event promotions. 
 
-Run a regression tree analysis (using the `rpart` function) like in the BicycleRentals  notebook from Week 9 lectures:
+Run a regression tree analysis (using the `rpart` function) like in the BicycleRentals  notebook from last weeks lectures:
 
 Note use the model `demand~p114+p101+specialEvents` in your rpart function:
 

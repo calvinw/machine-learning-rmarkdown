@@ -7,16 +7,20 @@ jupyter:
     name: ir
 ---
 
-Install rvest if needed and then load it:
-
 ```{r echo=T, results='hide', message=F, warning=F}
 if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
+
+We are going to read in a page at H&M women's tops:
+
 ```{r}
 url <-"https://www2.hm.com/en_us/sale/women/tops.html"
 webpage <- read_html(url)
 ```
+
+Now we can identify the sale price:
+
 ```{r}
 nodes <- html_nodes(webpage, ".sale")
 sale <- html_text(nodes)
@@ -25,11 +29,28 @@ sale <- as.numeric(sale)
 str(sale)
 ```
 
+Lets take a look at the first few values:
+
+```{r}
+head(sale)
+```
+
+Now we can identify the name of the item:
+
 ```{r}
 nodes <- html_nodes(webpage, ".item-heading .link")
 name <- html_text(nodes)
 str(name)
 ```
+
+Lets take a look at the first few values:
+
+```{r}
+head(name)
+```
+
+
+Now we identify the regular price:
 
 ```{r}
 nodes <- html_nodes(webpage, ".regular")
@@ -39,46 +60,42 @@ price <- as.numeric(price)
 str(price)
 ```
 
+Lets take a look at the first few values:
+
 ```{r}
-df<-data.frame(name,sale,price)
-df$discount <- round((price-sale)/price*100)
+head(price)
+```
+
+
+Lets make a data frame with the `name`, `sale`, `price` and `discount`: 
+
+```{r}
+discount <- round((price-sale)/price*100)
+df<-data.frame(name,sale,price, discount)
+print(df)
+```
+
+Lets create a new data frame with the discounts sorted:
+
+```{r}
 dfnew <- df[order(df$discount),]
+names(dfnew)<-NULL
 print(dfnew)
 ```
 
+Lets take a look at a histogram of the discounts:
+
 ```{r}
-hist(df$discount)
+hist(discount)
 ```
 
 ```{r}
-range(df$discount)
-mean(df$discount)
+range(discount)
+mean(discount)
 ```
 
 ```{r}
-plot(df$price, df$sale)
-cor(df$price, df$sale)
+plot(price, sale)
+cor(price, sale)
 ```
-
-```{r}
-plot(df$price, df$discount)
-cor(df$price, df$discount)
-```
-
-```{r}
-```
-
-
-```{r}
-```
-
-
-```{r}
-```
-
-
-```{r}
-```
-
-
 
