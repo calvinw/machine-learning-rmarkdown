@@ -8,6 +8,7 @@ jupyter:
 ---
 
 ```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=4, repr.plot.height=4)
 if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
@@ -95,7 +96,7 @@ Lets take a look at a histogram of the discounts:
 ```{r}
 range(discount)
 mean(discount)
-hist(discount)
+#hist(discount)
 ```
 
 Lets take a look at a histogram of the original prices:
