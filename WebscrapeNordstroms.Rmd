@@ -12,7 +12,7 @@ if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
 
-We are going to read in a page at H&M women's tops:
+We are going to read in a page at Nordstroms for women's clothing on sale:
 
 ```{r}
 url <-"https://shop.nordstrom.com/c/sale-womens-clothing"
@@ -27,7 +27,7 @@ description <- html_text(nodes)
 str(description)
 ```
 
-Lets take a look at the first few values:
+Lets take a look at the values:
 
 ```{r}
 print(description)
@@ -66,7 +66,7 @@ Lets take a look at the values:
 print(was)
 ```
 
-Lets exclude the NAs from the data that we got:
+Some of the items prices were given as ranges. So when we converted the strings to numerics they gave us NAs for those. Lets remove those from the description, was and now prices:
 
 ```{r}
 description <- description[!is.na(was)]
@@ -74,7 +74,7 @@ was <- was[!is.na(was)]
 now <- now[!is.na(now)] 
 ```
 
-Lets make a data frame with the `description`, `was`, `now` and `discount`: 
+Lets make a data frame with the `description`, `was`, `now` and `discount` which we will compute: 
 
 ```{r}
 discount <- round((was-now)/was*100)
@@ -93,5 +93,19 @@ print(dfnew)
 Lets take a look at a histogram of the discounts:
 
 ```{r}
-plot(was,now)
+range(discount)
+mean(discount)
+hist(discount)
+```
+
+Lets take a look at a histogram of the original prices:
+
+```{r}
+hist(was)
+```
+
+Lets take a look at a plot of was vs now prices:
+
+```{r}
+plot(was, now)
 ```
