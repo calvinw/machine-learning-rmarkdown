@@ -1,0 +1,97 @@
+---
+title: "Webscraping Nordstrom Sales Dresses"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+
+We are going to read in a page at H&M women's tops:
+
+```{r}
+url <-"https://shop.nordstrom.com/c/sale-womens-clothing"
+webpage <- read_html(url)
+```
+
+Now we can identify the description of the item:
+
+```{r}
+nodes <- html_nodes(webpage, "._28b4r ._2PDR1")
+description <- html_text(nodes)
+str(description)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+print(description)
+```
+
+Now we can identify the "Now" current price:
+
+```{r}
+nodes <- html_nodes(webpage, "#product-results-view ._35l9g ._3wu-9 , ._18N5Q ._3wu-9")
+now <- html_text(nodes)
+now <- gsub("$","", now, fixed=TRUE)
+now <- as.numeric(now)
+str(now)
+```
+
+Lets take a look at the values:
+
+```{r}
+print(now)
+```
+
+
+Now we identify the "Was" original price:
+
+```{r}
+nodes <- html_nodes(webpage, "#product-results-view ._3bi0z ._3wu-9")
+was <- html_text(nodes)
+was <- gsub("$","", was, fixed=TRUE)
+was <- as.numeric(was)
+str(was)
+```
+
+Lets take a look at the values:
+
+```{r}
+print(was)
+```
+
+Lets exclude the NAs from the data that we got:
+
+```{r}
+description <- description[!is.na(was)]
+was <- was[!is.na(was)]
+now <- now[!is.na(now)] 
+```
+
+Lets make a data frame with the `description`, `was`, `now` and `discount`: 
+
+```{r}
+discount <- round((was-now)/was*100)
+df<-data.frame(description,was,now,discount)
+print(df)
+```
+
+Lets create a new data frame with the discounts sorted:
+
+```{r}
+dfnew <- df[order(df$discount),]
+rownames(dfnew)<-NULL
+print(dfnew)
+```
+
+Lets take a look at a histogram of the discounts:
+
+```{r}
+plot(was,now)
+```

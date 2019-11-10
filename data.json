@@ -1152,92 +1152,123 @@
       },
       {
         "id": 306,
-        "name": "WebscrapeTradesy",
+        "name": "WebscrapeNordstroms",
         "children": [
           {
             "id": 307,
-            "name": "WebscrapeTradesy.Rmd",
+            "name": "WebscrapeNordstroms.Rmd",
             "file": "Rmd"
           },
           {
             "id": 308,
-            "name": "WebscrapeTradesy.html",
+            "name": "WebscrapeNordstroms.html",
             "file": "html"
           },
           {
             "id": 309,
-            "name": "WebscrapeTradesy.pdf",
+            "name": "WebscrapeNordstroms.pdf",
             "file": "pdf"
           },
           {
             "id": 310,
-            "name": "WebscrapeTradesy.ipynb",
+            "name": "WebscrapeNordstroms.ipynb",
             "file": "ipynb"
           },
           {
             "id": 311,
-            "name": "WebscrapeTradesy.docx",
+            "name": "WebscrapeNordstroms.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 314,
-        "name": "Webscraping",
+        "name": "WebscrapeTradesy",
         "children": [
           {
             "id": 315,
-            "name": "Webscraping.Rmd",
+            "name": "WebscrapeTradesy.Rmd",
             "file": "Rmd"
           },
           {
             "id": 316,
-            "name": "Webscraping.html",
+            "name": "WebscrapeTradesy.html",
             "file": "html"
           },
           {
             "id": 317,
-            "name": "Webscraping.pdf",
+            "name": "WebscrapeTradesy.pdf",
             "file": "pdf"
           },
           {
             "id": 318,
-            "name": "Webscraping.ipynb",
+            "name": "WebscrapeTradesy.ipynb",
             "file": "ipynb"
           },
           {
             "id": 319,
-            "name": "Webscraping.docx",
+            "name": "WebscrapeTradesy.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 322,
-        "name": "WebscrapingMultiplePages",
+        "name": "Webscraping",
         "children": [
           {
             "id": 323,
-            "name": "WebscrapingMultiplePages.Rmd",
+            "name": "Webscraping.Rmd",
             "file": "Rmd"
           },
           {
             "id": 324,
-            "name": "WebscrapingMultiplePages.html",
+            "name": "Webscraping.html",
             "file": "html"
           },
           {
             "id": 325,
-            "name": "WebscrapingMultiplePages.pdf",
+            "name": "Webscraping.pdf",
             "file": "pdf"
           },
           {
             "id": 326,
-            "name": "WebscrapingMultiplePages.ipynb",
+            "name": "Webscraping.ipynb",
             "file": "ipynb"
           },
           {
             "id": 327,
+            "name": "Webscraping.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 330,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 331,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 332,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 333,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 334,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 335,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
@@ -1436,16 +1467,21 @@
       },
       {
         "id": 312,
-        "name": "WebscrapeTradesy",
+        "name": "WebscrapeNordstroms",
         "file": "colab"
       },
       {
         "id": 320,
-        "name": "Webscraping",
+        "name": "WebscrapeTradesy",
         "file": "colab"
       },
       {
         "id": 328,
+        "name": "Webscraping",
+        "file": "colab"
+      },
+      {
+        "id": 336,
         "name": "WebscrapingMultiplePages",
         "file": "colab"
       }
@@ -1642,16 +1678,21 @@
       },
       {
         "id": 313,
-        "name": "WebscrapeTradesy",
+        "name": "WebscrapeNordstroms",
         "file": "jupyter"
       },
       {
         "id": 321,
-        "name": "Webscraping",
+        "name": "WebscrapeTradesy",
         "file": "jupyter"
       },
       {
         "id": 329,
+        "name": "Webscraping",
+        "file": "jupyter"
+      },
+      {
+        "id": 337,
         "name": "WebscrapingMultiplePages",
         "file": "jupyter"
       }
