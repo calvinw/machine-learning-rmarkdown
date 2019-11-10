@@ -1,0 +1,84 @@
+---
+title: "Webscraping HM sale prices"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Install rvest if needed and then load it:
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+```{r}
+url <-"https://www2.hm.com/en_us/sale/women/tops.html"
+webpage <- read_html(url)
+```
+```{r}
+nodes <- html_nodes(webpage, ".sale")
+sale <- html_text(nodes)
+sale <- gsub("\\$","", sale)
+sale <- as.numeric(sale)
+str(sale)
+```
+
+```{r}
+nodes <- html_nodes(webpage, ".item-heading .link")
+name <- html_text(nodes)
+str(name)
+```
+
+```{r}
+nodes <- html_nodes(webpage, ".regular")
+price <- html_text(nodes)
+price <- gsub("\\$","", price)
+price <- as.numeric(price)
+str(price)
+```
+
+```{r}
+df<-data.frame(name,sale,price)
+df$discount <- round((price-sale)/price*100)
+dfnew <- df[order(df$discount),]
+print(dfnew)
+```
+
+```{r}
+hist(df$discount)
+```
+
+```{r}
+range(df$discount)
+mean(df$discount)
+```
+
+```{r}
+plot(df$price, df$sale)
+cor(df$price, df$sale)
+```
+
+```{r}
+plot(df$price, df$discount)
+cor(df$price, df$discount)
+```
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+

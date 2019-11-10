@@ -1121,61 +1121,123 @@
       },
       {
         "id": 298,
-        "name": "Webscraping",
+        "name": "WebscrapeHM",
         "children": [
           {
             "id": 299,
-            "name": "Webscraping.Rmd",
+            "name": "WebscrapeHM.Rmd",
             "file": "Rmd"
           },
           {
             "id": 300,
-            "name": "Webscraping.html",
+            "name": "WebscrapeHM.html",
             "file": "html"
           },
           {
             "id": 301,
-            "name": "Webscraping.pdf",
+            "name": "WebscrapeHM.pdf",
             "file": "pdf"
           },
           {
             "id": 302,
-            "name": "Webscraping.ipynb",
+            "name": "WebscrapeHM.ipynb",
             "file": "ipynb"
           },
           {
             "id": 303,
-            "name": "Webscraping.docx",
+            "name": "WebscrapeHM.docx",
             "file": "docx"
           }
         ]
       },
       {
         "id": 306,
-        "name": "WebscrapingMultiplePages",
+        "name": "WebscrapeTradesy",
         "children": [
           {
             "id": 307,
-            "name": "WebscrapingMultiplePages.Rmd",
+            "name": "WebscrapeTradesy.Rmd",
             "file": "Rmd"
           },
           {
             "id": 308,
-            "name": "WebscrapingMultiplePages.html",
+            "name": "WebscrapeTradesy.html",
             "file": "html"
           },
           {
             "id": 309,
-            "name": "WebscrapingMultiplePages.pdf",
+            "name": "WebscrapeTradesy.pdf",
             "file": "pdf"
           },
           {
             "id": 310,
-            "name": "WebscrapingMultiplePages.ipynb",
+            "name": "WebscrapeTradesy.ipynb",
             "file": "ipynb"
           },
           {
             "id": 311,
+            "name": "WebscrapeTradesy.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 314,
+        "name": "Webscraping",
+        "children": [
+          {
+            "id": 315,
+            "name": "Webscraping.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 316,
+            "name": "Webscraping.html",
+            "file": "html"
+          },
+          {
+            "id": 317,
+            "name": "Webscraping.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 318,
+            "name": "Webscraping.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 319,
+            "name": "Webscraping.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 322,
+        "name": "WebscrapingMultiplePages",
+        "children": [
+          {
+            "id": 323,
+            "name": "WebscrapingMultiplePages.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 324,
+            "name": "WebscrapingMultiplePages.html",
+            "file": "html"
+          },
+          {
+            "id": 325,
+            "name": "WebscrapingMultiplePages.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 326,
+            "name": "WebscrapingMultiplePages.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 327,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
@@ -1369,11 +1431,21 @@
       },
       {
         "id": 304,
-        "name": "Webscraping",
+        "name": "WebscrapeHM",
         "file": "colab"
       },
       {
         "id": 312,
+        "name": "WebscrapeTradesy",
+        "file": "colab"
+      },
+      {
+        "id": 320,
+        "name": "Webscraping",
+        "file": "colab"
+      },
+      {
+        "id": 328,
         "name": "WebscrapingMultiplePages",
         "file": "colab"
       }
@@ -1565,11 +1637,21 @@
       },
       {
         "id": 305,
-        "name": "Webscraping",
+        "name": "WebscrapeHM",
         "file": "jupyter"
       },
       {
         "id": 313,
+        "name": "WebscrapeTradesy",
+        "file": "jupyter"
+      },
+      {
+        "id": 321,
+        "name": "Webscraping",
+        "file": "jupyter"
+      },
+      {
+        "id": 329,
         "name": "WebscrapingMultiplePages",
         "file": "jupyter"
       }

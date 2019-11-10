@@ -1,0 +1,87 @@
+---
+title: "Webscraping Tradesy"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Install rvest if needed and then load it:
+
+```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=8, repr.plot.height=8)
+knitr::opts_chunk$set(fig.width=6, fig.height=10)
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+```{r}
+url <- "https://www.tradesy.com/on-sale/?page=3&num_per_page=192"
+webpage <- read_html(url)
+```
+
+```{r}
+nodes <- html_nodes(webpage, ".item-brand")
+brand <- html_text(nodes)
+brand<-trimws(brand)
+str(brand)
+```
+
+```{r}
+nodes <- html_nodes(webpage, ".item-title")
+title <- html_text(nodes)
+title<-trimws(title)
+str(title)
+```
+
+```{r}
+nodes <- html_nodes(webpage, ".item-price")
+prices<- html_text(nodes)
+prices<-gsub("\\s", "", prices)
+prices<-strsplit(prices, "\\$")
+head(prices)
+```
+
+```{r}
+price<-lapply(prices, function(x){x[2]}) 
+price<-gsub(",", "", price)
+price<-as.numeric(price)
+str(price)
+head(price)
+```
+
+```{r}
+orig<-lapply(prices, function(x){x[3]}) 
+orig<-gsub(",", "", orig)
+orig[is.na(orig)]<-""
+orig<-as.numeric(orig)
+str(orig)
+head(orig)
+```
+
+```{r}
+df<-data.frame(brand, title, price, orig)
+str(df)
+```
+
+```{r}
+barplot(table(df$brand), las=2, horiz=TRUE, cex.names=.5)
+```
+
+```{r}
+dfprices<-data.frame(price,orig)
+reduction<- round((orig - price)/orig * 100)
+dfprices$reduction<- reduction
+dfprices
+```
+
+
+```{r}
+hist(dfprices$reduction)
+```
+
+
+```{r}
+plot(dfprices$orig,dfprices$price)
+```
+
