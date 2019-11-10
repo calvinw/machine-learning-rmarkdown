@@ -5,9 +5,9 @@ pages:
   script:
   - apt-get update
   - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev
+  - apt-get -y install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra tex live-latex-extra
   - wget "https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb"
   - dpkg -i pandoc-2.7.3-1-amd64.deb
-  - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
   - Rscript -e "install.packages('rmarkdown')"
   - Rscript -e "install.packages('rvest')"
   - Rscript -e "install.packages('RCurl')"
