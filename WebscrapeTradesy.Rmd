@@ -10,13 +10,13 @@ jupyter:
 Install rvest if needed and then load it:
 
 ```{r echo=T, results='hide', message=F, warning=F}
-options(repr.plot.width=8, repr.plot.height=8)
-knitr::opts_chunk$set(fig.width=6, fig.height=10)
+options(repr.plot.width=7, repr.plot.height=7)
+knitr::opts_chunk$set(fig.width=7, fig.height=7)
 if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
 ```{r}
-url <- "https://www.tradesy.com/on-sale/?page=3&num_per_page=192"
+url <- "https://www.tradesy.com/on-sale/?page=1&num_per_page=192"
 webpage <- read_html(url)
 ```
 
@@ -25,6 +25,7 @@ nodes <- html_nodes(webpage, ".item-brand")
 brand <- html_text(nodes)
 brand<-trimws(brand)
 str(brand)
+allbrands<-brand
 ```
 
 ```{r}
@@ -35,53 +36,60 @@ str(title)
 ```
 
 ```{r}
-nodes <- html_nodes(webpage, ".item-price")
-prices<- html_text(nodes)
-prices<-gsub("\\s", "", prices)
-prices<-strsplit(prices, "\\$")
-head(prices)
-```
-
-```{r}
-price<-lapply(prices, function(x){x[2]}) 
-price<-gsub(",", "", price)
+nodes <- html_nodes(webpage, ".item-price>em")
+price<- html_text(nodes)
+price<-gsub("\\s", "", price)
+price<-gsub(",","",price)
+price<-sub("$", "", price, fixed=TRUE)
 price<-as.numeric(price)
+allprices<-as.numeric(price)
 str(price)
-head(price)
 ```
 
 ```{r}
-orig<-lapply(prices, function(x){x[3]}) 
-orig<-gsub(",", "", orig)
-orig[is.na(orig)]<-""
+nodes <- html_nodes(webpage, ".item-price")
+orig<- html_text(nodes)
+orig<-gsub("\\s", "", orig)
+orig<-gsub(",","",orig)
+orig<-sub("$", "", orig, fixed=TRUE)
+orig<-strsplit(orig, "$", fixed=TRUE)
+orig<-lapply(orig, function(v){v[2]}) 
+orig<-unlist(orig)
 orig<-as.numeric(orig)
 str(orig)
-head(orig)
 ```
 
 ```{r}
-df<-data.frame(brand, title, price, orig)
+brand <- brand[!is.na(orig)]
+title <- title[!is.na(orig)]
+price<- price[!is.na(orig)]
+orig <- orig[!is.na(orig)]
+str(brand)
+str(title)
+str(price)
+str(orig)
+```
+
+```{r}
+discount<- round((orig - price)/orig * 100)
+df<-data.frame(brand, title, price, orig, discount)
 str(df)
+head(df)
 ```
 
 ```{r}
-barplot(table(df$brand), las=2, horiz=TRUE, cex.names=.5)
+barplot(table(allbrands), las=2, horiz=TRUE, main="Brands", cex.names=.5)
 ```
 
 ```{r}
-dfprices<-data.frame(price,orig)
-reduction<- round((orig - price)/orig * 100)
-dfprices$reduction<- reduction
-dfprices
+hist(discount, breaks=20, main="Discounts")
 ```
 
-
 ```{r}
-hist(dfprices$reduction)
+hist(allprices, xlab="prices", breaks=20, main="Prices")
 ```
 
-
 ```{r}
-plot(dfprices$orig,dfprices$price)
+plot(orig,price, pch=19, main="Price vs Original")
 ```
 
