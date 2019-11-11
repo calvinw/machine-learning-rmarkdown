@@ -1,5 +1,5 @@
 ---
-title: "Webscraping with rvest"
+title: "Discounts on Poshmark"
 jupyter:
   kernelspec:
     display_name: R
@@ -7,83 +7,101 @@ jupyter:
     name: ir
 ---
 
-Here we will show how to do webscraping with rvest and the chrome extension selector gadget. This technique is borrowed from the great explanation at: [Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/) and is basically a simplified version of that description
-
-First make sure that you install and load the rvest package:
-
-```{r}
+```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=6, repr.plot.height=6)
+knitr::opts_chunk$set(fig.width=6, fig.height=6)
 if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
 
-Then once we do this we pick a site we want to get data from. We want to pull some data from [http://poshmark.com](http://poshmark.com) and compare original prices with the current price, maybe to find excellent bargins. We use the `read_html` method from the rvest package. We will look in the category Jackets and Coats-Blazers, and we will just use the data we find on the first page: 
+Here we will show how to do webscraping with rvest and the chrome extension selector gadget. This technique is borrowed from the great explanation at: [Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/) and is basically a simplified version of that description
+
+So say we want to pull some data from [http://poshmark.com](http://poshmark.com) and compare original prices with the current price, maybe to find excellent bargins. We will look in the category Jackets and Coats-Blazers, and we will just use the data we find on the first page: 
 
 ```{r}
-url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers'
+url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers?max_id=1'
 webpage <- read_html(url)
 ```
 
-Now we use the Selector Gadget to find the part of the website we want to get. [Selector Gadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=en) is a chrome extension(go ahead and install it) that allows you to grab a css selector for a part of a website that you want to collect in your data. The link above has some screenshots of this in action and there are good [videos](https://www.youtube.com/watch?v=oqNTfWrGdbk) on YouTube showing how to use it as well. 
+We just pull the webpage once, then we look for our fields using that pulled page.
 
-First we get the titles using `html_nodes` and the selector `#tiles-con .title` which we got from using SelectorGadget: 
+Lets look for the title of the item first;
 
 ```{r}
-titleNodes <- html_nodes(webpage,'#tiles-con .title')
-length(titleNodes) # double check 48 products
+nodes<- html_nodes(webpage,'#tiles-con .title')
+title <- html_text(nodes)
+# This removes some weird non-ascii chars in the title
+title <- iconv(title, to="ASCII", sub="")
+str(title)
+head(title, 10)
 ```
 
-It looks like it is the right length at least. So probably we got the data we wanted. Next we don't need the html structure of what we pulled but we just want the text inside the tags so we use `html_text` to get that.
+Next we look for the prices:
 
 ```{r}
-titles <- html_text(titleNodes)
-```
-We have to clean up the titles array, since it sometimes has weird unicode in it. (Like Money Bags unicode). We want to have pure text:
-
-```{r}
-titles <- iconv(titles, to="ASCII", sub="")
-titles
-```
-Next we look for the prices...
-
-```{r}
-priceNodes <- html_nodes(webpage,'.price')
-prices <- html_text(priceNodes)
-length(prices) # double check 48 products
-head(prices)
+nodes <- html_nodes(webpage,'div.price')
+price <- html_text(nodes)
+#This removes everything from the non breaking space to the end of string:
+price<-gsub("\u00A0.*","",price)
+price<-gsub("$","",price, fixed=TRUE)
+price<-gsub(",","", price, fixed=TRUE)
+price<-as.numeric(price)
+str(price)
+head(price, 10)
 ```
 
-I wasn't able to find a way to pull each price separately the way they were written in the html, so we are going to have to split each of the price strings into 2 strings. Its difficult to tell but the strings above with the two prices are actually the prices and a "non breaking space" between them. That is the way they were coded in the html. A nonbreaking space looks like this `&nbsp;` and you will see it in the html if you look carefully. It turns out that the unicode for this non-breaking space is `\u00A0` so the code that splits the string based on that separator is this: 
+Now lets look for the original price:
 
 ```{r}
-prices <- strsplit(prices, split='\u00A0')
-head(prices)
-str(prices[[1]])
+nodes <- html_nodes(webpage,'span.original')
+original <- html_text(nodes)
+original<-gsub("$","",original, fixed=TRUE)
+original<-gsub(",","",original, fixed=TRUE)
+original<-as.numeric(original)
+str(original)
+head(original, 10)
+```
+For our discount analysis we exclude the data where the original is 0:
+
+```{r}
+price <- price[original > 0]
+title <- title[original > 0]
+original <- original[original > 0]
 ```
 
-That looks great. Lets put each of these prices into its own vector so we can make a dataframe. 
-
-This next function takes the list of prices, and uses the function given on it. The first function `function(l) l[1]` just takes an list as argument, and then gets the first item on the list and returns it. It does this for each list item passed to it. So the result is a vector of all the "first" entries from each entry in the list. 
-
-Likewise `function(l) l[2]` just gets the second entry from each of lists passed to it. So this will extract the second price in each of the list items in prices:
+Lets compute the discount for each item:
 
 ```{r}
-current <- sapply(prices, function(l) l[1])
-original <- sapply(prices, function(l) l[2])
+discount <- round(100*(original - price)/original)
 ```
 
-Let's take a look and make sure we have the right things:
+Now lets make a dataframe of the info we have:
 
 ```{r}
-head(current)
-head(original)
+df <-data.frame(title, price, original, discount)
+df[,c("title","original","discount")]
 ```
 
-Looks great now...
-
-Finally lets make a dataframe of our fields.  
+Now lets see the distribution of discounts people are offering:
 
 ```{r}
-df <-data.frame("name" = titles, "original" =  original, "current"= current)
-df
+hist(discount)
+mean(discount)
+range(discount)
+```
+
+Now lets see the distribution of original prices:
+
+```{r}
+hist(original)
+mean(original)
+range(original)
+```
+
+Here is a plot of the original vs the offering price:
+
+```{r}
+plot(original,price, pch=19)
+cor(original, price)
 ```
 
