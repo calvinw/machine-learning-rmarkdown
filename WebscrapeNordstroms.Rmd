@@ -94,19 +94,19 @@ print(dfnew)
 Lets take a look at a histogram of the discounts:
 
 ```{r}
-range(discount)
-mean(discount)
+#range(discount)
+#mean(discount)
 #hist(discount)
 ```
 
 Lets take a look at a histogram of the original prices:
 
 ```{r}
-hist(was)
+#hist(was)
 ```
 
 Lets take a look at a plot of was vs now prices:
 
 ```{r}
-plot(was, now)
+#plot(was, now)
 ```
