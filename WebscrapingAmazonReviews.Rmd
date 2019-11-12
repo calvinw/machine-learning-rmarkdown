@@ -1,0 +1,55 @@
+---
+title: "Webscraping Amazon Reviews"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=6, repr.plot.height=6)
+knitr::opts_chunk$set(fig.width=6, fig.height=6)
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+
+```{r}
+baseurl <- 'https://www.amazon.com/DKSUKO-Womens-Waterproof-Boots-Ankle/product-reviews/B07TJ6M46B/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber='
+getreviews<-function(url){
+    webpage <- read_html(url)
+    nodes<-html_nodes(webpage,'.review-text-content span')
+    html_text(nodes)
+}
+
+#process several webpages
+body <- lapply(paste0(baseurl, 1:2), getreviews)
+body<-unlist(body)
+str(body)
+head(body, 20)
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+

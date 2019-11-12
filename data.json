@@ -1214,31 +1214,31 @@
       },
       {
         "id": 322,
-        "name": "Webscraping",
+        "name": "WebscrapingAmazonReviews",
         "children": [
           {
             "id": 323,
-            "name": "Webscraping.Rmd",
+            "name": "WebscrapingAmazonReviews.Rmd",
             "file": "Rmd"
           },
           {
             "id": 324,
-            "name": "Webscraping.html",
+            "name": "WebscrapingAmazonReviews.html",
             "file": "html"
           },
           {
             "id": 325,
-            "name": "Webscraping.pdf",
+            "name": "WebscrapingAmazonReviews.pdf",
             "file": "pdf"
           },
           {
             "id": 326,
-            "name": "Webscraping.ipynb",
+            "name": "WebscrapingAmazonReviews.ipynb",
             "file": "ipynb"
           },
           {
             "id": 327,
-            "name": "Webscraping.docx",
+            "name": "WebscrapingAmazonReviews.docx",
             "file": "docx"
           }
         ]
@@ -1270,6 +1270,37 @@
           {
             "id": 335,
             "name": "WebscrapingMultiplePages.docx",
+            "file": "docx"
+          }
+        ]
+      },
+      {
+        "id": 338,
+        "name": "WebscrapingPoshmark",
+        "children": [
+          {
+            "id": 339,
+            "name": "WebscrapingPoshmark.Rmd",
+            "file": "Rmd"
+          },
+          {
+            "id": 340,
+            "name": "WebscrapingPoshmark.html",
+            "file": "html"
+          },
+          {
+            "id": 341,
+            "name": "WebscrapingPoshmark.pdf",
+            "file": "pdf"
+          },
+          {
+            "id": 342,
+            "name": "WebscrapingPoshmark.ipynb",
+            "file": "ipynb"
+          },
+          {
+            "id": 343,
+            "name": "WebscrapingPoshmark.docx",
             "file": "docx"
           }
         ]
@@ -1477,12 +1508,17 @@
       },
       {
         "id": 328,
-        "name": "Webscraping",
+        "name": "WebscrapingAmazonReviews",
         "file": "colab"
       },
       {
         "id": 336,
         "name": "WebscrapingMultiplePages",
+        "file": "colab"
+      },
+      {
+        "id": 344,
+        "name": "WebscrapingPoshmark",
         "file": "colab"
       }
     ]
@@ -1688,12 +1724,17 @@
       },
       {
         "id": 329,
-        "name": "Webscraping",
+        "name": "WebscrapingAmazonReviews",
         "file": "jupyter"
       },
       {
         "id": 337,
         "name": "WebscrapingMultiplePages",
+        "file": "jupyter"
+      },
+      {
+        "id": 345,
+        "name": "WebscrapingPoshmark",
         "file": "jupyter"
       }
     ]

@@ -41,7 +41,6 @@ Next we look for the prices:
 ```{r}
 nodes <- html_nodes(webpage,'div.price')
 price <- html_text(nodes)
-#This removes everything from the non breaking space to the end of string:
 price<-gsub("\u00A0.*","",price)
 price<-gsub("$","",price, fixed=TRUE)
 price<-gsub(",","", price, fixed=TRUE)
