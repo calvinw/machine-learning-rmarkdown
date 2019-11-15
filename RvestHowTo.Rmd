@@ -1,0 +1,34 @@
+---
+title: "Rvest how to"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+
+We are going to read in a page at H&M and get the items on it:
+
+```{r}
+url<-"https://www.imdb.com/movies-in-theaters/"
+webpage <- read_html(url)
+```
+
+Now we can identify the name of the item:
+
+```{r}
+nodes <- html_nodes(webpage, "h4 a")
+items <- html_text(nodes)
+str(items,20)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+head(items,20)
+```
