@@ -6,7 +6,6 @@ HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-DOCX_FILES =
 # MD_FILES =
 # IPYNB_FILES =
 # PDF_FILES =
@@ -18,16 +17,12 @@ all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES)
 	rm -rf *_files figure
 
 clean :
-	@echo Removing html, md, pdf, docx files...	
+	@echo Removing html, md, pdf, files...	
 	rm -f $(HTML_FILES) $(PDF_FILES) $(MD_FILES)
 	rm -rf *_files figure
 
 %.html : %.Rmd
 	@Rscript renderRmd.R $< html_document
-ifdef SERVER
-	@echo Send message to browser to reload html $@ ...
-	-echo $@ | nc -q .01 localhost 4000
-endif
 
 %.md : %.Rmd
 	@Rscript renderRmdToMd.R $<
@@ -36,9 +31,6 @@ endif
 
 %.pdf : %.Rmd
 	@Rscript renderRmd.R $< pdf_document
-
-%.docx : %.Rmd
-	@Rscript renderRmd.R $< word_document
 
 %.ipynb : %.md
 	pandoc $< -o $@
