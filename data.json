@@ -1152,31 +1152,31 @@
       },
       {
         "id": 306,
-        "name": "WebscrapeNordstroms",
+        "name": "WebscrapeLaptops",
         "children": [
           {
             "id": 307,
-            "name": "WebscrapeNordstroms.Rmd",
+            "name": "WebscrapeLaptops.Rmd",
             "file": "Rmd"
           },
           {
             "id": 308,
-            "name": "WebscrapeNordstroms.html",
+            "name": "WebscrapeLaptops.html",
             "file": "html"
           },
           {
             "id": 309,
-            "name": "WebscrapeNordstroms.pdf",
+            "name": "WebscrapeLaptops.pdf",
             "file": "pdf"
           },
           {
             "id": 310,
-            "name": "WebscrapeNordstroms.ipynb",
+            "name": "WebscrapeLaptops.ipynb",
             "file": "ipynb"
           },
           {
             "id": 311,
-            "name": "WebscrapeNordstroms.docx",
+            "name": "WebscrapeLaptops.docx",
             "file": "docx"
           }
         ]
@@ -1214,92 +1214,61 @@
       },
       {
         "id": 322,
-        "name": "WebscrapingAmazonReviews",
-        "children": [
-          {
-            "id": 323,
-            "name": "WebscrapingAmazonReviews.Rmd",
-            "file": "Rmd"
-          },
-          {
-            "id": 324,
-            "name": "WebscrapingAmazonReviews.html",
-            "file": "html"
-          },
-          {
-            "id": 325,
-            "name": "WebscrapingAmazonReviews.pdf",
-            "file": "pdf"
-          },
-          {
-            "id": 326,
-            "name": "WebscrapingAmazonReviews.ipynb",
-            "file": "ipynb"
-          },
-          {
-            "id": 327,
-            "name": "WebscrapingAmazonReviews.docx",
-            "file": "docx"
-          }
-        ]
-      },
-      {
-        "id": 330,
         "name": "WebscrapingMultiplePages",
         "children": [
           {
-            "id": 331,
+            "id": 323,
             "name": "WebscrapingMultiplePages.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 332,
+            "id": 324,
             "name": "WebscrapingMultiplePages.html",
             "file": "html"
           },
           {
-            "id": 333,
+            "id": 325,
             "name": "WebscrapingMultiplePages.pdf",
             "file": "pdf"
           },
           {
-            "id": 334,
+            "id": 326,
             "name": "WebscrapingMultiplePages.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 335,
+            "id": 327,
             "name": "WebscrapingMultiplePages.docx",
             "file": "docx"
           }
         ]
       },
       {
-        "id": 338,
+        "id": 330,
         "name": "WebscrapingPoshmark",
         "children": [
           {
-            "id": 339,
+            "id": 331,
             "name": "WebscrapingPoshmark.Rmd",
             "file": "Rmd"
           },
           {
-            "id": 340,
+            "id": 332,
             "name": "WebscrapingPoshmark.html",
             "file": "html"
           },
           {
-            "id": 341,
+            "id": 333,
             "name": "WebscrapingPoshmark.pdf",
             "file": "pdf"
           },
           {
-            "id": 342,
+            "id": 334,
             "name": "WebscrapingPoshmark.ipynb",
             "file": "ipynb"
           },
           {
-            "id": 343,
+            "id": 335,
             "name": "WebscrapingPoshmark.docx",
             "file": "docx"
           }
@@ -1498,7 +1467,7 @@
       },
       {
         "id": 312,
-        "name": "WebscrapeNordstroms",
+        "name": "WebscrapeLaptops",
         "file": "colab"
       },
       {
@@ -1508,16 +1477,11 @@
       },
       {
         "id": 328,
-        "name": "WebscrapingAmazonReviews",
-        "file": "colab"
-      },
-      {
-        "id": 336,
         "name": "WebscrapingMultiplePages",
         "file": "colab"
       },
       {
-        "id": 344,
+        "id": 336,
         "name": "WebscrapingPoshmark",
         "file": "colab"
       }
@@ -1714,7 +1678,7 @@
       },
       {
         "id": 313,
-        "name": "WebscrapeNordstroms",
+        "name": "WebscrapeLaptops",
         "file": "jupyter"
       },
       {
@@ -1724,16 +1688,11 @@
       },
       {
         "id": 329,
-        "name": "WebscrapingAmazonReviews",
-        "file": "jupyter"
-      },
-      {
-        "id": 337,
         "name": "WebscrapingMultiplePages",
         "file": "jupyter"
       },
       {
-        "id": 345,
+        "id": 337,
         "name": "WebscrapingPoshmark",
         "file": "jupyter"
       }

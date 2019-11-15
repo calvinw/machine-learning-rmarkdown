@@ -1,0 +1,125 @@
+---
+title: "Webscraping Laptops"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+```{r, include=FALSE}
+assignment<-FALSE
+```
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+Read in the page and look for the title the price and the description of each of the items: [e-commerce wepscrape test site](https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops)
+
+```{r}
+url<-"https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops"
+webpage <- read_html(url)
+```
+
+First lets look for the title:
+
+```{r, eval=FALSE, include=assignment}
+nodes <- html_nodes(webpage, PUT CODE HERE)
+title<- html_text(nodes)
+str(title)
+```
+```{r, eval=!assignment, include=!assignment}
+nodes <- html_nodes(webpage, ".title")
+title<- html_text(nodes)
+str(title)
+```
+
+Lets see the first 20 titles in the what we got:
+
+```{r, eval=!assignment}
+head(title,20)
+```
+
+Next lets look for the price:
+
+```{r, eval=FALSE, include=assignment}
+nodes <- html_nodes(webpage, PUT CODE HERE)
+price <- html_text(nodes)
+price<-gsub("$", "", price, fixed=TRUE)
+price <- as.numeric(price)
+str(price)
+```
+```{r, eval=!assignment, include=!assignment}
+nodes <- html_nodes(webpage, ".price")
+price <- html_text(nodes)
+price<-gsub("$", "", price, fixed=TRUE)
+price <- as.numeric(price)
+str(price)
+```
+
+Lets see the first 20 prices in the what we got:
+
+```{r, eval=!assignment}
+head(price,20)
+```
+
+Next lets look for the description:
+
+```{r, eval=FALSE, include=assignment}
+nodes <- html_nodes(webpage, PUT CODE HERE)
+description<- html_text(nodes)
+str(description)
+```
+```{r, eval=!assignment, include=!assignment}
+nodes <- html_nodes(webpage, ".description")
+description<- html_text(nodes)
+str(description)
+```
+
+Lets see the first few descriptions in the what we got:
+
+```{r, eval=!assignment}
+head(description)
+```
+
+Next get the number of reviews:
+
+```{r, eval=FALSE, include=assignment}
+nodes <- html_nodes(webpage, PUT CODE HERE)
+numreviews<- html_text(nodes)
+str(numreviews)
+```
+```{r, eval=!assignment, include=!assignment}
+nodes <- html_nodes(webpage, ".ratings .pull-right")
+ratings<- html_text(nodes)
+str(ratings)
+```
+
+Lets see the first few descriptions in the what we got:
+
+```{r, eval=!assignment}
+head(ratings)
+```
+
+Lets make a data frame with the `title`, `price`,`discription` and `ratings`: 
+
+```{r, eval=FALSE, include=assignment}
+df <- PUT CODE HERE
+head(df)
+```
+```{r, eval=!assignment, include=!assignment}
+df<- data.frame(title, price, description, ratings) 
+head(df)
+```
+
+Lets take a look at the histogram of prices:
+
+```{r, eval=!assignment}
+hist(price)
+```
+
+```{r, eval=!assignment}
+range(price)
+mean(price)
+```
+

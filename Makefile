@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 SOURCES =$(shell find . -name "*.Rmd")
-#SOURCES = WebscrapeHM.Rmd WebscrapingPoshmark.Rmd
+#SOURCES = WebscrapeLaptops.Rmd
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
