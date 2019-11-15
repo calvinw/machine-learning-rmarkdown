@@ -6,21 +6,20 @@ HTML_FILES = $(SOURCES:%.Rmd=%.html)
 MD_FILES = $(SOURCES:%.Rmd=%.md)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
-DOCX_FILES = $(SOURCES:%.Rmd=%.docx)
+DOCX_FILES =
 # MD_FILES =
 # IPYNB_FILES =
 # PDF_FILES =
-# DOCX_FILES =
 
 export PATH :=.:/bin:/usr/bin:$(PATH)
 
-all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES) $(DOCX_FILES)
+all : $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES) $(MD_FILES)
 	@echo All files are now up to date
 	rm -rf *_files figure
 
 clean :
 	@echo Removing html, md, pdf, docx files...	
-	rm -f $(HTML_FILES) $(PDF_FILES) $(MD_FILES) $(DOCX_FILES)
+	rm -f $(HTML_FILES) $(PDF_FILES) $(MD_FILES)
 	rm -rf *_files figure
 
 %.html : %.Rmd

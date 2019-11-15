@@ -23,7 +23,7 @@ fs.readdir(dirPath, function(err, files){
       var rmdFile = name + '.Rmd'
       var pdfFile = name + '.pdf'
       var ipynbFile = name + '.ipynb'
-      var docxFile = name + '.docx'
+      //var docxFile = name + '.docx'
 	
 	var fileItem = {
 	  id: id++,
@@ -32,8 +32,8 @@ fs.readdir(dirPath, function(err, files){
 	    { id: id++, name: rmdFile, file: 'Rmd' },
 	    { id: id++, name: htmlFile, file: 'html' },
 	    { id: id++, name: pdfFile, file: 'pdf'},
-	    { id: id++, name: ipynbFile, file: 'ipynb'},
-	    { id: id++, name: docxFile, file: 'docx'}
+	    { id: id++, name: ipynbFile, file: 'ipynb'}
+	    //{ id: id++, name: docxFile, file: 'docx'}
 	  ]
 	};
 

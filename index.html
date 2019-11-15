@@ -148,6 +148,7 @@
 
 		    //Try to determine if we are running in development mode 
 		    let productionUrl = "https://calvinw.gitlab.io/machine-learning-rmarkdown/"
+		    /*
 		    if(ext === "docx") {
 
 			if(this.isLocalhost()) {
@@ -159,7 +160,8 @@
 			   return wordViewer + productionUrl + filename;
 			}
 		    }
-		    else if (ext === "Rmd" || 
+		    */
+		    if (ext === "Rmd" || 
 			     ext === "html" ||
 			     ext === "pdf" ||
 			     ext === "ipynb")
@@ -209,7 +211,7 @@
 	    Rmd: 'mdi-markdown',
 	    pdf: 'mdi-file-pdf',
 	    ipynb: 'mdi-file',
-	    docx: 'mdi-file-word',
+	    //docx: 'mdi-file-word',
 	    colab: 'mdi-open-in-new',
 	    jupyter: 'mdi-open-in-new',
 	    googledoc: 'mdi-open-in-new'
