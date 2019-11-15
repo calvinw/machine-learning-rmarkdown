@@ -12,17 +12,17 @@ if (!require("rvest")) install.packages("rvest")
 library("rvest")
 ```
 
-We are going to read in a page at H&M and get the items on it:
+We are going to read in a page at [http://quotes.toscrape.com/](http://quotes.toscrape.com/) and get the items on it:
 
 ```{r}
-url<-"https://www.imdb.com/movies-in-theaters/"
+url<-"http://quotes.toscrape.com/"
 webpage <- read_html(url)
 ```
 
-Now we can identify the name of the item:
+Use the selectorgadget to select the quotes on the page:
 
 ```{r}
-nodes <- html_nodes(webpage, "h4 a")
+nodes <- html_nodes(webpage, ".text")
 items <- html_text(nodes)
 str(items,20)
 ```
@@ -31,4 +31,18 @@ Lets take a look at the first few values:
 
 ```{r}
 head(items,20)
+```
+
+Next lets get the authors on the page:
+
+```{r}
+nodes <- html_nodes(webpage, ".author")
+author <- html_text(nodes)
+str(author,20)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+head(author,20)
 ```
