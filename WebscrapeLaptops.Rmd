@@ -86,8 +86,8 @@ Next get the number of reviews:
 
 ```{r, eval=FALSE, include=assignment}
 nodes <- html_nodes(webpage, PUT CODE HERE)
-numreviews<- html_text(nodes)
-str(numreviews)
+ratings<- html_text(nodes)
+str(ratings)
 ```
 ```{r, eval=!assignment, include=!assignment}
 nodes <- html_nodes(webpage, ".ratings .pull-right")
