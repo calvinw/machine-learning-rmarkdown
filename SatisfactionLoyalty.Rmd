@@ -22,7 +22,6 @@ Lets read in the data:
 url<-"cust-satisf-loyalty.csv"
 df<-read.csv(url, stringsAsFactors=TRUE)
 str(df)
-print(df)
 ```
 Lets see a plot of the data as well:
 

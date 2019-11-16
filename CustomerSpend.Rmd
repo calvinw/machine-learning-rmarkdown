@@ -1,0 +1,83 @@
+---
+title: "Customer Spending and Income"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+
+Suppose we have the income of some customers and the amount they spent on an online retail website for a month. Can we get an idea of what kinds of groups we have here?
+
+The example is based on this [Clustering algorithms for customer segmentation](https://towardsdatascience.com/clustering-algorithms-for-customer-segmentation-af637c6830ac)
+
+```{r}
+url<-"https://raw.githubusercontent.com/sowmyacr/kmeans_cluster/master/CLV.csv" 
+df<-read.csv(url)
+str(df)
+```
+
+Plot the data:
+
+```{r}
+plot(df$INCOME, df$SPEND, pch=19)
+summary(df)
+```
+
+```{r}
+set.seed(2)
+clusters<-kmeans(df,4, nstart=20)
+```
+
+```{r}
+plot(df, col=clusters$cluster, pch=19)
+points(clusters$centers, pch=19, col="brown")
+```
+
+Here is a quote from the website above:
+
+>The plot shows the distribution of the 4 clusters. We could interpret them as the following customer segments:
+
+>- Cluster 1: Customers with medium annual income and low annual spend
+>- Cluster 2: Customers with high annual income and medium to high annual spend
+>- Cluster 3: Customers with low annual income
+>- Cluster 4: Customers with medium annual income but high annual spend
+
+> Cluster 4 straight away is one potential customer segment. However, Cluster 2 and 3 can be segmented further to arrive at a more specific target customer group. 
+
+
+```{r}
+set.seed(2)
+clusters<-kmeans(df,6, nstart=20)
+```
+
+```{r}
+plot(df, col=clusters$cluster, pch=19)
+points(clusters$centers, pch=19, col="brown")
+```
+
+Another quote from the website:
+
+> Setting the number of clusters to 6 seems to provide a more meaningful customer segmentation.
+
+> -  Cluster 1: Medium income, low annual spend
+> -  Cluster 2: Low income, low annual spend
+> -  Cluster 3: High income, high annual spend
+> -  Cluster 4: Low income, high annual spend
+> -  Cluster 5: Medium income, low annual spend
+> -  Cluster 6: Very high income, high annual spend
+
+>Thus it is evident that 6 clusters provides a more meaningful segmentation of the customers.
+
+>Marketing strategies for the customer segments
+
+>Based on the 6 clusters, we could formulate marketing strategies relevant to each cluster:
+A typical strategy would focus certain promotional efforts for the high value customers of Cluster 6 & Cluster 3.
+
+>Cluster 4 is a unique customer segment, where in spite of their relatively lower annual income, these customers tend to spend more on the site, indicating their loyalty. There could be some discounted pricing based promotional campaigns for this group so as to retain them.
+
+>For Cluster 2 where both the income and annual spend are low, further analysis could be needed to find the reasons for the lower spend and price-sensitive strategies could be introduced to increase the spend from this segment.
+
+>Customers in clusters 1 and 5 are not spending enough on the site in spite of a good annual income — further analysis of these segments could lead to insights on the satisfaction / dissatisfaction of these customers or lesser visibility of the e-commerce site to these customers. Strategies could be evolved accordingly.
+

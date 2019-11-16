@@ -7,8 +7,15 @@ jupyter:
     name: ir
 ---
 
-This simple example is taken from here: 
-[KMeans Clustering](https://www.guru99.com/r-k-means-clustering.html)
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+library("readr")
+```
+
+This simple example is taken from [KMeans Clustering](https://www.guru99.com/r-k-means-clustering.html)
 
 Suppose we have the age of some customers and the amount they spent on an online retail website for a month. Can we get an idea of what kinds of groups we have here?
 
@@ -21,14 +28,14 @@ df <- data.frame(age = age, spent=spent)
 Plot the data:
 
 ```{r}
-plot(age, spent)
+plot(age, spent, pch=19)
 summary(df)
 ```
 
 ```{r}
 dataFrame <- data.frame(age=age, spent=spent)
-set.seed(3)
-clusters<-kmeans(dataFrame,3)
+set.seed(2)
+clusters<-kmeans(dataFrame,3, nstart=20)
 ```
 
 ```{r}
@@ -37,13 +44,11 @@ clusters$centers
 
 ```{r}
 clusters$cluster
+plot(dataFrame, col=clusters$cluster, pch=19)
+points(clusters$centers, pch=19, col="blue")
 ```
 
-TODO... finish details of this example. Discuss why this solution seems odd. Visually there appears to be some obvious clusters you would identify by eyeballing it. But this run did not pick those out. You need to run this several times... using something like`nstart=20` to be sure KMeans is not finding an oddball solution. 
-
-Also show coloring the graph with the different groups and also showing the centroids.
-
-Basically there are 3 groups of customers:
+Basically we can see are 3 groups of customers:
 
 1. Those that are younger and spend less
 1. Those that are middle age and spend more 
