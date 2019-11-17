@@ -7,52 +7,87 @@ jupyter:
     name: ir
 ---
 
-This simple example is taken from here: 
-[KMeans Clustering](https://www.guru99.com/r-k-means-clustering.html)
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+library("readr")
+```
+
+This simple example is taken from [KMeans Clustering](https://www.guru99.com/r-k-means-clustering.html)
 
 Suppose we have the age of some customers and the amount they spent on an online retail website for a month. Can we get an idea of what kinds of groups we have here? We would like to cluster the data in some way.
 
 ```{r}
 age = c(18, 21, 22, 24, 26, 26, 27, 30, 31, 35, 39, 40, 41, 42, 44, 46, 47, 48, 49, 54)
 spent= c(10, 11, 22, 15, 12, 13, 14, 33, 39, 37, 44, 27, 29, 20, 28, 21, 30, 31, 23, 24)
+plot(age, spent, pch=19)
 ```
 
-Lets create a dataframe with this data and print out some info on the dataframe:
+It looks like maybe there are 2 or 3 clusters.  
+
+Lets create a dataframe with this data:
 
 ```{r}
 df <- data.frame(age = age, spent=spent)
 str(df)
-summary(df)
-head(df, 10)
 ```
 
-Plot the data:
+Lets print out a little of the dataframe:
 
 ```{r}
-plot(age, spent, pch=19)
+head(df)
 ```
+
+Now lets go ahead and use `kmeans` with K=2 and see what it finds.
+
+```{r}
+set.seed(2)
+clusters<-kmeans(df,2, nstart=20)
+```
+
+Lets show each point according to the cluster it has been added to and also add the centers in blue.
+
+```{r}
+plot(age, spent, col=clusters$cluster, pch=19)
+points(clusters$centers, pch=19, col="blue")
+```
+
+Now we add a column to the dataframe `df` to show which cluster each of the points in the data set belong to: 
+
+```{r}
+df$cluster <- clusters$cluster
+print(df)
+```
+
+The cluster column is either 1 or 2 depending on which cluster the algorithm assigned the data point.
+
+
+What about if we wanted to try 3 clusters. Lets run `kmeans` again with K=3:
 
 ```{r}
 set.seed(3)
-clusters<-kmeans(df,3)
+clusters<-kmeans(df,3, nstart=20)
 ```
+
+Lets show each point according to the cluster it has been added to and also add the centers in blue.
 
 ```{r}
-
-clusterdf <- data.frame(age = age, spent=spent, cluster=clusters$cluster)
+plot(age, spent, col=clusters$cluster, pch=19)
+points(clusters$centers, pch=19, col="blue")
 ```
+
+Now we set the column `cluster` to show the current cluster: 
 
 ```{r}
-plot(age, spent, col=clusterdf$cluster, pch=19)
+df$cluster <- clusters$cluster
+print(df)
 ```
 
-TODO... finish details of this example. Discuss why this solution seems odd. Visually there appears to be some obvious clusters you would identify by eyeballing it. But this run did not pick those out. You need to run this several times... using something like`nstart=20` to be sure KMeans is not finding an oddball solution. 
-
-Also show coloring the graph with the different groups and also showing the centroids.
-
-Basically there are 3 groups of customers:
+With 3 groups of customers we found these three groups:
 
 1. Those that are younger and spend less
 1. Those that are middle age and spend more 
-1. Those that are older age and spend less
+1. Those that are older age and spend midrange between more and less 
 

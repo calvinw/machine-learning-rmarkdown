@@ -86,8 +86,8 @@ Next get the number of reviews:
 
 ```{r, eval=FALSE, include=assignment}
 nodes <- html_nodes(webpage, PUT CODE HERE)
-numreviews<- html_text(nodes)
-str(numreviews)
+ratings<- html_text(nodes)
+str(ratings)
 ```
 ```{r, eval=!assignment, include=!assignment}
 nodes <- html_nodes(webpage, ".ratings .pull-right")
@@ -101,7 +101,7 @@ Lets see the first few descriptions in the what we got:
 head(ratings)
 ```
 
-Lets make a data frame with the `title`, `price`,`discription` and `ratings`: 
+Lets make a data frame with the `title`, `price`,`description` and `ratings`: 
 
 ```{r, eval=FALSE, include=assignment}
 df <- PUT CODE HERE
