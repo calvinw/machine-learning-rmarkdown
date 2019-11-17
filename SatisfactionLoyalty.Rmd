@@ -20,6 +20,7 @@ Lets read in the data:
 
 ```{r}
 url<-"cust-satisf-loyalty.csv"
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vRfKqtNd28lmHr259w6Uoeisf7uY9UtxhUeiNnQlULHbD-MPLHN4cQE26adB2R63g0IrWDuadx2doRN/pub?gid=0&single=true&output=csv"
 df<-read.csv(url, stringsAsFactors=TRUE)
 str(df)
 ```
