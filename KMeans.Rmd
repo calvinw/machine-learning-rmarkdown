@@ -10,33 +10,40 @@ jupyter:
 This simple example is taken from here: 
 [KMeans Clustering](https://www.guru99.com/r-k-means-clustering.html)
 
-Suppose we have the age of some customers and the amount they spent on an online retail website for a month. Can we get an idea of what kinds of groups we have here?
+Suppose we have the age of some customers and the amount they spent on an online retail website for a month. Can we get an idea of what kinds of groups we have here? We would like to cluster the data in some way.
 
 ```{r}
 age = c(18, 21, 22, 24, 26, 26, 27, 30, 31, 35, 39, 40, 41, 42, 44, 46, 47, 48, 49, 54)
 spent= c(10, 11, 22, 15, 12, 13, 14, 33, 39, 37, 44, 27, 29, 20, 28, 21, 30, 31, 23, 24)
+```
+
+Lets create a dataframe with this data and print out some info on the dataframe:
+
+```{r}
 df <- data.frame(age = age, spent=spent)
+str(df)
+summary(df)
+head(df, 10)
 ```
 
 Plot the data:
 
 ```{r}
-plot(age, spent)
-summary(df)
+plot(age, spent, pch=19)
 ```
 
 ```{r}
-dataFrame <- data.frame(age=age, spent=spent)
 set.seed(3)
-clusters<-kmeans(dataFrame,3)
+clusters<-kmeans(df,3)
 ```
 
 ```{r}
-clusters$centers
+
+clusterdf <- data.frame(age = age, spent=spent, cluster=clusters$cluster)
 ```
 
 ```{r}
-clusters$cluster
+plot(age, spent, col=clusterdf$cluster, pch=19)
 ```
 
 TODO... finish details of this example. Discuss why this solution seems odd. Visually there appears to be some obvious clusters you would identify by eyeballing it. But this run did not pick those out. You need to run this several times... using something like`nstart=20` to be sure KMeans is not finding an oddball solution. 
