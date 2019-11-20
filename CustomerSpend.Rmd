@@ -25,14 +25,16 @@ plot(df$INCOME, df$SPEND, pch=19)
 summary(df)
 ```
 
+Now lets run the 
+
 ```{r}
 set.seed(2)
-clusters<-kmeans(df,4, nstart=20)
+model<-kmeans(df,4, nstart=20)
 ```
 
 ```{r}
-plot(df, col=clusters$cluster, pch=19)
-points(clusters$centers, pch=19, col="brown")
+plot(df, col=model$cluster, pch=19)
+points(model$centers, pch=19, col="brown")
 ```
 
 Here is a quote from the website above:
@@ -46,15 +48,14 @@ Here is a quote from the website above:
 
 > Cluster 4 straight away is one potential customer segment. However, Cluster 2 and 3 can be segmented further to arrive at a more specific target customer group. 
 
-
 ```{r}
 set.seed(2)
-clusters<-kmeans(df,6, nstart=20)
+model<-kmeans(df,6, nstart=20)
 ```
 
 ```{r}
-plot(df, col=clusters$cluster, pch=19)
-points(clusters$centers, pch=19, col="brown")
+plot(df, col=model$cluster, pch=19)
+points(model$centers, pch=19, col="brown")
 ```
 
 Another quote from the website:

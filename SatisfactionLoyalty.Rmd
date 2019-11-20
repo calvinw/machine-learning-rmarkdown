@@ -34,38 +34,44 @@ Here is the setup from that website:
 
 >Let’s assume that we have customer satisfaction (CSAT) scores of 1 to 99 (where 1 = very dissatisfied and 90 = very satisfied). And we have similar scores for the customer’s level of loyalty (1 = high switcher-low loyalty and 99 = non-switcher-high loyalty).
 
-Lets cluster into 3 clusters:
+Lets cluster into 2 clusters:   
 
 ```{r}
 set.seed(1)
-model<-kmeans(df,3)
+model<-kmeans(df,2,nstart=20)
 print(model)
 ```
 
-```{r}
-plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
-print(model$cluster)
-```
-
-Lets cluster into 2 clusters:
+Let's see a plot of the 2 clusters:   
 
 ```{r}
-set.seed(1)
-model<-kmeans(df,2)
 plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
 ```
-Lets cluster into 4 clusters:
+
+Now lets cluster into 3 clusters:   
 
 ```{r}
 set.seed(1)
-model<-kmeans(df,4)
+model<-kmeans(df,3,nstart=20)
 plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
 ```
 
-Lets cluster into 5 clusters:
+Lets cluster into 4 clusters:   
 
 ```{r}
 set.seed(1)
-model<-kmeans(df,5)
+model<-kmeans(df,4,nstart=20)
 plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
 ```
+
+Lets cluster into 5 clusters:   
+
+```{r}
+set.seed(1)
+model<-kmeans(df,5,nstart=20)
+plot(df, pch=19, main="Customer Satisfaction and Loyalty", xlab="Customer Satisfaction", ylab="Loyalty", col=model$cluster, xlim=c(0,100), ylim=c(0,100))
+```
+
+What might be an interpretation of these different clusters. 
+
+

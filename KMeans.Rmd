@@ -44,20 +44,20 @@ Now lets go ahead and use `kmeans` with K=2 and see what it finds.
 
 ```{r}
 set.seed(2)
-clusters<-kmeans(df,2, nstart=20)
+model<-kmeans(df,2, nstart=20)
 ```
 
 Lets show each point according to the cluster it has been added to and also add the centers in blue.
 
 ```{r}
-plot(age, spent, col=clusters$cluster, pch=19)
-points(clusters$centers, pch=19, col="blue")
+plot(age, spent, col=model$cluster, pch=19)
+points(model$centers, pch=19, col="blue")
 ```
 
 Now we add a column to the dataframe `df` to show which cluster each of the points in the data set belong to: 
 
 ```{r}
-df$cluster <- clusters$cluster
+df$cluster <- model$cluster
 print(df)
 ```
 
@@ -68,20 +68,20 @@ What about if we wanted to try 3 clusters. Lets run `kmeans` again with K=3:
 
 ```{r}
 set.seed(3)
-clusters<-kmeans(df,3, nstart=20)
+model<-kmeans(df,3, nstart=20)
 ```
 
 Lets show each point according to the cluster it has been added to and also add the centers in blue.
 
 ```{r}
-plot(age, spent, col=clusters$cluster, pch=19)
-points(clusters$centers, pch=19, col="blue")
+plot(age, spent, col=model$cluster, pch=19)
+points(model$centers, pch=19, col="blue")
 ```
 
 Now we set the column `cluster` to show the current cluster: 
 
 ```{r}
-df$cluster <- clusters$cluster
+df$cluster <- model$cluster
 print(df)
 ```
 
