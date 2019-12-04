@@ -1,0 +1,61 @@
+---
+title: "Confusion Matrix"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+Suppose we had a machine learning model, which was predicting a category like `yes` or `no` based on some predictors. For example the data might be this:     
+
+```{r}
+actuals   <- factor(c(T,T,T,F,F,F,T,F,T,F,F,F), levels=c(T,F))
+predicted <- factor(c(T,T,T,F,T,T,F,T,T,F,T,F), levels=c(T,F))
+df<- data.frame(predicted, actuals)
+df
+```
+
+So to summarize:
+
+-  PUT ANSWER HERE  were predicted yes and they were actually yes 
+-  PUT ANSWER HERE  were predicted no and they were actually no 
+-  PUT ANSWER HERE  were predicted yes and they were actually no 
+-  PUT ANSWER HERE  were predicted no and they were actually yes 
+
+We can represent that in a table called a "confusion matrix" as follows:   
+
+| 		     | Actual Yes     | Actual No                  |
+|--------------------|----------------|----------------------------|
+|  **Predicted Yes** |  PUT ANS HERE  | PUT ANS HERE               |
+|  **Predicted No**  |  PUT ANS HERE  | PUT ANS HERE               |
+
+We can find the accuracy from this table as follows:
+
+```{r}
+accuracy(predicted, actuals)
+```
+
+We can print out the confusion matrix like this:
+
+```{r}
+table(df)
+```
+
+Assign the "true positive", "true negative", "false positive" and "false negative" amounts:
+
+```{r, eval=FALSE}
+tp <- PUT ANSWER HERE 
+tn <- PUT ANSWER HERE
+fp <- PUT ANSWER HERE
+fn <- PUT ANSWER HERE
+```
+
+Now lets compute the "true positive rate" (or "sensitivity")
+Now lets compute the "true negative rate" (or "sensitivity")
+
