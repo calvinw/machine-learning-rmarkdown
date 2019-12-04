@@ -59,7 +59,7 @@ First lets do model1
 actuals <- c(11,27,30,13,25)
 predictions1 <- c(12,23,32,15,22)
 mae(actuals, predictions1)
-mae(actuals, predictions1)
+mape(actuals, predictions1)
 rmse(actuals, predictions1)
 ```
 
@@ -69,7 +69,7 @@ First lets do model2
 actuals <- c(11,27,30,13,25)
 predictions2 <- c(15,22,29,14,19)
 mae(actuals, predictions2)
-mae(actuals, predictions2)
+mape(actuals, predictions2)
 rmse(actuals, predictions2)
 ```
 
@@ -79,7 +79,7 @@ Lets look at model3
 actuals <- c(11,27,30,13,25)
 predictions3 <- c(9,25,32,11,20)
 mae(actuals, predictions3)
-mae(actuals, predictions3)
+mape(actuals, predictions3)
 rmse(actuals, predictions3)
 ```
 
