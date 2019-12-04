@@ -23,17 +23,17 @@ df
 
 So to summarize:
 
--  PUT ANSWER HERE  were predicted yes and they were actually yes 
--  PUT ANSWER HERE  were predicted no and they were actually no 
--  PUT ANSWER HERE  were predicted yes and they were actually no 
--  PUT ANSWER HERE  were predicted no and they were actually yes 
+-  PUT ANSWER HERE  were predicted positive and they were actually positive 
+-  PUT ANSWER HERE  were predicted negative and they were actually negative 
+-  PUT ANSWER HERE  were predicted positive and they were actually negative 
+-  PUT ANSWER HERE  were predicted negative and they were actually positive 
 
 We can represent that in a table called a "confusion matrix" as follows:   
 
-| 		     | Actual Yes     | Actual No                  |
+| 		     | Actual Positive     | Actual Negative       |
 |--------------------|----------------|----------------------------|
-|  **Predicted Yes** |  PUT ANS HERE  | PUT ANS HERE               |
-|  **Predicted No**  |  PUT ANS HERE  | PUT ANS HERE               |
+|  **Predicted Positive** |  PUT ANS HERE  | PUT ANS HERE          |
+|  **Predicted Negative**  |  PUT ANS HERE  | PUT ANS HERE         |
 
 We can find the accuracy from this table as follows:
 
@@ -49,13 +49,23 @@ table(df)
 
 Assign the "true positive", "true negative", "false positive" and "false negative" amounts:
 
-```{r, eval=FALSE}
-tp <- PUT ANSWER HERE 
-tn <- PUT ANSWER HERE
-fp <- PUT ANSWER HERE
-fn <- PUT ANSWER HERE
+```{r, eval=TRUE}
+tp <- 4 
+tn <- 3 
+fp <- 4 
+fn <- 1 
 ```
 
 Now lets compute the "true positive rate" (or "sensitivity")
-Now lets compute the "true negative rate" (or "sensitivity")
+```{r, eval=TRUE}
+sensitivity <- tp/(tp + fn)
+sensitivity
+```
+
+Now lets compute the "true negative rate" (or "specificity")
+```{r, eval=TRUE}
+specificity <- tn/(tn + fp)
+specificity
+```
+
 
