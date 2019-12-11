@@ -13,9 +13,8 @@ library("Metrics")
 ```
 
 ```{r, include=FALSE}
-assignment<-FALSE
+assignment<-TRUE
 ```
-
 
 Suppose we have two models, `model1` and `model2` created from some training data set (not shown).
 
@@ -56,7 +55,9 @@ Suppose our second model model (called model2) made the following predictions:
 Lets create some vectors with the actuals and the predictions: 
 
 ```{r include=assignment, eval=FALSE}
-PUT CODE HERE
+actuals <- PUT CODE HERE
+predictions1 <- PUT CODE HERE 
+predictions2 <- PUT CODE HERE 
 ```
 ```{r include=!assignment}
 actuals <- c(83,78,75,82,89)
@@ -64,29 +65,53 @@ predictions1 <- c(80,72,74,85,91)
 predictions2 <- c(79,78,76,81,87)
 ```
 
+Now lets find the `mae` of the `actuals` and `predictions1`:
+
 ```{r include=assignment, eval=FALSE}
 PUT CODE HERE
 ```
 ```{r include=!assignment}
 mae(actuals, predictions1)
+```
+
+Now lets find the `mae` of the `actuals` and `predictions2`:
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
 mae(actuals, predictions2)
 ```
 
+Now lets find the `mape` of the `actuals` and `predictions1`:
 ```{r include=assignment, eval=FALSE}
 PUT CODE HERE
 ```
 ```{r include=!assignment}
 mape(actuals, predictions1)
+```
+
+Now lets find the `mape` of the `actuals` and `predictions2`:
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
 mape(actuals, predictions2)
 ```
 
-
+Now lets find the `rmse` of the `actuals` and `predictions1`:
 ```{r include=assignment, eval=FALSE}
 PUT CODE HERE
 ```
 ```{r include=!assignment}
 rmse(actuals, predictions1)
+```
+
+Now lets find the `rmse` of the `actuals` and `predictions2`:
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
 rmse(actuals, predictions2)
 ```
 
-Which model was better? 
+Which model was better?

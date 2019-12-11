@@ -1,0 +1,129 @@
+---
+title: "TShirt Size Using (Classification) Decision Tree"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+assignment<-TRUE
+```
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+if(!require("readr")) install.packages("readr")
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
+library("readr")
+library("rpart")
+library("rpart.plot")
+library("Metrics")
+```
+
+## Predicting TShirt Size using (Classification) Decision Tree 
+
+
+First lets take a look at the data we will work with. 
+
+So here is the data we have, this will be our training data:
+
+- `Size` is our result or outcome
+- `Height` and `Weight` are the predictors
+
+We hope that we can predict the T Shirt size from the Height and Weight:   
+
+| Height | Weight | Size |
+|--------|--------|------|
+| 158    | 59     | M    |
+| 160    | 59     | M    |
+| 160    | 60     | M    |
+| 163    | 61     | M    |
+| 160    | 64     | L    |
+| 165    | 61     | L    |
+| 165    | 62     | L    |
+| 168    | 62     | L    |
+| 168    | 63     | L    |
+| 170    | 63     | L    |
+| 170    | 68     | L    |
+
+```{r}
+trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQb1-HxaC0FoyX5qGgAqcYRIVS5eZqwwfnECQucfqZ-Kn-65Pdacy80UX4K2AAJQH0WwgPd_OH_6Y7d/pub?gid=0&single=true&output=csv"
+traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
+str(traindf)
+```
+Now let's print out the training set to make sure we read it correctly:
+
+```{r}
+print(traindf)
+```
+
+## Model - use `Height` and `Weight` to predict `Size` 
+
+```{r include=assignment, eval=FALSE}
+control = rpart.control(minsplit=1)
+model <- PUT CODE HERE 
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!assignment}
+control = rpart.control(minsplit=1)
+model <- rpart(Size~Height+Weight, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+### Fill in the following infomation for this model:
+
+This models prediction if `Height` >= 164     
+
+PUT ANSWER HERE
+
+This models prediction if  `Height` < 164 and `Weight` < 63
+
+PUT ANSWER HERE
+
+We also need a testing data set so here it is:
+
+| Height | Weight | Size |
+|--------|--------|------|
+| 158    | 58     | M    |
+| 158    | 63     | M    |
+| 163    | 60     | M    |
+| 163    | 64     | L    |
+| 165    | 65     | L    |
+| 168    | 66     | L    |
+| 170    | 64     | L    |
+
+```{r}
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQb1-HxaC0FoyX5qGgAqcYRIVS5eZqwwfnECQucfqZ-Kn-65Pdacy80UX4K2AAJQH0WwgPd_OH_6Y7d/pub?gid=15577345&single=true&output=csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
+```
+
+```{r}
+print(testdf)
+```
+
+Now lets do a prediction:
+
+```{r include=assignment, eval=FALSE}
+predictions <- PUT CODE HERE 
+print(predictions)
+```
+```{r include=!assignment}
+predictions <- predict(model, newdata = testdf, type = 'class')
+print(predictions)
+```
+
+And lets find the accuracy
+
+
+```{r include=assignment, eval=FALSE}
+actuals <- testdf$Size
+accuracy(PUT CODE HERE)
+```
+```{r include=!assignment}
+actuals <- testdf$Size
+accuracy(testdf$Size, predictions)
+```

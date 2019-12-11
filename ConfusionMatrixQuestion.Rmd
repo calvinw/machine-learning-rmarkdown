@@ -1,0 +1,50 @@
+---
+title: "Confusion Matrix Question"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+assignment<-TRUE
+```
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+Suppose we had a machine learning model, which was predicting a category like `yes` or `no` based on some predictors. For example the data might be this:     
+
+```{r}
+actuals   <- factor(c(T,F,T,F,T,F,T,F,T,T,F,T,F,F,F), levels=c(T,F))
+predicted <- factor(c(T,F,T,F,T,F,F,T,F,T,F,T,F,F,F), levels=c(T,F))
+df<- data.frame(predicted, actuals)
+print(df)
+```
+
+So to summarize:
+
+-  PUT ANSWER HERE  were predicted positive and they were actually positive 
+-  PUT ANSWER HERE  were predicted negative and they were actually negative 
+-  PUT ANSWER HERE  were predicted positive and they were actually negative 
+-  PUT ANSWER HERE  were predicted negative and they were actually positive 
+
+We can represent that in a table called a "confusion matrix" as follows:   
+
+| 		     | Actual Positive     | Actual Negative       |
+|--------------------|----------------|----------------------------|
+|  **Predicted Positive**  |  PUT ANS HERE  | PUT ANS HERE         |
+|  **Predicted Negative**  |  PUT ANS HERE  | PUT ANS HERE         |
+
+Find the `accuracy` from the `predicted` and `actuals` as follows:
+
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
+accuracy(predicted, actuals)
+```
+
