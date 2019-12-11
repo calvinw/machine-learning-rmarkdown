@@ -23,17 +23,17 @@ df
 
 So to summarize:
 
--  PUT ANSWER HERE  were predicted yes and they were actually yes 
--  PUT ANSWER HERE  were predicted no and they were actually no 
--  PUT ANSWER HERE  were predicted yes and they were actually no 
--  PUT ANSWER HERE  were predicted no and they were actually yes 
+-  PUT ANSWER HERE  were predicted positive and they were actually positive 
+-  PUT ANSWER HERE  were predicted negative and they were actually negative 
+-  PUT ANSWER HERE  were predicted positive and they were actually negative 
+-  PUT ANSWER HERE  were predicted negative and they were actually positive 
 
 We can represent that in a table called a "confusion matrix" as follows:   
 
-| 		     | Actual Yes     | Actual No                  |
+| 		     | Actual Positive     | Actual Negative       |
 |--------------------|----------------|----------------------------|
-|  **Predicted Yes** |  PUT ANS HERE  | PUT ANS HERE               |
-|  **Predicted No**  |  PUT ANS HERE  | PUT ANS HERE               |
+|  **Predicted Positive** |  PUT ANS HERE  | PUT ANS HERE          |
+|  **Predicted Negative**  |  PUT ANS HERE  | PUT ANS HERE         |
 
 We can find the accuracy from this table as follows:
 

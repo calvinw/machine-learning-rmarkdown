@@ -11,9 +11,9 @@ jupyter:
 if (!require("Metrics")) install.packages("Metrics")
 library("Metrics")
 ```
-Suppose we have the following data and the test data set is as follows: 
+Suppose we have the following test data actuals (these are the results for the test data): 
 
-| actuals |  
+| actual |
 |---------|
 |     11  |
 |     27  |
@@ -23,7 +23,7 @@ Suppose we have the following data and the test data set is as follows:
 
 Suppose our first model machine learning model (called model1) made the following predictions:
 
-| actuals | prediction1| 
+| actual | prediction1 | 
 |---------|------------|
 |     11  |     12     |
 |     27  |     23     |
@@ -33,7 +33,7 @@ Suppose our first model machine learning model (called model1) made the followin
 
 Suppose our second model machine learning model (called model2) made the following predictions:
 
-| actuals | prediction2| 
+| actual  | prediction2| 
 |---------|------------|
 |     11  |     15     |
 |     27  |     22     |
@@ -43,7 +43,7 @@ Suppose our second model machine learning model (called model2) made the followi
 
 Suppose our third model machine learning model (called model3) made the following predictions:
 
-| actuals | prediction3| 
+| actual | prediction3| 
 |---------|------------|
 |     11  |     9      |
 |     27  |     25     |
@@ -51,32 +51,35 @@ Suppose our third model machine learning model (called model3) made the followin
 |     13  |     11     |
 |     25  |     20     |
 
-predictions3 <- c(9,25,32,11,20)
+Lets look at the how the predictions do for each model:
 
-Lets create some data frames with the actuals and predictions:
+First lets do model1
 
 ```{r}
 actuals <- c(11,27,30,13,25)
 predictions1 <- c(12,23,32,15,22)
-predictions2 <- c(15,22,29,14,19)
-predictions3 <- c(9,25,32,11,20)
-```
-
-```{r}
 mae(actuals, predictions1)
-mae(actuals, predictions2)
-mae(actuals, predictions3)
-```
-
-```{r}
 mape(actuals, predictions1)
-mape(actuals, predictions2)
-mape(actuals, predictions3)
+rmse(actuals, predictions1)
 ```
 
+First lets do model2
+
 ```{r}
-rmse(actuals, predictions1)
+actuals <- c(11,27,30,13,25)
+predictions2 <- c(15,22,29,14,19)
+mae(actuals, predictions2)
+mape(actuals, predictions2)
 rmse(actuals, predictions2)
+```
+
+Lets look at model3
+
+```{r}
+actuals <- c(11,27,30,13,25)
+predictions3 <- c(9,25,32,11,20)
+mae(actuals, predictions3)
+mape(actuals, predictions3)
 rmse(actuals, predictions3)
 ```
 
