@@ -1,0 +1,43 @@
+---
+title: "Assignment Notebook"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+assignment<-FALSE
+```
+Set a equal to `5`
+Set b equal to the string "hello" 
+
+```{r include=assignment, eval=FALSE}
+a <-  PUT CODE HERE
+b <-  PUT CODE HERE
+```
+```{r include=!assignment}
+# a <-  PUT CODE HERE
+a <- 5 
+
+#b <-  PUT CODE HERE
+b <- "hello" 
+```
+
+Subset the vector `c` leaving only the items bigger than 3 
+
+```{r include=assignment, eval=FALSE}
+c <-  c(3,4,3,3,2,4,5,6) 
+d <-  PUT CODE HERE
+print(d)
+```
+```{r include=!assignment}
+c <-  c(3,4,3,3,2,4,5,6) 
+
+# d <-  PUT CODE HERE
+d <-  c[c > 3] 
+
+print(d)
+```
+

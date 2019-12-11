@@ -1,0 +1,92 @@
+---
+title: "Errors Question"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+```{r, include=FALSE}
+assignment<-FALSE
+```
+
+
+Suppose we have two models, `model1` and `model2` created from some training data set (not shown).
+
+The models can be described as follows `y~x1+x2`. So the result is `y` and the predictors are `x1` and `x2`.
+
+Now we wish to evaluate the two models using the following test data set:
+
+| x1    |  x2    | y    | 
+|-------|--------|------|
+| 23    | TRUE  | 83   | 
+| 15    | FALSE | 78   | 
+| 17    | FALSE | 75   |
+| 21    | TRUE | 82   |
+| 25    | TRUE | 89   |
+
+
+Suppose our first model (called model1) made the following predictions:
+
+| x1    |  x2    | ypred1 | 
+|-------|--------|------|
+| 23    | TRUE  | 80   | 
+| 15    | FALSE | 72   | 
+| 17    | FALSE | 74   |
+| 21    | TRUE | 85   |
+| 25    | TRUE | 91   |
+
+
+Suppose our second model model (called model2) made the following predictions:
+
+| x1    |  x2    | ypred2 | 
+|-------|--------|------|
+| 23    | TRUE  | 79   | 
+| 15    | FALSE | 78   | 
+| 17    | FALSE | 76   |
+| 21    | TRUE | 81   |
+| 25    | TRUE | 87   |
+
+Lets create some vectors with the actuals and the predictions: 
+
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
+actuals <- c(83,78,75,82,89)
+predictions1 <- c(80,72,74,85,91)
+predictions2 <- c(79,78,76,81,87)
+```
+
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
+mae(actuals, predictions1)
+mae(actuals, predictions2)
+```
+
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
+mape(actuals, predictions1)
+mape(actuals, predictions2)
+```
+
+
+```{r include=assignment, eval=FALSE}
+PUT CODE HERE
+```
+```{r include=!assignment}
+rmse(actuals, predictions1)
+rmse(actuals, predictions2)
+```
+
+Which model was better? 

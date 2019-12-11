@@ -47,15 +47,3 @@ We can print out the confusion matrix like this:
 table(df)
 ```
 
-Assign the "true positive", "true negative", "false positive" and "false negative" amounts:
-
-```{r, eval=FALSE}
-tp <- PUT ANSWER HERE 
-tn <- PUT ANSWER HERE
-fp <- PUT ANSWER HERE
-fn <- PUT ANSWER HERE
-```
-
-Now lets compute the "true positive rate" (or "sensitivity")
-Now lets compute the "true negative rate" (or "sensitivity")
-
