@@ -143,6 +143,7 @@ print(testdf)
 Now we are ready to do some predictions using the test dataframe:
 
 ```{r include=assignment, eval=FALSE}
+predictions <- PUT CODE HERE 
 ```
 ```{r include=!assignment}
 predictions <- predict(model2, newdata = testdf)
