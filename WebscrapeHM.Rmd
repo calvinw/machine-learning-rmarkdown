@@ -15,19 +15,22 @@ library("rvest")
 We are going to read in a page at H&M for sales:
 
 ```{r}
-url<-"https://www2.hm.com/en_us/sale/women/tops.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/jackets-coats.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/shirts-blouses.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/dresses.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/maternity-wear.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/basics.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/shoes.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/jeans.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/swimwear.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/accessories.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=252"
-url<-"https://www2.hm.com/en_us/sale/women/view-all.html?page-size=2448"
-url<-"https://www2.hm.com/en_us/sale/women/pants.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/tops.html?page-size=2448"
+# url<-"https://www2.hm.com/en_us/sale/women/jackets-coats.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/shirts-blouses.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/dresses.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/maternity-wear.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/basics.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/shoes.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/jeans.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/swimwear.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/accessories.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/view-all.html?page-size=2448"
+# url<-"https://www2.hm.com/en_us/sale/women/pants.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=2448"
+
+url<-"https://www2.hm.com/en_us/sale/women/dresses.html?page-size=2448"
 
 webpage <- read_html(url)
 ```
