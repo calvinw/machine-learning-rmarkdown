@@ -52,6 +52,127 @@
     </v-content>
   </v-app>
   </div>
+    <script> 
+var filesList = [
+"AssignmentNotebook.Rmd",
+"BakerySales.Rmd",
+"BicycleRentals.Rmd",
+"Calculator.Rmd",
+"ConfusionMatrixExamples.Rmd",
+"ConfusionMatrixQuestion.Rmd",
+"ConfusionMatrix.Rmd",
+"CustomerSpend.Rmd",
+"DataFrameManipulations.Rmd",
+"DataFrames.Rmd",
+"DataTypes.Rmd",
+"Elasticity.Rmd",
+"ErrorsExamples.Rmd",
+"ErrorsQuestion.Rmd",
+"Factors.Rmd",
+"HotChoc.Rmd",
+"IceCreamSales.Rmd",
+"KMeans.Rmd",
+"Lists.Rmd",
+"MeasuringErrors.Rmd",
+"Multicollinearity.Rmd",
+"Mysteria.Rmd",
+"OnlineRetailSales.Rmd",
+"PromotionForecasting.Rmd",
+"PromotionsQuestion.Rmd",
+"PromotionsTree.Rmd",
+"PurchasedKnn.Rmd",
+"Purchased.Rmd",
+"RBasicsAndDataFrames.Rmd",
+"RegressionTreePromotions.Rmd",
+"RentTheRunway.Rmd",
+"Restaurant.Rmd",
+"RExercises.Rmd",
+"RvestHowTo.Rmd",
+"SalesNewspaperRadioAds.Rmd",
+"SatisfactionLoyalty.Rmd",
+"Sequences.Rmd",
+"Simple.Rmd",
+"Strings.Rmd",
+"Subscriptions.Rmd",
+"Subsetting.Rmd",
+"SunflowerStoreSales.Rmd",
+"TShirtsQuestion.Rmd",
+"TShirts.Rmd",
+"Variables.Rmd",
+"Vectors.Rmd",
+"WebscrapeHM.Rmd",
+"WebscrapeLaptops.Rmd",
+"WebscrapeTradesy.Rmd",
+"WebscrapingMultiplePages.Rmd",
+"WebscrapingPoshmark.Rmd"
+];
+
+function makeData() {
+
+    var id = 10;
+    var filesArray = [];
+    var colabsArray = [];
+    var jupyterArray = [];
+
+    for(f of filesList){
+
+      var name = f.substring(0, f.indexOf(".Rmd"));
+
+      var htmlFile = name + '.html'
+      var rmdFile = name + '.Rmd'
+      var pdfFile = name + '.pdf'
+      var ipynbFile = name + '.ipynb'
+	
+	var fileItem = {
+	  id: id++,
+	  name: name,
+	  children: [
+	    { id: id++, name: rmdFile, file: 'Rmd' },
+	    { id: id++, name: htmlFile, file: 'html' },
+	    { id: id++, name: pdfFile, file: 'pdf'},
+	    { id: id++, name: ipynbFile, file: 'ipynb'}
+	  ]
+	};
+
+	filesArray.push(fileItem);
+
+	var colabItem = {
+	     id: id++, 
+	     name: name, 
+	     file: 'colab'
+	};
+	colabsArray.push(colabItem);
+
+	var jupyterItem = {
+	     id: id++, 
+	     name: name, 
+	     file: 'jupyter'
+	};
+	jupyterArray.push(jupyterItem);
+    }
+
+    let myJson = [ 
+	{ 
+	    id: 1,
+	    name: "Files",
+	    children: filesArray 
+	},
+	{
+	    id: 2,
+	    name: "Colab Links",
+	    children: colabsArray 
+	},
+	{
+	    id: 3,
+	    name: "Jupyter Links",
+	    children: jupyterArray 
+	},
+    ];
+    //console.log(JSON.stringify(myJson, null, 2));
+
+    return myJson; 
+}
+    </script>
 
   <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -61,31 +182,12 @@
     let vm = new Vue({
       el: '#app',
 	  created: function () {
-	      console.log("preparing socket io");
+	      console.log("in the created function");
 
 	      var self = this;
-	      var socket = io();
-	      socket.on("load-event", function (filename) {
-		console.log("got the load event: " + filename);
-		  Vue.set(self.active, 0, filename)
-		  //self.key = Date.now();
-		  window.scrollTo(0, document.body.scrollHeight);
-		  location.reload();
-	      });
+		self.items = makeData(); 
 
-	      console.log("loading json items data");
-	      fetch('./data.json')
-	      .then(response => {
-		return response.json()
-	      })
-	      .then(data => {
-		// Work with JSON data here
-		console.log(data)
-		self.items = data;
-	      })
-	      .catch(err => {
-	        console.log("there was an error reading items json");
-	      })
+
 	  },
 	methods: { 
 	    isLocalhost: function() {
@@ -148,19 +250,6 @@
 
 		    //Try to determine if we are running in development mode 
 		    let productionUrl = "https://calvinw.gitlab.io/machine-learning-rmarkdown/"
-		    /*
-		    if(ext === "docx") {
-
-			if(this.isLocalhost()) {
-			    let localhostUrl = this.localhostUrl();
-			    return localhostUrl + filename;
-			}
-			else {
-			   let wordViewer = "https://view.officeapps.live.com/op/embed.aspx?src="
-			   return wordViewer + productionUrl + filename;
-			}
-		    }
-		    */
 		    if (ext === "Rmd" || 
 			     ext === "html" ||
 			     ext === "pdf" ||
@@ -211,10 +300,8 @@
 	    Rmd: 'mdi-markdown',
 	    pdf: 'mdi-file-pdf',
 	    ipynb: 'mdi-file',
-	    //docx: 'mdi-file-word',
 	    colab: 'mdi-open-in-new',
-	    jupyter: 'mdi-open-in-new',
-	    googledoc: 'mdi-open-in-new'
+	    jupyter: 'mdi-open-in-new'
 	  },
 	 items: [] 
 	})
