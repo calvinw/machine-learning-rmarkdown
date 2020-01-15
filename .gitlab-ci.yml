@@ -20,7 +20,6 @@ pages:
   - mkdir .public
   - cp -r *.Rmd *.html *.ipynb *.pdf .public
   - rm .public/header.html
-  - cp -r data.json .public
   - mv .public public
 
   artifacts:
