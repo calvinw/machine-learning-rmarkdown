@@ -49,12 +49,5 @@ make
 
 or you can use Rstudio and choose the "Build All" menu from the Build tab. Likely if you just choose "Build All" in RStudio it will complain and make you install all the pre-reqs above as you go along. This is fine, just enter the above in RStudios Terminal window as you go along.
 
-If you would like to run the nodejs server we have in this repo, you have to install nodejs and npm. We don't cover installing these, just google that if you need to). You will then have to run: 
-
-```bash
-npm install
-```
-
-which uses the package.json file in this directory.
 
 See the Makefile for additional build details and targets.
