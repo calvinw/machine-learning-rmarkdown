@@ -24,7 +24,7 @@ The R kernel of Jupyter is used in the R versions of the ipynb Colab formats. Th
 
 To see what the project depends on look at the .gitlab-ci.yml file since that is a recipe to install pre-reqs for this project. Roughly the relevant things to install are as follows:
 
-We just show installing these from the command line. If you are in RStudio you can use the Terminal window there. 
+We just show installing these from the command line. If you are in RStudio you can use the Terminal window there. You must have a version of pandoc that is recent enough to support converting to ipynb. 
 
 ```bash
 apt-get update
