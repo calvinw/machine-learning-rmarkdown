@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 Lists are similar to vectors, except they can hold different types. 

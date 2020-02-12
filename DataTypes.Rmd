@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 You can find out what data type a variable holds by using the `class` function. 

@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 Suppose we want to work with categorical data. This is data that has a certain number of fixed levels. 

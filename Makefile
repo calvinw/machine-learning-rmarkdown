@@ -29,6 +29,6 @@ ipynb  : $(IPYNB_FILES)
 
 %.ipynb : %.Rmd
 	@Rscript -e 'library(knitr); library(rmarkdown); library(ipynbdocument)' \
-	    -e 'render("$<","ipynb_document")'
+	    -e 'render("$<")'
 
 .PHONY: all clean

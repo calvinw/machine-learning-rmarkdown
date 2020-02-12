@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 Data frames are the most used data structure in R. They are essentially equivalent to the rows and columns in a spreadsheet. Each row is a different record from a set of records, and each column is a different attribute or property from that set of records. 

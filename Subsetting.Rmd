@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 Suppose we want to just pick some of our data from a vector or other data type? How can we do this?

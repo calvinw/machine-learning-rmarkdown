@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 Vectors are lists of elements of the same type. They are an extremely important data structure in R.  

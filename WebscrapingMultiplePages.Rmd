@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 
 This technique is taken from here: [Webscraping Multiple Pages](https://rstudio-pubs-static.s3.amazonaws.com/287509_dde580b0adf94bae8a7994d7ae0cb849.html)

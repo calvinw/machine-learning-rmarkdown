@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+output:
+    ipynbdocument::ipynb_document
 ---
 This notebook is an expanded version of the analysis done here: 
 [Price Elasticity with R](http://www.salemmarafi.com/code/price-elasticity-with-r)   
