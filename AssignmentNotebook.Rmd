@@ -10,8 +10,9 @@ output:
 ---
 
 ```{r, include=FALSE}
-assignment<-FALSE
+assignment<-TRUE
 ```
+
 Set a equal to `5`
 Set b equal to the string "hello" 
 
@@ -20,10 +21,7 @@ a <-  PUT CODE HERE
 b <-  PUT CODE HERE
 ```
 ```{r include=!assignment}
-# a <-  PUT CODE HERE
 a <- 5 
-
-#b <-  PUT CODE HERE
 b <- "hello" 
 ```
 

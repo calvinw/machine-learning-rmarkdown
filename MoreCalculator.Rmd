@@ -1,0 +1,161 @@
+---
+title: "More Calculator"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+```{r include=F}
+ex<-T
+```
+
+Calculate `4+5` by replacing the line `CODE HERE` with `4+5` and then execute it by hitting the _Run Cell_ button 
+
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+4+5
+```
+
+Calculate `4*5`
+
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+4*5
+```
+
+Calculate `4-5`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+4-5
+```
+
+Calculate `4/5`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+4/5
+```
+
+Calculate `4^2`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+4^2
+```
+
+Check  $4^2=4(4)=16$
+
+Calculate `5^6`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+5^6
+```
+
+Check  $5^6=(5)(5)(5)(5)(5)(5)=15625$
+
+
+Calculate `sqrt(36)`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+sqrt(36)
+```
+
+Check: 
+$$ \sqrt{ 36 } = 6 $$
+
+Find `round(2.45)`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+round(2.45)
+```
+
+Find `ceiling(2.45)`
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+ceiling(2.45)
+```
+
+Find `24%%10`, which is the remainder of $24/10$
+```{r include=ex, eval=F}
+CODE HERE
+```
+```{r include=!ex}
+24%%10
+```
+
+Put parentheses in the expression `4+2*3` so it gives 18. As is, it is 10
+```{r include=ex, eval=F}
+4+2*3
+```
+```{r include=!ex}
+(4+2)*3
+```
+
+Put parentheses in the expression `4*5+3` so it gives 32. As is, it is 23
+```{r include=ex, eval=F}
+4*5+3
+```
+```{r include=!ex}
+4*(5+3)
+```
+
+Put parentheses in the expression `20/4*5` so it gives 1. As is, it is 25
+```{r include=ex, eval=F}
+20/4*5
+```
+```{r include=!ex}
+20/(4*5)
+```
+
+Put parentheses in the expression `2*9/3*2-1` so it gives 2. As is, it is 11 
+```{r include=ex, eval=F}
+2*9/3*2-1
+```
+```{r include=!ex}
+2*9/(3*2)-1
+```
+
+Fix the error below so it works correctly and gives 7
+```{r include=ex, eval=F}
+sqrt 49
+```
+```{r include=!ex}
+sqrt(49)
+```
+
+Fix the error below so it works correctly and gives 8
+```{r include=ex, eval=F}
+ceil(7.45)
+```
+```{r include=!ex}
+ceiling(7.45) 
+```
+
+Fix the error below so it works correctly and gives 7 
+```{r include=ex, eval=F}
+flooring(7.45)
+```
+```{r include=!ex}
+floor(7.45) 
+```
+

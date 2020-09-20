@@ -9,37 +9,42 @@ output:
     ipynbdocument::ipynb_document
 ---
 
-R is a programming language and so has variables. Variables can hold data, and can be used in calculations and in program logic. Understanding how variables work is very important in any programming language. 
+```{r include=F}
+ex<-T
+```
 
-Lets start by storing a number in a variable. Below we store the number 3 in a variable called `x`. 
+Lets start by storing a number in a variable. Store 4 in the variable `x` (Hint: Use the assignment operator <-)
 
-```{r}
+```{r include=ex, eval=F}
+PUT CODE HERE
+```
+```{r include=!ex}
 x<-3
 ```
-This is typed as first a `<` symbol followed by the `-` symbol. So it takes two characters to type this.
 
-Storing a number in a variable like this is also called an assignment. We are assigning the variable x to be 3.
+Print out the variable `x`:
 
-Now the way variables work is that x now has the value 3. So for now anything we do with x, like other calculations or manipulations, it will have the value 3 as we do those calculations. 
-
-For example, we can just print it out:
-
-```{r}
+```{r include=ex, eval=F}
+PUT CODE HERE
+```
+```{r include=!ex}
 x
 ```
 
-We can do arithmetic to it:
-```{r}
-2*x
+Set `y` equal to `3*x`
+```{r include=ex, eval=F}
+PUT CODE HERE
 ```
-
-Notice this is 6 since x currently is 3. So $2x=2(3)=6$
-
-We can do a calculation using x and store the result in another variable:
-```{r}
-y<-5*x
+```{r include=!ex}
+y<-3*x
 ```
-
+Now print out the value of `y`
+```{r include=ex, eval=F}
+PUT CODE HERE
+```
+```{r include=!ex}
+y
+```
 Now y will have a value after we do this. What is the current value of y? Since the current value of x is 3, the value of y should be $5(3)=15$. Lets print it out to see if that is true:
 ```{r}
 y

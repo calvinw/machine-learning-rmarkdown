@@ -13,7 +13,7 @@ R can do calculations, just like a calculator:
 
 Addition:
  
-```{r hello}
+```{r}
 3+4
 ```
 
@@ -21,10 +21,6 @@ Multiplication:
 
 ```{r}
 3*4
-```
-
-```{r include=FALSE, eval=FALSE}
-knitr::knit_exit()
 ```
 
 Subtraction:
@@ -88,7 +84,7 @@ You can call the ceiling function, what do you think this does?
 ceiling(6.3)
 ```
 
-You can call the floor function?  
+You can call the floor function, what does this do?  
 ```{r}
 floor(6.8)
 ```
@@ -98,14 +94,9 @@ R knows about the number $\pi$ as well. It is built in:
 pi
 ```
 
-R has a remainder function. This just gives the remainder of $17/5$, which is $2$:   
+R has a remainder function. This just gives the remainder of $17/5$, which is $2$ since $17/5=3$ with remainder 2:   
 ```{r}
 17%%5
-```
-
-There are functions for taking logarithms and exponents of things. Here we take the log of 1000 to the base 10.
-```{r}
-log10(1000)
 ```
 
 This log gives us a number so that when 10 is raised to that number we get 1000. So $10^3 = 1000$, which we know is true.
@@ -120,6 +111,7 @@ Order of operations
 ```{r}
 2+3*4
 ```
+
 Just like we were taught for PEMDAS, it does the multiplication first, then the addition. This is sort of like there are parentheses around the multiplication: 
 ```{r}
 2+(3*4)
@@ -130,24 +122,3 @@ If we want to make R do the addition first we can. We have to tell it to do that
 (2+3)*4
 ```
 
-Can R tell you if things are equal? Yes, it can. Use the `==`, a double equal sign. It will return TRUE or FALSE depending on whether the right hand side and the left hand side of the double equal sign are the same or not. 
-```{r}
-2 == 6/3
-```
-
-Can R tell you if things are not equal? Yes, it can. Use the `!=`. The exclaimation sign means "not" in programming languages. 
-```{r}
-2 != 3
-```
-
-Can R tell you if something is less than something else?
-```{r}
-2 < 3
-```
-
-Can R tell you if something is greater than something else?
-```{r}
-2 > 3
-```
-
-Things like this are called "Boolean expressions", and they are important in programming. You can make a program do something when one expression is greater than another, or if two things are equal you can make your program do one thing, but if they are not equal you can make your program do something else. We will see lots of examples of this later on...

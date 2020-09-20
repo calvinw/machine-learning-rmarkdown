@@ -1,0 +1,33 @@
+---
+title: "Calculator"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+
+Can R tell you if things are equal? Yes, it can. Use the `==`, a double equal sign. It will return TRUE or FALSE depending on whether the right hand side and the left hand side of the double equal sign are the same or not. 
+```{r}
+2 == 6/3
+```
+
+Can R tell you if things are not equal? Yes, it can. Use the `!=`. The exclaimation sign means "not" in programming languages. 
+```{r}
+2 != 3
+```
+
+Can R tell you if something is less than something else?
+```{r}
+2 < 3
+```
+
+Can R tell you if something is greater than something else?
+```{r}
+2 > 3
+```
+
+Things like this are called "Boolean expressions", and they are important in programming. You can make a program do something when one expression is greater than another, or if two things are equal you can make your program do one thing, but if they are not equal you can make your program do something else. We will see lots of examples of this later on...
