@@ -1,5 +1,5 @@
 ---
-title: "Variables"
+title: "More Variables"
 jupyter:
   kernelspec:
     display_name: R
@@ -16,100 +16,115 @@ ex<-T
 Lets start by storing a number in a variable. Store 4 in the variable `x` (Hint: Use the assignment operator <-)
 
 ```{r include=ex, eval=F}
-PUT CODE HERE
+CODE
 ```
 ```{r include=!ex}
-x<-3
+x<-4
 ```
 
 Print out the variable `x`:
 
 ```{r include=ex, eval=F}
-PUT CODE HERE
+CODE
 ```
 ```{r include=!ex}
 x
 ```
 
-Set `y` equal to `3*x`
+Set `y` equal to `5*x`
 ```{r include=ex, eval=F}
-PUT CODE HERE
+CODE
 ```
 ```{r include=!ex}
-y<-3*x
+y<-5*x
 ```
+Now y will have a value after we do this. What is the current value of y? Since the current value of `x` is 4, the value of y should be $5(4)=20$. 
+
 Now print out the value of `y`
 ```{r include=ex, eval=F}
-PUT CODE HERE
+CODE
 ```
 ```{r include=!ex}
 y
 ```
-Now y will have a value after we do this. What is the current value of y? Since the current value of x is 3, the value of y should be $5(3)=15$. Lets print it out to see if that is true:
-```{r}
-y
+
+Variables can be changed as a program proceeds.
+
+Change the value of x to be 7: 
+
+```{r include=ex, eval=F}
+CODE
 ```
-
-Variables can be changed as a program proceeds. They do not always have to hold the value they were initially assigned. (They are called variables after all)
-
-For example we can change the value of x as follows with another assignment:
-```{r}
-x<-2
+```{r include=!ex}
+x<-7
 ```
 
 One thing you might wonder is that if you change the value of x at some point, does that affect the value of y we defined earlier using x? Let's check:
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 y
 ```
 
-No. It doesn't. This y still has the same value it had before which is \( 5(3) = 15 \) since at the time we assigned y the x was equal to 3. 
-If we want y to update, we would have to assign it again to give it a new value:
+No. It doesn't. This y still has the same value it had before which is $5(4) = 20$ since at the time we assigned y the x was equal to 4. 
+If we want y to update, we would have to assign it again to give it a new value. Go ahead and do that.
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 y<-5*x
 ```
 
-Now we can see that its value is updated.
+Now print out the new version of y:
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 y
 ```
+It has the value $5(7) = 35$ now since currently the x is assigned to be 7. 
 
-It has the value $5(2) = 10$ now since currently the x is assigned to be 2. 
+Next go ahead and set a variable `z` equal to 1.2 and `w` equal to 7 and then print them both out in this block of code
 
-This shows how variables work. As programs are being run, each variable has a current value, which you can check by just typing the name of the variable and executing that line of code. 
-
-Below we set a couple variables and then print them out:
-
-```{r}
-z<-2.3
-w<-5
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+z<-1.2
+w<-7
 z
 w
 ```
 
-Now we change z and print it out:
-```{r}
-z<-2*w + 4
+Now we change (assign) `z` to be `3*w-5` and print out the new `z`  
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+z<-3*w - 5 
 z
 ```
-Since w was 5 above, the new value of z is $2(5) + 4 = 14$
+Since `w` was 7 above, the new value of `z` is $3(7)-5 = 16$
 
-Usually for variable assignments, the left hand side is just the variable we are setting while the right hand side can be any mathematical expression. We can use about anything on the right hand side during an assignment. Functions, $\pi$, other variables...
-```{r}
-z<-sqrt(2*w + 4)
-z
-```
-
-Above we are taking the square root of 14, or in symbols $\sqrt{14}$.
-
-Other programming languages use `=` to do variable assignments but R usually uses the "arrow" which is typed as two symbols. 
-
-First the `<` symbol followed by the `-` symbol. You should say it outloud as "is assigned to be", so for this: 
+Below we are trying to assign x to be 21 but it does not work. If you try running the code it says that x is still 7.
 
 ```{r}
-x<-8
+x <= 21
+x
 ```
 
-you would say "x is assigned to be 8".
+Provide a correct version below, so that it prints out 21:
+
+```{r include=ex, eval=F}
+x <= 21
+x
+```
+```{r include=!ex}
+x <- 21
+x
+```
+
 

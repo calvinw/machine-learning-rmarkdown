@@ -7,6 +7,7 @@ IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 
 all : html pdf ipynb
+#all : html
 	@echo All files are now up to date
 
 clean :

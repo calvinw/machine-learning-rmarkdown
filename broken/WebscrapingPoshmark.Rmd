@@ -86,23 +86,25 @@ df[,c("title","original","discount")]
 Now lets see the distribution of discounts people are offering:
 
 ```{r}
-hist(discount)
-mean(discount)
-range(discount)
+discount
+#hist(discount)
+#mean(discount)
+#range(discount)
 ```
 
 Now lets see the distribution of original prices:
 
 ```{r}
-hist(original)
-mean(original)
-range(original)
+original
+# hist(original)
+# mean(original)
+# range(original)
 ```
 
 Here is a plot of the original vs the offering price:
 
 ```{r}
-plot(original,price, pch=19)
-cor(original, price)
+#plot(original,price, pch=19)
+#cor(original, price)
 ```
 
