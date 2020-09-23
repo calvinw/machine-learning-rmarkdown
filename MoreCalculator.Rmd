@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r include=F}
-ex<-T
+ex<-F
 ```
 
 Calculate `4+5` by replacing the line `CODE` with `4+5` and then execute it by hitting the _Run Cell_ button 

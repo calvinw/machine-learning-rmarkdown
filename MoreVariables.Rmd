@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r include=F}
-ex<-T
+ex<-F
 ```
 
 Lets start by storing a number in a variable. Store 4 in the variable `x` (Hint: Use the assignment operator <-)
