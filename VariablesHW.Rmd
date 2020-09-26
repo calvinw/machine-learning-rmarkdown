@@ -1,0 +1,199 @@
+---
+title: "More Variables"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+```{r include=F}
+ex<-T
+```
+
+In the code block below (replace the word `CODE`):
+
+- Store the number 8 in a variable called `x` 
+- Print out `x`
+- Execute the code block   
+
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+x<-8
+x
+```
+
+The output of the above should be `8` 
+
+In the code block below:
+
+- Now assign `y` to be `5*x+3`
+- Print out `y` 
+- Execute the code block   
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+y<-5*x+3
+y
+```
+
+The output of the above should be `43` 
+
+In the code block below:
+
+- Find the square root of 119025 using the function `sqrt` 
+- Execute the code block   
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+sqrt(119025)
+```
+The output of the above should be `345` 
+
+
+In the code block below:
+
+- Use the function `ceiling` to round up the value `1.3` 
+- Execute the code block   
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+ceiling(1.3)
+```
+
+The output of the above should be `2` 
+
+In the code block below:
+
+- Use the function `floor` to round down the value `3.8` 
+- Execute the code block   
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+floor(3.8)
+```
+
+The output of the above should be `3` 
+
+In the code block below:
+
+- Store a new number 10 in the variable called `x`. 
+- Print out `x`
+- Execute the code block   
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+x<-10
+x
+```
+
+The output of the above should be `10` 
+
+In the code block below:
+
+- Assign the variable `myVal` to be `x+y`
+- Print out `myVal`
+- Execute the code block   
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+myVal <-x+y
+myVal
+```
+The output of the above should be `53` 
+
+In the code block below:
+
+- Enter and the expression `14/2-1+3` 
+- Execute the code block, it outputs  `9` 
+- Put in parentheses so that it outputs `17` instead 
+
+```{r include=ex, eval=F}
+14/2-1+3
+```
+```{r include=!ex}
+14/2-1+3
+```
+
+In the code block below:
+
+- Enter and the expression `8*3+9-9` 
+- Execute the code block, it outputs  `24` 
+- Put in parentheses so that it outputs `87` instead 
+
+```{r include=ex, eval=F}
+8*3+9-9
+```
+```{r include=!ex}
+8*(3+9)-9
+```
+
+In the code block below:
+
+- Enter and the expression `8*3+9-9` 
+- Execute the code block, it outputs  `24` 
+- Put in parentheses so that it outputs `87` instead 
+
+```{r include=ex, eval=F}
+8*3+9-9
+```
+```{r include=!ex}
+8*(3+9)-9
+```
+
+In the code block below:
+
+- Enter and the expression `10-9*24/8*6` 
+- Execute the code block, it outputs  `-152` 
+- Put in parentheses so that it outputs `18` instead 
+
+```{r include=ex, eval=F}
+10-9*24/8*6
+```
+```{r include=!ex}
+(10-9)*24/8*6
+```
+
+In the code block below:
+
+- Assume you have this code `5(3)`
+- Execute the code block, it outputs  an error 
+- Fix the code so that it outputs 15 
+
+```{r include=ex, eval=F}
+5(3)
+```
+```{r include=!ex}
+5*3
+```
+
+- Assign a variable `z<-7` 
+- Try to print out this expression: `2z` 
+- Execute the code, it outputs  an error 
+- Fix the code so that it outputs `14` 
+
+```{r include=ex, eval=F}
+z<-7
+2z
+```
+```{r include=!ex}
+z<-7
+2*z
+```
