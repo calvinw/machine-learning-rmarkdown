@@ -9,55 +9,51 @@ output:
     ipynbdocument::ipynb_document
 ---
 
-You can find out what data type a variable holds by using the `class` function. 
+Variables and expressions in R have data types. The following charts shows the main data types:
 
-For the following the data type is 'numeric'. Examples are 3.2, -2.34, 0.0
+|  Data Type	     |  R version     | Examples    |
+|--------------------|------------------|------------|
+|  decimal (number)  |   numeric      |  2.32,-0.45  | 
+|  string (text)     |   character    | "hello", "k" |
+|  integer             |   integer      |  12L        |
+|  boolean(true/false) |   logical      |  TRUE,FALSE   |
+
+You can find out what data type a variable holds by using the `class` function. 
+`class` is a function that gives info on the data type of an object.
+
+The following variable has data type 'numeric'. Examples are 3.2, -2.34, 0.0
  
 ```{r}
 x<-3.2
 class(x)
 ```
 
-`class` is one function that gives info on the data type of an object. Another interesting function is called `str`.  
-
-This function is called the "structure" function and and also gives information about the object you pass to it.   
-Lets see what it gives here: 
-
-```{r}
-str(x)
-```
-
-This says that  `x` is a numeric type and has value 3.2.
-
 The data type of a text or string is 'character'.    
 
 Examples are "Bob", "We are the champions", "Fee Fi Fo" 
 
 ```{r}
-y<-"hello there"
+y<-"hi there"
 class(y)
 z<-"XXXYYYZZZ"
 class(z)
 ```
 
-```{r include=FALSE, eval=FALSE}
-knitr::knit_exit()
-```
-
 The data type of something that holds 'TRUE' or 'FALSE' is 'logical'.   
-This is Rs name for Booleans, things that can just be TRUE or FALSE.  
+
+This is Rs name for booleans, things that can just be TRUE or FALSE.  
 
 
 ```{r}
-z<-TRUE
-r<-FALSE
-class(z)
-class(r)
+u<-TRUE
+class(u)
+v<-FALSE
+class(v)
 ```
 
 There is also a type for integers (..., -3,-2,-1,0,1,2,3,...), it is not used as frequently as "numeric".   
 
-To create a integer type, you have to use an L after the integer:   
+To create an integer type, you have to use an L after the integer:   
 
 ```{r}
 a<-3L
@@ -67,8 +63,20 @@ class(a)
 If you do not use an L, then R will make it a 'numeric' type:
 ```{r}
 b<-3
-class(3)
+class(b)
 ```
+
+## Checking Types
+
+There are functions for checking the type of a variable or expression, which are sometimes more convenient than using the `class` function. Each of these answers `TRUE` or `FALSE` depending on whether the value is that type or not:
+
+|  Checking types    |  function     | Example    |
+|--------------------|------------------|------------|
+|  decimal number      |   is.numeric   |  is.numeric(2.32)  | 
+|  string              |   is.character | is.character("hello")  |
+|  integer             |   is.integer      |  is.integer(2L)        |
+|  boolean(true/false) |   is.logical      |  is.logical(TRUE)      |
+
 
 It turns out that an integer is also a numeric type
 ```{r}
@@ -77,28 +85,52 @@ is.integer(b)
 is.numeric(b)
 ```
 
-But not 'numeric' variables are not necessarily 'integer' types. 3.4 is not an integer, is `is.integer` returns `FALSE`
+But 'numeric' variables are not necessarily 'integer' types. 3.4 is not an integer, and `is.integer` returns `FALSE`
 ```{r}
 c<-3.4
 is.numeric(c)
 is.integer(c)
 ```
 
+## Converting Types
+
 You can change a variables type if you need to using these functions:
 
-1.  `as.numeric` to make it a numeric
-1.  `as.integer` to make it an integer
-1.  `as.character` to make it a string 
-1.  `as.logical` to make it a boolean
+|  Changing types    |  function     | Example    |
+|--------------------|------------------|------------|
+|  decimal number      |   as.numeric   |  as.numeric(2L)  | 
+|  string              |   as.character | as.character(123)  |
+|  integer             |   as.integer      |  as.integer(2.0)    |
+|  boolean(true/false) |   as.logical      |  as.logical(1)      |
 
-Below we make the variable `a`, which starts as an 'integer' into a 'numeric'. We just re-assign it to do so.
+One use for this is to convert a string like "1.23" to a number 1.23. This happens frequently since when we read in data from files, even though the file may contain numbers, they will often be strings to begin with.
+
+With quotes around it, a number will be seen as a string. Here is an example:
+
 ```{r}
-a<-3L
-is.integer(a)
-a<-as.numeric(a)
-is.numeric(a)
-is.integer(a)
+aString<-"1.23"
+is.character(aString)
 ```
+
+So if we want to change the string "1.23" to a number, we must use `as.numeric` to convert the string to a number:
+
+```{r}
+aNumber<-as.numeric(aString)
+is.numeric(aNumber)
+```
+
+The other direction from number to a string happens sometimes as well. 
+
+Below we create a number, then convert it to a string.
+
+
+```{r}
+aNumber<-4.56
+aString<-as.character(aNumber)
+is.character(aString)
+```
+
+## Combining Types
 
 One reason for having types is so that R can check if you are doing things that make sense.  
 For example adding two numeric types makes sense

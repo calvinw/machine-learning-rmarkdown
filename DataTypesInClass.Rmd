@@ -1,0 +1,101 @@
+---
+title: "Data Types In Class"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+```{r include=F}
+ex<-F
+```
+- Assign a variable using `myNumeric<-1.2`
+- Print out the data type of `myNumeric` using the `class` function
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+myNumeric<-1.2
+class(myNumeric)
+```
+
+This should output the class `numeric`
+
+- Use the `is.numeric` function to check if `myNumeric` is a numeric data type.
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+is.numeric(myNumeric)
+```
+
+The output should be `TRUE` since `myNumeric` is a numeric data type.
+
+Lets look at string types
+
+- Assign a variable using `myString<-"hello"`
+- Print out the data type of `myString` using the `class` function
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+myString<-"hello"
+class(myString)
+```
+The output of this should be `character`
+
+- Use the `is.character` function to check if `myString` is a character data type 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+is.character(myString)
+```
+The output should be `TRUE` since `myString` is a character data type.
+
+```{r}
+```
+Lets look at boolean type
+- Assign a variable using `myBoolean<-TRUE`
+- Print out the data type of `myBoolean` using the `class` function
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+myBoolean<-TRUE
+class(myBoolean)
+```
+
+- Use the `is.logical` function to check the data type of `myBoolean` from above 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+is.logical(myBoolean)
+```
+The output should be `TRUE` since `myBoolean` is a boolean data type.
+
+One conversion that is freqently used is from at string like "1.23" to a number 1.23.
+
+With quotes around it, a number will be seen as a string:
+
+```{r}
+aString<-"1.23"
+is.character(aString)
+```
+
+So if we want to change the string "1.23" to a number, we must use `as.numeric` to convert the string to a number:
+
+```{r}
+aNumber<-as.numeric(aString)
+is.numeric(aNumber)
+```

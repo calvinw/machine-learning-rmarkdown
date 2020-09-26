@@ -1,13 +1,14 @@
 SHELL:=/bin/bash
 #SOURCES=$(shell find . -name "*.Rmd")
 SOURCES=$(wildcard *.Rmd)
+#SOURCES=DataTypes.Rmd DataTypesInClass.Rmd
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 PDF_FILES = $(SOURCES:%.Rmd=%.pdf)
 
-all : html pdf ipynb
 #all : html
+all : html pdf ipynb
 	@echo All files are now up to date
 
 clean :
