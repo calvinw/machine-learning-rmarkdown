@@ -121,3 +121,26 @@ is.numeric(aNumber)
 ```
 
 The output of `is.numeric(aNumber)` should be `TRUE` since `aNumber` was a numeric.
+
+Finally guess the data types that will be displayed below by the 2 `class` functions:
+
+```{r}
+class("1.23")
+x<-as.numeric("1.23")
+class(x)
+```
+
+The first one is a character since there are quotations marks so that makes it a string.
+
+The second one is a numeric since it has been converted from a string to a numeric type with `as.numeric`
+
+```{r}
+class("TRUE")
+y<-as.logical("TRUE")
+class(y)
+```
+
+The first one is a character since there are quotations marks so that makes it a string.
+
+The second one is a logical since it has been converted from a string to a logical type with `as.logical`
+

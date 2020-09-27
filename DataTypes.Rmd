@@ -168,5 +168,4 @@ This code is saying that `b` is a numeric type and the value of it is 5.67.
 c<-FALSE
 str(c)
 ```
-
 This code is saying that `c` is a logical (boolean) type and the value of it is FALSE 
