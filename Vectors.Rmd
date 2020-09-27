@@ -105,6 +105,21 @@ a<-c(2,4,3,1)
 
 Suppose we want to access the elements in a vector. You can access the elements in a vector by using the "subscript" notation. This means you refer to the different elements using an index:
 
+Here is an example of a vector defined like this: `b<-c(4,3,-1,2)`:
+
+| index | 1  | 2 | 3 | 4 |
+|--|--|--|--|--|
+| values| 4  | 3  | -1  | 2 | 
+
+You can access the elements in the vector like this:
+
+- `b[1]` will be 4
+- `b[2]` will be 3 
+- `b[3]` will be -1 
+- `b[4]` will be 2 
+
+Let's see this index notation in use:
+
 ```{r}
 b<-c(4,3,-1,2)
 b[1]
@@ -114,15 +129,6 @@ b[4]
 ```
 
 The first index is 1 and the last index is 4 for this vector. In some programming languages the first element in a vector would be refered to with an index of 0, not 1.
-
-What happens if we use a negative index?
-```{r}
-b[-1]
-b[-2]
-```
-
-`b[-1]` removes the first element of the vector
-`b[-2]` removes the second element of the vector
 
 ```{r}
 b[5]
@@ -136,14 +142,24 @@ d
 str(d)
 ```
 
-Vectors are convenient for applying functions that depend on a list of numbers. For examples the `mean` and `median` of  a set of numbers. 
+Vectors are convenient for applying functions that depend on a list of numbers. 
+
+Perhaps the simplest example is the function `sum`:
 
 ```{r}
-v<-c(65, 77, 89, 54, 78, 82)
+v<-c(4, 3.4, 2.9, 3)
+sum(v)
+```
+
+The above finds the sum of the 4 values in the vector
+
+More examples are the `mean` and `median` of  a set of numbers. 
+
+```{r}
 mean(v)
 median(v)
 ```
-Other examples are the `min` and `max` of a set of numbers:
+And more examples are the `min` and `max` of a set of numbers:
 
 ```{r}
 min(v)

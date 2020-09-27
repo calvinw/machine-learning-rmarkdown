@@ -1,0 +1,91 @@
+---
+title: "Vectors In Class"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+```{r include=F}
+ex<-F
+```
+
+- Create a vector `x` with the values 4,2,3
+- Create a vector `m` with the values 5,6,2 
+- print `x`
+- print `m`
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+x<-c(4,2,3)
+m<-c(2,-1,5)
+x
+m
+```
+
+- Use the function `class` to print out info about the vector `x`
+- Use the function `class` to print out info about the vector `m` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+class(x)
+class(m)
+```
+
+- Use the function `str` to print out info about the vector `x`
+- Use the function `str` to print out info about the vector `m` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+str(x)
+str(m)
+```
+
+- Use the function `length` to print out the length of vector `x`
+- Use the function `length` to print out the length of vector `m`
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+length(x)
+length(m)
+```
+
+- Assign `7` to a variable `b` 
+- Assign `sum(m*x)+b` to a variable `y` 
+- Use `str` to get information about `y` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+b<-7
+y<-sum(m*x)+b
+y
+```
+
+This is exactly like using a regression equation as follows:
+
+$$ y = m_1(x_1) + m_2(x_2) + m_3(x_3) + b $$ 
+
+where `m` is a vector with the slopes:
+
+$$ m = (m_1, m_2, m_3) = (2,-1,5) $$
+
+and `x` is a vector with the x-values: 
+
+$$ x = (x_1, x_2, x_3) = (4,2,3) $$
+
+So that this is calculation is like a prediction using the x-values:
+
+$$ y = 2(4) + -1(2) + 5(3) + 7 = 28 $$ 
