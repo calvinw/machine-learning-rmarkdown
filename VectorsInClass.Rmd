@@ -13,57 +13,60 @@ output:
 ex<-F
 ```
 
-- Create a vector `x` with the values 4,2,3
-- Create a vector `m` with the values 5,6,2 
-- print `x`
+## Using Vectors for Multiple Regression
+
+Let's use vectors to describe a multiple regression. 
+
+Suppose we have run a regression analysis and we have three x-variables $x_1, x_2, x_3$ and we want to predict $y$ from those predictors. Let's assume we have three slopes and an intercept given by:
+
+$$ 
+m = (m_1, m_2, m_3) = (5,-1,2) 
+$$
+
+$$ 
+b = 7
+$$
+
+These may have come from `LINEST` in a spreadsheet or they may have come from using R's `lm` function.
+
+- Create a vector `m` with the values 5,-1,2
 - print `m`
 
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
-x<-c(4,2,3)
-m<-c(2,-1,5)
-x
+m<-c(5,-1,2)
 m
 ```
 
-- Use the function `class` to print out info about the vector `x`
-- Use the function `class` to print out info about the vector `m` 
-
-```{r include=ex, eval=F}
-CODE
-```
-```{r include=!ex}
-class(x)
-class(m)
-```
-
-- Use the function `str` to print out info about the vector `x`
 - Use the function `str` to print out info about the vector `m` 
 
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
-str(x)
 str(m)
 ```
 
-- Use the function `length` to print out the length of vector `x`
-- Use the function `length` to print out the length of vector `m`
+## Making Predictions with a Vector of Predictors
+
+Now suppose we want to do some predictions using our regression equation.
+
+- Create a vector `x` with the values 1,4,3 
+- print `x`
 
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
-length(x)
-length(m)
+x<-c(1,4,3)
+x
 ```
 
 - Assign `7` to a variable `b` 
 - Assign `sum(m*x)+b` to a variable `y` 
-- Use `str` to get information about `y` 
+- Print out `y` 
 
 ```{r include=ex, eval=F}
 CODE
@@ -74,18 +77,78 @@ y<-sum(m*x)+b
 y
 ```
 
-This is exactly like using a regression equation as follows:
+That output is our prediction of $y$ when $x = (1,4,3)$, which means when $x_1=1$, $x_2=4$ and $x_3=3$. 
+
+This is exactly like computing a prediction using a regression equation as follows:
 
 $$ y = m_1(x_1) + m_2(x_2) + m_3(x_3) + b $$ 
 
 where `m` is a vector with the slopes:
 
-$$ m = (m_1, m_2, m_3) = (2,-1,5) $$
+$$ m = (m_1, m_2, m_3) = (5,-1,2) $$
 
 and `x` is a vector with the x-values: 
 
-$$ x = (x_1, x_2, x_3) = (4,2,3) $$
+$$ x = (x_1, x_2, x_3) = (1,4,3) $$
 
 So that this is calculation is like a prediction using the x-values:
 
-$$ y = 2(4) + -1(2) + 5(3) + 7 = 28 $$ 
+$$ y = m_1(x_1) + m_2(x_2) + m_3(x_3) + b = 5(1) + -1(4) + 2(3) + 7 = 14 $$ 
+
+Lets make an additional prediction when `x<-c(2,5,4)` 
+
+- Assign `x` to a be a vector with three elements, 2,5,4  
+- Assign `sum(m*x)+b` to a variable `y` 
+- Print out `y` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+x<-c(2,5,4)
+y<-sum(m*x)+b
+y
+```
+
+## Scatterplots using Vectors 
+
+Lets also see how vectors can be used to show some plots in R. First we show a scatterplot made by vectors of `x` and `y`. 
+
+- Assign `x` to a be a vector with three elements, 2,5,4,6,7,8  
+- Assign `y` to a be a vector with three elements, 3,5,6,6,8,8  
+- Print out `x` 
+- Print out `y` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+x<-c(2,5,4,6,7,8)
+y<-c(3,5,6,6,8,8)
+```
+
+- call the function `plot` and pass it the `x` and `y` you just created 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+plot(x,y)
+```
+
+This is your first graph in R! 
+
+## Regression Modeling using Vectors 
+
+Its also very easy to create a regression analysis in R if you have the `x` and `y` data as vectors. 
+
+- Type the code `model<-lm(y~x)` on the first line below to set up a regression analysis
+- Type the code `summary(model)` to get the regression output with info about the model  
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+model<-lm(y~x)
+summary(model)
+```
