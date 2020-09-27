@@ -134,6 +134,7 @@ is.character(aString)
 
 One reason for having types is so that R can check if you are doing things that make sense.  
 For example adding two numeric types makes sense
+
 ```{r}
 d<-3.4
 e<-4.23
@@ -141,6 +142,7 @@ d+e
 ```
 
 But adding two strings (with type 'character') does not:
+
 ```{r,error=TRUE}
 f<-"Goodbye"
 g<-"Cruel World"
@@ -166,4 +168,3 @@ k<-3.2
 l<-"hello"
 k+l
 ```
-

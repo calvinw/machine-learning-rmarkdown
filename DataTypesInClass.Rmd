@@ -99,3 +99,19 @@ So if we want to change the string "1.23" to a number, we must use `as.numeric` 
 aNumber<-as.numeric(aString)
 is.numeric(aNumber)
 ```
+
+Finally guess the data types that will be displayed below by the 4 `class` functions:
+
+The first one will be:
+The second one will be:
+The third one will be:
+The fourth one will be:
+
+```{r}
+class("1.23")
+class("TRUE")
+x<-as.numeric("1.23")
+y<-as.logical("TRUE")
+class(x)
+class(y)
+```
