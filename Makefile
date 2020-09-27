@@ -1,7 +1,7 @@
 SHELL:=/bin/bash
 #SOURCES=$(shell find . -name "*.Rmd")
 SOURCES=$(wildcard *.Rmd)
-#SOURCES=DataTypes.Rmd DataTypesInClass.Rmd
+#SOURCES=DataTypes.Rmd DataTypesInClass.Rmd Boolean.Rmd Vectors.Rmd Subsetting.Rmd
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
@@ -14,7 +14,7 @@ all : html pdf ipynb
 clean :
 	@echo Removing html, pdf, files...	
 	rm -f $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES)
-	rm -rf *_files 
+	rm -rf *_files
 
 html   : $(HTML_FILES)
 
@@ -33,5 +33,8 @@ ipynb  : $(IPYNB_FILES)
 %.ipynb : %.Rmd
 	@Rscript -e 'library(knitr); library(rmarkdown); library(ipynbdocument)' \
 	    -e 'render("$<")'
+
+watch: 
+	./watch.sh
 
 .PHONY: all clean

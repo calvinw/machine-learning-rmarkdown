@@ -18,17 +18,24 @@ Variables and expressions in R have data types. The following charts shows the m
 |  integer             |   integer      |  12L        |
 |  boolean(true/false) |   logical      |  TRUE,FALSE   |
 
-You can find out what data type a variable holds by using the `class` function. 
+You can find out what data type a variable holds by using the `class` function.   
+
 `class` is a function that gives info on the data type of an object.
 
-The following variable has data type 'numeric'. Examples are 3.2, -2.34, 0.0
- 
+### Numeric 
+
+The data type of numbers like 3.2, -2.34, 0.0 is numeric
+
+The following variable has data type numeric:  
+
 ```{r}
 x<-3.2
 class(x)
 ```
 
-The data type of a text or string is 'character'.    
+### Character
+
+The data type of a text or string is character.    
 
 Examples are "Bob", "We are the champions", "Fee Fi Fo" 
 
@@ -38,6 +45,8 @@ class(y)
 z<-"XXXYYYZZZ"
 class(z)
 ```
+
+### Logical 
 
 The data type of something that holds 'TRUE' or 'FALSE' is 'logical'.   
 
@@ -50,6 +59,8 @@ class(u)
 v<-FALSE
 class(v)
 ```
+
+### Integer 
 
 There is also a type for integers (..., -3,-2,-1,0,1,2,3,...), it is not used as frequently as "numeric".   
 
@@ -103,26 +114,31 @@ You can change a variables type if you need to using these functions:
 |  integer             |   as.integer      |  as.integer(2.0)    |
 |  boolean(true/false) |   as.logical      |  as.logical(1)      |
 
+### Character to Numeric
+
 One use for this is to convert a string like "1.23" to a number 1.23. This happens frequently since when we read in data from files, even though the file may contain numbers, they will often be strings to begin with.
 
 With quotes around it, a number will be seen as a string. Here is an example:
 
 ```{r}
-aString<-"1.23"
-is.character(aString)
+myData<-"1.23"
+is.character(myData)
+is.numeric(myData)
 ```
 
 So if we want to change the string "1.23" to a number, we must use `as.numeric` to convert the string to a number:
 
 ```{r}
-aNumber<-as.numeric(aString)
-is.numeric(aNumber)
+myOtherData<-as.numeric(myData)
+is.numeric(myOtherData)
+myOtherData
 ```
+
+### Numeric to Character
 
 The other direction from number to a string happens sometimes as well. 
 
 Below we create a number, then convert it to a string.
-
 
 ```{r}
 aNumber<-4.56
@@ -130,40 +146,27 @@ aString<-as.character(aNumber)
 is.character(aString)
 ```
 
-## Combining Types
+## `str` function
 
-One reason for having types is so that R can check if you are doing things that make sense.  
-For example adding two numeric types makes sense
-```{r}
-d<-3.4
-e<-4.23
-d+e
-```
-
-But adding two strings (with type 'character') does not:
-```{r,error=TRUE}
-f<-"Goodbye"
-g<-"Cruel World"
-f+g
-```
-
-The error is telling us we cannot use `+` on two strings
-
-Lets try adding an 'integer' and a 'numeric'
+There is another important function called `str` which gives information about the data type of something when you pass it into this function. The `str` is short for "structure".
 
 ```{r}
-h<-3L
-i<-2.3
-h+i
+a<-"hi there"
+str(a)
 ```
 
-That seems to work fine.
+This code is saying that `a` is a character type and the value of it is "hi there".
 
-Finally what happens if we add a 'numeric' and a 'character' type: 
-
-```{r, error=TRUE}
-k<-3.2
-l<-"hello"
-k+l
+```{r}
+b<-5.67
+str(b)
 ```
 
+This code is saying that `b` is a numeric type and the value of it is 5.67.
+
+```{r}
+c<-FALSE
+str(c)
+```
+
+This code is saying that `c` is a logical (boolean) type and the value of it is FALSE 

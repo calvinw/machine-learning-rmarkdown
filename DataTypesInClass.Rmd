@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r include=F}
-ex<-F
+ex<-T
 ```
 - Assign a variable using `myNumeric<-1.2`
 - Print out the data type of `myNumeric` using the `class` function
@@ -62,7 +62,8 @@ The output should be `TRUE` since `myString` is a character data type.
 
 ```{r}
 ```
-Lets look at boolean type
+Lets look at boolean type:
+
 - Assign a variable using `myBoolean<-TRUE`
 - Print out the data type of `myBoolean` using the `class` function
 
@@ -88,14 +89,35 @@ One conversion that is freqently used is from at string like "1.23" to a number 
 
 With quotes around it, a number will be seen as a string:
 
-```{r}
+
+- Define a variable `aString<-"1.23"`
+- print out whether it is a string using `is.character` 
+- print out whether it is a numeric using `is.numeric` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 aString<-"1.23"
 is.character(aString)
+is.numeric(aString)
 ```
+
+The output of `is.character(aString)` should be `TRUE` since `aString` was a string.
+
+The output of `is.numeric(aString)` should be `FALSE` since `aString` was not a numeric.
 
 So if we want to change the string "1.23" to a number, we must use `as.numeric` to convert the string to a number:
 
-```{r}
+- Define a variable `aNumber` by using the function `as.numeric` on `aString`
+- print out whether `aNumber` is a numeric using `is.numeric` 
+
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 aNumber<-as.numeric(aString)
 is.numeric(aNumber)
 ```
+
+The output of `is.numeric(aNumber)` should be `TRUE` since `aNumber` was a numeric.

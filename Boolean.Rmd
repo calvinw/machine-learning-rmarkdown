@@ -1,5 +1,5 @@
 ---
-title: "Calculator"
+title: "Booleans"
 jupyter:
   kernelspec:
     display_name: R
@@ -9,25 +9,76 @@ output:
     ipynbdocument::ipynb_document
 ---
 
+## Booleans and Comparisons
 
-Can R tell you if things are equal? Yes, it can. Use the `==`, a double equal sign. It will return TRUE or FALSE depending on whether the right hand side and the left hand side of the double equal sign are the same or not. 
+### Is It Equal?
+
+Can R tell you if things are equal? Yes, it can. 
+
+Use the `==`, a double equal sign. 
+
+It will return TRUE or FALSE depending on whether the right hand side and the left hand side of the double equal sign are the same or not. 
 ```{r}
 2 == 6/3
 ```
 
-Can R tell you if things are not equal? Yes, it can. Use the `!=`. The exclaimation sign means "not" in programming languages. 
+This code means "is 2 equal to 6/3?"
+
+The output of this will be `TRUE`
+
+### Is It Not Equal?
+
+Can R tell you if things are not equal? Yes, it can. 
+
+Use the `!=`. The exclaimation sign means "not" in programming languages. 
+
 ```{r}
 2 != 3
 ```
+
+This code means "is 2 not equal to 3?"
+
+The output of this is `TRUE`
+
+### Is It Less Than?
 
 Can R tell you if something is less than something else?
 ```{r}
 2 < 3
 ```
 
+This code means "is 2 less than 3?"
+
+The output of this is `TRUE`
+
+### Is It Greater Than?
+
 Can R tell you if something is greater than something else?
 ```{r}
 2 > 3
 ```
 
-Things like this are called "Boolean expressions", and they are important in programming. You can make a program do something when one expression is greater than another, or if two things are equal you can make your program do one thing, but if they are not equal you can make your program do something else. We will see lots of examples of this later on...
+This code means "is 2 greater than 3?"
+
+The output of this is `FALSE`
+
+
+### Program Execution and Booleans 
+
+"Boolean expressions" that come from comparisons are important in programming. You can make a program do something when one expression is greater than another, or if two things are equal you can make your program do one thing, but if they are not equal you can make your program do something else. We will see lots of examples of this later on...
+
+This also works for variables as well:
+```{r}
+x<-3
+# This line says "is x greater than 2?"
+x > 2
+# This line says "is x greater than or equal to 3?" 
+x >= 3 
+# This line says "is x not equal to 4?" 
+x != 4
+# This line says "is x equal to 2?" 
+x == 2 
+# This line says "is x equal to 3?" 
+x == 3 
+```
+
