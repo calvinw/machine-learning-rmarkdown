@@ -77,9 +77,45 @@ b<-3
 class(b)
 ```
 
+## Using `str` Function For Info
+
+There is an even better function to give you info on an object or variable in R. It is called the `str` function (which stands for structure) and it gives the info a little more succintly than `class`.
+
+```{r}
+x<-3.2
+str(x)
+```
+
+```{r}
+y<-"hi there"
+str(y)
+```
+
+```{r}
+z<-"XXXYYYZZZ"
+str(z)
+```
+
+```{r}
+a<-3L
+str(a)
+```
+
+```{r}
+u<-TRUE
+str(u)
+```
+
+```{r}
+v<-FALSE
+str(v)
+```
+
+One thing that is nice about `str` is that it outputs the value of the variable as well. We will see some other nice things about `str` for more complicated data types like vectors and lists later.  
+
 ## Checking Types
 
-There are functions for checking the type of a variable or expression, which are sometimes more convenient than using the `class` function. Each of these answers `TRUE` or `FALSE` depending on whether the value is that type or not:
+There are functions for checking the type of a variable or expression, which are sometimes more convenient than using the `class` for `str` function. Each of these answers `TRUE` or `FALSE` depending on whether the value is that type or not:
 
 |  Checking types    |  function     | Example    |
 |--------------------|------------------|------------|
@@ -146,26 +182,3 @@ aString<-as.character(aNumber)
 is.character(aString)
 ```
 
-## `str` function
-
-There is another important function called `str` which gives information about the data type of something when you pass it into this function. The `str` is short for "structure".
-
-```{r}
-a<-"hi there"
-str(a)
-```
-
-This code is saying that `a` is a character type and the value of it is "hi there".
-
-```{r}
-b<-5.67
-str(b)
-```
-
-This code is saying that `b` is a numeric type and the value of it is 5.67.
-
-```{r}
-c<-FALSE
-str(c)
-```
-This code is saying that `c` is a logical (boolean) type and the value of it is FALSE 

@@ -140,7 +140,7 @@ This is your first graph in R!
 
 ## Regression Modeling using Vectors 
 
-Its also very easy to create a regression analysis in R if you have the `x` and `y` data as vectors. 
+Its also very easy to create a regression analysis in R if you have the `x` and `y` data as vectors.
 
 - Type the code `model<-lm(y~x)` on the first line below to set up a regression analysis
 - Type the code `summary(model)` to get the regression output with info about the model  
@@ -152,3 +152,17 @@ CODE
 model<-lm(y~x)
 summary(model)
 ```
+
+We can see here all the important information for regression. 
+
+- There is the overall p-value in the last line. 
+- The coefficient p-values are listed under `Pr(>|t|)`.
+- The standard error of regression is called `Residual standard error`
+- The F statistic is in the last line.
+- R squared is called `Multiple. R-squared`
+
+In the code that creates the model, there is the expression `y~x`. This means create a linear model using x as data for the x-variable and create a model to predict y based on this x-variable.
+
+`lm` is the function that makes the model and returns it. This stands for "linear model" 
+
+

@@ -10,20 +10,20 @@ output:
 ---
 
 ```{r include=F}
-ex<-T
+ex<-F
 ```
 - Assign a variable using `myNumeric<-1.2`
-- Print out the data type of `myNumeric` using the `class` function
+- Print out info on `myNumeric` using the `str` function
 
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
 myNumeric<-1.2
-class(myNumeric)
+str(myNumeric)
 ```
 
-This should output the class `numeric`
+This should output the shorthand `num` which means `numeric`
 
 - Use the `is.numeric` function to check if `myNumeric` is a numeric data type.
 
@@ -39,16 +39,16 @@ The output should be `TRUE` since `myNumeric` is a numeric data type.
 Lets look at string types
 
 - Assign a variable using `myString<-"hello"`
-- Print out the data type of `myString` using the `class` function
+- Print out info on `myString` using the `str` function
 
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
 myString<-"hello"
-class(myString)
+str(myString)
 ```
-The output of this should be `character`
+This should output the shorthand `chr` which means `character`
 
 - Use the `is.character` function to check if `myString` is a character data type 
 
@@ -65,15 +65,17 @@ The output should be `TRUE` since `myString` is a character data type.
 Lets look at boolean type:
 
 - Assign a variable using `myBoolean<-TRUE`
-- Print out the data type of `myBoolean` using the `class` function
+- Print out info on `myBoolean` using the `str` function
 
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
 myBoolean<-TRUE
-class(myBoolean)
+str(myBoolean)
 ```
+
+This should output the shorthand `logi` which means `logical`, which is the boolean type for R.
 
 - Use the `is.logical` function to check the data type of `myBoolean` from above 
 
@@ -122,25 +124,44 @@ is.numeric(aNumber)
 
 The output of `is.numeric(aNumber)` should be `TRUE` since `aNumber` was a numeric.
 
-Finally guess the data types that will be displayed below by the 2 `class` functions:
+Finally for the code below add a couple of `str` functions to display information about the variables. 
 
-```{r}
-class("1.23")
-x<-as.numeric("1.23")
-class(x)
+- Print out info on `x` using the `str` function
+- Print out info on `y` using the `str` function
+
+```{r include=ex, eval=F}
+x<-"1.23"
+y<-as.numeric("1.23")
+CODE
+```
+```{r include=!ex}
+x<-"1.23"
+y<-as.numeric("1.23")
+str(x)
+str(y)
 ```
 
-The first one is a character since there are quotations marks so that makes it a string.
+`x` is a character since there are quotations marks so that makes it a string.
 
-The second one is a numeric since it has been converted from a string to a numeric type with `as.numeric`
+`y` is numeric since it was converted to a numeric with `as.numeric`.
 
-```{r}
-class("TRUE")
-y<-as.logical("TRUE")
-class(y)
+Once again, for the code below add a couple of `str` functions to display information about the variables. 
+
+- Print out info on `z` using the `str` function
+- Print out info on `w` using the `str` function
+
+```{r include=ex, eval=F}
+z<-"TRUE"
+w<-as.logical("TRUE")
+CODE
+```
+```{r include=!ex}
+z<-"TRUE"
+w<-as.logical("TRUE")
+str(z)
+str(w)
 ```
 
-The first one is a character since there are quotations marks so that makes it a string.
+`z` is a character since there are quotations marks so that makes it a string.
 
-The second one is a logical since it has been converted from a string to a logical type with `as.logical`
-
+`w` is numeric since there are quotations marks so that makes it a string.

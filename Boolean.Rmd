@@ -9,7 +9,7 @@ output:
     ipynbdocument::ipynb_document
 ---
 
-## Booleans and Comparisons
+## Conditionals and Booleans 
 
 ### Is It Equal?
 

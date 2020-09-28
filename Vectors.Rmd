@@ -11,6 +11,10 @@ output:
 
 Vectors are lists of elements of the same type. They are an extremely important data structure in R.  
 
+### Use Combine Function `c` to Create Vectors
+
+#### Numeric Vectors
+
 Vectors are created using the `c` function, which stands for "combine".
  
 ```{r}
@@ -31,9 +35,7 @@ Lets take a look at the 'structure' of x using the `str` function:
 str(x)
 ```
 
-```{r include=FALSE, eval=FALSE}
-knitr::knit_exit()
-```
+#### Character Vectors
 
 The following vector has class 'character' and its length is 3:
 
@@ -42,7 +44,10 @@ y<-c("Goodbye", "Hello", "Goodnight")
 y
 class(y)
 length(y)
+str(y)
 ```
+
+#### Logical Vectors
 
 The following vector has class 'logical' and its length is 5:
 
@@ -51,12 +56,16 @@ z<-c(TRUE, FALSE, TRUE, FALSE, FALSE)
 z
 class(z)
 length(z)
+str(z)
 ```
+
+### Same Data Type For Every Element
+
 Notice each vector has to have the same type for each of its elements.  
 
-1.  `x` is a vector of class 'numeric'
-1.  `y` is a vector of class 'character'
-1.  `z` is a vector of class 'logical'
+- `x` above is a vector of class 'numeric'
+- `y` above is a vector of class 'character'
+- `z` above is a vector of class 'logical'
 
 What would happen if we try to combine components that had different classes?
 ```{r, error=TRUE}
@@ -78,7 +87,11 @@ What happened? Here we tried to create a vector whose elements were different ty
 
 When we did that R went ahead and did it, but it made each element a string. 
 
+### Calculations with Vectors 
+
 Some of the big advantages of vectors has to do with math we can do with them. It turns out that vectors can simplify a lot of the calculations you might want to do in data science.   
+
+#### Adding Vectors
 
 Lets try to add two vectors:
 
@@ -88,6 +101,8 @@ y<-c(3,6,1,9)
 x+y
 ```
 
+#### Multiplying Vectors
+
 What about multiplying them together:
 
 ```{r}
@@ -96,12 +111,16 @@ z<-c(3,6,1,9)
 w*z
 ```
 
+#### Multiplying Vectors by a Number
+
 Or multiplying a vector by a number:
 
 ```{r}
 a<-c(2,4,3,1)
 5*a
 ```
+
+### Accessing Elements With An Index 
 
 Suppose we want to access the elements in a vector. You can access the elements in a vector by using the "subscript" notation. This means you refer to the different elements using an index:
 
@@ -142,6 +161,8 @@ d
 str(d)
 ```
 
+### Applying Functions to a Vector 
+
 Vectors are convenient for applying functions that depend on a list of numbers. 
 
 Perhaps the simplest example is the function `sum`:
@@ -171,3 +192,50 @@ Some functions will apply the function to each element in the vector individuall
 w<- c(9,16,25)
 z<-sqrt(w)
 z
+```
+
+### Converting Vectors To Different Type 
+
+#### Converting Characters to Numeric 
+
+Let's see an example of taking a vector of strings and converting it to vector of numerics;
+
+
+```{r}
+myStrings<- c("1.23", "2.4", "0.32")
+myNumbers<- as.numeric(myStrings)
+myNumbers
+str(myNumbers)
+```
+
+#### Converting Vector of Numeric to Characters 
+
+Let's see an example of taking a vector of strings and converting it to vector of numerics;
+
+
+```{r}
+myNumbers<- c(2.3, -1.23, 0.24)
+myStrings<- as.character(myNumbers)
+myStrings
+str(myStrings)
+```
+
+### Applications Using Vectors 
+
+```{r}
+x<-c(12,63,55,38,45,81)
+y<-c(22,51,56,43,62,78)
+```
+
+Scatterplots are easy to do if the x-variable and the y-variable for scatterplot are in two vectors: 
+
+```{r}
+plot(x,y)
+```
+
+Then it is easy to do a regression model as well:
+
+```{r}
+model<-lm(y~x)
+summary(model)
+```
