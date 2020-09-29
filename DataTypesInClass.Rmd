@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r include=F}
-ex<-F
+ex<-T
 ```
 - Assign a variable using `myNumeric<-1.2`
 - Print out info on `myNumeric` using the `str` function
