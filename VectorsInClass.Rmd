@@ -114,8 +114,8 @@ y
 
 Lets also see how vectors can be used to show some plots in R. First we show a scatterplot made by vectors of `x` and `y`. 
 
-- Assign `x` to a be a vector with three elements, 2,5,4,6,7,8  
-- Assign `y` to a be a vector with three elements, 3,5,6,6,8,8  
+- Assign `x` to a be a vector with these elements, 2,5,4,6,7,8  
+- Assign `y` to a be a vector with these elements, 3,5,6,6,8,8  
 - Print out `x` 
 - Print out `y` 
 
