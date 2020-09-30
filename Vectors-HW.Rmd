@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r include=F}
-ex<-F
+ex<-T
 ```
 
 ## Data Types Practice
@@ -130,12 +130,29 @@ str(m)
 
 Now suppose we want to do some predictions using our regression equation.
 
-Here is one prediction we want to do:
+### Customer 1
 
-| PregnancyTest | BirthControl | FeminineHygiene | FolicAcid | PrenatalVitamins | PrenatalYoga | BodyPillow | GingerAle | SeaBands | StoppedBuyingCigerettes | Cigarettes | SmokingCessation | StoppedBuyingWine | Wine | MaternityClothes |
-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-| 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 0 |
+Here is one prediction we want to do. Suppose our customer has these values for the predictors (x-variables). 
 
+| Predictor | value |
+|-|-|
+| PregnancyTest | 1 |
+| BirthControl | 0 |
+| FeminineHygiene | 0 |
+| FolicAcid | 0 |
+| PrenatalVitamins | 1 |
+| PrenatalYoga | 0 |
+| BodyPillow | 0 |
+| GingerAle | 0 |
+| SeaBands | 0 |
+| StoppedBuyingCigerettes | 1 |
+| Cigarettes | 0 |
+| SmokingCessation | 1 |
+| StoppedBuyingWine | 1 |
+| Wine | 0 |
+| MaternityClothes | 0 |
+
+Remember 1 means the customer purchased the item during the period or that something did happen (1 for SmokingCessation means they were bying cigarettes at some point but stopped):
 
 - Create a vector `x` with the values above  
 - print `x`
@@ -161,9 +178,27 @@ y1<-sum(m*x)+b
 y1
 ```
 
-| PregnancyTest | BirthControl | FeminineHygiene | FolicAcid | PrenatalVitamins | PrenatalYoga | BodyPillow | GingerAle | SeaBands | StoppedBuyingCigerettes | Cigarettes | SmokingCessation | StoppedBuyingWine | Wine | MaternityClothes |
-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
-|0|1|0|0|0|0|0|0|0|0|1|0|0|1|0
+### Customer 2 
+
+Here is another prediction we will like to do:
+
+| Predictor | value |
+|-|-|
+| PregnancyTest | 0 |
+| BirthControl | 1 |
+| FeminineHygiene | 0 |
+| FolicAcid | 0 |
+| PrenatalVitamins | 0 |
+| PrenatalYoga | 0 |
+| BodyPillow | 0 |
+| GingerAle | 0 |
+| SeaBands | 0 |
+| StoppedBuyingCigerettes | 0 |
+| Cigarettes | 1 |
+| SmokingCessation | 0 |
+| StoppedBuyingWine | 0 |
+| Wine | 1 |
+| MaternityClothes | 0 |
 
 - Create a vector `x` with the values above  
 - Assign `sum(m*x)+b` to a variable `y2` 
@@ -178,7 +213,11 @@ y2<-sum(m*x)+b
 y2
 ```
 
+### Which Customer Was Pregnant? 
+
 Does the value of these predictions lead you to conclude the customer is pregnant?  
+
+Here are the two predictions (scores) that we got:
 
 |prediction 1 | prediction 2 
 |-|-|
