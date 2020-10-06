@@ -9,7 +9,7 @@ output:
     ipynbdocument::ipynb_document
 ---
 ```{r, include=FALSE}
-ex<-F
+ex<-T
 ```
 
 Create a dataframe for this data:
@@ -138,36 +138,7 @@ PUT CODE HERE
 str(df)
 ```
 
-##### EXTRA
-
-Use subsetting to select only those rows with `GPA > 3.5`
-
-```{r, eval=FALSE, include=ex}
-PUT CODE HERE
-```
-```{r, include=!ex}
-df[df$GPA  > 3.5,]
-```
-
-Exchange the last column (ID) so that it is the first column now (anyway you want to do this is fine):
-
-```{r, eval=FALSE, include=ex}
-PUT CODE HERE
-```
-```{r, include=!ex}
-df <- df[c("ID", "Name", "Phone", "GPA")]
-```
-
-Print out the data frame using `str` to make sure ID is first:
-
-```{r, eval=FALSE, include=ex}
-PUT CODE HERE
-```
-```{r, include=!ex}
-str(df)
-```
-
-Change Tanyas GPA in the dataframe to be `3.98`
+- Change Tanyas GPA in the dataframe to be `3.98`
 
 ```{r, eval=FALSE, include=ex}
 PUT CODE HERE
@@ -176,7 +147,7 @@ PUT CODE HERE
 df[2,4] <- 3.98
 ```
 
-Print out the data frame using `head` to make sure her GPA is changed:
+- Print out the data frame using `head` to make sure her GPA is changed:
 
 ```{r, eval=FALSE, include=ex}
 PUT CODE HERE
@@ -185,7 +156,7 @@ PUT CODE HERE
 head(df)
 ```
 
-Extract (print out) the element in the 2nd row and 3rd column by using `df[,]`, and using the right index or indices inside the square brackets: 
+- Extract (print out) the element in the 2nd row and 3rd column by using `df[,]`, and using the right index or indices inside the square brackets: 
 
 ```{r, eval=FALSE, include=ex}
 PUT CODE HERE
@@ -193,22 +164,3 @@ PUT CODE HERE
 ```{r, include=!ex}
 df[2,3]
 ```
-
-Extract (print out) the entire second row of data by using `df[,]`, and again using the right index or indices inside the square brackets: 
-
-```{r, eval=FALSE, include=ex}
-PUT CODE HERE
-```
-```{r, include=!ex}
-df[2,]
-```
-
-Extract (print out) the entire second column of data by using `df[,]`, and again using the right index or indices inside the square brackets: 
-
-```{r, eval=FALSE, include=ex}
-PUT CODE HERE
-```
-```{r, include=!ex}
-df[,2]
-```
-
