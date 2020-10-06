@@ -109,6 +109,10 @@ For example this is the entry in the 2nd row and the 3rd column:
 customers[2,3]
 ```
 
+```{r}
+head(customers)
+```
+
 Here is the entry for the 4th row and the 1st column:
 
 ```{r}
@@ -119,4 +123,8 @@ This is the 2nd row in its entirety:
 
 ```{r}
 customers[2,]
+```
+
+```{r}
+head(customers)
 ```
