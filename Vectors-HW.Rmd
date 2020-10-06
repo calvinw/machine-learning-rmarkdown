@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r include=F}
-ex<-F
+ex<-T
 ```
 
 ## Data Types Practice
