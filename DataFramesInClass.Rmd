@@ -159,7 +159,7 @@ CODE
 df[3,4] <- 1004 
 ```
 
-- Print out the data frame using `head` to make sure Tanyas GPA is changed:
+- Print out the data frame using `head` to make sure Alexas GPA is changed:
 
 ```{r, eval=FALSE, include=ex}
 CODE
