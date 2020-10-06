@@ -10,8 +10,8 @@ output:
 ---
 
 ```{r}
-options(repr.plot.width=4, repr.plot.height=4)
-options("scipen"=100, "digits"=4)
+# options(repr.plot.width=4, repr.plot.height=4)
+# options("scipen"=100, "digits"=4)
 ```
 
 A small cosmetics company Mysteria believes sales (in thousands of dollars) at its stores is affected by advertising expenditures and by the population size of the vicinity of the area. They collect data for 6 stores and get the following:
@@ -76,7 +76,11 @@ R*R
 Lets take a look at the scatterplot for population and sales:
 
 ```{r}
-plot(df$pop,df$sales, main="Population and Sales", xlab="Population", ylab="Sales", pch=19)
+plot(df$pop,df$sales, 
+     main="Population and Sales", 
+     xlab="Population", 
+     ylab="Sales", 
+     pch=19)
 ```
 
 The following shows the correlation matrix
@@ -86,7 +90,10 @@ cor(df)
 ```
 
 ```{r}
-plot(df, upper.panel = NULL, pch = 19, cex.labels=1.25)
+plot(df, 
+     upper.panel = NULL, 
+     pch = 19, 
+     cex.labels=1.25)
 ```
 
 We can see that there is a fair amount of correlation between ads and population. This could affect which is the best model. 

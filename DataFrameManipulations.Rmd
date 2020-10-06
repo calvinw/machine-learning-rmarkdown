@@ -19,9 +19,9 @@ name <- c("Jcrew blazer",
 	  "Banana Republic Navy  Blazer",                     
 	  "Julian Taylor Pant And Blazer Size 12",             
 	  "Bernard Zins Paris Multi Colored Jacket")  
-original <- c("$198","$49","$129","$999","$129")
-current <- c("$60","$29","$45","$30","$22")
-items <- data.frame(name, original, current)
+original <- c("198","49","129","999","129")
+offered<- c("60","29","45","30","22")
+items <- data.frame(name, original, offered)
 ```
 
 ```{r}
@@ -32,90 +32,37 @@ head(items)
 str(items)
 ```
 
-We can see that R thinks each of these is a factor. But really its questionable if any of these should be a factor. Lets try to fix things up so we can do some calculations. 
+But we would really like to have the original and the offered columns be numeric so that we can do calculations with them (of the markdown from original to offered)
 
-For example suppose we want to find the typical percent off or typical markdown from original being offered on Poshmark. Maybe this is so that we can send interested customers some alerts when an item is a "steal".  
-
-
-First lets turn the name column into strings, instead of factors:
-
-```{r}
-items$name <- as.character(items$name)
-str(items)
-```
-
-This looks better and now the name column is a `character` vector:
-
-```{r}
-str(items$name)
-```
-
-But we would really like to have the original and the current columns be numeric so that we can do calculations with them (of the markdown from original to offered)
-
-
-We could try converting one of the price columns to numeric:
-```{r}
-numericOriginal <- as.numeric(items$original)
-str(numericOriginal)
-```
-
-Hmm... R does not seem to know that we want to convert things like the string "\$49" to the number 49. What it is doing instead is giving us the number that it uses internally to store factors. Its saying the first item is the first level, the second item is the third level.
-
-This does not work because of the $ in each of the prices. We have to remove those. We can remove those by using the `gsub` function which does string substitutions. What we will do is replace the $ sign by empty character, or replace the string "$" by the empty string "". This leaves the number part of the field. 
-
-
-```{r}
-newOriginal<- gsub("$","", items$original, fixed=TRUE)
-str(newOriginal)
-```
-
-To see if this will work lets convert this to numeric:
-
-```{r}
-newOriginal <- as.numeric(newOriginal)
-str(newOriginal)
-```
-
-Cool. That looks fine. Okay lets remove the $ sign from the original and current columns now: 
-
-```{r}
-items$original<-gsub("$","", items$original, fixed=TRUE) 
-items$current<-gsub("$","", items$current, fixed=TRUE)
-str(items)
-```
-
-Now we convert both of these the to numeric:
-
+We could try converting the price columns to numeric:
 ```{r}
 items$original <- as.numeric(items$original)
-items$current <- as.numeric(items$current)
+items$offered <- as.numeric(items$offered)
 str(items)
 ```
-
-Lets print it out the first few items:
 
 ```{r}
 head(items)
 ```
 
-Finally looks like we are ready to calculate markdown percents. We will just calculate the proportion of the offered price to the original price and subtract from 1.0 (100%).
+Finally looks like we are ready to calculate markdown percents. We will just calculate the `original - offered` and divide by `original`.
 
 ```{r}
-reduced <- 1.0 - (items$current/items$original);
-head(reduced)
+markdown <- (items$original-items$offered)/items$original;
+head(markdown)
 ```
 
 Almost, lets round it to the nearest percent instead
 
 ```{r}
-reduced <- round(reduced*100);
-head(reduced)
+markdown <- round(markdown*100);
+head(markdown)
 ```
 
 Finally lets add it as a new column to the original data frame:
 
 ```{r}
-items$reduced <- reduced
+items$markdown<-markdown 
 str(items)
 ```
 
@@ -125,16 +72,16 @@ Now lets print it out:
 head(items)
 ```
 
-We dont have that much data but you could find the average reduction:
+We dont have that much data but you could find the average markdown:
 
 ```{r}
-mean(items$reduced)
+mean(items$markdown)
 ```
 
-For this set of data the offered price was 71% off the original. Lets see the range of reductions: 
+For this set of data the offered price was 71% off the original. Lets see the range of markdowns: 
 
 ```{r}
-range(items$reduced)
+range(items$markdown)
 ```
 
 Anywhere from 41% to 97% off the original price.
