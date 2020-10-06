@@ -25,24 +25,24 @@ Create a dataframe for this data:
 - Use the argument `stringsAsFactors=FALSE` in your data.frame function:
 
 ```{r, eval=FALSE, include=ex}
-df <- data.frame(Name = CODE,
-			  GPA = CODE,
-			  Major = CODE,
-			  Phone = CODE,
-			  stringsAsFactors=FALSE)
+Name <- CODE
+GPA <- CODE
+Major<- CODE
+Phone<- CODE
+df <- data.frame(Name, GPA, Major, Phone, stringsAsFactors=FALSE)
 ```
 ```{r, include=!ex}
-# Original
-# df <- data.frame(Name = CODE,
-# 			  GPA = CODE,
-# 			  Major = CODE,
-# 			  Phone = CODE,
-# 			  stringsAsFactors=FALSE)
-df <- data.frame(Name=c("Alexa", "Tanya", "Hubert"),
-			  GPA=c(3.7, 3.6, 3.4),
-			  Major=c("FBM", "AMC", "FBM"),
-			  Phone=c("212 398 2375", "212 323 3040", "718 232 9392"),
-			  stringsAsFactors=FALSE)
+#Original code:
+#Name <- CODE
+#GPA <- CODE
+#Major<- CODE
+#Phone<- CODE
+#df <- data.frame(Name, GPA, Major, Phone, stringsAsFactors=FALSE)
+Name<-c("Alexa", "Tanya", "Hubert")
+GPA<-c(3.7, 3.6, 3.4)
+Major<-c("FBM", "AMC", "FBM")
+Phone<-c("212 398 2375", "212 323 3040", "718 232 9392")
+df <- data.frame(Name, GPA, Major, Phone, stringsAsFactors=FALSE)
 ```
 
 - Print out the structure of your data frame using `str`
@@ -138,7 +138,7 @@ PUT CODE HERE
 str(df)
 ```
 
-- Change Tanyas GPA in the dataframe to be `3.98`
+- Change Tanyas GPA in the dataframe to be 3.98 (use `df[2,4]<-3.98`)
 
 ```{r, eval=FALSE, include=ex}
 PUT CODE HERE
@@ -156,7 +156,7 @@ PUT CODE HERE
 head(df)
 ```
 
-- Extract (print out) the element in the 2nd row and 3rd column by using `df[,]`, and using the right index or indices inside the square brackets: 
+- Print out the element in the 2nd row and 3rd column 
 
 ```{r, eval=FALSE, include=ex}
 PUT CODE HERE
@@ -164,3 +164,5 @@ PUT CODE HERE
 ```{r, include=!ex}
 df[2,3]
 ```
+
+This should be the telephone number "212 323 3040"
