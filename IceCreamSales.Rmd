@@ -9,11 +9,6 @@ output:
     ipynbdocument::ipynb_document
 ---
 
-```{r}
-options(repr.plot.width=4, repr.plot.height=4)
-options("scipen"=100, "digits"=4)
-```
-
 Here `temp` will represent the temperature on some day and the `gallons` will represent how many gallons of ice cream we sell on that day. We have 10 days of data.
 
 We might wish to predict "gallons" from "temp" so gallons is our y and temp is our x. 

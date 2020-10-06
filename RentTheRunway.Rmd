@@ -10,7 +10,6 @@ output:
 ---
 
 ```{r}
-options(repr.plot.width=4, repr.plot.height=4)
 options("scipen"=100, "digits"=4)
 ```
 

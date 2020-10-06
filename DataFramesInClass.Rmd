@@ -8,6 +8,7 @@ jupyter:
 output:
     ipynbdocument::ipynb_document
 ---
+
 ```{r, include=FALSE}
 ex<-T
 ```
@@ -32,7 +33,7 @@ Phone<- CODE
 df <- data.frame(Name, GPA, Major, Phone, stringsAsFactors=FALSE)
 ```
 ```{r, include=!ex}
-#Original code:
+#Question was this:
 #Name <- CODE
 #GPA <- CODE
 #Major<- CODE
@@ -48,7 +49,7 @@ df <- data.frame(Name, GPA, Major, Phone, stringsAsFactors=FALSE)
 - Print out the structure of your data frame using `str`
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 str(df)
@@ -57,7 +58,7 @@ str(df)
 - Print out just the GPA column using $ sign `df$GPA`  
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 df$GPA
@@ -67,7 +68,7 @@ df$GPA
 - Print out just the Phone column using $ sign `df$Phone`:  
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 df$Phone
@@ -77,7 +78,7 @@ Now print out the first few lines of the data frame using `head(df)`. In this ca
 - Print out your dataframe using `head(df)`
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 head(df)
@@ -86,7 +87,7 @@ head(df)
 - Use `summary(df)` to print out a summary of the data frame data:
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 summary(df)
@@ -95,7 +96,7 @@ summary(df)
 - Delete the column "Major" from the data frame (use `df$Major<-NULL`)
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 df$Major <- NULL
@@ -104,7 +105,7 @@ df$Major <- NULL
 - Print out the structure of your data frame showing the column above removed: 
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 str(df)
@@ -123,7 +124,7 @@ Your data frame should now look like this:
 - Add a column using `df$ID<-c(1001,1002,1003)`
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 df$ID <- c(1001,1002,1003)
@@ -132,25 +133,36 @@ df$ID <- c(1001,1002,1003)
 - Print out the structure of the new data frame using `str`:
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 str(df)
 ```
 
-- Change Tanyas GPA in the dataframe to be 3.98 (use `df[2,4]<-3.98`)
+- Change Alexas GPA in the dataframe to be 3.98 (use `df[1,2]<-3.98`)
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
-df[2,4] <- 3.98
+df[1,2] <- 3.98
 ```
 
-- Print out the data frame using `head` to make sure her GPA is changed:
+- Change Huberts ID in the dataframe to be 1004
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
+```
+```{r, include=!ex}
+# Question was this: 
+# df[CODE] <- CODE
+df[3,4] <- 1004 
+```
+
+- Print out the data frame using `head` to make sure Tanyas GPA is changed:
+
+```{r, eval=FALSE, include=ex}
+CODE
 ```
 ```{r, include=!ex}
 head(df)
@@ -159,7 +171,7 @@ head(df)
 - Print out the element in the 2nd row and 3rd column 
 
 ```{r, eval=FALSE, include=ex}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=!ex}
 df[2,3]
