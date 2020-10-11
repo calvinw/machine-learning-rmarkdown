@@ -10,9 +10,12 @@ output:
 ---
 
 ```{r}
-options("scipen"=100, "digits"=4)
+options("scipen"=100)
 ```
 
+```{r include=F}
+ex<-F
+```
 Suppose we have some data for gallons of ice cream sold and the temperatures on two different scales. Does this affect the regression model? Yes, since there is redundancy in the fahrenheit and celsius predictors that leads to what is called "collinearity". It may mean that the p-values for one or more of the predictors is large even when there is some correlation between the predictor and the outcome.   
 
 Usually one of the predictors needs to be excluded from the model to fix this. You can search for this kind of thing by looking at the correlation matrix in R.   
@@ -27,37 +30,131 @@ gallons <- c(110,95,135,160,97,105,120,175,140,121)
 
 Let's create a data frame:
 
-```{r}
+- create a dataframe `df` using the vectors above
+- print out `df`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 df <- data.frame(fahrenheit, celsius, gallons)
 df
 ```
 
-```{r}
+Now lets print out a correlation matrix for this situation:
+
+- use the code `cor(df)` to print out the correlation matrix
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 cor(df)
 ```
 
-```{r}
+List the correlations for each situation:
+
+- correlation between `fahrenheit` and `gallons`: ???
+- correlation between `celsius` and `gallons`: ???
+- correlation between `fahrenheit` and `celsius`: ???
+
+Note the very strong correlation between `fahrenheit` and `celsius`. This does not always help to include such highly correlated predictors together in a regression model.
+
+- plot the scatterplots by using the code `plot(df,upper.panel=NULL)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 plot(df, upper.panel=NULL)
 ```
 
-```{r}
-model = lm(gallons~fahrenheit+celsius, data=df)
+- run the full model using `gallons~fahrenheit+celsius` for CODE below 
+```{r include=ex, eval=F}
+model<- lm(CODE, data=df)
+summary(model)
+```
+```{r include=!ex}
+# Original
+# model<- lm(CODE, data=df)
+# summary(model)
+
+model <- lm(gallons~fahrenheit+celsius, data=df)
 summary(model)
 ```
 
+This says to run a regression model using both `fahrenheit` and `celsius` to model `gallons`
+
+Fill in the ??? below with the right value:
+
+**Test for overall significant:**
+
+overall p = ??? 
+
+**Fahrenheit**
+
+p-value for fahrenheit = ??? 
+
+**Celsius**
+
+p-value for celsius = ??? 
+
+
 We see that both p-values are two big. We remove the predictor that has the highest p-value, which is `celsius`. 
 
+- run the model using `gallons~fahrenheit` for CODE below 
+```{r include=ex, eval=F}
+modelFahrenheit<- lm(CODE, data=df)
+summary(modelFahrenheit)
+```
+```{r include=!ex}
+# Original:
+# modelFahrenheit<- lm(CODE, data=df)
+# summary(modelFahrenheit)
 
-```{r}
-modelFahrenheight = lm(gallons~fahrenheit, data=df)
-summary(modelFahrenheight)
+modelFahrenheit = lm(gallons~fahrenheit, data=df)
+summary(modelFahrenheit)
 ```
 
 We see now that `fahrenheit` is significant and the model looks good for one predictor. 
 
+Fill in the ??? below with the right value:
+
+**Test for overall significant:**
+
+overall p = ??? 
+
+**The regression equation is this:**
+
+gallons =???(fahrenheit) + ???   
+
+**The standard error is:**
+
+std error = ???
+
 Probably the model with just `celsius` would work as well. Just for comparison lets  run the model with just `celsius`: 
 
-```{r}
+- run the model using `gallons~celsius` for CODE below
+```{r include=ex, eval=F}
+modelCelsius = lm(CODE, data=df)
+summary(modelCelsius)
+```
+```{r include=!ex}
+# Original:
+# modelCelsius = lm(CODE, data=df)
+# summary(modelCelsius)
+
 modelCelsius = lm(gallons~celsius, data=df)
 summary(modelCelsius)
 ```
+
+Fill in the ??? below with the right value:
+
+**Test for overall significant:**
+
+overall p = ??? 
+
+**The regression equation is this:**
+
+gallons =???(celsius) + ???   
+
+**The standard error is:**
+
+std error = ???
