@@ -24,16 +24,10 @@ Create a dataframe for this data, which shows the advertising expenditures for s
 
 Then run a multiple regression analyis for predicting Sales from Advertising Expenditures and Population Size for some stores. 
 
-Make sure to address the following:
+Using your chosen model, predict the value of sales if the advertising expenditure is \$40,000 and the population is 2 million. Also if the advertising expenditure is \$30,000 and the population is 1.6 million.     
 
-* Whether there is an overall significant linear relationship between sales (y) and advertising expenditures and population size (the x-variables).
-*  What are the p-values for each predictor (x-variable)? What is the best model based on your answer? Which x-variables would you recommend using in the best model?
-* Using your chosen model, predict the value of sales if the advertising expenditure is \$40,000 and the population is 2 million. Also if the advertising expenditure is \$30,000 and the population is 1.6 million.     
-
-```{r include=FALSE, eval=FALSE}
-knitr::knit_exit()
-```
-
+- create 3 vectors called `ads`, `pop`, and `sales` to hold data above
+- create a dataframe called `df`, using the vectors above
 ```{r}
 ads<-c(50,55,100,30,25,60)
 pop<-c(5,4,8,1.5,3.5,1)
@@ -42,103 +36,145 @@ sales<-c(350,400,500,300,350,400)
 df<-data.frame(ads, pop, sales)
 ```
 
+- print out the data frame above using `str`
 ```{r}
 str(df)
 ```
 
 Lets look at the correlation coefficient R for correlation between ads and sales 
 
+- assign a variable called `R` to be the output of the `cor` function using `df$ads` as x and `df$sales` as y
+- print out the value of `R`
 ```{r}
-R = cor(df$ads, df$sales)
+R <- cor(df$ads, df$sales)
 R
-R*R
 ```
 
 Lets take a look at the scatterplot for ads and sales:
 
+- use `plot` to examine the scatterplot for ads and sales
+```{r}
+plot(df$ads,df$sales)
+```
+
+Fix the plot to have some titles and labels for the axes, and filled circles:
+
+- Call `plot` as above but pass `main="Ads and Sales`, `xlab="Ads"`, `ylab="Sales"` and `pch=19` as arguments.
 ```{r}
 plot(df$ads,df$sales, main="Ads and Sales", xlab="Ads", ylab="Sales", pch=19)
 ```
 
-Here is the R squared for population  and sales
+Lets take a look at the correlation and a scatterplot for pop and sales:
 
+- assign a variable called `R` to be the output of the `cor` function using `df$pop` as x and `df$sales` as y
+- print out the value of `R`
 ```{r}
-R = cor(df$pop, df$sales)
+R <- cor(df$pop, df$sales)
 R
-R*R
 ```
 
-Lets take a look at the scatterplot for population and sales:
-
+- use `plot` to examine the scatterplot for pop and sales. Use a title and labels for the axes like above
 ```{r}
-plot(df$pop,df$sales, 
-     main="Population and Sales", 
-     xlab="Population", 
-     ylab="Sales", 
-     pch=19)
+plot(df$pop,df$sales, main="Population and Sales", xlab="Population", ylab="Sales", pch=19)
 ```
 
-The following shows the correlation matrix
+The following shows the correlation matrix for `df`:
 
+- use `cor(df)` to show the correlation matrix:
 ```{r}
 cor(df)
 ```
 
+Fill in the ??? below with the right value:
+
+- what is the correlation between `ads` and `sales`: ???
+- what is the correlation between `pop` and `sales`: ???
+- what is the correlation between `ads` and `pop`: ???
+
+Now show the scatterplots for `df`:
+
+- use `plot(df,upper.panel=NULL, pch=19)` to show the scatterplots of the variables
 ```{r}
-plot(df, 
-     upper.panel = NULL, 
-     pch = 19, 
-     cex.labels=1.25)
+plot(df, upper.panel = NULL, pch = 19)
 ```
 
 We can see that there is a fair amount of correlation between ads and population. This could affect which is the best model. 
 
+- set up a regression model using `ads` and `pop` to predict `sales`
+- print out the info for the model using `summary(model)` 
 ```{r}
-model1 = lm(sales ~ ads + pop, data=df)
-summary(model1)
+model <- lm(sales ~ ads + pop, data=df)
+summary(model)
 ```
-Test for overall significant:
 
-$$ \text{p-value} = .0385 $$
+Fill in the ??? below with the right value:
 
-p-value for ads:
+**Test for overall significant:**
 
-$$ \text{p-value} = .0484 $$
+overall p = ??? 
 
-p-value for population:
+**Ads**
 
-$$ \text{p-value} = 0.7456 $$
+p-value for ads = ??? 
+
+**Pop**
+
+p-value for pop = ??? 
 
 We can see that population is not significant in this model. So we exclude it and run the regression again using only sales and ads. Part of the problem here is that ads and population have some collinearity.
 
 ```{r}
-model2 = lm(sales ~ ads, data=df)
-summary(model2)
+modelAds = lm(sales ~ ads, data=df)
+summary(modelAds)
 ```
-Test for overall significant of linear relationship:
 
-$$ \text{p-value} = 0.00552 $$
+Fill in the ??? below with the right value:
 
-The regression equation is this:
+**Test for overall significant:**
 
-$$ sales =2.40(ads) + 255.58 $$   
+overall p = ??? 
 
-    
-The standard error is:
+**The regression equation is this:**
 
-$$ \text{standard error} = 26.3  $$ 
+sales =???(ads) + ???   
+
+**The standard error is:**
+
+std error = ???
 
 Using your chosen model, predict the value of sales as follows.  
 
 Make predictions when: 
 
-1.   spending is \$40,000 on ads and a population of 2.0 million 
-2.   spending is \$35,000 on ads and a population of 1.6 million 
-2.   spending is \$50,000 on ads and a population of 3.6 million 
+- spending is \$40,000 on ads and a population of 2.0 million 
+- spending is \$35,000 on ads and a population of 1.6 million 
+- spending is \$50,000 on ads and a population of 3.6 million    
+    
+To do this:
 
+- assign a vector `ads` to hold the predictors above
+- create a dataframe called `predictors` using the `ads` vector  
+- print out the `predictors` dataframe  
 ```{r}
-predictors = data.frame(ads=c(40,35,50))
-predictions<-predict(model2, predictors)
-round(predictions)
+ads<-c(40,35,50)
+predictors <- data.frame(ads)
+predictors
 ```
 
+Now lets do the predictions:
+
+- make predictions using the `predict` function passing in the `modelAds` and the `predictors` dataframe you just made
+- print out the `predictions`
+```{r}
+predictions<-predict(modelAds, predictors)
+predictions
+```
+
+Fill in the correct answers below:
+
+- Prediction when `ads` is $40,000: ???
+- Prediction when `ads` is $35,000: ???
+- Prediction when `ads` is $50,000: ???
+
+Can you do the regression analysis for `pop` and `sales`, just for comparision? 
+What do you get? 

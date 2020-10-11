@@ -12,112 +12,188 @@ output:
 Just run this code block to set things up:
 
 ```{r}
-options(repr.plot.width=4, repr.plot.height=4)
 options("scipen"=100, "digits"=4)
-if(!require("readr")) install.packages("readr")
-library("readr")
 url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_oNaK_QKTtFQYdh7Pl17_prektSRuDVwRD71Vo8daBd0biyeG-Oiic4dMN_EL--voDWHAc5MmXNYH/pub?gid=0&single=true&output=csv"
 df<-read.csv(url)
 ```
 
-As a result of the above, the dataframe df has the Sales, Radio and Newspaper Ads data loaded in
+```{r include=F}
+ex<-F
+```
 
+As a result of the above, the dataframe has the sales and radio and newspaper ads data loaded in:
 
-Just for convenience, lets define three variables to hold the columns:
-```{r}
-
-Radio<-df$Radio
-Newspaper<-df$Newspaper
-Sales<-df$Sales
-
+- print out the df info with `str(df)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 str(df)
 ```
 
 Lets look at the correlation coefficient R for Newspaper and Sales
 
-```{r}
-R = cor(Newspaper, Sales)
+- assign the correlation coefficient like this `R<-cor(df$newspaper, df$sales)`
+- print out `R`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+R <- cor(df$newspaper,df$sales)
 R
 ```
 
 What about the scatterplot between them:
 
-```{r}
-plot(Newspaper,Sales)
+- Create a scatterpot with `plot` and pass it `df$newspaper` and `df$sales` as the x and y 
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+plot(df$newspaper, df$sales)
 ```
 
-You can fix up the x-axis label by using `xlab` and the y-axis label by using `ylab`. Also you can give the graph a title.
-
-You can give the whole graph a title using `main`
+You can fix up the x-axis label by using `xlab` and the y-axis label by using `ylab`. Also you can give the graph a title using `main`.
 
 You can also put in that they are filled dots instead of hollow by using `pch=19`
 
-```{r}
-plot(Newspaper,Sales, main="Newspaper Expenditures and Sales", xlab="Newspaper Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
+- run `plot` again, but add titles using arguments `main`, `xlab` and `ylab`. Also change the dots to be filled with `pch=19` 
+- give it the `main` as: "Newspaper Expenditures and Sales"
+- give it the `xlab` as: "Newspaper Ad Spending ($000)"
+- give it the `ylab` as: "Sales in Dollars ($000)"
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+plot(df$newspaper,
+     df$sales, 
+     main="Newspaper Expenditures and Sales", 
+     xlab="Newspaper Ad Spending ($000)", 
+     ylab="Sales in Dollars ($000)", 
+     pch=19)
 ```
 
 Here is the correlation coefficient R for Radio and Sales
 
-```{r}
-R = cor(Radio, Sales)
+- assign the correlation coefficient like this `R<-cor(df$radio, df$sales)`
+- print out `R`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+R <- cor(df$radio, df$sales)
 R
 ```
 
 And here is the scatterplot for them:
 
-```{r}
-plot(Radio,Sales, main="Radio Ad Expenditures and Sales", xlab="Radio Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
+- Create a scatterpot with `plot` and pass it `df$radio` and `df$sales` as the x and y 
+- give it the `main` as: "Radio Ad Expenditures and Sales"
+- give it the `xlab` as: "Radio Ad Spending ($000)"
+- give it the `ylab` as: "Sales in Dollars ($000)"
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+plot(df$radio,df$sales, main="Radio Ad Expenditures and Sales", xlab="Radio Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
 ```
 
-The following shows the correlation matrix and the scatterplots for all variables
+The following shows the correlation matrix and the scatterplots for all variables:
 
-```{r}
+- run `cor(df)` to show the correlation matrix
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 cor(df)
+```
+
+What are the correlations (Fill in the ???):
+
+- between `newspaper` and `sales` ??? 
+- between `radio` and `sales` ??? 
+- between `newspaper` and `ads` ??? 
+
+Now lets show the scatterplots:
+- run `plot(df)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 plot(df)
 ```
 
 Lets fix up the plots a little just to look at the lower ones:
 
-```{r}
-plot(df, upper.panel = NULL, pch = 19, cex.labels=1.25)
+- run `plot` again but pass it `upper.panel=NULL` and `pch=19`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+plot(df, upper.panel = NULL, pch = 19) 
 ```
 
 Lets run our regression model:
 
-```{r}
-model = lm(Sales ~ Radio + Newspaper, data=df)
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+model <- lm(sales ~ radio + newspaper, data=df)
 summary(model)
 ```
 
-Test for overall significant of linear relationship:
+FILL IN THE ???? below with the right values from above:
 
-$$ \text{p-value} = 0.00000015 $$
+**Test for overall significant of linear relationship:**
 
-p-value for Radio:
+overall p-value = ????
 
-$$ \text{p-value} = 0.00000049 $$
+**Radio:**
 
-p-value for Newspaper:
+p-value for radio = ???
 
-$$ \text{p-value} = 0.00001831 $$
+**Newspaper:**
 
-The regression equation is this:
+p-value for newspaper = ???
 
-$$ sales = 13.08(radio) + 16.80(newspaper) + 156.43 $$   
+**The regression equation is this:**
+
+sales = ???(radio) + ???(newspaper) + ???  
     
-The standard error is:
+**The standard error is:**
 
-$$ \text{standard error} = 159 $$ 
+standard error = ???
 
-Make some predictions for:
+Make a dataframe to hold our predictors: 
 
 - spending 30,000 on Radio ads and 35,000 on Newspaper 
 - spending 35,000 on Radio ads and 45,000 on Newspaper 
+- spending 5,000 on Radio ads and 60,000 on Newspaper 
 
+- assign a vector `radio` to hold the two radio predictor values
+- assign a vector `newspaper` to hold the two newspaper predictor values
+- 
+```{r include=ex, eval=F}
+radio<-CODE
+newspaper<-CODE
+predictors <- data.frame(radio, newspaper)
+predictors
+```
+```{r include=!ex}
+radio<-c(30,40,5)
+newspaper<-c(35,45,60)
+predictors <- data.frame(radio, newspaper)
+predictors
+```
 
-```{r}
-predictors = data.frame(Radio=c(30,40), Newspaper=c(35,45))
+- make predictions with `predictions<-predict(model,predictors)` 
+- print out the `predictions`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 predictions<-predict(model, predictors)
-round(predictions)
+predictions
 ```
 
