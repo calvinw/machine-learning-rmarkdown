@@ -11,15 +11,16 @@ output:
 
 
 ```{r}
-options("scipen"=100, "digits"=4)
-diamonds<-read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRg0HUg626uF8xJrZaYZsgOa2Gtfhlnsn00e9fPofb01nRreOucglncXo1xU_cwhueUY8iqC_60ua9t/pub?gid=1994063173&single=true&output=csv")
+options("scipen"=100)
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vRg0HUg626uF8xJrZaYZsgOa2Gtfhlnsn00e9fPofb01nRreOucglncXo1xU_cwhueUY8iqC_60ua9t/pub?gid=1994063173&single=true&output=csv"
+diamonds<-read.csv(url)
 df<-diamonds[100:200,]
 row.names(df)<-NULL
 ```
 
 ```{r}
 str(df)
-head(df)
+head(df, n=10)
 ```
 
 ```{r}
