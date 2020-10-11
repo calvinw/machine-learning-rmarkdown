@@ -11,110 +11,66 @@ output:
 
 
 ```{r}
-ads<-c(50,55,100,30,25,60)
-pop<-c(5,4,8,1.5,3.5,1)
-sales<-c(350,400,500,300,350,400)
-
-df<-data.frame(ads, pop, sales)
+options("scipen"=100, "digits"=4)
+diamonds<-read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRg0HUg626uF8xJrZaYZsgOa2Gtfhlnsn00e9fPofb01nRreOucglncXo1xU_cwhueUY8iqC_60ua9t/pub?gid=1994063173&single=true&output=csv")
+df<-diamonds[100:200,]
+row.names(df)<-NULL
 ```
 
 ```{r}
 str(df)
+head(df)
 ```
-
-Lets look at the correlation coefficient R for correlation between ads and sales 
 
 ```{r}
-R = cor(df$ads, df$sales)
-R
-R*R
+df$cut <- NULL
+df$depth <- NULL
+df$table<-NULL
+df$clarity<-NULL
+df$color<-NULL
+df$carat<-NULL
+str(df)
+head(df)
 ```
-
-Lets take a look at the scatterplot for ads and sales:
 
 ```{r}
-plot(df$ads,df$sales, main="Ads and Sales", xlab="Ads", ylab="Sales", pch=19)
+model<-lm(price~x+y+z,data=df)
+summary(model)
 ```
-
-Here is the R squared for population  and sales
-
-```{r}
-R = cor(df$pop, df$sales)
-R
-R*R
-```
-
-Lets take a look at the scatterplot for population and sales:
-
-```{r}
-plot(df$pop,df$sales, 
-     main="Population and Sales", 
-     xlab="Population", 
-     ylab="Sales", 
-     pch=19)
-```
-
-The following shows the correlation matrix
 
 ```{r}
 cor(df)
 ```
 
 ```{r}
-plot(df, 
-     upper.panel = NULL, 
-     pch = 19, 
-     cex.labels=1.25)
+plot(df, upper.panel=NULL, pch=19)
 ```
-
-We can see that there is a fair amount of correlation between ads and population. This could affect which is the best model. 
 
 ```{r}
-model1 = lm(sales ~ ads + pop, data=df)
-summary(model1)
+modelXandZ<-lm(price~x+z, data=df)
+summary(modelXandZ)
 ```
-Test for overall significant:
-
-$$ \text{p-value} = .0385 $$
-
-p-value for ads:
-
-$$ \text{p-value} = .0484 $$
-
-p-value for population:
-
-$$ \text{p-value} = 0.7456 $$
-
-We can see that population is not significant in this model. So we exclude it and run the regression again using only sales and ads. Part of the problem here is that ads and population have some collinearity.
 
 ```{r}
-model2 = lm(sales ~ ads, data=df)
-summary(model2)
+modelY<-lm(price~y, data=df)
+summary(modelY)
+
+plot(df$y, df$price, pch=19)
+abline(modelY)
 ```
-Test for overall significant of linear relationship:
-
-$$ \text{p-value} = 0.00552 $$
-
-The regression equation is this:
-
-$$ sales =2.40(ads) + 255.58 $$   
-
-    
-The standard error is:
-
-$$ \text{standard error} = 26.3  $$ 
-
-Using your chosen model, predict the value of sales as follows.  
-
-Make predictions when: 
-
-1.   spending is \$40,000 on ads and a population of 2.0 million 
-2.   spending is \$35,000 on ads and a population of 1.6 million 
-2.   spending is \$50,000 on ads and a population of 3.6 million 
 
 ```{r}
-predictors = data.frame(ads=c(40,35,50))
-predictions<-predict(model2, predictors)
-round(predictions)
+modelX<-lm(price~x, data=df)
+summary(modelX)
+
+plot(df$x, df$price, pch=19)
+abline(modelX)
 ```
 
+```{r}
+modelZ<-lm(price~z, data=df)
+summary(modelZ)
+
+plot(df$z, df$price, pch=19)
+abline(modelZ)
+```
