@@ -10,7 +10,6 @@ output:
 ---
 
 ```{r}
-options(repr.plot.width=4, repr.plot.height=4)
 options("scipen"=100, "digits"=4)
 ```
 
@@ -26,32 +25,32 @@ celsius <- c(22,18,27,32,23,25,27,33,30,26)
 gallons <- c(110,95,135,160,97,105,120,175,140,121)
 ```
 
-```{r include=FALSE, eval=FALSE}
-knitr::knit_exit()
-```
-
 Let's create a data frame:
 
 ```{r}
-dataFrame <- data.frame(fahrenheit, celsius, gallons)
-dataFrame
+df <- data.frame(fahrenheit, celsius, gallons)
+df
 ```
 
 ```{r}
-cor(dataFrame)
-plot(dataFrame, lower.panel=NULL)
+cor(df)
 ```
+
 ```{r}
-model1 = lm(gallons~fahrenheit + celsius, data=dataFrame)
-summary(model1)
+plot(df, upper.panel=NULL)
+```
+
+```{r}
+model = lm(gallons~fahrenheit+celsius, data=df)
+summary(model)
 ```
 
 We see that both p-values are two big. We remove the predictor that has the highest p-value, which is `celsius`. 
 
 
 ```{r}
-model2 = lm(gallons~fahrenheit, data=dataFrame)
-summary(model2)
+modelFahrenheight = lm(gallons~fahrenheit, data=df)
+summary(modelFahrenheight)
 ```
 
 We see now that `fahrenheit` is significant and the model looks good for one predictor. 
@@ -59,6 +58,6 @@ We see now that `fahrenheit` is significant and the model looks good for one pre
 Probably the model with just `celsius` would work as well. Just for comparison lets  run the model with just `celsius`: 
 
 ```{r}
-model3 = lm(gallons~celsius, data=dataFrame)
-summary(model3)
+modelCelsius = lm(gallons~celsius, data=df)
+summary(modelCelsius)
 ```

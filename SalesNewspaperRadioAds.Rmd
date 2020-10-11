@@ -23,12 +23,14 @@ ex<-F
 
 As a result of the above, the dataframe has the sales and radio and newspaper ads data loaded in:
 
-- print out the df info with `str(df)`
+- print out some info on `df` using `str(df)`
+- print out the first few lines of `df` using `head(df)`
 ```{r include=ex, eval=F}
 CODE
 ```
 ```{r include=!ex}
 str(df)
+head(df)
 ```
 
 Lets look at the correlation coefficient R for Newspaper and Sales
@@ -62,9 +64,22 @@ You can also put in that they are filled dots instead of hollow by using `pch=19
 - give it the `xlab` as: "Newspaper Ad Spending ($000)"
 - give it the `ylab` as: "Sales in Dollars ($000)"
 ```{r include=ex, eval=F}
-CODE
+plot(df$newspaper,
+     df$sales, 
+     main=CODE, 
+     xlab=CODE, 
+     ylab=CODE", 
+     pch=19)
 ```
 ```{r include=!ex}
+#Original:
+#plot(df$newspaper,
+#     df$sales, 
+#     main=CODE, 
+#     xlab=CODE, 
+#     ylab=CODE", 
+#     pch=19)
+
 plot(df$newspaper,
      df$sales, 
      main="Newspaper Expenditures and Sales", 
@@ -92,10 +107,25 @@ And here is the scatterplot for them:
 - give it the `xlab` as: "Radio Ad Spending ($000)"
 - give it the `ylab` as: "Sales in Dollars ($000)"
 ```{r include=ex, eval=F}
-CODE
+plot(df$radio,df$sales, 
+     main=CODE, 
+     xlab=CODE, 
+     ylab=CODE, 
+     pch=19)
 ```
 ```{r include=!ex}
-plot(df$radio,df$sales, main="Radio Ad Expenditures and Sales", xlab="Radio Ad Spending ($000)", ylab="Sales in Dollars ($000)", pch=19)
+#Original:
+#plot(df$radio,df$sales, 
+#     main=CODE, 
+#     xlab=CODE, 
+#     ylab=CODE, 
+#     pch=19)
+
+plot(df$radio,df$sales, 
+     main="Radio Ad Expenditures and Sales", 
+     xlab="Radio Ad Spending ($000)", 
+     ylab="Sales in Dollars ($000)", 
+     pch=19)
 ```
 
 The following shows the correlation matrix and the scatterplots for all variables:
@@ -112,7 +142,7 @@ What are the correlations (Fill in the ???):
 
 - between `newspaper` and `sales` ??? 
 - between `radio` and `sales` ??? 
-- between `newspaper` and `ads` ??? 
+- between `newspaper` and `radio` ??? 
 
 Now lets show the scatterplots:
 - run `plot(df)`
@@ -135,6 +165,8 @@ plot(df, upper.panel = NULL, pch = 19)
 
 Lets run our regression model:
 
+- assign `model` the result of `lm`, using `sales~radio+newspaper` as the first argument to `lm` and then `data=df` as the second argument
+- call `summary(model)` to print out the regression model info after creating the model
 ```{r include=ex, eval=F}
 CODE
 ```
@@ -163,7 +195,9 @@ sales = ???(radio) + ???(newspaper) + ???
     
 **The standard error is:**
 
-standard error = ???
+standard error = ???     
+
+#### Predictions
 
 Make a dataframe to hold our predictors: 
 
@@ -171,9 +205,12 @@ Make a dataframe to hold our predictors:
 - spending 35,000 on Radio ads and 45,000 on Newspaper 
 - spending 5,000 on Radio ads and 60,000 on Newspaper 
 
+Do this:  
+
 - assign a vector `radio` to hold the two radio predictor values
 - assign a vector `newspaper` to hold the two newspaper predictor values
-- 
+- create a dataframe with `predictors<-data.frame(radio,newspaper)` 
+- print `predictors` 
 ```{r include=ex, eval=F}
 radio<-CODE
 newspaper<-CODE
@@ -181,6 +218,12 @@ predictors <- data.frame(radio, newspaper)
 predictors
 ```
 ```{r include=!ex}
+# Original:
+#radio<-CODE
+#newspaper<-CODE
+#predictors <- data.frame(radio, newspaper)
+#predictors
+
 radio<-c(30,40,5)
 newspaper<-c(35,45,60)
 predictors <- data.frame(radio, newspaper)
@@ -196,4 +239,10 @@ CODE
 predictions<-predict(model, predictors)
 predictions
 ```
+
+Fill in the correct answers below:
+
+- Prediction for \$30,000 on Radio and \$35,000 on Newspaper: ??? 
+- Prediction for \$35,000 on Radio and \$45,000 on Newspaper: ??? 
+- Prediction for \$5,000 on Radio and \$60,000 on Newspaper: ??? 
 

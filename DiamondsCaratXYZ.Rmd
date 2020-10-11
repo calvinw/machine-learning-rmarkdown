@@ -1,5 +1,5 @@
 ---
-title: "Diamonds with Carat and X,Y,Z"
+title: "Diamonds with x,y,z"
 jupyter:
   kernelspec:
     display_name: R

@@ -21,64 +21,101 @@ Here `squareFt` will represent the square footage of a store and the `sales` wil
 First make some vectors for this data
 
 ```{r}
-squareFt <- c(1.7, 1.6, 2.8, 5.6, 1.3, 2.2, 1.3, 1.1, 3.2, 1.5, 5.2, 4.6, 5.8, 3)
+sqft <- c(1.7, 1.6, 2.8, 5.6, 1.3, 2.2, 1.3, 1.1, 3.2, 1.5, 5.2, 4.6, 5.8, 3)
 sales <- c(3.7, 3.9, 6.7, 9.5, 3.4, 5.6, 3.7, 2.7, 5.5, 2.9, 10.7, 7.6, 11.8, 4.1)
 ```
 
-Let's create a data frame using the two vectors above, so the `squareFt` is the 1st column and the `sales` is the second column
+Let's create a data frame using the two vectors above, so the `sqft` is the 1st column and the `sales` is the second column
 
 ```{r}
-dataFrame<-data.frame(squareFt, sales)
+df<-data.frame(sqft, sales)
 ```
 
 The most simple plot that you might want to see from this situation is a scatterplot. If you use the `plot` function and pass it the data frame then R will give you exactly that.
 
 ```{r}
-plot(dataFrame)
+plot(df)
 ```
 
 we can enhance the graph a little by giving it a title, which you do with the `main` argument below. Then we can label the x-axis and the y-axis a little better by using `xlab` and `ylab`. If you want to make the points solid circles, that is the argument `pch=19` This helps some.
 
 ```{r}
-plot(dataFrame, main="Annual Sales vs Store Size", xlab="Square Footage(Thousands)", ylab="Annual Sales (Millions$)", pch=19)
+plot(df, 
+     main="Annual Sales vs Store Size", 
+     xlab="Square Footage(Thousands)", 
+     ylab="Annual Sales (Millions$)", 
+     pch=19)
 ```
 
 Lets compute the R-squared. First compute the R, which is called the correlation coefficient. Then square that to get the R-squared
 
 ```{r}
-R = cor(squareFt,sales)
-R*R
+R <- cor(sqft,sales)
+R
 ```
 
-Next up we may want to see all the regression analysis output. We can do this by call `lm` which stands for "run a linear model". The notation `sales~squareFt` means make `sales` the y, which is what we want to predict. Then the `squareFt` is our predictor in this case. So we will predict `sales` from `squareFt`. For the second argument to lm, we have to pass in the dataframe.
+Next up we may want to see all the regression analysis output. We can do this by call `lm` which stands for "run a linear model". The notation `sales~sqft` means make `sales` the y, which is what we want to predict. Then the `sqft` is our predictor in this case. So we will predict `sales` from `sqft`. For the second argument to lm, we have to pass in the dataframe `df`.
 
 ```{r}
-model = lm(sales~squareFt, data=dataFrame)
+model = lm(sales~sqft, data=df)
 summary(model)
 ```
 
 Test for significant linear relationship:
 
-$$ \text{p-value} = 0.000000182 $$
+Fill in the ??? below with the right value:
 
-The regression equation is this:
+**Test for overall significant:**
 
-$$ sales = 1.67(squareFt) + 0.964 $$ 
+overall p = ??? 
 
-The standard error is:
+**The regression equation is this:**
 
-$$ \text{standard error} = 0.966  $$
+sales =???(sqft) + ???   
 
+**The standard error is:**
+
+std error = ???
+
+**R squared is:**
+
+Rsquared = ???
+
+Now lets plot the regression line on the scatterplot using `abline` . Here it is:
+
+- call  `plot` passing it the dataframe `df`, give it a title and labels for the axes
 ```{r}
-plot(dataFrame, main="Annual Sales vs Store Size", xlab="Square Footage(Thousands)", ylab="Annual Sales (Millions$)", pch=19)
+plot(df, 
+     main="Annual Sales vs Store Size", 
+     xlab="Square Footage(Thousands)", 
+     ylab="Annual Sales (Millions$)", 
+     pch=19)
 abline(model)
 ```
 
-Suppose we want to do some predictions for squareFt equal to 4000 square ft, 2000 square ft, and 5000 square ft.
+Suppose we want to do some predictions for:
+- sqft equal to 4000 square ft 
+- sqft equal to 2000 square ft 
+- sqft equal to 5000 square ft.
 
+- make a new vector called `sqft` that has the values above
+- make a data frame using `data.frame(sqft)` and assign it to `predictors`
 ```{r}
-predictors = data.frame(squareFt=c(4.0,2.0,5.0))
-predictions<-predict(model, predictors)
-round(predictions*1000000)
+sqft<-c(4.0,2.0,5.0)
+predictors <- data.frame(sqft)
 ```
+
+
+- assign a variable called `predictions` which is the result of the `predict` function, passing it the `model` and `predictors` dataframe as arguments 
+- print out the `predictions` 
+```{r}
+predictions<-predict(model, predictors)
+predictions
+```
+
+Fill in the ??? with the correct answers below:
+
+- Prediction for `sales` when `sqft` is 4000: ???
+- Prediction when `sales` when `sqft` is 2000: ???
+- Prediction when `sales` when `sqft` is 5000: ???
 

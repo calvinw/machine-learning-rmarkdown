@@ -61,7 +61,11 @@ Fix the plot to have some titles and labels for the axes, and filled circles:
 
 - Call `plot` as above but pass `main="Ads and Sales`, `xlab="Ads"`, `ylab="Sales"` and `pch=19` as arguments.
 ```{r}
-plot(df$ads,df$sales, main="Ads and Sales", xlab="Ads", ylab="Sales", pch=19)
+plot(df$ads,df$sales, 
+     main="Ads and Sales", 
+     xlab="Ads", 
+     ylab="Sales", 
+     pch=19)
 ```
 
 Lets take a look at the correlation and a scatterplot for pop and sales:
@@ -75,7 +79,11 @@ R
 
 - use `plot` to examine the scatterplot for pop and sales. Use a title and labels for the axes like above
 ```{r}
-plot(df$pop,df$sales, main="Population and Sales", xlab="Population", ylab="Sales", pch=19)
+plot(df$pop,df$sales, 
+     main="Population and Sales", 
+     xlab="Population", 
+     ylab="Sales", 
+     pch=19)
 ```
 
 The following shows the correlation matrix for `df`:
