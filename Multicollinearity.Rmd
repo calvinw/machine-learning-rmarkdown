@@ -14,7 +14,7 @@ options("scipen"=100)
 ```
 
 ```{r include=F}
-ex<-F
+ex<-T
 ```
 Suppose we have some data for gallons of ice cream sold and the temperatures on two different scales. Does this affect the regression model? Yes, since there is redundancy in the fahrenheit and celsius predictors that leads to what is called "collinearity". It may mean that the p-values for one or more of the predictors is large even when there is some correlation between the predictor and the outcome.   
 

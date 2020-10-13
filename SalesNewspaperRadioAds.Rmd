@@ -18,7 +18,7 @@ df<-read.csv(url)
 ```
 
 ```{r include=F}
-ex<-F
+ex<-T
 ```
 
 As a result of the above, the dataframe has the sales and radio and newspaper ads data loaded in:
