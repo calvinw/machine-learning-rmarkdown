@@ -5,8 +5,6 @@ jupyter:
     display_name: R
     language: R
     name: ir
-output:
-    ipynbdocument::ipynb_document
 ---
 
 Here `temp` will represent the temperature on some day and the `gallons` will represent how many gallons of ice cream we sell on that day. We have 10 days of data.

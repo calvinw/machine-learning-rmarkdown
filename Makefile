@@ -30,8 +30,8 @@ ipynb  : $(IPYNB_FILES)
 	         -e 'render("$<","pdf_document")'
 
 %.ipynb : %.Rmd
-	@Rscript -e 'library(knitr); library(rmarkdown); library(ipynbdocument)' \
-	    -e 'render("$<")'
+	@Rscript -e 'library(knitr);library(rmarkdown);library(ipynbdocument)' \
+	    	 -e 'render("$<", "ipynb_document")'
 
 watch: 
 	ls *.Rmd | entr make

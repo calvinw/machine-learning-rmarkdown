@@ -5,8 +5,6 @@ jupyter:
     display_name: R
     language: R
     name: ir
-output:
-    ipynbdocument::ipynb_document
 ---
 
 A small cosmetics company Mysteria believes sales (in thousands of dollars) at its stores is affected by advertising expenditures and by the population size of the vicinity of the area. They collect data for 6 stores and get the following:

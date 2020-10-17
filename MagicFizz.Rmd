@@ -1,0 +1,238 @@
+---
+title: "Magic Fizz"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+Run this code block to set things up:
+
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQhffJe1DftYdhSqfznMvmO5l_0S9z0sf_PN8NAn1XExaLjlIc-HQcYgry10iphx9egxGtjBqOCcEEB/pub?gid=897298122&single=true&output=csv"
+df<-read.csv(url)
+```
+
+```{r include=F}
+ex<-T
+```
+
+The above loads in some data collected from 20 respondents to a survey about a new soft drink called **MagicFizz**. Each of the respondents rated the drink for each of the categories `Flavor` ,`Texture` `FizzSensation` and `PackageDesign` and also for `OverallSatisfaction`.
+
+The data frame `df` is loaded with all the responses. 
+
+The goal here is to try to predict `OverallSatisfaction` from the rest of the variables.
+
+- print out some info on `df` using `str(df)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Orig:
+# CODE
+
+# Solution:
+str(df)
+```
+
+- print out `df` using `print(df)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Orig:
+# CODE
+
+# Solution:
+print(df)
+```
+
+- print out the correlation matrix for df using `cor(df)` 
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Orig:
+# CODE
+
+# Solution:
+cor(df)
+```
+
+FILL IN THE ???? below with the right values from above:
+
+Correlation:    
+
+- between `Flavor` and `Texture` ??? 
+- between `Flavor` and `OverallSatisfaction` ??? 
+- between `Texture` and `OverallSatisfaction` ??? 
+- between `FizzSensation` and `OverallSatisfaction` ??? 
+- between `PackageDesign` and `OveralllSatisfaction` ??? 
+
+Let's run our regression model using all the variables:
+
+- assign `model1` the result of `lm`, using `OverallSatisfaction ~ Flavor + Texture + FizzSensation + PackageDesign` as the first argument to `lm` and then `data=df` as the second argument
+- call `summary(model1)` to print out the regression model info after creating the model
+```{r include=ex, eval=F}
+model1 <- lm(CODE, data=df)
+summary(model1)
+```
+```{r include=!ex}
+# Orig:
+# model1 <- lm(CODE, data=df)
+# summary(model1)
+
+# Solution:
+model1 <- lm(OverallSatisfaction ~ Flavor+Texture+FizzSensation+PackageDesign, data=df)
+summary(model1)
+```
+
+FILL IN THE ???? below with the right values from above:
+
+**Test for overall significant of linear relationship:**
+
+overall p-value = ????
+
+**Texture:**
+
+p-value for Texture = ???
+
+**Flavor:**
+
+p-value for Flavor= ???
+
+**FizzSensation:**
+
+p-value for FizzSensation= ???
+
+**PackageDesign:**
+
+p-value for PackageDesign= ???
+
+Eliminate the `Texture` variable, since it has the highest p-value.
+
+Then run the regression again:
+
+- assign `model2` the result of `lm`, using `OverallSatisfaction ~ Flavor + FizzSensation + PackageDesign` as the first argument to `lm` and then `data=df` as the second argument
+- call `summary(model2)` to print out the regression model info after creating the model
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Orig:
+# CODE 
+
+# Solution:
+model2 <- lm(OverallSatisfaction ~ Flavor+FizzSensation+PackageDesign, data=df)
+summary(model2)
+```
+
+FILL IN THE ???? below with the right values from above:
+
+**Test for overall significant of linear relationship:**
+
+overall p-value = ????
+
+**Flavor:**
+
+p-value for Flavor= ???
+
+**FizzSensation:**
+
+p-value for FizzSensation= ???
+
+**PackageDesign:**
+
+p-value for PackageDesign= ???
+
+Eliminate the `FizzSensation` with the highest p-value and run the regression again:
+
+- assign `model3` the result of `lm`, using `OverallSatisfaction ~ Flavor + PackageDesign` as the first argument to `lm` and then `data=df` as the second argument
+- call `summary(model1)` to print out the regression model info after creating the model
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Orig:
+# CODE 
+
+# Solution:
+model3 <- lm(OverallSatisfaction ~ Flavor+PackageDesign, data=df)
+summary(model3)
+```
+
+FILL IN THE ???? below with the right values from above:
+
+**Test for overall significant of linear relationship:**
+
+overall p-value = ????
+
+**Flavor:**
+
+p-value for Flavor= ???
+
+**PackageDesign:**
+
+p-value for PackageDesign= ???
+
+This is your final model.
+
+**The regression equation is this:**
+
+OverallSatisfaction = ???(Flavor) + ???(PackageDesign) + ???  
+    
+#### Predictions
+
+Make a dataframe to hold our predictors: 
+
+- rates Flavor 1 and rates PackageDesign 1 
+- rates Flavor 2 and rates PackageDesign 3 
+- rates Flavor 3 and rates PackageDesign 2 
+
+Do this:  
+
+- assign a vector `Flavor` to hold the three `Flavor` predictor values
+- assign a vector `PackageDesign` to hold the three `PackageDesign` predictor values
+- create a dataframe with `predictors<-data.frame(Flavor,PackageDesign)` 
+- print `predictors` 
+```{r include=ex, eval=F}
+Flavor<-CODE
+PackageDesign<-CODE
+predictors <- data.frame(Flavor, PackageDesign)
+predictors
+```
+```{r include=!ex}
+# Original:
+#Flavor<-CODE
+#PackageDesign<-CODE
+#predictors <- data.frame(Flavor, PackageDesign)
+#predictors
+
+# Solution:
+Flavor<-c(1,2,3)
+PackageDesign<-c(1,3,2)
+predictors <- data.frame(Flavor, PackageDesign)
+predictors
+```
+
+- make predictions with `predictions<-predict(model3,predictors)` 
+- print out the predictions using `print(predictions)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Orig:
+# CODE
+
+# Solution:
+predictions<-predict(model3, predictors)
+print(predictions)
+```
+
+Fill in the correct answers below:
+
+- Prediction when rates Flavor 1 and rates PackageDesign 1: ??? 
+- Prediction when rates Flavor 2 and rates PackageDesign 3: ??? 
+- Prediction when rates Flavor 3 and rates PackageDesign 2: ??? 
+

@@ -5,84 +5,185 @@ jupyter:
     display_name: R
     language: R
     name: ir
-output:
-    ipynbdocument::ipynb_document
 ---
+
+```{r include=F}
+ex<-T
+```
 
 Lets look at a simple example that has data from the Poshmark website. We scraped the names of some items, the original retail, and their current offering prices for some items being offered:
 
-Lets make them into a dataframe see how R deals with these:
+Lets make the data into some vectors:
 
 ```{r}
 name <- c("Jcrew blazer",           
 	  "Forever 21 lace zip up blazer",                     
 	  "Banana Republic Navy  Blazer",                     
 	  "Julian Taylor Pant And Blazer Size 12",             
-	  "Bernard Zins Paris Multi Colored Jacket")  
-original <- c("198","49","129","999","129")
-offered<- c("60","29","45","30","22")
+	  "Bernard Zins Paris Multi Colored Jacket",
+      "Evan Picone Suit Blazer - 6",
+      "Black blazer",
+      "Jones Studio Blazer")  
+original <- c(198,49,129,999,129,74,80,59)
+offered<- c(60,29,45,30,22,13,15,25)
+```
+
+Next we will create a dataframe with the items above in it.
+
+- create a data frame called `items` using the 3 vectors above. Replace CODE with the 3 vectors names, and use commas between them
+```{r include=ex, eval=F}
+items <- data.frame(CODE)
+```
+```{r include=!ex}
+# Original:
+# items <- data.frame(CODE)
+
+# Solution:
 items <- data.frame(name, original, offered)
 ```
 
-```{r}
-head(items)
+- print out info on the  `items` using `str`
+```{r include=ex, eval=F}
+CODE
 ```
+```{r include=!ex}
+# Original:
+# CODE
 
-```{r}
+# Solution:
 str(items)
 ```
 
-But we would really like to have the original and the offered columns be numeric so that we can do calculations with them (of the markdown from original to offered)
+- print out all the records on `items` using `print(items)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Original:
+# CODE
 
-We could try converting the price columns to numeric:
-```{r}
-items$original <- as.numeric(items$original)
-items$offered <- as.numeric(items$offered)
-str(items)
+# Solution:
+print(items)
 ```
 
-```{r}
-head(items)
+Looks like one of the values is wrong or made up: 999 is just wrong. Lets fix that to be \$54.
+
+- change "Julian Taylor" item's price to be 54 (replace CODE with correct value)
+```{r include=ex, eval=F}
+items[4,2]<-CODE
+```
+```{r include=!ex}
+# Original:
+# items[4,2]<-CODE
+
+# Solution:
+items[4,2]<-54
 ```
 
-Finally looks like we are ready to calculate markdown percents. We will just calculate the `original - offered` and divide by `original`.
+Lets check to make sure this looks okay.
 
-```{r}
-markdown <- (items$original-items$offered)/items$original;
-head(markdown)
+- print out all the records again  using `print(items)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Original:
+# CODE
+
+# Solution:
+print(items)
+```
+
+Let's calculate markdown percents. We will just calculate the `original - offered` and divide by `original`.
+
+- assign `markdown <- (items$original-items$offered)/items$original`
+- print out `markdown`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Original:
+# CODE
+
+# Solution:
+markdown <- (items$original-items$offered)/items$original
+markdown
 ```
 
 Almost, lets round it to the nearest percent instead
 
-```{r}
-markdown <- round(markdown*100);
-head(markdown)
+- assign `markdown <- 100*round(markdown,2)`
+- print out `markdown`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Original:
+# CODE
+
+# Solution:
+markdown <- 100*round(markdown,2)
+markdown
 ```
 
 Finally lets add it as a new column to the original data frame:
 
-```{r}
+- add the column to the data frame with `items$markdown<-markdown`
+- print out info on the new dataframe with `str`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Original:
+# CODE
+
+# Solution:
 items$markdown<-markdown 
 str(items)
 ```
 
 Now lets print it out:
 
-```{r}
+- print out the first few records of `items` using `head`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
+# Original:
+# CODE
+
+# Solution:
 head(items)
 ```
 
 We dont have that much data but you could find the average markdown:
 
-```{r}
+- use `mean` to find the average, pass it `items$markdown` as argument(change CODE below)
+```{r include=ex, eval=F}
+mean(CODE)
+```
+```{r include=!ex}
+# Original:
+# mean(CODE)
+
+# Solution:
 mean(items$markdown)
 ```
 
-For this set of data the offered price was 71% off the original. Lets see the range of markdowns: 
+For this set of data the average offered price was 66% off the original. Lets see the range of markdowns: 
 
-```{r}
+- use `range` to find the range, pass it `items$markdown` as argument (change CODE below)
+```{r include=ex, eval=F}
+range(CODE)
+```
+```{r include=!ex}
+# Original:
+# range(CODE)
+
+# Solution:
 range(items$markdown)
 ```
 
-Anywhere from 41% to 97% off the original price.
+This gives the ranges of the markdowns from this set of data 
+from `r range(items$markdown)[1]`% to `r range(items$markdown)[2]`%
 
