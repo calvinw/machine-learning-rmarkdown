@@ -39,13 +39,17 @@ plot(dataFrame, main="Ice Cream Sales", xlab="Temperature", ylab="Gallons Sold")
 If you want to make the points solid circles, that is the argument `pch=19`:
 
 ```{r}
-plot(dataFrame, main="Ice Cream Sales", xlab="Temperature", ylab="Gallons Sold", pch=19)
+plot(dataFrame, 
+     main="Ice Cream Sales", 
+     xlab="Temperature", 
+     ylab="Gallons Sold", 
+     pch=19)
 ```
 
 Lets compute the R-squared. First compute the R, which is called the correlation coefficient. Then square that to get the R-squared
 
 ```{r}
-R = cor(temp,gallons)
+R <- cor(temp,gallons)
 R
 R*R
 ```
@@ -63,7 +67,7 @@ For the second argument to lm, we have to pass in the dataframe.
 After we run the model, we print it out with summary
 
 ```{r}
-model = lm(gallons~temp, data=dataFrame)
+model <- lm(gallons~temp, data=dataFrame)
 summary(model)
 ```
 
@@ -80,14 +84,19 @@ Test for significant linear relationship:
 $$ \text{p-value} = 0.000101 $$
 
 ```{r}
-plot(dataFrame, main="Ice Cream Sales", xlab="Temperature", ylab="Gallons Sold" , pch=19)
+plot(dataFrame, 
+     main="Ice Cream Sales", 
+     xlab="Temperature", 
+     ylab="Gallons Sold" , 
+     pch=19)
 abline(model)
 ```
 
 Suppose we want to do some predictions for temp equal to 89, 91 and 72.
 
 ```{r}
-predictors = data.frame(temp=c(89,91,72))
+temp<-c(89,91,72)
+predictors <- data.frame(temp)
 predictions<-predict(model, predictors)
 predictions
 ```
