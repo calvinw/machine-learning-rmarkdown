@@ -187,3 +187,52 @@ range(items$markdown)
 This gives the ranges of the markdowns from this set of data 
 from `r range(items$markdown)[1]`% to `r range(items$markdown)[2]`%
 
+
+Lets create a model that predicts the offered price from the original:
+
+- create a model using `lm` that predicts `offered` from the `original` (fill in CODE with the appropriate thing below)
+```{r include=ex, eval=F}
+model<-lm(CODE, data=items)
+summary(model)
+```
+```{r include=!ex}
+# Original:
+# model<-lm(CODE, data=items)
+# summary(model)
+
+# Solution:
+model<-lm(offered~original, data=items)
+summary(model)
+```
+
+Find the correlation between **offered** and **original**
+
+- find the correlation between `items$offered` and `items$original` using the function `cor` (pass `items$original` as first argument and `items$offered` as the second argument)
+```{r include=ex, eval=F}
+cor(CODE)
+```
+```{r include=!ex}
+# Original:
+# cor(CODE)
+
+# Solution:
+cor(items$original, items$offered)
+```
+
+Now find the scatterplot of **offered** and **original** 
+
+- plot the scatterplot of `offered` vs `original` using `plot`. Pass `items$original` and `items$offered` as the first and second argument to `plot` 
+- add the regression line using `abline`. Pass the `model` to that function.
+```{r include=ex, eval=F}
+plot(CODE)
+abline(CODE)
+```
+```{r include=!ex}
+# Original:
+# plot(CODE)
+# abline(CODE)
+
+# Solution:
+plot(items$original, items$offered)
+abline(model)
+```
