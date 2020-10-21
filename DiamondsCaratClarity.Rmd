@@ -172,8 +172,3 @@ Fill in the correct answers below:
 - Prediction when `carat` is 0.6: ???
 - Prediction when `carat` is 1.8: ???
 
-```{r include=ex, eval=F}
-CODE
-```
-```{r include=!ex}
-```
