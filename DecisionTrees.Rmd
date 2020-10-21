@@ -1,0 +1,164 @@
+---
+title: "Decision Trees"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
+
+library("knitr")
+library("rpart")
+library("rpart.plot")
+library("Metrics")
+```
+
+## Building the Decision Tree
+
+
+```{r}
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=0&single=true&output=csv"
+df<-read.csv(url, stringsAsFactor=TRUE)
+```
+
+```{r}
+str(df)
+library(knitr)
+```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(product~gender, data=df, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Next lets look at a model that uses just `Temp` to try to predict `Buys`:
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(product~age, data=df, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+What about if we use just `Humid` to try to predict `Buys`:
+
+```{r}
+control = rpart.control(minsplit=1)
+model <- rpart(product~age+gender, data=df, method="class", control=control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+
+```{r}
+knitr::knit_exit()
+# control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
+# model <- rpart(Buys~Windy, data=traindf, method="class", control = control)
+# rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+What about if we use both `Temp` and `Outlook` together to predict `Buys`: 
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Temp+Outlook, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+What about if we use both `Temp` and `Humid` together to predict `Buys`: 
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Temp+Humid, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Which of these models above looks best and why? It is not always easy to tell actually!!
+
+Here is a model that uses all the predictors:
+
+```{r}
+control = rpart.control(minsplit=1)
+model <- rpart(Buys~Temp+Humid+Outlook+Windy, data=traindf, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+One nice thing about this model is that all the leaf nodes are "pure" now. That means that one of the numbers that lists the outcomes is 0 each time. That means that node either is all "yes"s or all "no"s. Nothing in the training set is incorrectly predicted by this model. 
+
+## Testing the Decision Tree model using the testing set
+
+Next let's look at some data that we can use as a testing set. This data we will use to evaluate how well the models we looked at above will do when they see "new" data. This gives a better idea of how accurate our model is.   So here is the data we will use as our testing data:     
+
+| Outlook  | Temp | Humid  | Windy | Buys |
+|----------|------|--------|-------|------|
+| sunny    | mild | high   | no    | no   |
+| rainy    | mild | normal | no    | yes  |
+| overcast | mild | high   | no    | yes  |
+| sunny    | mild | normal | yes   | yes  |
+| rainy    | cool | normal | yes   | yes  |
+| sunny    | mild | normal | no    | no   |
+| overcast | hot  | high   | no    | no   |
+| rainy    | cool | normal | no    | yes  |
+
+First we read the test set and look at its structure:
+
+```{r}
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSfQk849ICHKNqacbvmG1PZQiCfGadL2TgeGn9aaCj0-luDgE5fZA9p6dPJj6RDrreXsCc2XYaFOmKU/pub?gid=572053114&single=true&output=csv"
+testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+str(testdf)
+```
+
+And now print out the test set:
+
+```{r}
+print(testdf)
+```
+
+Now we are ready to do some predictions using the test dataframe:
+
+```{r}
+pred <- predict(model, newdata = testdf, type = 'class')
+str(pred)
+```
+
+So `pred` now holds our predictions.
+
+We can now compare those predictions (from our model) with the actual known results from the testing data. Here we are comparing how our model "predicted" on the test data with the "actual" outcomes that were included in the testing data. Here it is important that we know the actual outcomes on the testing data so we can see how we do. 
+
+Lets make a data frame that shows the prediction and the actuals: 
+
+```{r}
+comparedf <- data.frame(actual=testdf$Buys, predictions=pred)
+print(comparedf)
+```
+
+Now one thing we can calculate is the proportion of agreement. This is called the "accuracy" of the model. The accuracy is just 
+
+$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
+
+We can find it by using the accuracy function in the `Metrics` package 
+```{r}
+accuracy(testdf$Buys, pred)
+```
+
+This is called the `accuracy` of the model. This is the proportion of times that the prediction agreed with the actual in the above.  
+
+We can get some more information by looking at the "confusion matrix"  
+
+```{r}
+table(actual=testdf$Buys, predictions=pred)
+```
+
+- This says that there were 3 actuals that were no, and the model predicted 3 no's
+- There were 2 actuals that were yes, and the model predicted those 2 no's
+- Then there were 3 actuals that were yes, and model predicted those yes
+
+We will look into interpretations of this "confusion matrix:" in the future.
+
+

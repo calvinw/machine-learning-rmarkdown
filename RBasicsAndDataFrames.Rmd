@@ -8,12 +8,11 @@ jupyter:
 ---
 
 ```{r, include=FALSE}
-blanks<-T
-solution<-!blanks
+solution<-FALSE
 ```
 
 - Create a variable `z` that has value 32
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 z <- CODE 
 ```
 ```{r, include=solution}
@@ -21,7 +20,7 @@ z <- 32
 ```
 
 - Create a variable `w` that is equal to `z/3`
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 w <- CODE
 ```
 ```{r, include=solution}
@@ -29,7 +28,7 @@ w <- z/3
 ```
 
 - Define a character vector `a` that has these strings on it "Hello", "Goodbye", "Goodnight", "Bye":
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 a<-CODE
 ```
 ```{r, include=solution}
@@ -38,7 +37,7 @@ a<- c("Hello", "Goodbye", "Goodnight", "Bye")
 
 Define a vector variable `q` that has 3,-3,2,-1,0,-4,-6,3,-7,4,2,3,-2,-4,4 on it. 
 
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 q<-CODE
 ```
 ```{r, include=solution}
@@ -54,7 +53,7 @@ Next create a dataframe for this data:
 | Hubert |  3.4 | FBM | 718 232 9392 |
 
  - create a dataframe for this data
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 Name<-CODE
 GPA<-CODE
 Major<-CODE
@@ -70,7 +69,7 @@ df <- data.frame(Name,GPA,Major,Phone)
 ```
 
 - Print out the structure of your data frame using `str`
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
@@ -78,7 +77,7 @@ str(df)
 ```
 
 - Print out just the GPA column using $ sign: (Replace CODE below with the right column name for this. 
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 df$CODE
 ```
 ```{r, include=solution}
@@ -86,7 +85,7 @@ df$GPA
 ```
 
 - Now print out the first few lines of the data frame using `head`
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
@@ -94,7 +93,7 @@ head(df)
 ```
 
 - Use `summary(df)` to print out a summary of the data frame data:
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
@@ -102,7 +101,7 @@ summary(df)
 ```
 
 - Delete the column "Major" from the data frame:
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
@@ -111,7 +110,7 @@ df$Major <- NULL
 
 - Print out the structure of your data frame showing the column above removed: 
 
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
@@ -128,7 +127,7 @@ Your data frame will look like this after doing this:
 | Hubert |  3.4 | 718 232 9392 | 1003 |
 
 - add a column called "ID" 
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 df$ID <- CODE 
 ```
 ```{r, include=solution}
@@ -136,7 +135,7 @@ df$ID <- c(1001,1002,1003)
 ```
 
 - Print out the structure of the new data frame using `str`:
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
@@ -144,7 +143,7 @@ str(df)
 ```
 
 - Change Tanyas GPA in the dataframe to be `3.98`
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 df[2,2] <- CODE 
 ```
 ```{r, include=solution}
@@ -152,7 +151,7 @@ df[2,2] <- 3.98
 ```
 
 - Print out the data frame using `head` to make sure her GPA is changed:
-```{r, eval=FALSE, include=blanks}
+```{r, eval=FALSE, include=!solution}
 CODE
 ```
 ```{r, include=solution}
