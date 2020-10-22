@@ -30,51 +30,50 @@ df<-read.csv(url, stringsAsFactor=TRUE)
 
 ```{r}
 str(df)
+print(df)
 library(knitr)
 ```
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
+control = rpart.control(minsplit=1, maxdepth=1)
 model <- rpart(product~gender, data=df, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
-Next lets look at a model that uses just `Temp` to try to predict `Buys`:
-
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
+control = rpart.control(minsplit=1,maxdepth=1,cp=-1)
 model <- rpart(product~age, data=df, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
-What about if we use just `Humid` to try to predict `Buys`:
-
 ```{r}
-control = rpart.control(minsplit=1)
+control = rpart.control(minsplit=1, maxdepth=3,cp=-1)
 model <- rpart(product~age+gender, data=df, method="class", control=control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
 
 ```{r}
-knitr::knit_exit()
-# control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
-# model <- rpart(Buys~Windy, data=traindf, method="class", control = control)
-# rpart.plot(model, type=4, extra = 1, digits=-2)
+url2<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=121756806&single=true&output=csv"
+df2<-read.csv(url2, stringsAsFactor=TRUE)
+str(df2)
 ```
-
-What about if we use both `Temp` and `Outlook` together to predict `Buys`: 
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
-model <- rpart(Buys~Temp+Outlook, data=traindf, method="class", control = control)
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(product~age, data=df2, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
+
+```{r}
+knitr::knit_exit()
+```
+
 
 What about if we use both `Temp` and `Humid` together to predict `Buys`: 
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+control = rpart.control(minsplit=1,maxdepth=1)
 model <- rpart(Buys~Temp+Humid, data=traindf, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
