@@ -20,61 +20,117 @@ library("rpart.plot")
 library("Metrics")
 ```
 
-## Building the Decision Tree
+## Building a Decision Tree
 
 
 ```{r}
-url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=0&single=true&output=csv"
-df<-read.csv(url, stringsAsFactor=TRUE)
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=0&single=true&output=csv"
+df<-read.csv(url)
 ```
+
+Lets see the info on this dataframe
 
 ```{r}
 str(df)
-print(df)
-library(knitr)
 ```
 
+Here is the original data
+
 ```{r}
-control = rpart.control(minsplit=1, maxdepth=1)
+print(df)
+```
+
+Lets sort it by gender:
+
+```{r}
+print(df[order(df$gender),])
+```
+
+So if we split on gender here is what we would get:
+
+```{r}
+control <- rpart.control(minsplit=1, maxdepth=1)
 model <- rpart(product~gender, data=df, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
+The tree above makes 1 mistake out of 7.
+
+Lets sort it by age:
+
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1,cp=-1)
+print(df[order(df$age),])
+```
+
+```{r}
+control <- rpart.control(minsplit=1,maxdepth=1,cp=-1)
 model <- rpart(product~age, data=df, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
+The tree above makes 2 mistake out of 7.
+
 ```{r}
-control = rpart.control(minsplit=1, maxdepth=3,cp=-1)
+control <- rpart.control(minsplit=1, maxdepth=3,cp=-1)
 model <- rpart(product~age+gender, data=df, method="class", control=control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
 
 ```{r}
-url2<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=121756806&single=true&output=csv"
-df2<-read.csv(url2, stringsAsFactor=TRUE)
-str(df2)
+Outlook<-c('sunny','sunny','overcast','rainy','rainy','rainy','overcast','sunny','sunny','rainy','sunny','overcast','rainy')
+Temp<-c('hot','hot','hot','mild','cool','cool','cool','mild','cool','mild','mild','hot','mild')
+Humid<-c('high','high','high','high','normal','normal','normal','high','normal','normal','normal','normal','high')
+Windy<-c('no','yes','no','no','no','yes','yes','no','no','no','yes','no','yes')
+Buys<-c('no','no','no','no','yes','yes','yes','no','yes','yes','no','no','no')
+df2<-data.frame(Outlook,Temp,Humid,Windy,Buys)
 ```
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model <- rpart(product~age, data=df2, method="class", control = control)
+df2[order(df2$Outlook),]
+```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
+model <- rpart(Buys~Outlook, data=df2, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
 ```{r}
-knitr::knit_exit()
+df2[order(df2$Humid),]
 ```
 
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Humid, data=df2, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+```{r}
+df2[order(df2$Windy),]
+```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Windy, data=df2, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+```{r}
+df2[order(df2$Temp),]
+```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Buys~Temp, data=df2, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
 
 What about if we use both `Temp` and `Humid` together to predict `Buys`: 
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model <- rpart(Buys~Temp+Humid, data=traindf, method="class", control = control)
+control = rpart.control(minsplit=1,maxdepth=2)
+model <- rpart(Buys~Temp+Humid, data=df2, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
@@ -84,9 +140,15 @@ Here is a model that uses all the predictors:
 
 ```{r}
 control = rpart.control(minsplit=1)
-model <- rpart(Buys~Temp+Humid+Outlook+Windy, data=traindf, method="class", control = control)
+model <- rpart(Buys~Temp+Humid+Outlook+Windy, data=df2, method="class", control = control)
 rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
+
+```{r}
+knitr::knit_exit()
+```
+
+
 
 One nice thing about this model is that all the leaf nodes are "pure" now. That means that one of the numbers that lists the outcomes is 0 each time. That means that node either is all "yes"s or all "no"s. Nothing in the training set is incorrectly predicted by this model. 
 
@@ -125,6 +187,7 @@ Now we are ready to do some predictions using the test dataframe:
 pred <- predict(model, newdata = testdf, type = 'class')
 str(pred)
 ```
+
 
 So `pred` now holds our predictions.
 
