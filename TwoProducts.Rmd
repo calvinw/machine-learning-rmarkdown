@@ -1,0 +1,148 @@
+---
+title: "Two Products"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
+
+library("rpart")
+library("rpart.plot")
+library("Metrics")
+```
+
+## Training Data - Building a Model
+
+```{r}
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=0&single=true&output=csv"
+train<-read.csv(url)
+str(train)
+```
+
+Here is the original data frame. There are two predictors `gender` and `age` and the result we are trying predict is `product`, which is the product they will buy. 
+
+```{r}
+print(train)
+```
+
+### Model 1 - Split on Gender 
+
+Lets sort it by gender:
+
+```{r}
+print(train[order(train$gender),])
+```
+
+So if we split on gender here is what we would get:
+
+```{r}
+control <- rpart.control(minsplit=1, maxdepth=1)
+model1 <- rpart(product~gender, 
+               data=train, 
+               method="class", 
+               control = control)
+rpart.plot(model1, type=4, extra = 1, digits=-2)
+```
+
+The tree above makes 1 mistake out of 7.
+
+### Model 2 - Split on Age 
+
+Lets sort it by age:
+
+```{r}
+print(train[order(train$age),])
+```
+
+```{r}
+control <- rpart.control(minsplit=1,maxdepth=1, cp=-1)
+model2 <- rpart(product~age, 
+               data=train, 
+               method="class", 
+               control = control)
+rpart.plot(model2, type=4, extra = 1, digits=-2)
+```
+
+The tree above makes 2 mistake out of 7.
+
+### Model 3 - Split on Gender, then Age 
+
+```{r}
+control <- rpart.control(minsplit=1, maxdepth=3)
+model3 <- rpart(product~age+gender, 
+               data=train, 
+               method="class", 
+               control=control)
+rpart.plot(model3, type=4, extra = 1, digits=-2)
+```
+
+## Testing Data - Predictions and Accuracy 
+
+```{r}
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=1744064271&single=true&output=csv"
+test<-read.csv(url)
+str(test)
+```
+
+```{r}
+print(test)
+```
+
+### Make Predictions Using Model 1 
+
+```{r}
+predictions <- predict(model1, newdata = test, type = 'class')
+compare <- data.frame(test=test, predictions=predictions)
+print(compare)
+```
+
+Now one thing we can calculate is the proportion of agreement. This is called the "accuracy" of the model. The accuracy is just 
+
+$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
+
+### Find the Accuracy of Model 1 
+
+We can find it by using the accuracy function in the `Metrics` package 
+
+```{r}
+accuracy(test$product, predictions)
+table(actual=test$product, predictions)
+```
+
+### Make Predictions Using Model 2 
+
+```{r}
+predictions <- predict(model2, newdata = test, type = 'class')
+compare <- data.frame(test=test, predictions=predictions)
+print(compare)
+```
+
+### Find the Accuracy of Model 2 
+
+```{r}
+accuracy(test$product, predictions)
+table(actual=test$product, predictions)
+```
+
+### Make Predictions Using Model 3 
+
+```{r}
+predictions <- predict(model3, newdata = test, type = 'class')
+compare <- data.frame(test=test, predictions=predictions)
+print(compare)
+```
+
+### Find the Accuracy of Model 3 
+
+```{r}
+accuracy(test$product, predictions)
+table(actual=test$product, predictions)
+```
