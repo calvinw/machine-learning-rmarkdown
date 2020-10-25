@@ -1,0 +1,106 @@
+---
+title: "Accuracy"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+Suppose we had a machine learning model, which was predicting a result like `yes` or `no` based on some predictors. 
+
+For example the data might be this:      
+
+## Model 1
+
+```{r}
+actuals   <- c("yes", "no", "yes", "yes")
+predicted   <- c("yes", "no", "no", "yes")
+df<- data.frame(actuals, predicted)
+df
+```
+
+### Calculating Accuracy
+
+We can find the accuracy from this table as follows:
+
+We calculate the proportion of agreement. This is called the **accuracy** of the model. The formula is just this: 
+
+$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
+
+
+```{r}
+accuracy(actuals, predicted)
+```
+
+### Confusion Matrix 
+
+Terminology:
+
+The prediction is called **positive** or **negative**:
+
+- When the **prediction** is **yes** that is called a **positive**.
+- When the **prediction** is **no** that is called a **negative**.
+
+The prediction is correct or incorrect:
+
+- **true** means the prediction was correct
+- **false** means the prediction was incorrect
+
+So we have _true positive_, _false positive_, _true negative_, and _false negative_
+
+- $TP$ prediction was yes, actual was yes 
+- $FP$ prediction was yes, actual was no 
+- $TN$ prediction was no, actual was no 
+- $FN$ prediction was no, actual was yes 
+
+We can print out the confusion matrix like this:
+
+```{r}
+table(actuals, predicted)
+```
+
+Here are the results from the above:
+
+- $TP$ prediction yes, actual yes - 2 times 
+- $FP$ prediction yes, actual no - 0 times 
+- $TN$ prediction no, actual no - 1 time 
+- $FN$ prediction no, actual yes - 1 time 
+
+## Model 2 
+
+```{r}
+actuals   <- c("no", "no", "yes", "yes", "no", "no", "yes")
+predicted   <- c("yes", "yes", "yes", "no", "yes", "yes", "yes")
+df<- data.frame(actuals, predicted)
+df
+```
+
+### Calculating Accuracy
+
+```{r}
+accuracy(actuals, predicted)
+```
+
+### Confusion Matrix 
+
+```{r}
+table(actuals, predicted)
+```
+
+- $TP$ prediction yes, actual yes - 2 times 
+- $FP$ prediction yes, actual no - 4 times 
+- $TN$ prediction no, actual no - 0 time 
+- $FN$ prediction no, actual yes - 1 time 
+
+Finally we can write the accuracy in terms of these:
+
+$$
+accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}} = \frac{TP+TN}{TP+FP+TN+FN}
+$$
+

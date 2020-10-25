@@ -17,8 +17,7 @@ library("rpart.plot")
 library("Metrics")
 ```
 
-## Building the Decision Tree using the training set
-
+## Training Data - Building a Model
 
 First lets take a look at the data we will work with. Suppose we have the following weather data and want to predict when someone will buy hot chocolate given the weather conditions. For example will someone buy hot chocolate when the weather outlook is sunny and hot? Probably not. What about if it is rainy or humid?
 
@@ -62,62 +61,92 @@ print(train)
 
 We will try to understand how to build up a decision tree for this example by just using one variable at a time to model the decision tree. 
 
+### Model 1 - Split on Outlook 
+
 First lets take a look at a simple model that uses just `Outlook` to try to predict `Buys`. 
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model <- rpart(Buys~Outlook, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+print(train[order(train$Outlook),])
 ```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model1 <- rpart(Buys~Outlook, data=train, method="class", control = control)
+rpart.plot(model1, type=4, extra = 1, digits=-2)
+```
+
+### Model 2 - Split on Temp 
 
 Next lets look at a model that uses just `Temp` to try to predict `Buys`:
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model <- rpart(Buys~Temp, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+print(train[order(train$Temp),])
 ```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model2 <- rpart(Buys~Temp, data=train, method="class", control = control)
+rpart.plot(model2, type=4, extra = 1, digits=-2)
+```
+
+### Model 3 - Split on Humid 
 
 What about if we use just `Humid` to try to predict `Buys`:
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model <- rpart(Buys~Humid, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+print(train[order(train$Humid),])
 ```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model3 <- rpart(Buys~Humid, data=train, method="class", control = control)
+rpart.plot(model3, type=4, extra = 1, digits=-2)
+```
+
+### Model 4 - Split on Windy 
 
 Finally what about if we use `Windy` to try to predict `Buys`:
 
 ```{r}
-control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
-model <- rpart(Buys~Windy, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+print(train[order(train$Windy),])
 ```
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
+model4 <- rpart(Buys~Windy, data=train, method="class", control = control)
+rpart.plot(model4, type=4, extra = 1, digits=-2)
+```
+
+### Model 5 - Split on Temp, then Outlook 
 
 What about if we use both `Temp` and `Outlook` together to predict `Buys`: 
 
 ```{r}
 control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
-model <- rpart(Buys~Temp+Outlook, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+model5 <- rpart(Buys~Temp+Outlook, data=train, method="class", control = control)
+rpart.plot(model5, type=4, extra = 1, digits=-2)
 ```
+
+### Model 6 - Split on Temp, then Outlook 
 
 What about if we use both `Temp` and `Humid` together to predict `Buys`: 
 
 ```{r}
 control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
-model <- rpart(Buys~Temp+Humid, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+model6 <- rpart(Buys~Temp+Humid, data=train, method="class", control = control)
+rpart.plot(model6, type=4, extra = 1, digits=-2)
 ```
 
 Which of these models above looks best and why? It is not always easy to tell actually!!
+
+### Model 7 - All the predictors 
 
 Here is a model that uses all the predictors:
 
 ```{r}
 control = rpart.control(minsplit=1)
-model <- rpart(Buys~Temp+Humid+Outlook+Windy, data=train, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
+model7 <- rpart(Buys~Temp+Humid+Outlook+Windy, data=train, method="class", control = control)
+rpart.plot(model7, type=4, extra = 1, digits=-2)
 ```
 
 One nice thing about this model is that all the leaf nodes are "pure" now. That means that one of the numbers that lists the outcomes is 0 each time. That means that node either is all "yes"s or all "no"s. Nothing in the training set is incorrectly predicted by this model. 
@@ -154,8 +183,7 @@ print(test)
 Now we are ready to do some predictions using the test dataframe:
 
 ```{r}
-pred <- predict(model, newdata = test, type = 'class')
-str(pred)
+pred <- predict(model3, newdata = test, type = 'class')
 ```
 
 So `pred` now holds our predictions.

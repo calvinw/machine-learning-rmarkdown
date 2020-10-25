@@ -17,6 +17,7 @@ if(!require("Metrics")) install.packages("Metrics")
 library("rpart")
 library("rpart.plot")
 library("Metrics")
+con <- rpart.control(minsplit=1, maxdepth=1, cp=-1)
 ```
 
 ## Training Data - Building a Model
@@ -44,12 +45,11 @@ print(train[order(train$gender),])
 So if we split on gender here is what we would get:
 
 ```{r}
-control <- rpart.control(minsplit=1, maxdepth=1)
-model1 <- rpart(product~gender, 
+modelGender <- rpart(product~gender, 
                data=train, 
-               method="class", 
-               control = control)
-rpart.plot(model1, type=4, extra = 1, digits=-2)
+               control = rpart.control(minsplit=1, maxdepth=1),
+               method="class")
+rpart.plot(modelGender, type=4, extra = 1, digits=-2)
 ```
 
 The tree above makes 1 mistake out of 7.
@@ -63,12 +63,11 @@ print(train[order(train$age),])
 ```
 
 ```{r}
-control <- rpart.control(minsplit=1,maxdepth=1, cp=-1)
-model2 <- rpart(product~age, 
+modelAge <- rpart(product~age, 
                data=train, 
-               method="class", 
-               control = control)
-rpart.plot(model2, type=4, extra = 1, digits=-2)
+               control = rpart.control(minsplit=1, maxdepth=1, cp=-1),
+               method="class")
+rpart.plot(modelAge, type=4, extra = 1, digits=-2)
 ```
 
 The tree above makes 2 mistake out of 7.
@@ -76,12 +75,11 @@ The tree above makes 2 mistake out of 7.
 ### Model 3 - Split on Gender, then Age 
 
 ```{r}
-control <- rpart.control(minsplit=1, maxdepth=3)
-model3 <- rpart(product~age+gender, 
+modelGenderAge <- rpart(product~gender+age, 
                data=train, 
-               method="class", 
-               control=control)
-rpart.plot(model3, type=4, extra = 1, digits=-2)
+               control = rpart.control(minsplit=1, maxdepth=3),
+               method="class")
+rpart.plot(modelGenderAge, type=4, extra = 1, digits=-2)
 ```
 
 ## Testing Data - Predictions and Accuracy 
@@ -99,7 +97,7 @@ print(test)
 ### Make Predictions Using Model 1 
 
 ```{r}
-predictions <- predict(model1, newdata = test, type = 'class')
+predictions <- predict(modelGender, newdata = test, type = 'class')
 compare <- data.frame(test=test, predictions=predictions)
 print(compare)
 ```
@@ -120,7 +118,7 @@ table(actual=test$product, predictions)
 ### Make Predictions Using Model 2 
 
 ```{r}
-predictions <- predict(model2, newdata = test, type = 'class')
+predictions <- predict(modelAge, newdata = test, type = 'class')
 compare <- data.frame(test=test, predictions=predictions)
 print(compare)
 ```
@@ -135,7 +133,7 @@ table(actual=test$product, predictions)
 ### Make Predictions Using Model 3 
 
 ```{r}
-predictions <- predict(model3, newdata = test, type = 'class')
+predictions <- predict(modelGenderAge, newdata = test, type = 'class')
 compare <- data.frame(test=test, predictions=predictions)
 print(compare)
 ```
@@ -146,3 +144,5 @@ print(compare)
 accuracy(test$product, predictions)
 table(actual=test$product, predictions)
 ```
+
+The best model on these training sets is the last one, since the accuracy is smallest for that one.
