@@ -14,13 +14,33 @@ library("Metrics")
 
 Suppose we had a machine learning model, which was predicting a result like `yes` or `no` based on some predictors. 
 
-For example the data might be this:      
+Here is an example of the actual data:
 
-## Model 1
+| Salary | Age | Actual |
+|-|-|-|
+| 53900 | 45 | yes |
+| 50000 | 32 | no |
+| 55900 | 57 | yes |
+| 55600 | 29 | yes |
+
+And here is the example of our predictions:
+
+| Salary | Age | Prediction |
+|-|-|-|
+| 53900 | 45 | no |
+| 50000 | 32 | no |
+| 55900 | 57 | yes |
+| 55600 | 29 | no  |
+
+We are interested how accurate our predictions are. 
+
+So for our predictions, how many of them did we get wrong?
+
+## Finding the Accuracy of our Predictions 
 
 ```{r}
 actuals   <- c("yes", "no", "yes", "yes")
-predicted   <- c("yes", "no", "no", "yes")
+predicted   <- c("no", "no", "yes", "no")
 df<- data.frame(actuals, predicted)
 df
 ```
@@ -52,6 +72,11 @@ The prediction is correct or incorrect:
 - **true** means the prediction was correct
 - **false** means the prediction was incorrect
 
+
+| Prediction Correct? | Prediction | 
+|--------|--------|
+| True or False | Positive or Negative  |
+
 So we have _true positive_, _false positive_, _true negative_, and _false negative_
 
 - $TP$ prediction was yes, actual was yes 
@@ -65,12 +90,19 @@ We can print out the confusion matrix like this:
 table(actuals, predicted)
 ```
 
+## Confusion Matrix 
+|           |            |**Predicted**|            |
+|-----------|------------|-------------|------------|
+|           |            | _Negative_  | _Positive_ |
+|**Actual** | _Negative_ |     TN      |     FP     |
+|           | _Positive_ |     FN      |     TP     |
+
 Here are the results from the above:
 
-- $TP$ prediction yes, actual yes - 2 times 
+- $TP$ prediction yes, actual yes - 1 times 
 - $FP$ prediction yes, actual no - 0 times 
 - $TN$ prediction no, actual no - 1 time 
-- $FN$ prediction no, actual yes - 1 time 
+- $FN$ prediction no, actual yes - 2 time 
 
 ## Model 2 
 
@@ -93,7 +125,7 @@ accuracy(actuals, predicted)
 table(actuals, predicted)
 ```
 
-- $TP$ prediction yes, actual yes - 2 times 
+- $TP$ prediction yes, actual yes - 1 times 
 - $FP$ prediction yes, actual no - 4 times 
 - $TN$ prediction no, actual no - 0 time 
 - $FN$ prediction no, actual yes - 1 time 

@@ -9,17 +9,17 @@ jupyter:
 
 ```{r echo=T, results='hide', message=F, warning=F}
 options("scipen"=100, "digits"=4)
-if(!require("readr")) install.packages("readr")
+
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
 if(!require("Metrics")) install.packages("Metrics")
-library("readr")
+
 library("rpart")
 library("rpart.plot")
 library("Metrics")
 ```
 
-## Building the Decision Tree using the training set
+## The Training Data 
 
 So here is the data we have, this will be our training data:
 
@@ -47,85 +47,12 @@ Here is our training set:
 Lets read it in:
 
 ```{r}
-trainurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=0&single=true&output=csv"
-traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
-str(traindf)
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=0&single=true&output=csv"
+train<-read.csv(url)
+str(train)
 ```
 
-```{r, eval=F, include=F}
-read.md <- function(file = clipr::read_clip(),
-                    delim = '|',
-                    stringsAsFactors = FALSE,
-                    strip.white = TRUE,
-                    ...){
-    if (length(file) > 1) {
-        lines <- file
-    } else if (grepl('\n', file)) {
-        con <- textConnection(file)
-        lines <- readLines(con)
-        close(con)
-    } else {
-        lines <- readLines(file)
-    }
-    lines <- lines[!grepl('^[\\:\\s\\+\\-\\=\\_\\|]*$', lines, perl = TRUE)]
-    lines <- gsub('(^\\s*?\\|)|(\\|\\s*?$)', '', lines)
-    utils::read.delim(text = paste(lines, collapse = '\n'), sep = delim,
-                      stringsAsFactors = stringsAsFactors,
-                      strip.white = strip.white, ...)
-train<-'
-'
-traindf<-read.md(train, stringsAsFactors=TRUE)
-str(traindf)
-
-test<-'
-'
-testdf<-read.md(test, stringsAsFactors=TRUE) 
-str(testdf)
-```
-
-We are going to model this situation with a decision tree. We will start by just trying to use `Salary` to predict the result:
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model1 <- rpart(Purchased~Salary, data=traindf, method="class", control = control)
-rpart.plot(model1, type=4, extra=101, digits=-2)
-```
-
-What about if we use `Age` to predict the result:
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model2 <- rpart(Purchased~Age, data=traindf, method="class", control = control)
-rpart.plot(model2, type=4, extra=101, digits=-2)
-```
-
-We about if we use `Salary` but let the tree grow a little:
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=2, cp=-1)
-model3 <- rpart(Purchased~Salary, data=traindf, method="class", control = control)
-rpart.plot(model3, type=4, extra=101, digits=-2)
-```
-
-How about if we grow the `Salary` tree even more:
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
-model4 <- rpart(Purchased~Salary, data=traindf, method="class", control = control)
-rpart.plot(model4, type=4, extra=101, digits=-2)
-```
-
-How about all out with `Salary`:
-
-```{r}
-control = rpart.control(minsplit=1)
-model5 <- rpart(Purchased~Salary, data=traindf, method="class", control = control)
-rpart.plot(model5, type=4, extra=101, digits=-2)
-```
-
-## Testing the Decision Tree model using the testing set
-
-Now lets doe some predictions using the test dataframe:
+## The Testing Data 
 
 Here we read the test set:
 
@@ -140,64 +67,196 @@ Here we read the test set:
 
 ```{r}
 #read the testing set
-testurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=572053114&single=true&output=csv"
-testdf<-read.csv(testurl, stringsAsFactors=TRUE)
-str(testdf)
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTx21HIv4xKL2c94OLQzMiNPmv5YXw-vAy3dRBL0gnknSMKMK4Ur_4nYGGyDtvS20iU3_r-_zZfQQmj/pub?gid=572053114&single=true&output=csv"
+test<-read.csv(url)
+str(test)
 ```
 
-Lets test our last model (model5) and see how well these predictions agree with the actual in the test set. Here is the "accuracy" for model5:
+### Model Purchased~Salary
+
+#### Model With Training Data
+
+We are going to model this situation with a decision tree. We will start by just trying to use `Salary` to predict the result:
+
+Lets look at the data sorted by Salary:
 
 ```{r}
-pred <- predict(model5, newdata = testdf, type = 'class')
-accuracy(testdf$Purchased, pred)
+print(train[order(train$Salary),])
 ```
 
-Lets make a data frame that shows the prediction and the actuals for model5: 
+It appears that mostly those with higher salary purchased. 
+
+Lets look at the split on `Salary`
 
 ```{r}
-comparedf <- data.frame(actual=testdf$Purchased, predictions=pred)
-print(comparedf)
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Purchased~Salary, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra=101, digits=-2)
 ```
 
-Lets test model4 for its accuracy: 
+#### Test With Testing Data
+
+Here are the predictions for our test data:
 
 ```{r}
-pred <- predict(model4, newdata = testdf, type = 'class')
-accuracy(testdf$Purchased, pred)
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
+print(compare)
 ```
 
-And model3:
+Here is the confusion matrix:
 
 ```{r}
-pred <- predict(model3, newdata = testdf, type = 'class')
-accuracy(testdf$Purchased, pred)
+table(test$Purchased, pred)
 ```
 
-And model2:
+Here is the accuracy:
 
 ```{r}
-pred <- predict(model2, newdata = testdf, type = 'class')
-accuracy(testdf$Purchased, pred)
+accuracy(test$Purchased, pred)
 ```
+
+### Model Purchased~Age
+
+#### Model With Training Data
+
+Lets look at the data sorted by Age:
+
+```{r}
+print(train[order(train$Age),])
+```
+
+It appears that mostly older purchased 
+
+Lets look at the split on `Age`
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Purchased~Age, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra=101, digits=-2)
+
+```
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+```{r}
+table(test$Purchased, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$Purchased, pred)
+```
+
+### Model Purchased~Salary grown out 
+
+#### Model With Training Data
+
+How about if we grow the `Salary` tree even more?
+
+```{r}
+control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
+model <- rpart(Purchased~Salary, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra=101, digits=-2)
+```
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+```{r}
+table(test$Purchased, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$Purchased, pred)
+```
+
+### Model Purchased~Salary grown Full Tree 
+
+#### Model With Training Data
+
+How about all out with `Salary`:
+
+```{r}
+control = rpart.control(minsplit=1)
+model <- rpart(Purchased~Salary, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra=101, digits=-2)
+```
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+```{r}
+table(test$Purchased, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$Purchased, pred)
+```
+
+### Model 6 Purchased~Salary+Age
+
+#### Model With Training Data
 
 Finally lets build a model that uses both Salary and Age:
 
 ```{r}
 control = rpart.control(minsplit=1)
-model6 <- rpart(Purchased~Salary+Age, data=traindf, method="class", control = control)
-rpart.plot(model6, type=4, extra=101, digits=-2)
+model <- rpart(Purchased~Salary+Age, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra=101, digits=-2)
 ```
 
-Lets check the accuracy of this model that uses both variables:
+#### Test With Testing Data
+
+Here are the predictions for our test data:
 
 ```{r}
-pred <- predict(model6, newdata = testdf, type = 'class')
-accuracy(testdf$Purchased, pred)
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
+print(compare)
 ```
 
-Lets make a data frame that shows the prediction and the actuals for this model6: 
+Here is the confusion matrix:
 
 ```{r}
-comparedf <- data.frame(actual=testdf$Purchased, predictions=pred)
-print(comparedf)
+table(test$Purchased, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$Purchased, pred)
 ```

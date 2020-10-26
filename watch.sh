@@ -11,4 +11,4 @@ function ctrl_c() {
 }
 
 echo "calling ls *.Rmd | entr make"
-ls *.Rmd | entr make
+ls *.Rmd | entr make html

@@ -20,7 +20,7 @@ library("Metrics")
 con <- rpart.control(minsplit=1, maxdepth=1, cp=-1)
 ```
 
-## Training Data - Building a Model
+## Load the Training Data 
 
 ```{r}
 url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=0&single=true&output=csv"
@@ -34,55 +34,7 @@ Here is the original data frame. There are two predictors `gender` and `age` and
 print(train)
 ```
 
-### Model 1 - Split on Gender 
-
-Lets sort it by gender:
-
-```{r}
-print(train[order(train$gender),])
-```
-
-So if we split on gender here is what we would get:
-
-```{r}
-modelGender <- rpart(product~gender, 
-               data=train, 
-               control = rpart.control(minsplit=1, maxdepth=1),
-               method="class")
-rpart.plot(modelGender, type=4, extra = 1, digits=-2)
-```
-
-The tree above makes 1 mistake out of 7.
-
-### Model 2 - Split on Age 
-
-Lets sort it by age:
-
-```{r}
-print(train[order(train$age),])
-```
-
-```{r}
-modelAge <- rpart(product~age, 
-               data=train, 
-               control = rpart.control(minsplit=1, maxdepth=1, cp=-1),
-               method="class")
-rpart.plot(modelAge, type=4, extra = 1, digits=-2)
-```
-
-The tree above makes 2 mistake out of 7.
-
-### Model 3 - Split on Gender, then Age 
-
-```{r}
-modelGenderAge <- rpart(product~gender+age, 
-               data=train, 
-               control = rpart.control(minsplit=1, maxdepth=3),
-               method="class")
-rpart.plot(modelGenderAge, type=4, extra = 1, digits=-2)
-```
-
-## Testing Data - Predictions and Accuracy 
+## Load the Testing Data 
 
 ```{r}
 url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=1744064271&single=true&output=csv"
@@ -94,55 +46,123 @@ str(test)
 print(test)
 ```
 
-### Make Predictions Using Model 1 
+### Model 1 - Split on Gender 
+
+#### Train with Training Data
+
+Lets sort it by gender:
 
 ```{r}
-predictions <- predict(modelGender, newdata = test, type = 'class')
-compare <- data.frame(test=test, predictions=predictions)
+print(train[order(train$gender),])
+```
+
+So if we split on gender here is what we would get:
+
+```{r}
+model <- rpart(product~gender, 
+               data=train, 
+               control = rpart.control(minsplit=1, maxdepth=1),
+               method="class")
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+The tree above makes 1 mistake out of 7.
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
 print(compare)
 ```
 
-Now one thing we can calculate is the proportion of agreement. This is called the "accuracy" of the model. The accuracy is just 
-
-$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
-
-### Find the Accuracy of Model 1 
-
-We can find it by using the accuracy function in the `Metrics` package 
+Here is the confusion matrix:
 
 ```{r}
-accuracy(test$product, predictions)
-table(actual=test$product, predictions)
+table(test$product, pred)
 ```
 
-### Make Predictions Using Model 2 
+Here is the accuracy:
 
 ```{r}
-predictions <- predict(modelAge, newdata = test, type = 'class')
-compare <- data.frame(test=test, predictions=predictions)
+accuracy(test$product, pred)
+```
+
+### Model 2 - Split on Age 
+
+#### Train with Training Data
+
+Lets sort it by age:
+
+```{r}
+print(train[order(train$age),])
+```
+
+```{r}
+model <- rpart(product~age, 
+               data=train, 
+               control = rpart.control(minsplit=1, maxdepth=1, cp=-1),
+               method="class")
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+The tree above makes 2 mistake out of 7.
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
 print(compare)
 ```
 
-### Find the Accuracy of Model 2 
+Here is the confusion matrix:
 
 ```{r}
-accuracy(test$product, predictions)
-table(actual=test$product, predictions)
+table(test$product, pred)
 ```
 
-### Make Predictions Using Model 3 
+Here is the accuracy:
 
 ```{r}
-predictions <- predict(modelGenderAge, newdata = test, type = 'class')
-compare <- data.frame(test=test, predictions=predictions)
+accuracy(test$product, pred)
+```
+
+### Model 3 - Split on Gender, then Age 
+
+#### Train with Training Data
+
+```{r}
+model <- rpart(product~gender+age, 
+               data=train, 
+               control = rpart.control(minsplit=1, maxdepth=3),
+               method="class")
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test, predictions=pred)
 print(compare)
 ```
 
-### Find the Accuracy of Model 3 
+Here is the confusion matrix:
 
 ```{r}
-accuracy(test$product, predictions)
-table(actual=test$product, predictions)
+table(test$product, pred)
 ```
 
+Here is the accuracy:
+
+```{r}
+accuracy(test$product, pred)
+```
 The best model on these training sets is the last one, since the accuracy is smallest for that one.
