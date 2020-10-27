@@ -160,6 +160,8 @@ $$
 
 Analogies: 
 
+### Jury and Trials
+
 |           |            |  **Jury**   |            |
 |-----------|------------|-------------|------------|
 |           |            | _Innocent_  | _Guilty_   |
@@ -167,11 +169,16 @@ Analogies:
 |           | _Guilty_   |  guilty free|     ok     |
 
 
+### Hypothesis Testing (from Stat) 
+
 |           |            |**Hyp Test of Null**|     |
 |-----------|------------|-------------|------------|
 |           |            |  _accept_   | _reject_   |
 |**Actual** | _true_     |     ok      |   type 1   |
 |           | _not true_ |     type 2  |     ok     |
+
+
+### Pregnancy Tests 
 
 |           |            |**Pregnancy Test**|       |
 |-----------|------------|-------------|------------|
