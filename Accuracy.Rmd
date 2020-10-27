@@ -176,7 +176,7 @@ Analogies:
 |           |            |**Pregnancy Test**|       |
 |-----------|------------|-------------|------------|
 |           |            |    _no_     |   _yes_    |
-|**Actual** | _no _      | test-, no   | test+, no  |
+|**Actual** | _no_       | test-, no   | test+, no  |
 |           | _yes_      | test-, yes  | test+, yes |
 
 
