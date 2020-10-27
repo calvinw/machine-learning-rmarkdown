@@ -108,6 +108,7 @@ table(actuals, predicted)
 |**Actual** | _Negative_ |     TN      |     FP     |
 |           | _Positive_ |     FN      |     TP     |
 
+
 Here are the results from the above:
 
 - $TP$ prediction yes, actual yes - ??? times 
@@ -146,4 +147,27 @@ Finally we can write the accuracy in terms of these:
 $$
 accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}} = \frac{TP+TN}{TP+TN+FP+FN}
 $$
+
+
+|           |            |**Predicted**|            |
+|-----------|------------|-------------|------------|
+|           |            | _Negative_  | _Positive_ |
+|**Actual** | _Negative_ |     TN      |     FP     |
+|           | _Positive_ |     FN      |     TP     |
+
+
+Analogies: 
+
+|           |            |  **Jury**   |            |
+|-----------|------------|-------------|------------|
+|           |            | _Innocent_  | _Guilty_   |
+|**Actual** | _Innocent_ |     ok      | innocent jailed |
+|           | _Guilty_   |  guilty free|     ok     |
+
+
+|           |            |**Hyp Test of Null**|     |
+|-----------|------------|-------------|------------|
+|           |            |  _accept_   | _reject_   |
+|**Actual** | _true_     |     ok      |   type 1   |
+|           | _not true_ |     type 2  |     ok     |
 
