@@ -173,3 +173,10 @@ Analogies:
 |**Actual** | _true_     |     ok      |   type 1   |
 |           | _not true_ |     type 2  |     ok     |
 
+|           |            |**Pregnancy Test**|       |
+|-----------|------------|-------------|------------|
+|           |            |    _no_     |   _yes_    |
+|**Actual** | _no _      | test-, no   | test+, no  |
+|           | _yes_      | test-, yes  | test+, yes |
+
+
