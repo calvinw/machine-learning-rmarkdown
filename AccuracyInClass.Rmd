@@ -1,0 +1,168 @@
+---
+title: "Accuracy"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("Metrics")) install.packages("Metrics")
+library("Metrics")
+```
+
+## Evaluating Models
+
+### Model 1
+
+Suppose we have created a model 1 and made some predictions. 
+
+Here are the actuals from some data and predicted for for that same data:
+
+#### Model 1 predictions vs actuals
+
+| actuals | predicted |
+|-|-|
+| yes | yes |
+| yes | no |
+| yes | yes |
+| yes  | yes |
+| no  | yes |
+| no | no |
+| no | yes |
+| yes | no |
+| no  | yes |
+| yes  | yes |
+| yes  | yes |
+
+- create two vectors called `actuals` and `predicted` with the data above.
+- create a dataframe called `df` that has these columns
+- print out the dataframe with `print(df)` 
+```{r, eval=F}
+actuals   <- CODE 
+predicted   <- CODE 
+df<- data.frame(actuals, predicted)
+print(df)
+```
+```{r}
+actuals<-c('yes','yes','yes','yes','no','no','no','yes','no','yes', 'yes')
+predicted<-c('yes','no','yes','yes','yes','no','yes','no','yes','yes', 'yes')
+df<- data.frame(actuals, predicted)
+print(df)
+```
+
+### Model 1 Accuracy
+
+- Find the accuracy by using `accuracy(actuals, predicted)`
+```{r, eval=F}
+CODE
+```
+```{r}
+accuracy(actuals, predicted)
+```
+
+Accuracy is ???
+
+### Model 1 Confusion Matrix 
+
+Remember:
+
+|           |            |**Predicted**|            |
+|-----------|------------|-------------|------------|
+|           |            | _Negative_  | _Positive_ |
+|**Actual** | _Negative_ |     TN      |     FP     |
+|           | _Positive_ |     FN      |     TP     |
+
+- Find the confusion matrix using `table(actuals, predicted)`
+```{r, eval=F}
+CODE
+```
+```{r}
+table(actuals, predicted)
+```
+
+- $TP$  is ??? 
+- $FP$  is ??? 
+- $TN$  is ??? 
+- $FN$  is ??? 
+
+
+### Model 2 
+
+#### Model 2 predictions vs actuals
+
+| actuals | predicted |
+|-|-|
+| yes | no |
+| yes | no |
+| yes | yes |
+| yes  | no |
+| no  | no |
+| no | yes |
+| no | no |
+| yes | yes |
+| no  | no |
+| yes  | yes |
+| yes  | yes |
+
+
+- create two vectors called `actuals` and `predicted` with the data above.
+- create a dataframe called `df` that has these columns
+- print out the dataframe with `print(df)` 
+```{r, eval=F}
+CODE
+```
+```{r}
+actuals<-c('yes','yes','yes','yes','no','no','no','yes','no','yes','yes')
+predicted<-c('no','no','yes','no','no','yes','no','yes','no','yes','yes')
+df<- data.frame(actuals, predicted)
+df
+```
+
+### Model 2 Accuracy
+
+- Find the accuracy by using `accuracy(actuals, predicted)`
+
+```{r, eval=F}
+CODE
+```
+```{r}
+accuracy(actuals, predicted)
+```
+
+Accuracy is ???
+
+### Model 2 Confusion Matrix 
+
+Remember:
+
+|           |            |**Predicted**|            |
+|-----------|------------|-------------|------------|
+|           |            | _Negative_  | _Positive_ |
+|**Actual** | _Negative_ |     TN      |     FP     |
+|           | _Positive_ |     FN      |     TP     |
+
+- Find the confusion matrix using `table(actuals, predicted)`
+
+```{r, eval=F}
+CODE
+```
+```{r}
+table(actuals, predicted)
+```
+
+- $TP$  is ??? 
+- $FP$  is ??? 
+- $TN$  is ??? 
+- $FN$  is ??? 
+
+## Model 1 or Model 2
+
+Which model (Model 1 or Model 2) had the highest accuracy: ???
+
+Which model had the most false positives? ???
+
+Which model had the most false negatives? ???
+
+

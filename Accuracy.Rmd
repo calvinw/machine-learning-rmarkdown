@@ -12,37 +12,48 @@ if (!require("Metrics")) install.packages("Metrics")
 library("Metrics")
 ```
 
-Suppose we had a machine learning model, which was predicting a result like `yes` or `no` based on some predictors. 
+Suppose we had a machine learning model, which was predicting a categorical result like `yes` or `no` based on some predictors. 
 
-Here is an example of the actual data:
+Here is an example where we are predicting `Purchased` based on `Salary` and `Age`. Suppose we started with this **actual** data: 
 
-| Salary | Age | Actual |
+#### Actual Observed Data
+
+| Salary | Age | Purchased |
 |-|-|-|
 | 53900 | 45 | yes |
 | 50000 | 32 | no |
 | 55900 | 57 | yes |
 | 55600 | 29 | yes |
 
-And here is the example of our predictions:
+
+This means we know for sure that there was someone with `53900` salary and who was `45` and they did purchase whatever we are interested in here. 
+
+Suppose we came up with a model, that made predictions of this data.  
+
+And suppose this model made predictions like these:
+
+#### Model Predictions 
 
 | Salary | Age | Prediction |
 |-|-|-|
 | 53900 | 45 | no |
 | 50000 | 32 | no |
 | 55900 | 57 | yes |
-| 55600 | 29 | no  |
+| 55600 | 29 | yes |
 
-We are interested how accurate our predictions are. 
+We are interested how accurate our model is on this data. 
 
 So for our predictions, how many of them did we get wrong?
 
-## Finding the Accuracy of our Predictions 
+## Accuracy of Predictions 
+
+Suppose we have some actuals and predicted to compare.
 
 ```{r}
 actuals   <- c("yes", "no", "yes", "yes")
-predicted   <- c("no", "no", "yes", "no")
+predicted   <- c("no", "no", "yes", "yes")
 df<- data.frame(actuals, predicted)
-df
+print(df)
 ```
 
 ### Calculating Accuracy
@@ -99,16 +110,16 @@ table(actuals, predicted)
 
 Here are the results from the above:
 
-- $TP$ prediction yes, actual yes - 1 times 
-- $FP$ prediction yes, actual no - 0 times 
-- $TN$ prediction no, actual no - 1 time 
-- $FN$ prediction no, actual yes - 2 time 
+- $TP$ prediction yes, actual yes - ??? times 
+- $FP$ prediction yes, actual no - ??? times 
+- $TN$ prediction no, actual no - ??? time 
+- $FN$ prediction no, actual yes - ??? time 
 
 ## Model 2 
 
 ```{r}
-actuals   <- c("no", "no", "yes", "yes", "no", "no", "yes")
-predicted   <- c("yes", "yes", "yes", "no", "yes", "yes", "yes")
+actuals   <- c("yes", "no", "yes", "yes")
+predicted   <- c("yes", "yes", "yes", "no")
 df<- data.frame(actuals, predicted)
 df
 ```
@@ -125,14 +136,14 @@ accuracy(actuals, predicted)
 table(actuals, predicted)
 ```
 
-- $TP$ prediction yes, actual yes - 1 times 
-- $FP$ prediction yes, actual no - 4 times 
-- $TN$ prediction no, actual no - 0 time 
-- $FN$ prediction no, actual yes - 1 time 
+- $TP$ prediction yes, actual yes - ??? times 
+- $FP$ prediction yes, actual no - ??? times 
+- $TN$ prediction no, actual no - ??? time 
+- $FN$ prediction no, actual yes - ??? time 
 
 Finally we can write the accuracy in terms of these:
 
 $$
-accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}} = \frac{TP+TN}{TP+FP+TN+FN}
+accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}} = \frac{TP+TN}{TP+TN+FP+FN}
 $$
 

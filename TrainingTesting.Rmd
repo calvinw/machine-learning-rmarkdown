@@ -1,0 +1,37 @@
+---
+title: "Training and Testing"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+```
+
+## Load the Training Data 
+
+```{r}
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=0&single=true&output=csv"
+train<-read.csv(url)
+str(train)
+```
+
+```{r}
+print(train)
+```
+
+## Load the Testing Data 
+
+```{r}
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTFmRX4RW3PitgcJya0X2sRbSiD0J2t0oYewyhkkyWwR9i8NIaHiuQKrBtLlrwG9fzn4MvNOM92olnK/pub?gid=1744064271&single=true&output=csv"
+test<-read.csv(url)
+str(test)
+```
+
+```{r}
+print(test)
+```
+
