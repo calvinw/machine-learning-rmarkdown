@@ -149,6 +149,8 @@ accuracy = \frac{\text{number of correct predictions}}{\text{number of all predi
 $$
 
 
+### Similarities with Jury Trials and Hypothesis Testing
+
 |           |            |**Predicted**|            |
 |-----------|------------|-------------|------------|
 |           |            | _Negative_  | _Positive_ |
