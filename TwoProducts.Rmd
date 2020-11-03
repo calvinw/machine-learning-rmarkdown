@@ -73,7 +73,7 @@ Here are the predictions for our test data:
 
 ```{r}
 pred <- predict(model, newdata = test, type = 'class')
-compare <- data.frame(actual=test, predictions=pred)
+compare <- data.frame(actual=test$product, predictions=pred)
 print(compare)
 ```
 
@@ -115,7 +115,7 @@ Here are the predictions for our test data:
 
 ```{r}
 pred <- predict(model, newdata = test, type = 'class')
-compare <- data.frame(actual=test, predictions=pred)
+compare <- data.frame(actual=test$product, predictions=pred)
 print(compare)
 ```
 
@@ -149,7 +149,7 @@ Here are the predictions for our test data:
 
 ```{r}
 pred <- predict(model, newdata = test, type = 'class')
-compare <- data.frame(actual=test, predictions=pred)
+compare <- data.frame(actual=test$product, predictions=pred)
 print(compare)
 ```
 
