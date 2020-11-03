@@ -17,7 +17,6 @@ if(!require("Metrics")) install.packages("Metrics")
 library("rpart")
 library("rpart.plot")
 library("Metrics")
-con <- rpart.control(minsplit=1, maxdepth=1, cp=-1)
 ```
 
 ## Load the Training Data 

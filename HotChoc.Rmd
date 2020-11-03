@@ -17,207 +17,234 @@ library("rpart.plot")
 library("Metrics")
 ```
 
-## Training Data - Building a Model
+```{r include=F}
+ex<-T
+```
 
-First lets take a look at the data we will work with. Suppose we have the following weather data and want to predict when someone will buy hot chocolate given the weather conditions. For example will someone buy hot chocolate when the weather outlook is sunny and hot? Probably not. What about if it is rainy or humid?
+## Training Data
+
+First lets take a look at the data we will work with. Suppose we have the following weather data and want to predict when someone will buy hot chocolate given the weather conditions. For example will someone buy hot chocolate when the it is humid or windy?
 
 So here is the data we have, this will be our training data:
 
 - `Buys` is our result or outcome
-- `Outlook`, `Temp`, `Humid`, `Windy` are the predictors
+- `Humid`, `Windy` are the predictors
 
 We hope that some of these predictors will help up predict the `Buys` column:   
-
-| Outlook  | Temp | Humid  | Windy | Buys |
-|----------|------|--------|-------|------|
-| sunny    | hot  | high   | no    | no   |
-| sunny    | hot  | high   | yes   | no   |
-| overcast | hot  | high   | no    | no   |
-| rainy    | mild | high   | no    | no   |
-| rainy    | cool | normal | no    | yes  |
-| rainy    | cool | normal | yes   | yes  |
-| overcast | cool | normal | yes   | yes  |
-| sunny    | mild | high   | no    | no   |
-| sunny    | cool | normal | no    | yes  |
-| rainy    | mild | normal | no    | yes  |
-| sunny    | mild | normal | yes   | no   |
-| overcast | hot  | normal | no    | no   |
-| rainy    | mild | high   | yes   | no   |
-    
 So we will use this data to build our model. Then after we build the model, we will test it using some different data, called the "testing" data. Once we test it we will be able to deterimine how accurate our model is.
 
 To start we read the training data above from a csv file and print out its structore:
 
 ```{r}
-trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSfQk849ICHKNqacbvmG1PZQiCfGadL2TgeGn9aaCj0-luDgE5fZA9p6dPJj6RDrreXsCc2XYaFOmKU/pub?gid=0&single=true&output=csv"
-train<-read.csv(trainurl, stringsAsFactors=TRUE)
+trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQuCBiuFmkNVmiG_0iXURTsvBytLIxOYhiWEIxwOwGUKltTwB0aVP-ZbdPPN6luekXca9gzz2XCADS0/pub?gid=0&single=true&output=csv"
+train<-read.csv(trainurl)
+```
+
+ - Print out the info of the data frame using `str(train)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 str(train)
 ```
+
 Now let's print out the training set to make sure we read it correctly:
 
-```{r}
+- Print out the the data frame using `print(train)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 print(train)
 ```
 
-We will try to understand how to build up a decision tree for this example by just using one variable at a time to model the decision tree. 
+## Testing Data 
 
-### Model 1 - Split on Outlook 
-
-First lets take a look at a simple model that uses just `Outlook` to try to predict `Buys`. 
-
-```{r}
-print(train[order(train$Outlook),])
-```
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model1 <- rpart(Buys~Outlook, data=train, method="class", control = control)
-rpart.plot(model1, type=4, extra = 1, digits=-2)
-```
-
-### Model 2 - Split on Temp 
-
-Next lets look at a model that uses just `Temp` to try to predict `Buys`:
-
-```{r}
-print(train[order(train$Temp),])
-```
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model2 <- rpart(Buys~Temp, data=train, method="class", control = control)
-rpart.plot(model2, type=4, extra = 1, digits=-2)
-```
-
-### Model 3 - Split on Humid 
-
-What about if we use just `Humid` to try to predict `Buys`:
-
-```{r}
-print(train[order(train$Humid),])
-```
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=1)
-model3 <- rpart(Buys~Humid, data=train, method="class", control = control)
-rpart.plot(model3, type=4, extra = 1, digits=-2)
-```
-
-### Model 4 - Split on Windy 
-
-Finally what about if we use `Windy` to try to predict `Buys`:
-
-```{r}
-print(train[order(train$Windy),])
-```
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
-model4 <- rpart(Buys~Windy, data=train, method="class", control = control)
-rpart.plot(model4, type=4, extra = 1, digits=-2)
-```
-
-### Model 5 - Split on Temp, then Outlook 
-
-What about if we use both `Temp` and `Outlook` together to predict `Buys`: 
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
-model5 <- rpart(Buys~Temp+Outlook, data=train, method="class", control = control)
-rpart.plot(model5, type=4, extra = 1, digits=-2)
-```
-
-### Model 6 - Split on Temp, then Outlook 
-
-What about if we use both `Temp` and `Humid` together to predict `Buys`: 
-
-```{r}
-control = rpart.control(minsplit=1,maxdepth=3, cp=-1)
-model6 <- rpart(Buys~Temp+Humid, data=train, method="class", control = control)
-rpart.plot(model6, type=4, extra = 1, digits=-2)
-```
-
-Which of these models above looks best and why? It is not always easy to tell actually!!
-
-### Model 7 - All the predictors 
-
-Here is a model that uses all the predictors:
-
-```{r}
-control = rpart.control(minsplit=1)
-model7 <- rpart(Buys~Temp+Humid+Outlook+Windy, data=train, method="class", control = control)
-rpart.plot(model7, type=4, extra = 1, digits=-2)
-```
-
-One nice thing about this model is that all the leaf nodes are "pure" now. That means that one of the numbers that lists the outcomes is 0 each time. That means that node either is all "yes"s or all "no"s. Nothing in the training set is incorrectly predicted by this model. 
-
-## Testing the Decision Tree model using the testing set
-
-Next let's look at some data that we can use as a testing set. This data we will use to evaluate how well the models we looked at above will do when they see "new" data. This gives a better idea of how accurate our model is.   So here is the data we will use as our testing data:     
-
-| Outlook  | Temp | Humid  | Windy | Buys |
-|----------|------|--------|-------|------|
-| sunny    | mild | high   | no    | no   |
-| rainy    | mild | normal | no    | yes  |
-| overcast | mild | high   | no    | yes  |
-| sunny    | mild | normal | yes   | yes  |
-| rainy    | cool | normal | yes   | yes  |
-| sunny    | mild | normal | no    | no   |
-| overcast | hot  | high   | no    | no   |
-| rainy    | cool | normal | no    | yes  |
+Next let's look at some data that we can use as a testing set. This data we will use to evaluate how well the models we looked at above will do when they see "new" data. This gives a better idea of how accurate our model is.
 
 First we read the test set and look at its structure:
 
 ```{r}
-testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSfQk849ICHKNqacbvmG1PZQiCfGadL2TgeGn9aaCj0-luDgE5fZA9p6dPJj6RDrreXsCc2XYaFOmKU/pub?gid=572053114&single=true&output=csv"
-test<-read.csv(testurl, stringsAsFactors=TRUE)
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQuCBiuFmkNVmiG_0iXURTsvBytLIxOYhiWEIxwOwGUKltTwB0aVP-ZbdPPN6luekXca9gzz2XCADS0/pub?gid=572053114&single=true&output=csv"
+test<-read.csv(testurl)
+```
+
+ - Print out the info of this data frame using `str(test)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 str(test)
 ```
 
 And now print out the test set:
 
-```{r}
+- Print out the the data frame using `print(test)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 print(test)
 ```
 
-Now we are ready to do some predictions using the test dataframe:
+We will try to understand how to build up a decision tree for this example by just using one variable at a time to model the decision tree. 
 
+### Model 1 - Split on Humid 
+
+#### Training
+
+What about if we use just `Humid` to try to predict `Buys`.
+
+- sort the data frame using `Humid`
 ```{r}
-pred <- predict(model3, newdata = test, type = 'class')
+print(train[order(train$Humid),])
 ```
 
-So `pred` now holds our predictions.
-
-We can now compare those predictions (from our model) with the actual known results from the testing data. Here we are comparing how our model "predicted" on the test data with the "actual" outcomes that were included in the testing data. Here it is important that we know the actual outcomes on the testing data so we can see how we do. 
-
-Lets make a data frame that shows the prediction and the actuals: 
-
-```{r}
-comparedf <- data.frame(actual=test$Buys, predictions=pred)
-print(comparedf)
+- Put in the right model for modeling `Buys` based just on `Humid` 
+```{r include=ex, eval=F}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(CODE, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!ex}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Buys~Humid, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
 ```
 
-Now one thing we can calculate is the proportion of agreement. This is called the "accuracy" of the model. The accuracy is just 
+#### Testing
 
-$$accuracy = \frac{\text{number of correct predictions}}{\text{number of all predictions}}$$
+Here are the predictions for our test data:
 
-We can find it by using the accuracy function in the `Metrics` package 
-```{r}
+- Make predictions and create a dataframe by running the code below:
+```{r, eval=!ex}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$Buys, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+- Create the confusion matrix by passing `test$Buys` and `pred` to the `table` function:
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+table(test$Buys, pred)
+```
+
+Here is the accuracy:
+
+- calculate the accuracy passing `test$Buys` and `pred` to the `accuracy` function:
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
 accuracy(test$Buys, pred)
 ```
 
-This is called the `accuracy` of the model. This is the proportion of times that the prediction agreed with the actual in the above.  
 
-We can get some more information by looking at the "confusion matrix"  
+### Model 2 - Split on Windy 
 
+#### Training
+
+Finally what about if we use `Windy` to try to predict `Buys`:
+
+- sort the data frame using `Windy`
 ```{r}
-table(actual=test$Buys, predictions=pred)
+print(train[order(train$Windy),])
 ```
 
-- This says that there were 3 actuals that were no, and the model predicted 3 no's
-- There were 2 actuals that were yes, and the model predicted those 2 no's
-- Then there were 3 actuals that were yes, and model predicted those yes
+- Put in the right model for modeling `Buys` based just on `Windy` 
+```{r include=ex, eval=F}
+control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
+model <- rpart(CODE, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!ex, eval=!ex}
+control = rpart.control(minsplit=1,maxdepth=1, cp=-1)
+model <- rpart(Buys~Windy, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
 
-We will look into interpretations of this "confusion matrix:" in the future.
+#### Testing
 
+Here are the predictions for our test data:
+
+- Make predictions and create a dataframe by running the code below:
+```{r include=!ex, eval=!ex}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$Buys, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+- Create the confusion matrix by passing `test$Buys` and `pred` to the `table` function:
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+table(test$Buys, pred)
+```
+
+Here is the accuracy:
+
+
+- calculate the accuracy passing `test$Buys` and `pred` to the `accuracy` function:
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+accuracy(test$Buys, pred)
+```
+
+### Model 3 - All the predictors 
+
+#### Training
+
+Here is a model that uses all the predictors:
+
+- Put in the right model for modeling `Buys` based just on `Windy` and `Humid` 
+```{r include=ex, eval=F}
+control = rpart.control(minsplit=1, maxdepth=3, cp=-1)
+model <- rpart(CODE, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!ex, eval=!ex}
+control = rpart.control(minsplit=1, maxdepth=3, cp=-1)
+model <- rpart(Buys~Windy+Humid, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Testing
+
+Here are the predictions for our test data:
+
+- Make predictions and create a dataframe by running the code below:
+```{r, eval=!ex}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$Buys, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+- Create the confusion matrix by passing `test$Buys` and `pred` to the `table` function:
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+table(test$Buys, pred)
+```
+
+Here is the accuracy:
+
+- calculate the accuracy passing `test$Buys` and `pred` to the `accuracy` function:
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+accuracy(test$Buys, pred)
+```
 

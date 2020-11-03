@@ -1,0 +1,232 @@
+---
+title: "TShirt Size Using (Classification) Decision Tree"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+ex<-T
+```
+
+```{r echo=T, results='hide', message=F, warning=F}
+options("scipen"=100, "digits"=4)
+
+if(!require("rpart")) install.packages("rpart")
+if(!require("rpart.plot")) install.packages("rpart.plot")
+if(!require("Metrics")) install.packages("Metrics")
+
+library("rpart")
+library("rpart.plot")
+library("Metrics")
+```
+
+## Predicting TShirt Size using Decision Tree 
+
+
+## Training Data
+
+First lets take a look at the data we will work with. 
+
+So here is the data we have, this will be our training data:
+
+- `Size` is our result or outcome
+- `Height` and `Weight` are the predictors
+
+```{r}
+trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQb1-HxaC0FoyX5qGgAqcYRIVS5eZqwwfnECQucfqZ-Kn-65Pdacy80UX4K2AAJQH0WwgPd_OH_6Y7d/pub?gid=0&single=true&output=csv"
+train<-read.csv(trainurl)
+str(train)
+```
+
+ - Print out the info of the data frame using `str(train)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+str(train)
+```
+
+Now let's print out the training set to make sure we read it correctly:
+
+- Print out the the data frame using `print(train)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+print(train)
+```
+
+## Testing Data 
+
+Next let's look at some data that we can use as a testing set. This data we will use to evaluate how well the models we looked at above will do when they see "new" data. This gives a better idea of how accurate our model is.
+
+First we read the test set and look at its structure:
+
+```{r}
+testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQb1-HxaC0FoyX5qGgAqcYRIVS5eZqwwfnECQucfqZ-Kn-65Pdacy80UX4K2AAJQH0WwgPd_OH_6Y7d/pub?gid=15577345&single=true&output=csv"
+test<-read.csv(testurl)
+```
+
+ - Print out the info of this data frame using `str(test)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+str(test)
+```
+
+And now print out the test set:
+
+- Print out the the data frame using `print(test)`
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex, eval=!ex}
+print(test)
+```
+
+### Model 1 - use `Height` to predict `Size` 
+
+#### Training
+
+- Put in the right model for modeling `Size` based just on `Height` 
+```{r include=ex, eval=FALSE}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(CODE, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!ex, eval=!ex}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Size~Height, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Testing
+
+Now lets do a prediction:
+
+- Make predictions and create a dataframe by running the code below:
+```{r, eval=!ex}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$Size, predictions=pred)
+print(compare)
+```
+
+And lets find the confusion matrix 
+
+- Create the confusion matrix by passing `test$Size` and `pred` to the `table` function:
+```{r include=ex, eval=FALSE}
+table(CODE)
+```
+```{r include=!ex, eval=!ex}
+table(test$Size, pred)
+```
+
+Here is the accuracy:
+
+- calculate the accuracy passing `test$Size` and `pred` to the `accuracy` function:
+```{r include=ex, eval=FALSE}
+accuracy(CODE)
+```
+```{r include=!ex, eval=!ex}
+accuracy(test$Size, pred)
+```
+
+### Model 2 - use `Weight` to predict `Size` 
+
+#### Training
+
+- Put in the right model for modeling `Size` based just on `Weight` 
+```{r include=ex, eval=FALSE}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(CODE, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!ex, eval=!ex}
+control = rpart.control(minsplit=1,maxdepth=1)
+model <- rpart(Size~Weight, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Testing
+
+Now lets do a prediction:
+
+- Make predictions and create a dataframe by running the code below:
+```{r, eval=!ex}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$Size, predictions=pred)
+print(compare)
+```
+
+And lets find the confusion matrix 
+
+- Create the confusion matrix by passing `test$Size` and `pred` to the `table` function:
+```{r include=ex, eval=FALSE}
+table(CODE)
+```
+```{r include=!ex, eval=!ex}
+table(test$Size, pred)
+```
+
+Here is the accuracy:
+
+- calculate the accuracy passing `test$Size` and `pred` to the `accuracy` function:
+```{r include=ex, eval=FALSE}
+accuracy(CODE)
+```
+```{r include=!ex, eval=!ex}
+accuracy(test$Size, pred)
+```
+
+
+### Model 3 - use `Height` and `Weight` to predict `Size` 
+
+#### Training
+
+- Put in the right model for modeling `Size` based just on `Width` and `Height` 
+```{r include=ex, eval=FALSE}
+control = rpart.control(minsplit=1,maxdepth=2)
+model <- rpart(CODE, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+```{r include=!ex, eval=!ex}
+control = rpart.control(minsplit=1,maxdepth=2)
+model <- rpart(Size~Height+Weight, data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Testing
+
+Now lets do a prediction:
+
+- Make predictions and create a dataframe by running the code below:
+```{r, eval=!ex}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$Size, predictions=pred)
+print(compare)
+```
+
+And lets find the confusion matrix 
+
+- Create the confusion matrix by passing `test$Size` and `pred` to the `table` function:
+```{r include=ex, eval=FALSE}
+table(CODE)
+```
+```{r include=!ex, eval=!ex}
+table(test$Size, pred)
+```
+
+Here is the accuracy:
+
+- calculate the accuracy passing `test$Size` and `pred` to the `accuracy` function:
+```{r include=ex, eval=FALSE}
+accuracy(CODE)
+```
+```{r include=!ex, eval=!ex}
+accuracy(test$Size, pred)
+```
+
