@@ -7,21 +7,19 @@ jupyter:
     name: ir
 ---
 
-```{r, include=FALSE}
-blanks<-TRUE
-solution<-TRUE
-```
 ```{r echo=T, results='hide', message=F, warning=F}
 options("scipen"=100, "digits"=4)
-if(!require("readr")) install.packages("readr")
+
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
 if (!require("Metrics")) install.packages("Metrics")
-library("readr")
+
 library("rpart")
 library("rpart.plot")
 library("Metrics")
 ```
+
+## Load the Training Data 
 
 Here is some data that involves trying to predict when someone will be willing to wait for a table in a restaurant vs when they will leave. The restaurant would like to understand both when this will happen and also under what conditions. Here is the data that we hae so far:
 
@@ -44,69 +42,136 @@ Note we are trying to predict `WillWait` from the rest of the predictors. There 
 
 ```{r}
 url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQvQ1hQJoj_3BmOV3uLWcDzwIw3GFhkS84NePBS57lnCmXSN86KU8kn4aQUE9rGsxJPMi32S55JBl9w/pub?gid=0&single=true&output=csv"
-traindf<-read.csv(url, stringsAsFactor=TRUE)
+train<-read.csv(url, stringsAsFactor=F)
 ```
 
 Now let's print out the training set to make sure we read it correctly:
 
 ```{r}
-print(traindf)
+print(train)
 ```
 
-Create models for the following individual predictors with maxdepth=1.
-
-```{r, eval=FALSE, include=blanks}
-PUT CODE HERE to create a model  WillWait~Price (use maxdepth = 1) 
-```
-```{r, include=solution}
-control = rpart.control(minsplit=1, maxdepth=1)
-model <- rpart(WillWait~Price, data=traindf, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
-```
-
-```{r, eval=FALSE, include=blanks}
-PUT CODE HERE to create a model  WillWait~Patrons(use maxdepth = 1) 
-```
-```{r, include=solution}
-control = rpart.control(minsplit=1, maxdepth=1)
-model <- rpart(WillWait~Patrons, data=traindf, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
-```
-
-Which of the above models is better?
-
-Finally here is a model using all the variables
-```{r}
-control = rpart.control(minsplit=1)
-model <- rpart(WillWait~., data=traindf, method="class", control = control)
-rpart.plot(model, type=4, extra = 1, digits=-2)
-```
-
-Note that not all predictors get used in this example. The model figures out which ones are relevant on its own here.
+## Load the Testing Data 
 
 Lets read in the testing data set:
 
 ```{r}
 testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQvQ1hQJoj_3BmOV3uLWcDzwIw3GFhkS84NePBS57lnCmXSN86KU8kn4aQUE9rGsxJPMi32S55JBl9w/pub?gid=289547774&single=true&output=csv"
-testdf<-read.csv(testurl, stringsAsFactors=TRUE)
-str(testdf)
-```
-Do a prediction for the testing data set using the model above:
-
-```{r}
-pred <- predict(model, newdata = testdf, type = 'class')
+test<-read.csv(testurl, stringsAsFactors=F)
+str(test)
 ```
 
-Now lets compare the actuals and the predictions:
+Now let's print out the testing set to make sure we read it correctly:
 
 ```{r}
-comparedf <- data.frame(actual=testdf$WillWait, predictions=pred)
-print(comparedf)
+print(test)
 ```
 
-Calculate the accuracy:
+### Model 1 - predict `WillWait` from `Price` 
+
+#### Train with Training Data
 
 ```{r}
-accuracy(testdf$WillWait, pred)
+control = rpart.control(minsplit=1, maxdepth=1)
+model <- rpart(WillWait~Price, 
+               data=train, 
+               method="class", 
+               control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$WillWait, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+```{r}
+table(test$WillWait, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$WillWait, pred)
+```
+
+
+### Model 2 - predict `WillWait` from `Patrons` 
+
+#### Train with Training Data
+
+```{r}
+control = rpart.control(minsplit=1, maxdepth=1)
+model <- rpart(WillWait~Patrons, 
+               data=train, 
+               method="class", 
+               control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$WillWait, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+```{r}
+table(test$WillWait, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$WillWait, pred)
+```
+
+
+### Model 3 - all predictors 
+
+#### Train with Training Data
+
+Finally here is a model using all the variables
+
+```{r}
+control = rpart.control(minsplit=1)
+model <- rpart(WillWait~., data=train, method="class", control = control)
+rpart.plot(model, type=4, extra = 1, digits=-2)
+```
+
+Note that not all predictors get used in this example. The model figures out which ones are relevant on its own here.
+
+#### Test With Testing Data
+
+Here are the predictions for our test data:
+
+```{r}
+pred <- predict(model, newdata = test, type = 'class')
+compare <- data.frame(actual=test$WillWait, predictions=pred)
+print(compare)
+```
+
+Here is the confusion matrix:
+
+```{r}
+table(test$WillWait, pred)
+```
+
+Here is the accuracy:
+
+```{r}
+accuracy(test$WillWait, pred)
 ```
 
