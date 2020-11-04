@@ -187,7 +187,7 @@ accuracy(test$Size, pred)
 
 #### Training
 
-- Put in the right model for modeling `Size` based just on `Width` and `Height` 
+- Put in the right model for modeling `Size` based just on `Weight` and `Height` 
 ```{r include=ex, eval=FALSE}
 control = rpart.control(minsplit=1,maxdepth=2)
 model <- rpart(CODE, data=train, method="class", control = control)
