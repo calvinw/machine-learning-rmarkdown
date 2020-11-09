@@ -1,7 +1,7 @@
 SHELL:=/bin/bash
 #SOURCES=$(shell find . -name "*.Rmd")
 SOURCES=$(wildcard *.Rmd)
-#SOURCES=DataTypes.Rmd DataTypesInClass.Rmd Boolean.Rmd Vectors.Rmd Subsetting.Rmd
+#SOURCES=ErrorsQuestion.Rmd MeasuringErrors.Rmd 
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)

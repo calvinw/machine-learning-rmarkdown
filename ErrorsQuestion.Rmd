@@ -13,12 +13,14 @@ library("Metrics")
 ```
 
 ```{r, include=FALSE}
-assignment<-TRUE
+assignment<-F
 ```
 
 Suppose we have two models, `model1` and `model2` created from some training data set (not shown).
 
 The models can be described as follows `y~x1+x2`. So the result is `y` and the predictors are `x1` and `x2`.
+
+## Test Data 
 
 Now we wish to evaluate the two models using the following test data set:
 
@@ -31,6 +33,8 @@ Now we wish to evaluate the two models using the following test data set:
 | 25    | TRUE | 89   |
 
 
+## Model1 Predictions 
+
 Suppose our first model (called model1) made the following predictions:
 
 | x1    |  x2    | ypred1 | 
@@ -41,6 +45,8 @@ Suppose our first model (called model1) made the following predictions:
 | 21    | TRUE | 85   |
 | 25    | TRUE | 91   |
 
+
+## Model2 Predictions 
 
 Suppose our second model model (called model2) made the following predictions:
 
@@ -54,10 +60,12 @@ Suppose our second model model (called model2) made the following predictions:
 
 Lets create some vectors with the actuals and the predictions: 
 
+## Vectors for Actuals and Predictions 
+
 ```{r include=assignment, eval=FALSE}
-actuals <- PUT CODE HERE
-predictions1 <- PUT CODE HERE 
-predictions2 <- PUT CODE HERE 
+actuals <- CODE
+predictions1 <- CODE
+predictions2 <- CODE
 ```
 ```{r include=!assignment}
 actuals <- c(83,78,75,82,89)
@@ -65,53 +73,52 @@ predictions1 <- c(80,72,74,85,91)
 predictions2 <- c(79,78,76,81,87)
 ```
 
-Now lets find the `mae` of the `actuals` and `predictions1`:
+## MAE 
+
+- find the `mae` of the `actuals` and `predictions1`:
+- find the `mae` of the `actuals` and `predictions2`:
 
 ```{r include=assignment, eval=FALSE}
-PUT CODE HERE
+mae(CODE)
+mae(CODE)
 ```
 ```{r include=!assignment}
 mae(actuals, predictions1)
-```
-
-Now lets find the `mae` of the `actuals` and `predictions2`:
-```{r include=assignment, eval=FALSE}
-PUT CODE HERE
-```
-```{r include=!assignment}
 mae(actuals, predictions2)
 ```
 
-Now lets find the `mape` of the `actuals` and `predictions1`:
+Which model was better for MAE: ???
+
+## MAPE
+
+- find the `mape` of the `actuals` and `predictions1`:
+- find the `mape` of the `actuals` and `predictions2`:
+  
 ```{r include=assignment, eval=FALSE}
-PUT CODE HERE
+mape(CODE)
+mape(CODE)
 ```
 ```{r include=!assignment}
 mape(actuals, predictions1)
-```
-
-Now lets find the `mape` of the `actuals` and `predictions2`:
-```{r include=assignment, eval=FALSE}
-PUT CODE HERE
-```
-```{r include=!assignment}
 mape(actuals, predictions2)
 ```
 
-Now lets find the `rmse` of the `actuals` and `predictions1`:
+Which model was better for MAPE: ???
+
+## RMSE
+
+- find the `rmse` of the `actuals` and `predictions1`:
+- find the `rmse` of the `actuals` and `predictions2`:
+  
 ```{r include=assignment, eval=FALSE}
-PUT CODE HERE
+rmse(CODE)
+rmse(CODE)
 ```
 ```{r include=!assignment}
 rmse(actuals, predictions1)
-```
-
-Now lets find the `rmse` of the `actuals` and `predictions2`:
-```{r include=assignment, eval=FALSE}
-PUT CODE HERE
-```
-```{r include=!assignment}
 rmse(actuals, predictions2)
 ```
 
-Which model was better?
+Which model was better for RMSE: ???
+
+Which model was better overall: ???
