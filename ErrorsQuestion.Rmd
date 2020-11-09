@@ -13,7 +13,7 @@ library("Metrics")
 ```
 
 ```{r, include=FALSE}
-assignment<-F
+assignment<-T
 ```
 
 Suppose we have two models, `model1` and `model2` created from some training data set (not shown).
@@ -75,50 +75,88 @@ predictions2 <- c(79,78,76,81,87)
 
 ## MAE 
 
-- find the `mae` of the `actuals` and `predictions1`:
-- find the `mae` of the `actuals` and `predictions2`:
+### Model 1 
 
+- find the `mae` of the `actuals` and `predictions1` by passing these as arguments to the `mae` function:
 ```{r include=assignment, eval=FALSE}
-mae(CODE)
 mae(CODE)
 ```
 ```{r include=!assignment}
 mae(actuals, predictions1)
+```
+
+### Model 2 
+
+- find the `mae` of the `actuals` and `predictions2` by passing these as arguments to the `mae` function:
+```{r include=assignment, eval=FALSE}
+mae(CODE)
+```
+```{r include=!assignment}
 mae(actuals, predictions2)
 ```
 
-Which model was better for MAE: ???
+#### Results for MAE    
+
+MAE for Model 1: ???   
+MAE for Model 2: ???   
+Which was better: ???  
 
 ## MAPE
 
-- find the `mape` of the `actuals` and `predictions1`:
-- find the `mape` of the `actuals` and `predictions2`:
-  
+### Model 1 
+
+- find the `mape` of the `actuals` and `predictions1` by passing these as arguments to the `mape` function:
 ```{r include=assignment, eval=FALSE}
-mape(CODE)
 mape(CODE)
 ```
 ```{r include=!assignment}
 mape(actuals, predictions1)
+```
+
+### Model 2 
+
+- find the `mape` of the `actuals` and `predictions2` by passing these as arguments to the `mape` function:
+```{r include=assignment, eval=FALSE}
+mape(CODE)
+```
+```{r include=!assignment}
 mape(actuals, predictions2)
 ```
 
-Which model was better for MAPE: ???
+#### Results for MAPE    
+
+MAPE for Model 1: ???   
+MAPE for Model 2: ???   
+Which was better: ???  
+
 
 ## RMSE
 
-- find the `rmse` of the `actuals` and `predictions1`:
-- find the `rmse` of the `actuals` and `predictions2`:
-  
+### Model 1 
+
+- find the `rmse` of the `actuals` and `predictions1` by passing these as arguments to the `rmse` function:
 ```{r include=assignment, eval=FALSE}
-rmse(CODE)
 rmse(CODE)
 ```
 ```{r include=!assignment}
 rmse(actuals, predictions1)
+```
+
+### Model 2 
+
+- find the `rmse` of the `actuals` and `predictions2` by passing these as arguments to the `rmse` function:
+```{r include=assignment, eval=FALSE}
+rmse(CODE)
+```
+```{r include=!assignment}
 rmse(actuals, predictions2)
 ```
 
-Which model was better for RMSE: ???
+#### Results for RMSE 
+
+RMSE for Model 1: ???   
+RMSE for Model 2: ???   
+Which was better: ???  
+
 
 Which model was better overall: ???
