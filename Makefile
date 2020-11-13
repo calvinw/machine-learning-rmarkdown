@@ -34,6 +34,6 @@ ipynb  : $(IPYNB_FILES)
 	    	 -e 'render("$<", "ipynb_document")'
 
 watch: 
-	ls *.Rmd | entr make
+	ls *.Rmd | entr make html
 
 .PHONY: all clean

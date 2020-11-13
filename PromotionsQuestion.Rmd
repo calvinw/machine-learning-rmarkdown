@@ -1,5 +1,5 @@
 ---
-title: "Predicting Demand from Radio and Email Campaigns"
+title: "Regression Tree: Predicting Demand from Radio and Email"
 jupyter:
   kernelspec:
     display_name: R
@@ -7,11 +7,11 @@ jupyter:
     name: ir
 ---
 ```{r, include=FALSE}
-assignment<-FALSE
+assignment<-T
 ```
 
 ```{r echo=T, results='hide', message=F, warning=F}
-options("scipen"=100, "digits"=4)
+#options("scipen"=100, "digits"=4)
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
 if(!require("Metrics")) install.packages("Metrics")
@@ -20,7 +20,7 @@ library("rpart.plot")
 library("Metrics")
 ```
 
-We have data for 14 weeks.
+We have training data for 13 weeks.
 
 - `demand` is the demand for the week
 - `radio` (yes or no), is whether we ran radio ads that week
@@ -62,10 +62,16 @@ print(test)
 ```
 
 
-## Model1 - use `radio` only to predict `demand` 
+## Model 1 - use `radio` only to predict `demand` 
+
+- sort the data frame using `radio`
+```{r}
+print(train[order(train$radio),])
+```
 
 Now lets make model 1 using just one predictor `radio` and one node to predict `demand`:
 
+- replace CODE below with the correct model to predict `demand` from `radio` only
 ```{r include=assignment, eval=FALSE}
 control <- rpart.control(minbucket=1, maxdepth=1)
 model <- rpart(CODE, data=train, method="anova", control=control)
@@ -83,10 +89,11 @@ Prediction if there is there is no radio promotion: ???
 
 Prediction if there is radio promotion: ???     
 
+These values come from taking averages over radio `no` and radio `yes`
 
 - Now we are ready to do some predictions using `predictions <- predict(model, newdata = test)`:
 ```{r include=assignment, eval=FALSE}
-CODE
+predictions <- CODE 
 ```
 ```{r include=!assignment}
 predictions <- predict(model, newdata = test)
@@ -106,10 +113,11 @@ mape(actuals, predictions)
 rmse(actuals, predictions)
 ```
 
-## Model2 - use `radio` and `email` to predict `demand` 
+## Model 2 - use `radio` and `email` to predict `demand` 
 
 Now lets do model 2 using both `radio` and `email` and one node to predict `demand`:
 
+- replace CODE below with the correct model to predict `demand` from `radio`and `email` 
 ```{r include=assignment, eval=FALSE}
 control <- rpart.control(minbucket=1)
 model <- rpart(CODE, data=train, method="anova", control=control)
@@ -127,32 +135,20 @@ Prediction if there is there is no email promotion and there is radio promotion:
 
 Prediction if there is there is email promotion and there is radio promotion ??? 
 
-Now read in the test dataframe
-
-```{r}
-url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=0&single=true&output=csv"
-test<-read.csv(url, stringsAsFactors=TRUE)
-```
-
-And now print out the test set:
-
-```{r}
-print(test)
-```
-
-
+- make some predictions using `predictions <- predict(model, newdata = test)`
 ```{r include=assignment, eval=FALSE}
-predictions <- PUT CODE HERE 
+predictions <- CODE 
 ```
 ```{r include=!assignment}
 predictions <- predict(model, newdata = test)
 ```
 
+- Compute the MAE, MAPE and RMSE for this model using `mae(actuals,predictions)`, `mape(actuals, predictions)` and `rmse(actuals, predictions)`
 ```{r include=assignment, eval=FALSE}
 actuals <- test$demand
-mae(PUT CODE HERE)
-mape(PUT CODE HERE)
-rmse(PUT CODE HERE)
+mae(CODE)
+mape(CODE)
+rmse(CODE)
 ```
 ```{r include=!assignment}
 actuals <- test$demand
@@ -161,4 +157,6 @@ mape(actuals, predictions)
 rmse(actuals, predictions)
 ```
 
-Which model was better, `model1` or `model2` and why?
+### Which Model is Better?
+
+Which model was better, model1 or model2  ???
