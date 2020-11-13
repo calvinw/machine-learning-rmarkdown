@@ -8,8 +8,8 @@ jupyter:
 ---
 
 ```{r, include=FALSE}
-blanks<-TRUE
-solution<-FALSE
+solution<-TRUE
+blanks<-!solution
 ```
 
 ```{r echo=T, results='hide', message=F, warning=F}

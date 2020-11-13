@@ -7,16 +7,14 @@ jupyter:
     name: ir
 ---
 ```{r, include=FALSE}
-assignment<-TRUE
+assignment<-FALSE
 ```
 
 ```{r echo=T, results='hide', message=F, warning=F}
 options("scipen"=100, "digits"=4)
-if(!require("readr")) install.packages("readr")
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
 if(!require("Metrics")) install.packages("Metrics")
-library("readr")
 library("rpart")
 library("rpart.plot")
 library("Metrics")
@@ -28,75 +26,81 @@ We have data for 14 weeks.
 - `radio` (yes or no), is whether we ran radio ads that week
 - `email` (yes or no) is whether we emailed potential customers that week 
 
+## Training Data
+
 Lets read in the training data:
 
 ```{r}
-trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=1414619388&single=true&output=csv"
-traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
-str(traindf)
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=1414619388&single=true&output=csv"
+train<-read.csv(url, stringsAsFactors=TRUE)
 ```
-Let's print out the training set to make sure it looks like what we expect:
+- print out info about the `train` dataset using `str`:
+```{r}
+str(train)
+```
+
+- And now print out the training set using `print`:
+```{r}
+print(train)
+```
+
+## Testing Data
 
 ```{r}
-print(traindf)
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=0&single=true&output=csv"
+test<-read.csv(url, stringsAsFactors=TRUE)
 ```
+
+- print out info about the `test` dataset using `str`:
+```{r}
+str(test)
+```
+
+- And now print out the test set using `print`:
+```{r}
+print(test)
+```
+
 
 ## Model1 - use `radio` only to predict `demand` 
 
-Now lets make model1 using just one predictor `radio` and one node to predict `demand`:
+Now lets make model 1 using just one predictor `radio` and one node to predict `demand`:
 
 ```{r include=assignment, eval=FALSE}
 control <- rpart.control(minbucket=1, maxdepth=1)
-model1<- PUT CODE HERE
-rpart.plot(model1, type=4, extra=101)
+model <- rpart(CODE, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
 ```
 ```{r include=!assignment}
 control <- rpart.control(minbucket=1, maxdepth=1)
-model1 <- rpart(demand~radio, data=traindf, method="anova", control=control)
-rpart.plot(model1, type=4, extra=101)
+model <- rpart(demand~radio, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
 ```
 
-### Fill in the following infomation for this model:
+### Fill in the following information for this model:
 
-Prediction if there is there is no radio promotion:     
+Prediction if there is there is no radio promotion: ???
 
-PUT ANSWER HERE
+Prediction if there is radio promotion: ???     
 
-Prediction if there is radio promition:     
 
-PUT ANSWER HERE
-
-```{r}
-testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=0&single=true&output=csv"
-testdf<-read.csv(testurl, stringsAsFactors=TRUE)
-```
-
-And now print out the test set:
-
-```{r}
-print(testdf)
-```
-
-Now we are ready to do some predictions for `model1` using the test dataframe:
-
+- Now we are ready to do some predictions using `predictions <- predict(model, newdata = test)`:
 ```{r include=assignment, eval=FALSE}
-predictions <- PUT CODE HERE 
+CODE
 ```
 ```{r include=!assignment}
-predictions <- predict(model1, newdata = testdf)
+predictions <- predict(model, newdata = test)
 ```
 
-Compute the MAE, MAPE and RMSE for model1:
-(use `actuals` and `predictions`)
-
+- Compute the MAE, MAPE and RMSE for this model using `mae(actuals,predictions)`, `mape(actuals, predictions)` and `rmse(actuals, predictions)`
 ```{r include=assignment, eval=FALSE}
-actuals <- testdf$demand
-mae(PUT CODE HERE)
-mape(PUT CODE HERE)
-rmse(PUT CODE HERE)
+actuals <- test$demand
+mae(CODE)
+mape(CODE)
+rmse(CODE)
 ```
 ```{r include=!assignment}
-actuals <- testdf$demand
+actuals <- test$demand
 mae(actuals, predictions)
 mape(actuals, predictions)
 rmse(actuals, predictions)
@@ -104,59 +108,54 @@ rmse(actuals, predictions)
 
 ## Model2 - use `radio` and `email` to predict `demand` 
 
-Now lets do model2 using both `radio` and `email` and one node to predict `demand`:
+Now lets do model 2 using both `radio` and `email` and one node to predict `demand`:
 
 ```{r include=assignment, eval=FALSE}
 control <- rpart.control(minbucket=1)
-model2 <- PUT CODE HERE 
-rpart.plot(model2, type=4, extra=101)
+model <- rpart(CODE, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
 ```
 ```{r include=!assignment}
 control <- rpart.control(minbucket=1)
-model2 <- rpart(demand~email+radio, data=traindf, method="anova", control=control)
-rpart.plot(model2, type=4, extra=101)
+model <- rpart(demand~email+radio, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
 ```
 
-### Fill in the following infomation for this model:
+### Fill in the following information for this model:
 
-Prediction if there is there is no email promotion and there is radio promotion:     
+Prediction if there is there is no email promotion and there is radio promotion: ???
 
-PUT ANSWER HERE
-
-Prediction if there is there is email promotion and there is radio promotion:     
-
-PUT ANSWER HERE
+Prediction if there is there is email promotion and there is radio promotion ??? 
 
 Now read in the test dataframe
 
 ```{r}
-testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=0&single=true&output=csv"
-testdf<-read.csv(testurl, stringsAsFactors=TRUE)
+url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTNxPJ7Q7Y9502MFjeYUpMXBiiIT3Mlv28h2hPa69bmAuzIc95PuNvN-/pub?gid=0&single=true&output=csv"
+test<-read.csv(url, stringsAsFactors=TRUE)
 ```
 
 And now print out the test set:
 
 ```{r}
-print(testdf)
+print(test)
 ```
 
-Now we are ready to do some predictions using the test dataframe:
 
 ```{r include=assignment, eval=FALSE}
 predictions <- PUT CODE HERE 
 ```
 ```{r include=!assignment}
-predictions <- predict(model2, newdata = testdf)
+predictions <- predict(model, newdata = test)
 ```
 
 ```{r include=assignment, eval=FALSE}
-actuals <- testdf$demand
+actuals <- test$demand
 mae(PUT CODE HERE)
 mape(PUT CODE HERE)
 rmse(PUT CODE HERE)
 ```
 ```{r include=!assignment}
-actuals <- testdf$demand
+actuals <- test$demand
 mae(actuals, predictions)
 mape(actuals, predictions)
 rmse(actuals, predictions)
