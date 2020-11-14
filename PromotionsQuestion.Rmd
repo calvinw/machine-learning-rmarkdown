@@ -11,7 +11,6 @@ assignment<-T
 ```
 
 ```{r echo=T, results='hide', message=F, warning=F}
-#options("scipen"=100, "digits"=4)
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
 if(!require("Metrics")) install.packages("Metrics")
@@ -35,12 +34,18 @@ url<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSi4B1BrrvBiibT9af_txYMmTN
 train<-read.csv(url, stringsAsFactors=TRUE)
 ```
 - print out info about the `train` dataset using `str`:
-```{r}
+```{r include=assignment, eval=FALSE}
+CODE
+```
+```{r include=!assignment}
 str(train)
 ```
 
 - And now print out the training set using `print`:
-```{r}
+```{r include=assignment, eval=FALSE}
+CODE
+```
+```{r include=!assignment}
 print(train)
 ```
 
@@ -52,12 +57,18 @@ test<-read.csv(url, stringsAsFactors=TRUE)
 ```
 
 - print out info about the `test` dataset using `str`:
-```{r}
+```{r include=assignment, eval=FALSE}
+CODE
+```
+```{r include=!assignment}
 str(test)
 ```
 
 - And now print out the test set using `print`:
-```{r}
+```{r include=assignment, eval=FALSE}
+CODE
+```
+```{r include=!assignment}
 print(test)
 ```
 
