@@ -5,7 +5,7 @@ pages:
   script:
   - apt-get update
   - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev
-  - apt-get -y install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+  - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
   - wget "https://github.com/jgm/pandoc/releases/download/2.9.1/pandoc-2.9.1-1-amd64.deb"
   - dpkg -i pandoc-2.9.1-1-amd64.deb
   - Rscript -e "install.packages('knitr')"
