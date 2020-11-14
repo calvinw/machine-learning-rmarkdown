@@ -10,16 +10,15 @@ jupyter:
 
 ```{r echo=T, results='hide', message=F, warning=F}
 options("scipen"=100, "digits"=4)
-if(!require("readr")) install.packages("readr")
+
 if(!require("rpart")) install.packages("rpart")
 if(!require("rpart.plot")) install.packages("rpart.plot")
 if(!require("Metrics")) install.packages("Metrics")
-library("readr")
 library("rpart")
 library("rpart.plot")
 library("Metrics")
 ```
-## Building a Regression Tree 
+## Training Data 
 
 So here is the data we have, this will be our training data:
 
@@ -46,40 +45,12 @@ This data is from a bicycle rental shop in different seasons and for different k
 Lets read it in:
 
 ```{r}
-trainurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0xC0V1WOdTsy8RK5yHOskEbWjXSE9oHh-IvLoJyCNFR-IgchGRcLF-nK0USxC2irKXUJmNdpFwSCw/pub?gid=0&single=true&output=csv"
-traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
-str(traindf)
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0xC0V1WOdTsy8RK5yHOskEbWjXSE9oHh-IvLoJyCNFR-IgchGRcLF-nK0USxC2irKXUJmNdpFwSCw/pub?gid=0&single=true&output=csv"
+train<-read.csv(url, stringsAsFactors=TRUE)
+str(train)
 ```
 
-We are going to model this situation with a decision tree. It appears on Work days, there is more demand for bicycles. This is probably since people are at work and they use the bike rentals during workdays, whereas on weekends they tend to be off more, so there is not as much demand on weekends. 
-
-How about if we just use `WorkDay` to predict the result `Rentals`
-
-```{r}
-control <- rpart.control(minbucket=1)
-model1 <- rpart(Rentals~WorkDay, data=traindf, method="anova", control=control)
-rpart.plot(model1, type=4, extra=101)
-```
-
-Now lets try just using `Season` to predict the result `Rentals`
-
-```{r}
-control <- rpart.control(minbucket=1)
-model2 <- rpart(Rentals~Season, data=traindf, method="anova", control=control)
-rpart.plot(model2, type=4, extra=101)
-```
-
-Which model looks better?
-
-Now lets build a model using `Season` and `WorkDay` to predict `Rentals`
-
-```{r}
-control <- rpart.control(minbucket=1)
-model3 <- rpart(Rentals~Season+WorkDay, data=traindf, method="anova", control=control)
-rpart.plot(model3, type=4, extra=101)
-```
-
-## Testing the Regression Tree Models
+## Testing Data 
 
 Here is the testing data set:
 
@@ -97,77 +68,109 @@ Here is the testing data set:
 Lets read it in:
 
 ```{r}
-testurl<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0xC0V1WOdTsy8RK5yHOskEbWjXSE9oHh-IvLoJyCNFR-IgchGRcLF-nK0USxC2irKXUJmNdpFwSCw/pub?gid=289547774&single=true&output=csv"
-testdf<-read.csv(testurl, stringsAsFactors=TRUE)
-str(testdf)
+url<- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT0xC0V1WOdTsy8RK5yHOskEbWjXSE9oHh-IvLoJyCNFR-IgchGRcLF-nK0USxC2irKXUJmNdpFwSCw/pub?gid=289547774&single=true&output=csv"
+test<-read.csv(url, stringsAsFactors=TRUE)
+str(test)
 ```
 
-### Testing `Rentals~Season+WorkDay`
+We are going to model this situation with a decision tree. It appears on Work days, there is more demand for bicycles. This is probably since people are at work and they use the bike rentals during workdays, whereas on weekends they tend to be off more, so there is not as much demand on weekends. 
+
+## Model 1 Rentals~WorkDay 
+
+How about if we just use `WorkDay` to predict the result `Rentals`
+
+```{r}
+control <- rpart.control(minbucket=1)
+model <- rpart(Rentals~WorkDay, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
+```
+
+### Testing Model 1
 
 Lets do our predictions for this model:
 
 ```{r}
-pred <- predict(model3, newdata = testdf, type = 'vector')
+pred <- predict(model, newdata = test, type = 'vector')
 ```
 
 Lets build a data frame so we can see the predictions and the actuals
 
 ```{r}
-info <- data.frame(actual=testdf$Rentals, predictions=pred)
+info <- data.frame(actual=test$Rentals, predictions=pred)
 print(info)
 ```
 
 Lets calculate the MAPE, MAE, and RMSE
 
 ```{r}
-mape(testdf$Rentals,pred)
-mae(testdf$Rentals,pred)
-rmse(testdf$Rentals,pred)
+mape(test$Rentals,pred)
+mae(test$Rentals,pred)
+rmse(test$Rentals,pred)
 ```
 
-### Testing `Rentals~Season`
+## Model 2 Rentals~Season
+
+Now lets try just using `Season` to predict the result `Rentals`
+
+```{r}
+control <- rpart.control(minbucket=1)
+model <- rpart(Rentals~Season, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
+```
+
+### Testing Model 2 
 
 Lets do our predictions for this model:
 
 ```{r}
-pred <- predict(model2, newdata = testdf, type = 'vector')
+pred <- predict(model, newdata = test, type = 'vector')
 ```
 
 Lets build a data frame so we can see the predictions and the actuals
 
 ```{r}
-info <- data.frame(actual=testdf$Rentals, predictions=pred)
+info <- data.frame(actual=test$Rentals, predictions=pred)
 print(info)
 ```
 
 Lets calculate the MAPE, MAE, and RMSE
 
 ```{r}
-mape(testdf$Rentals,pred)
-mae(testdf$Rentals,pred)
-rmse(testdf$Rentals,pred)
+mape(test$Rentals,pred)
+mae(test$Rentals,pred)
+rmse(test$Rentals,pred)
 ```
 
-### Testing `Rentals~WorkDay`
+## Model 3 Rentals~Season+WorkDay
+
+Now lets build a model using `Season` and `WorkDay` to predict `Rentals`
+
+```{r}
+control <- rpart.control(minbucket=1)
+model <- rpart(Rentals~Season+WorkDay, data=train, method="anova", control=control)
+rpart.plot(model, type=4, extra=101)
+```
+
+### Testing Model 3 
 
 Lets do our predictions for this model:
 
 ```{r}
-pred <- predict(model1, newdata = testdf, type = 'vector')
+pred <- predict(model, newdata = test, type = 'vector')
 ```
 
 Lets build a data frame so we can see the predictions and the actuals
 
 ```{r}
-info <- data.frame(actual=testdf$Rentals, predictions=pred)
+info <- data.frame(actual=test$Rentals, predictions=pred)
 print(info)
 ```
 
 Lets calculate the MAPE, MAE, and RMSE
 
 ```{r}
-mape(testdf$Rentals,pred)
-mae(testdf$Rentals,pred)
-rmse(testdf$Rentals,pred)
+mape(test$Rentals,pred)
+mae(test$Rentals,pred)
+rmse(test$Rentals,pred)
 ```
 
