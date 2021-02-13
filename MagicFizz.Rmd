@@ -15,7 +15,7 @@ df<-read.csv(url)
 ```
 
 ```{r include=F}
-ex<-T
+ex<-F
 ```
 
 The above loads in some data collected from 20 respondents to a survey about a new soft drink called **MagicFizz**. Each of the respondents rated the drink for each of the categories `Flavor` ,`Texture` `FizzSensation` and `PackageDesign` and also for `OverallSatisfaction`.
