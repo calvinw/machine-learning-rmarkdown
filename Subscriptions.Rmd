@@ -44,7 +44,7 @@ First create vectors for the reported and actual subscriber numbers:
 - Create a vector called `actual` that has the actual subscriptions
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 reported <- c(621,359.7,530,70.5,567,125.5,50.6,353.3,263.6)
@@ -55,7 +55,7 @@ actual <- c(299.6, 207.7,325,48.6,400.3,91.2,39.1,268.6,214.3)
 - use `head(df)` to print out the first few rows 
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 df<-data.frame(reported, actual)
@@ -67,7 +67,7 @@ Plot the data by using the `plot` function:
 - Use `plot(df)` to plot the data
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 plot(df)
@@ -79,7 +79,7 @@ Give the plot a title (call it "Actual vs Reported Subscriptions") and label the
 - use `plot(df, main="Actual vs Reported Subscriptions", xlab="Reported(000s)", ylab="Actual(000s)", pch=19)` to give the title, x and y axes. 
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 plot(df, main="Actual vs Reported Subscriptions", xlab="Reported(000s)", ylab="Actual(000s)", pch=19)
@@ -91,7 +91,7 @@ The correlation using the `cor` function. The first argument to it will be the r
 - print out `R` so you can see 
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 R <- cor(df$reported,df$actual)
@@ -103,7 +103,7 @@ Next call `lm` and see if you can predict "actual" from "reported"
 - Use the code `model<-lm(actual~reported, data=df)` to define the model
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 model <- lm(actual~reported, data=df)
@@ -112,7 +112,7 @@ model <- lm(actual~reported, data=df)
 - Use the code `summary(model)` to get the regression output
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 summary(model)
@@ -137,7 +137,7 @@ $$ \text{standard error} = ???  $$
 - Add a line that uses this code: `abline(model)` to add the trendline.
 
 ```{r, eval=FALSE, include=blanks}
-PUT CODE HERE
+CODE
 ```
 ```{r, include=solution}
 plot(df, main="Actual vs Reported Subscriptions", xlab="Reported(000s)", ylab="Actual(000s)", pch=19)
