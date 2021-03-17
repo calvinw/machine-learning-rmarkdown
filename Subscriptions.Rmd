@@ -8,8 +8,8 @@ jupyter:
 ---
 
 ```{r, include=FALSE}
-blanks<-T
-solution<-F
+blanks<-F
+solution<-T
 ```
 
 It turns out that magazine publishers regularly overinflate actual subscription numbers when reporting circulation for magazines. Here is some data from some years ago (some of these magazines are long gone!!) that illustrate this.

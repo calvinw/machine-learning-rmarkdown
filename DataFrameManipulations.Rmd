@@ -8,7 +8,7 @@ jupyter:
 ---
 
 ```{r include=F}
-ex<-T
+ex<-F
 ```
 
 Lets look at a simple example that has data from the Poshmark website. We scraped the names of some items, the original retail, and their current offering prices for some items being offered:

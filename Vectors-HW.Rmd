@@ -8,7 +8,7 @@ jupyter:
 ---
 
 ```{r include=F}
-ex<-T
+ex<-F
 ```
 
 ## Data Types Practice
