@@ -58,15 +58,15 @@ You can fix up the x-axis label by using `xlab` and the y-axis label by using `y
 You can also put in that they are filled dots instead of hollow by using `pch=19`
 
 - run `plot` again, but add titles using arguments `main`, `xlab` and `ylab`. Also change the dots to be filled with `pch=19` 
-- give it the `main` as: "Newspaper Expenditures and Sales"
-- give it the `xlab` as: "Newspaper Ad Spending ($000)"
-- give it the `ylab` as: "Sales in Dollars ($000)"
+- give it the `main` as: \"Newspaper Expenditures and Sales\"
+- give it the `xlab` as: \"Newspaper Ad Spending ($000)\"
+- give it the `ylab` as: \"Sales in Dollars ($000)\"
 ```{r include=ex, eval=F}
 plot(df$newspaper,
      df$sales, 
      main=CODE, 
      xlab=CODE, 
-     ylab=CODE", 
+     ylab=CODE, 
      pch=19)
 ```
 ```{r include=!ex}
@@ -101,9 +101,9 @@ R
 And here is the scatterplot for them:
 
 - Create a scatterpot with `plot` and pass it `df$radio` and `df$sales` as the x and y 
-- give it the `main` as: "Radio Ad Expenditures and Sales"
-- give it the `xlab` as: "Radio Ad Spending ($000)"
-- give it the `ylab` as: "Sales in Dollars ($000)"
+- give it the `main` as: \"Radio Ad Expenditures and Sales\"
+- give it the `xlab` as: \"Radio Ad Spending ($000)\"
+- give it the `ylab` as: \"Sales in Dollars ($000)\"
 ```{r include=ex, eval=F}
 plot(df$radio,df$sales, 
      main=CODE, 
