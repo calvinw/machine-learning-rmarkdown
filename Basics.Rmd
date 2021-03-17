@@ -1,0 +1,158 @@
+---
+title: "Basics"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r, include=FALSE}
+solution<-F
+```
+
+- Create a variable `x` that has value 5 
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+x <- 5 
+```
+
+- Create a variable `y` that is equal to `12*x`
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+y <- 12*x 
+```
+
+- Define a character vector `v` that has these strings on it "yes", "no", "maybe":
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+v<- c("yes", "no", "maybe")
+```
+
+- Define a vector variable `q` that has 4,-3,-2,2,3 on it. 
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+q<- c(4,-3,-2,3) 
+```
+
+Next create a dataframe for this data:
+
+|  name  |  major | gpa |  phone    |
+|:------:|:----:|:---:|:------------:|
+| William |  ITM | 2.4 | 326 2375 |
+| Sandy |  TDM | 3.4 | 231 3040 |
+| Joan |  FBM | 3.1 | 342 3023 |
+
+ - create a dataframe for this data
+```{r, eval=FALSE, include=!solution}
+name<-CODE
+major<-CODE
+gpa<-CODE
+phone<-CODE
+df <- data.frame(CODE,CODE,CODE,CODE) 
+```
+```{r, include=solution}
+name<-c("William", "Sandy", "Joan")
+major<-c("ITM", "TDM", "FBM")
+gpa<-c(2.4, 3.4, 3.1) 
+phone<-c("326 1375", "231 3640", "342 3023")
+df <- data.frame(name,major,gpa,phone) 
+```
+
+- Print out the structure of your data frame using `str`
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+str(df)
+```
+
+- Print out just the phone column using $ sign: (Replace CODE below with the right column name for this. 
+```{r, eval=FALSE, include=!solution}
+df$CODE
+```
+```{r, include=solution}
+df$phone
+```
+
+- Now print out the first few lines of the data frame using `head`
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+head(df)
+```
+
+- Use `summary(df)` to print out a summary of the data frame data:
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+summary(df)
+```
+
+- Delete the column "gpa" from the data frame:
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+df$gpa <- NULL
+```
+
+- Print out the structure of your data frame showing the column above removed: 
+
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+str(df)
+```
+
+Finally add a column called "id" 
+Your data frame will look like this after doing this:  
+
+|  name  |  major | phone    | id
+|:------:|:----:|:---:|:------------:|
+| William |  ITM | 326 2375 | 1001 |
+| Sandy |  TDM | 231 3040 | 1002 | 
+| Joan |  FBM | 342 3023 | 1003 |
+
+- add a column called "id" 
+```{r, eval=FALSE, include=!solution}
+df$id <- CODE 
+```
+```{r, include=solution}
+df$id <- c(1001,1002,1003)
+```
+
+- Print out the structure of the new data frame using `str`:
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+str(df)
+```
+
+- Change Sandy's id in the dataframe to be `1004`
+```{r, eval=FALSE, include=!solution}
+CODE 
+```
+```{r, include=solution}
+df[2,4] <- 1004 
+```
+
+- Print out the data frame using `head` to make sure her GPA is changed:
+```{r, eval=FALSE, include=!solution}
+CODE
+```
+```{r, include=solution}
+head(df)
+```
