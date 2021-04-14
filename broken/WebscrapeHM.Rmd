@@ -32,7 +32,7 @@ We are going to read in a page at H&M for sales:
 # url<-"https://www2.hm.com/en_us/sale/women/pants.html?page-size=252"
 # url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=2448"
 
-url<-"https://www2.hm.com/en_us/sale/women/dresses.html?page-size=2448"
+url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=252"
 
 webpage <- read_html(url)
 ```
