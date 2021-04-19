@@ -1,0 +1,117 @@
+---
+title: "Webscraping HM sale prices"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+
+We are going to read in a page at H&M for sales:
+
+```{r}
+# url<-"https://www2.hm.com/en_us/sale/women/tops.html?page-size=2448"
+# url<-"https://www2.hm.com/en_us/sale/women/jackets-coats.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/shirts-blouses.html?page-size=252"
+url<-"https://www2.hm.com/en_us/sale/women/dresses.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/maternity-wear.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/basics.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/shoes.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/jeans.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/swimwear.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/accessories.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/view-all.html?page-size=2448"
+# url<-"https://www2.hm.com/en_us/sale/women/pants.html?page-size=252"
+# url<-"https://www2.hm.com/en_us/sale/women/lingerie.html?page-size=2448"
+
+webpage <- read_html(url)
+```
+
+Now we can identify the sale price:
+
+```{r}
+nodes <- html_nodes(webpage, ".sale")
+sale <- html_text(nodes)
+sale <- gsub("$ ","", sale, fixed=TRUE)
+sale <- as.numeric(sale)
+str(sale,20)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+head(sale,20)
+```
+
+Now we can identify the name of the item:
+
+```{r}
+nodes <- html_nodes(webpage, ".item-heading .link")
+name <- html_text(nodes)
+str(name)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+head(name,20)
+```
+
+
+Now we identify the regular price:
+
+```{r}
+nodes <- html_nodes(webpage, ".regular")
+price <- html_text(nodes)
+price <- gsub("$","", price, fixed=TRUE)
+price <- as.numeric(price)
+str(price)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+head(price,20)
+```
+
+Lets make a data frame with the `name`, `sale`, `price` and `discount`: 
+
+```{r}
+discount <- round((price-sale)/price*100)
+df<-data.frame(name,sale,price, discount)
+head(df,20)
+tail(df,20)
+```
+
+Lets create a new data frame with the discounts sorted:
+
+```{r}
+dfnew <- df[order(df$discount),]
+names(dfnew)<-NULL
+head(dfnew,20)
+tail(dfnew,20)
+```
+
+Lets take a look at a histogram of the discounts:
+
+```{r}
+hist(discount)
+```
+
+```{r}
+range(discount)
+mean(discount)
+```
+
+```{r}
+plot(price, sale, pch=19)
+cor(price, sale)
+```
