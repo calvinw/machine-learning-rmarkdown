@@ -13,7 +13,7 @@ library("rvest")
 ```
 
 ```{r, include=F}
-ex<-F
+ex<-T
 ```
 
 We are going to read in a page at [https://www2.hm.com/en_us/sale/women/view-all.html](https://www2.hm.com/en_us/sale/women/view-all.html) and get the prices and sale prices on it:
