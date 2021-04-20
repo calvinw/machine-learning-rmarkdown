@@ -23,14 +23,14 @@ Use the selectorgadget to select the quotes on the page:
 
 ```{r}
 nodes <- html_nodes(webpage, ".text")
-text <- html_text(nodes)
-str(text,20)
+quotes <- html_text(nodes)
+str(quotes)
 ```
 
 Lets take a look at the first few values:
 
 ```{r}
-head(text,20)
+head(quotes)
 ```
 
 Next lets get the authors on the page:
@@ -38,11 +38,18 @@ Next lets get the authors on the page:
 ```{r}
 nodes <- html_nodes(webpage, ".author")
 author <- html_text(nodes)
-str(author,20)
+str(author)
 ```
 
 Lets take a look at the first few values:
 
 ```{r}
-head(author,20)
+head(author)
+```
+
+Lets make a dataframe with these columns:
+
+```{r}
+df<-data.frame(author,quotes)
+print(df)
 ```
