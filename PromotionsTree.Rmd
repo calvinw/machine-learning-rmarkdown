@@ -52,7 +52,6 @@ We hope that these predictors will help up predict the `demand`.
 To start we read the training data above from a csv file and print out its structore:
 
 ```{r}
-#trainurl<-"promotions.csv"
 trainurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTT6LcnhxE-mij5m5HHdLZ77YB1_teFiPUrM2uyafkGMUHs-zSKgylLnvgEOleRCB6jatqV1JjAczkp/pub?gid=0&single=true&output=csv"
 traindf<-read.csv(trainurl, stringsAsFactors=TRUE)
 str(traindf)
@@ -69,44 +68,6 @@ We will try to understand how to build up a decision tree for this example by ju
 
 First lets take a look at a simple model that uses just `promotion` to try to predict `demand`. 
 
-Suppose we decide to split on `promotion`. What will the leaf nodes look like? Since there are just 2 values for promotion, we can group all the rows where  `promotion` is "yes" together and all the rows where `promotion` is "no". 
-
-Here are the rows for leaf1, where `promotion` is "yes"
-
-```{r}
-leaf1<-traindf[traindf$promotion == "yes",]
-print(leaf1)
-```
-
-And here are the rows for leaf2, where `promotion` is "no"
-
-```{r}
-leaf2<-traindf[traindf$promotion == "no",]
-print(leaf2)
-```
-
-Lets look at the mean demand and standard deviation from the entire training set, then compare that to the mean and the standard deviation in each leaf node. The question here is if each leaf node is more pure given that we perform this split on `promotion`. 
-
-```{r}
-compare<-data.frame(train= c(mean(traindf$demand), sd(traindf$demand), nrow(traindf)), 
-		    leaf1= c(mean(leaf1$demand), sd(leaf1$demand), nrow(leaf1)), 
-		    leaf2= c(mean(leaf2$demand), sd(leaf2$demand), nrow(leaf2)))
-row.names(compare) <- c("mean", "std", "size")
-print(compare)
-```
-Next lets take the weighted average of the std deviation in leaf1 and the std deviation in leaf2. 
-
-```{r}
-n<- compare[3,1]
-n1<-compare[3,2]
-n2<-compare[3,3]
-sd1<-compare[2,2]
-sd2<-compare[2,3]
-# Take a weighted average of the std deviations of leaf1 and leaf2
-newsd <- (n1/n)*sd1 + (n2/n)*sd2 
-newsd 
-```
-
 So we are ready to see the predictions in each leaf node:
 
 ```{r}
@@ -120,45 +81,6 @@ Notice that the prediction in each leaf node is just the mean over the rows that
 ### Splitting on Markdown 
 
 Next lets look at a model that uses just `markdown` to try to predict `demand`:
-
-Here are the rows for leaf1, where `markdown` is "yes"
-
-```{r}
-leaf1<-traindf[traindf$markdown == "yes",]
-print(leaf1)
-```
-
-And here are the rows for leaf2, where `markdown` is "no"
-
-```{r}
-leaf2<-traindf[traindf$markdown == "no",]
-print(leaf2)
-```
-
-Here is the comparison of the entire training data and the std deviations in each node if we split on `markdown`:
-
-```{r}
-compare<-data.frame(train= c(mean(traindf$demand), sd(traindf$demand), nrow(traindf)), 
-		    leaf1= c(mean(leaf1$demand), sd(leaf1$demand), nrow(leaf1)), 
-		    leaf2= c(mean(leaf2$demand), sd(leaf2$demand), nrow(leaf2)))
-row.names(compare) <- c("mean", "std", "size")
-print(compare)
-```
-
-Once again we take the weighted average of the std deviation in leaf1 and the std deviation in leaf2. 
-
-```{r}
-n<- compare[3,1]
-n1<-compare[3,2]
-n2<-compare[3,3]
-sd1<-compare[2,2]
-sd2<-compare[2,3]
-# Take a weighted average of the std deviations of leaf1 and leaf2
-newsd <- (n1/n)*sd1 + (n2/n)*sd2 
-newsd 
-```
-
-Now lets do the model using just `markdown` and one node to predict `demand`:
 
 ```{r}
 control <- rpart.control(minbucket=1, maxdepth=1)
@@ -183,7 +105,6 @@ Next let's look at some data that we can use as a testing set. This data we will
 First we read the test set and look at its structure:
 
 ```{r}
-# testurl<-"promotions-test.csv"
 testurl<-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTT6LcnhxE-mij5m5HHdLZ77YB1_teFiPUrM2uyafkGMUHs-zSKgylLnvgEOleRCB6jatqV1JjAczkp/pub?gid=1414619388&single=true&output=csv"
 testdf<-read.csv(testurl, stringsAsFactors=TRUE)
 str(testdf)
@@ -193,34 +114,6 @@ And now print out the test set:
 
 ```{r}
 print(testdf)
-```
-
-### Testing `demand~markdown+promotion`
-
-Now we are ready to do some predictions using the test dataframe:
-
-```{r}
-pred <- predict(model3, newdata = testdf)
-str(pred)
-```
-
-So `pred` now holds our predictions.
-
-We can now compare those predictions (from our model) with the actual known results from the testing data. Here we are comparing how our model "predicted" on the test data with the "actual" outcomes that were included in the testing data. Here it is important that we know the actual outcomes on the testing data so we can see how we do. 
-
-Lets make a data frame that shows the prediction and the actuals: 
-
-```{r}
-comparedf <- data.frame(actual=testdf$demand, predictions=pred)
-print(comparedf)
-```
-
-Here is the MAPE, MAE and RMSE for our best model (model3):
-
-```{r}
-mape(testdf$demand, pred)
-mae(testdf$demand, pred)
-rmse(testdf$demand, pred)
 ```
 
 ### Testing `demand~promotion`
@@ -258,3 +151,32 @@ mape(testdf$demand, pred)
 mae(testdf$demand, pred)
 rmse(testdf$demand, pred)
 ```
+
+### Testing `demand~markdown+promotion`
+
+Now we are ready to do some predictions using the test dataframe:
+
+```{r}
+pred <- predict(model3, newdata = testdf)
+str(pred)
+```
+
+So `pred` now holds our predictions.
+
+We can now compare those predictions (from our model) with the actual known results from the testing data. Here we are comparing how our model "predicted" on the test data with the "actual" outcomes that were included in the testing data. Here it is important that we know the actual outcomes on the testing data so we can see how we do. 
+
+Lets make a data frame that shows the prediction and the actuals: 
+
+```{r}
+comparedf <- data.frame(actual=testdf$demand, predictions=pred)
+print(comparedf)
+```
+
+Here is the MAPE, MAE and RMSE for our best model (model3):
+
+```{r}
+mape(testdf$demand, pred)
+mae(testdf$demand, pred)
+rmse(testdf$demand, pred)
+```
+
