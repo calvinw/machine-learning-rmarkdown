@@ -55,8 +55,9 @@ print(df)
 ```
 
 ```{r}
-nodes <- html_nodes(webpage, "span a")
+nodes <- html_nodes(webpage, ".tags")
 tags <- html_text(nodes)
+tags<-trimws(tags)
 str(tags)
 ```
 
