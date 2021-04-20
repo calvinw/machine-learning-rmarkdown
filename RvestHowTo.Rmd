@@ -53,3 +53,22 @@ Lets make a dataframe with these columns:
 df<-data.frame(author,quotes)
 print(df)
 ```
+
+```{r}
+nodes <- html_nodes(webpage, "span a")
+tags <- html_text(nodes)
+str(tags)
+```
+
+Lets take a look at the first few values:
+
+```{r}
+head(tags)
+```
+
+Lets make a dataframe with these columns:
+
+```{r}
+df<-data.frame(author,quotes, tags)
+print(df)
+```
