@@ -7,7 +7,7 @@ jupyter:
     name: ir
 ---
 ```{r, include=FALSE}
-assignment<-FALSE
+assignment<-T
 ```
 
 ```{r echo=T, results='hide', message=F, warning=F}
@@ -21,10 +21,10 @@ url<-"https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops"
 webpage <- read_html(url)
 ```
 
-First lets look for the title:
 
+- Use the selector gadget selector for the title 
 ```{r, eval=FALSE, include=assignment}
-nodes <- html_nodes(webpage, PUT CODE HERE)
+nodes <- html_nodes(webpage, CODE)
 title<- html_text(nodes)
 str(title)
 ```
@@ -40,21 +40,22 @@ Lets see the first 20 titles in the what we got:
 head(title,20)
 ```
 
-Next lets look for the price:
-
+- Next use the selector gadget selector for the price: 
 ```{r, eval=FALSE, include=assignment}
-nodes <- html_nodes(webpage, PUT CODE HERE)
+nodes <- html_nodes(webpage, CODE)
 price <- html_text(nodes)
-price<-gsub("$", "", price, fixed=TRUE)
-price <- as.numeric(price)
 str(price)
 ```
 ```{r, eval=!assignment, include=!assignment}
 nodes <- html_nodes(webpage, ".price")
 price <- html_text(nodes)
+str(price)
+```
+
+- Next remove the \$ sign: 
+```{r, eval=!assignment}
 price<-gsub("$", "", price, fixed=TRUE)
 price <- as.numeric(price)
-str(price)
 ```
 
 Lets see the first 20 prices in the what we got:
@@ -63,10 +64,10 @@ Lets see the first 20 prices in the what we got:
 head(price,20)
 ```
 
-Next lets look for the description:
 
+- Next use the selector gadget selector for the description 
 ```{r, eval=FALSE, include=assignment}
-nodes <- html_nodes(webpage, PUT CODE HERE)
+nodes <- html_nodes(webpage, CODE)
 description<- html_text(nodes)
 str(description)
 ```
@@ -82,10 +83,10 @@ Lets see the first few descriptions in the what we got:
 head(description)
 ```
 
-Next get the number of reviews:
 
+- Next use the selector gadget selector for the number of reviews 
 ```{r, eval=FALSE, include=assignment}
-nodes <- html_nodes(webpage, PUT CODE HERE)
+nodes <- html_nodes(webpage, CODE)
 ratings<- html_text(nodes)
 str(ratings)
 ```
@@ -101,15 +102,15 @@ Lets see the first few descriptions in the what we got:
 head(ratings)
 ```
 
-Lets make a data frame with the `title`, `price`,`description` and `ratings`: 
-
+- Lets make a data frame with the `title`, `price`,`description` and `ratings`. 
+- print out the data frame using the code `knitr::kable(df)`. 
 ```{r, eval=FALSE, include=assignment}
-df <- PUT CODE HERE
-head(df)
+df <- data.frame(CODE, CODE, CODE, CODE) 
+knitr::kable(df)
 ```
 ```{r, eval=!assignment, include=!assignment}
 df<- data.frame(title, price, description, ratings) 
-head(df)
+knitr::kable(df)
 ```
 
 Lets take a look at the histogram of prices:
