@@ -1,0 +1,76 @@
+---
+title: "Webscraping Tradesy"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+Install rvest if needed and then load it:
+
+```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=7, repr.plot.height=7)
+knitr::opts_chunk$set(fig.width=7, fig.height=7)
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+  
+- Now read one of the pages for on-sale at tradesy:
+```{r}
+url <- "https://www.tradesy.com/on-sale/?page=1&num_per_page=191"
+webpage <- read_html(url)
+```
+  
+- Lets try to find the brand from the webpage using selector gadget:
+```{r}
+nodes <- html_nodes(webpage, ".item-tile__title-link .tdc-bold")
+brand <- html_text(nodes)
+brand<-trimws(brand)
+str(brand)
+```
+    
+
+- Let's use the `table` function to print out a frequency table (or tally) of the brands.
+```{r}
+table(brand)
+```
+    
+- Now let's use `barplot` to get a barplot of the frequency table from above. 
+```{r}
+barplot(table(brand), las=2, horiz=TRUE, main="Brands", cex.names=.5)
+```
+     
+- Now let's use use selector gadget to the the item title 
+```{r}
+nodes <- html_nodes(webpage, ".item-tile__title-link .tdc-ellipsis-text")
+title <- html_text(nodes)
+title<-trimws(title)
+str(title)
+```
+     
+- Now let's use use selector gadget to the the price 
+```{r}
+nodes <- html_nodes(webpage, ".item-tile__display-price--sale span:nth-child(1)")
+prices<- html_text(nodes)
+prices<-gsub(",","",prices)
+prices<-sub("$", "", prices, fixed=TRUE)
+#orig<-as.numeric(orig)
+#price<-gsub("\\s", "", price)
+#price<-sub("$", "", price, fixed=TRUE)
+#price<-as.numeric(price)
+prices<-as.numeric(prices)
+str(prices)
+```
+     
+- Now print out the prices and a histogram of prices 
+```{r}
+prices
+```
+     
+- Now print out a histogram of prices 
+```{r}
+hist(prices, xlab="prices", breaks=20, main="Prices")
+```

@@ -1,0 +1,114 @@
+---
+title: "Discounts on Poshmark"
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+output:
+    ipynbdocument::ipynb_document
+---
+
+```{r echo=T, results='hide', message=F, warning=F}
+options(repr.plot.width=6, repr.plot.height=6)
+knitr::opts_chunk$set(fig.width=6, fig.height=6)
+if (!require("rvest")) install.packages("rvest")
+library("rvest")
+```
+
+Here we will show how to do webscraping with rvest and the chrome extension selector gadget. This technique is borrowed from the great explanation at: [Online Bargin Hunting in R with rvest](https://jef.works/blog/2019/01/12/online-bargain-hunting-in-R-with-rvest/) and is basically a simplified version of that description
+
+So say we want to pull some data from [http://poshmark.com](http://poshmark.com) and compare original prices with the current price, maybe to find excellent bargins. We will look in the category Jackets and Coats-Blazers, and we will just use the data we find on the first page: 
+
+```{r}
+url <- 'https://poshmark.com/category/Women-Jackets_&_Coats-Blazers?max_id=1'
+webpage <- read_html(url)
+```
+
+We just pull the webpage once, then we look for our fields using that pulled page.
+
+Lets look for the title of the item first;
+
+```{r}
+nodes<- html_nodes(webpage,'.tc--b')
+title <- html_text(nodes)
+# This removes some weird non-ascii chars in the title
+title <- iconv(title, to="ASCII", sub="")
+title<-trimws(title)
+str(title)
+head(title, 10)
+```
+
+Next we look for the prices:
+
+```{r}
+nodes <- html_nodes(webpage,'.fw--bold')
+price <- html_text(nodes)
+price <- trimws(price)
+price<-gsub("$","",price, fixed=TRUE)
+#price<-gsub("\u00A0.*","",price)
+price<-gsub(",","", price, fixed=TRUE)
+price<-as.numeric(price)
+str(price)
+head(price, 10)
+```
+
+Now lets look for the original price:
+
+```{r}
+#knitr::knit_exit()
+nodes <- html_nodes(webpage,'.td--lt')
+original <- html_text(nodes)
+original <- trimws(original)
+original<-gsub("$","",original, fixed=TRUE)
+original<-gsub(",","",original, fixed=TRUE)
+original<-as.numeric(original)
+str(original)
+head(original, 10)
+```
+For our discount analysis we exclude the data where the original is 0:
+
+```{r}
+price <- price[original > 0]
+title <- title[original > 0]
+original <- original[original > 0]
+```
+
+Lets compute the discount for each item:
+
+```{r}
+discount <- round(100*(original - price)/original)
+```
+
+Now lets make a dataframe of the info we have:
+
+```{r}
+df <-data.frame(title, price, original, discount)
+df[,c("title","original","discount")]
+```
+
+Now lets see the distribution of discounts people are offering:
+
+```{r}
+discount
+hist(discount)
+mean(discount)
+range(discount)
+```
+
+Now lets see the distribution of original prices:
+
+```{r}
+original
+hist(original)
+mean(original)
+range(original)
+```
+
+Here is a plot of the original vs the offering price:
+
+```{r}
+plot(original,price, pch=19)
+cor(original, price)
+```
+
