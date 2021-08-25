@@ -1,309 +1,284 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-  <link href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <style> 
-	body, html {
-	  width: 100%;
-	  height: 100%;
-	  overflow: hidden;
-	}
-	#inspire > div > main > div > div {
-	    padding: 0;
-	}
-	iframe {
-	  width: 100%;
-	  height: 100%;
-	  border: none;
-	}
-  </style> 
-</head>
-<body>
-  <div id="app">
-  <v-app id="inspire">
-    <v-navigation-drawer fixed v-model="drawer" app >
-  <v-treeview ref="mytreeview" activatable :items="items" :active.sync="active">
-      <template v-slot:prepend="{item}">
-	  <v-icon v-if="!item.file">
-	    mdi-folder
-	  </v-icon>
-	  <v-icon v-else>
-	    {{ files[item.file] }}
-	  </v-icon>
-      </template>
-      <template v-slot:label="{item}">
-	    {{item.name}}
-      </template>
-  </v-treeview>
-  <br>
-  <p class=body-2>Go to the <a href="https://gitlab.com/calvinw/machine-learning-rmarkdown">Gitlab Repo</a> for this page. </p>
-  <br>
-    </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title> {{title}}</v-toolbar-title>
-    </v-toolbar>
-    <v-content>
-      <v-container fluid fill-height fill-width>
-        <v-layout justify-center align-center >
-	   <iframe id="theIframe" :key="key" :src="page"></iframe>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
-  </div>
-    <script> 
-var filesList = [
-"AssignmentNotebook.Rmd",
-"BakerySales.Rmd",
-"BicycleRentals.Rmd",
-"Calculator.Rmd",
-"ConfusionMatrixExamples.Rmd",
-"ConfusionMatrixQuestion.Rmd",
-"ConfusionMatrix.Rmd",
-"CustomerSpend.Rmd",
-"DataFrameManipulations.Rmd",
-"DataFrames.Rmd",
-"DataTypes.Rmd",
-"Elasticity.Rmd",
-"ErrorsExamples.Rmd",
-"ErrorsQuestion.Rmd",
-"Factors.Rmd",
-"HotChoc.Rmd",
-"IceCreamSales.Rmd",
-"KMeans.Rmd",
-"Lists.Rmd",
-"MeasuringErrors.Rmd",
-"Multicollinearity.Rmd",
-"Mysteria.Rmd",
-"PromotionForecasting.Rmd",
-"PromotionsQuestion.Rmd",
-"PromotionsTree.Rmd",
-"PurchasedKnn.Rmd",
-"Purchased.Rmd",
-"RBasicsAndDataFrames.Rmd",
-"RegressionTreePromotions.Rmd",
-"RentTheRunway.Rmd",
-"Restaurant.Rmd",
-"RExercises.Rmd",
-"RvestHowTo.Rmd",
-"SalesNewspaperRadioAds.Rmd",
-"SatisfactionLoyalty.Rmd",
-"Sequences.Rmd",
-"Simple.Rmd",
-"Strings.Rmd",
-"Subscriptions.Rmd",
-"Subsetting.Rmd",
-"SunflowerStoreSales.Rmd",
-"TShirtsQuestion.Rmd",
-"TShirts.Rmd",
-"Variables.Rmd",
-"Vectors.Rmd",
-"WebscrapeLaptops.Rmd"
-];
 
-function makeData() {
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-    var id = 10;
-    var filesArray = [];
-    var colabsArray = [];
-    var jupyterArray = [];
 
-    for(f of filesList){
 
-      var name = f.substring(0, f.indexOf(".Rmd"));
 
-      var htmlFile = name + '.html'
-      var rmdFile = name + '.Rmd'
-      var pdfFile = name + '.pdf'
-      var ipynbFile = name + '.ipynb'
-	
-	var fileItem = {
-	  id: id++,
-	  name: name,
-	  children: [
-	    { id: id++, name: rmdFile, file: 'Rmd' },
-	    { id: id++, name: htmlFile, file: 'html' },
-	    { id: id++, name: pdfFile, file: 'pdf'},
-	    { id: id++, name: ipynbFile, file: 'ipynb'}
-	  ]
-	};
+<title>index.knit</title>
 
-	filesArray.push(fileItem);
+<script src="index_files/header-attrs-2.10/header-attrs.js"></script>
+<script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="index_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="index_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="index_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="index_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="index_files/navigation-1.1/tabsets.js"></script>
+<link href="index_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="index_files/highlightjs-9.12.0/highlight.js"></script>
 
-	var colabItem = {
-	     id: id++, 
-	     name: name, 
-	     file: 'colab'
-	};
-	colabsArray.push(colabItem);
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
-	var jupyterItem = {
-	     id: id++, 
-	     name: name, 
-	     file: 'jupyter'
-	};
-	jupyterArray.push(jupyterItem);
-    }
-
-    let myJson = [ 
-	{ 
-	    id: 1,
-	    name: "Files",
-	    children: filesArray 
-	},
-	{
-	    id: 2,
-	    name: "Colab Links",
-	    children: colabsArray 
-	},
-	{
-	    id: 3,
-	    name: "Jupyter Links",
-	    children: jupyterArray 
-	},
-    ];
-    //console.log(JSON.stringify(myJson, null, 2));
-
-    return myJson; 
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
-    </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2.2.0/dist/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
-
-  <script>
-    let vm = new Vue({
-      el: '#app',
-	  created: function () {
-	      console.log("in the created function");
-
-	      var self = this;
-		self.items = makeData(); 
+</script>
 
 
-	  },
-	methods: { 
-	    isLocalhost: function() {
-		    if( location.hostname === '' ||
-		        location.hostname === 'localhost' ||
-			location.hostname === '127.0.0.1') 
-			return true;
-		    else 
-			return false;
-	    },
-	    localhostUrl: function() {
-		    let url = null; 
-		    if(location.hostname === '') {
-			url = "";
-		    }
-		    else if(location.hostname === 'localhost') {
-		       url = "http://localhost:3000/"
-		    }
-		    else if(location.hostname === "127.0.0.1") {
-		       url = "http://127.0.0.1:3000/"
-		    }
-		return url;
-	    },
-	    findItemById: function(id, children){
-		for(let i=0; i<children.length; i++) {
-		    let item = children[i];
-		    if(item.id === id)
-			return item;
-		    else {
-			if(item.hasOwnProperty("children")){
-			    let found = this.findItemById(id, item.children)
-			    if(found) 
-				return found; 
-			}
-		    }
-		}
-		return null;
-	    }
-	},
-	computed: {
-	    title: function() {
-		if(this.page === "opensInOtherWindow.html")
-		    return "";
-		else
-		    return this.page;
-	    },
-	    page: function() {
-		console.log("updating page !!!");
-		if(this.active.length ===1) {
-		    console.log("updating url: this.active[0] is: "+this.active[0]);
-		    let id = this.active[0];
-		    console.log("this.active[0] is: " + this.active[0]);
 
-		    let item = this.findItemById(id, this.items);
 
-		    let filename = item.name;
-		    const ext = item.file;
-		    //const ext = filename.substring(filename.lastIndexOf('.')+1, filename.length)
-		    console.log("hostname is " + location.hostname);
 
-		    //Try to determine if we are running in development mode 
-		    let productionUrl = "https://calvinw.gitlab.io/machine-learning-rmarkdown/"
-		    if (ext === "Rmd" || 
-			     ext === "html" ||
-			     ext === "pdf" ||
-			     ext === "ipynb")
-		    
-		    {
-			if(this.isLocalhost()) {
-			    let localhostUrl = this.localhostUrl();
-			    return localhostUrl + filename;
-			}
-			else {
-			    return productionUrl + filename;
-			}
-		    }
-		    else if(ext === "colab") {
-			let baseUrl = "https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/";
-			let url = baseUrl + item.name + ".ipynb"; 
-			window.open(url, "_blank")
-		        return "opensInOtherWindow.html";
-		    }
-		    else if(ext === "jupyter") {
-			let baseUrl = "https://nbviewer.jupyter.org/github/calvinw/machine-learning-rmarkdown/blob/master/"
-			let url = baseUrl + item.name + ".ipynb"; 
-			window.open(url, "_blank")
-		        return "opensInOtherWindow.html";
-		    }
-		}
-		else {
-		    console.log("updating page to null string");
-		    return "";
-		}
-	    }
-	},
-     watch: {
-	 items: function(val) {
-	      // this.$nextTick(() => {
-		//    this.$refs.mytreeview.updateAll(true);
-	      // });
-	 }
-     },
-     data: () => ({
-	  ipythonMode: "colab",
-	  drawer: null,
-	  key: null,
-	  active: [],
-	  files: {
-	    html: 'mdi-file-xml',
-	    Rmd: 'mdi-markdown',
-	    pdf: 'mdi-file-pdf',
-	    ipynb: 'mdi-file',
-	    colab: 'mdi-open-in-new',
-	    jupyter: 'mdi-open-in-new'
-	  },
-	 items: [] 
-	})
-    })
-  </script>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p>Notebooks Accuracy <a href="Accuracy.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Accuracy.ipynb">colab</a> <a href="Accuracy.Rmd">Rmd</a></p>
+<p>AccuracyInClass <a href="AccuracyInClass.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/AccuracyInClass.ipynb">colab</a> <a href="AccuracyInClass.Rmd">Rmd</a></p>
+<p>AssignmentNotebook <a href="AssignmentNotebook.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/AssignmentNotebook.ipynb">colab</a> <a href="AssignmentNotebook.Rmd">Rmd</a></p>
+<p>BakerySales <a href="BakerySales.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/BakerySales.ipynb">colab</a> <a href="BakerySales.Rmd">Rmd</a></p>
+<p>Basics <a href="Basics.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Basics.ipynb">colab</a> <a href="Basics.Rmd">Rmd</a></p>
+<p>BicycleRentals <a href="BicycleRentals.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/BicycleRentals.ipynb">colab</a> <a href="BicycleRentals.Rmd">Rmd</a></p>
+<p>Boolean <a href="Boolean.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Boolean.ipynb">colab</a> <a href="Boolean.Rmd">Rmd</a></p>
+<p>Calculator <a href="Calculator.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Calculator.ipynb">colab</a> <a href="Calculator.Rmd">Rmd</a></p>
+<p>ConfusionMatrix <a href="ConfusionMatrix.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/ConfusionMatrix.ipynb">colab</a> <a href="ConfusionMatrix.Rmd">Rmd</a></p>
+<p>ConfusionMatrixExamples <a href="ConfusionMatrixExamples.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/ConfusionMatrixExamples.ipynb">colab</a> <a href="ConfusionMatrixExamples.Rmd">Rmd</a></p>
+<p>ConfusionMatrixQuestion <a href="ConfusionMatrixQuestion.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/ConfusionMatrixQuestion.ipynb">colab</a> <a href="ConfusionMatrixQuestion.Rmd">Rmd</a></p>
+<p>CustomerSpend <a href="CustomerSpend.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/CustomerSpend.ipynb">colab</a> <a href="CustomerSpend.Rmd">Rmd</a></p>
+<p>DataFrameManipulations <a href="DataFrameManipulations.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DataFrameManipulations.ipynb">colab</a> <a href="DataFrameManipulations.Rmd">Rmd</a></p>
+<p>DataFrames <a href="DataFrames.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DataFrames.ipynb">colab</a> <a href="DataFrames.Rmd">Rmd</a></p>
+<p>DataFramesInClass <a href="DataFramesInClass.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DataFramesInClass.ipynb">colab</a> <a href="DataFramesInClass.Rmd">Rmd</a></p>
+<p>DataTypes <a href="DataTypes.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DataTypes.ipynb">colab</a> <a href="DataTypes.Rmd">Rmd</a></p>
+<p>DataTypesInClass <a href="DataTypesInClass.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DataTypesInClass.ipynb">colab</a> <a href="DataTypesInClass.Rmd">Rmd</a></p>
+<p>DecisionTrees <a href="DecisionTrees.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DecisionTrees.ipynb">colab</a> <a href="DecisionTrees.Rmd">Rmd</a></p>
+<p>DiamondsCaratClarity <a href="DiamondsCaratClarity.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DiamondsCaratClarity.ipynb">colab</a> <a href="DiamondsCaratClarity.Rmd">Rmd</a></p>
+<p>DiamondsXYZ <a href="DiamondsXYZ.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/DiamondsXYZ.ipynb">colab</a> <a href="DiamondsXYZ.Rmd">Rmd</a></p>
+<p>Elasticity <a href="Elasticity.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Elasticity.ipynb">colab</a> <a href="Elasticity.Rmd">Rmd</a></p>
+<p>ErrorsExamples <a href="ErrorsExamples.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/ErrorsExamples.ipynb">colab</a> <a href="ErrorsExamples.Rmd">Rmd</a></p>
+<p>ErrorsQuestion <a href="ErrorsQuestion.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/ErrorsQuestion.ipynb">colab</a> <a href="ErrorsQuestion.Rmd">Rmd</a></p>
+<p>Factors <a href="Factors.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Factors.ipynb">colab</a> <a href="Factors.Rmd">Rmd</a></p>
+<p>HotChoc <a href="HotChoc.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/HotChoc.ipynb">colab</a> <a href="HotChoc.Rmd">Rmd</a></p>
+<p>IceCreamSales <a href="IceCreamSales.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/IceCreamSales.ipynb">colab</a> <a href="IceCreamSales.Rmd">Rmd</a></p>
+<p>KMeans <a href="KMeans.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/KMeans.ipynb">colab</a> <a href="KMeans.Rmd">Rmd</a></p>
+<p>Lists <a href="Lists.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Lists.ipynb">colab</a> <a href="Lists.Rmd">Rmd</a></p>
+<p>MagicFizz <a href="MagicFizz.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/MagicFizz.ipynb">colab</a> <a href="MagicFizz.Rmd">Rmd</a></p>
+<p>MeasuringErrors <a href="MeasuringErrors.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/MeasuringErrors.ipynb">colab</a> <a href="MeasuringErrors.Rmd">Rmd</a></p>
+<p>MoreCalculator <a href="MoreCalculator.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/MoreCalculator.ipynb">colab</a> <a href="MoreCalculator.Rmd">Rmd</a></p>
+<p>MoreVariables <a href="MoreVariables.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/MoreVariables.ipynb">colab</a> <a href="MoreVariables.Rmd">Rmd</a></p>
+<p>Multicollinearity <a href="Multicollinearity.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Multicollinearity.ipynb">colab</a> <a href="Multicollinearity.Rmd">Rmd</a></p>
+<p>Mysteria <a href="Mysteria.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Mysteria.ipynb">colab</a> <a href="Mysteria.Rmd">Rmd</a></p>
+<p>PromotionForecasting <a href="PromotionForecasting.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/PromotionForecasting.ipynb">colab</a> <a href="PromotionForecasting.Rmd">Rmd</a></p>
+<p>PromotionsQuestion <a href="PromotionsQuestion.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/PromotionsQuestion.ipynb">colab</a> <a href="PromotionsQuestion.Rmd">Rmd</a></p>
+<p>PromotionsTree <a href="PromotionsTree.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/PromotionsTree.ipynb">colab</a> <a href="PromotionsTree.Rmd">Rmd</a></p>
+<p>Purchased <a href="Purchased.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Purchased.ipynb">colab</a> <a href="Purchased.Rmd">Rmd</a></p>
+<p>PurchasedKnn <a href="PurchasedKnn.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/PurchasedKnn.ipynb">colab</a> <a href="PurchasedKnn.Rmd">Rmd</a></p>
+<p>RBasicsAndDataFrames <a href="RBasicsAndDataFrames.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/RBasicsAndDataFrames.ipynb">colab</a> <a href="RBasicsAndDataFrames.Rmd">Rmd</a></p>
+<p>RegressionTreePromotions <a href="RegressionTreePromotions.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/RegressionTreePromotions.ipynb">colab</a> <a href="RegressionTreePromotions.Rmd">Rmd</a></p>
+<p>RentTheRunway <a href="RentTheRunway.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/RentTheRunway.ipynb">colab</a> <a href="RentTheRunway.Rmd">Rmd</a></p>
+<p>Restaurant <a href="Restaurant.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Restaurant.ipynb">colab</a> <a href="Restaurant.Rmd">Rmd</a></p>
+<p>RExercises <a href="RExercises.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/RExercises.ipynb">colab</a> <a href="RExercises.Rmd">Rmd</a></p>
+<p>RvestHM <a href="RvestHM.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/RvestHM.ipynb">colab</a> <a href="RvestHM.Rmd">Rmd</a></p>
+<p>RvestHowTo <a href="RvestHowTo.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/RvestHowTo.ipynb">colab</a> <a href="RvestHowTo.Rmd">Rmd</a></p>
+<p>SalesNewspaperRadioAds <a href="SalesNewspaperRadioAds.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/SalesNewspaperRadioAds.ipynb">colab</a> <a href="SalesNewspaperRadioAds.Rmd">Rmd</a></p>
+<p>SatisfactionLoyalty <a href="SatisfactionLoyalty.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/SatisfactionLoyalty.ipynb">colab</a> <a href="SatisfactionLoyalty.Rmd">Rmd</a></p>
+<p>Sequences <a href="Sequences.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Sequences.ipynb">colab</a> <a href="Sequences.Rmd">Rmd</a></p>
+<p>Simple <a href="Simple.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Simple.ipynb">colab</a> <a href="Simple.Rmd">Rmd</a></p>
+<p>Strings <a href="Strings.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Strings.ipynb">colab</a> <a href="Strings.Rmd">Rmd</a></p>
+<p>Subscriptions <a href="Subscriptions.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Subscriptions.ipynb">colab</a> <a href="Subscriptions.Rmd">Rmd</a></p>
+<p>Subsetting <a href="Subsetting.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Subsetting.ipynb">colab</a> <a href="Subsetting.Rmd">Rmd</a></p>
+<p>SunflowerStoreSales <a href="SunflowerStoreSales.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/SunflowerStoreSales.ipynb">colab</a> <a href="SunflowerStoreSales.Rmd">Rmd</a></p>
+<p>TrainingTesting <a href="TrainingTesting.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/TrainingTesting.ipynb">colab</a> <a href="TrainingTesting.Rmd">Rmd</a></p>
+<p>TShirts <a href="TShirts.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/TShirts.ipynb">colab</a> <a href="TShirts.Rmd">Rmd</a></p>
+<p>TShirtsDecisionTree <a href="TShirtsDecisionTree.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/TShirtsDecisionTree.ipynb">colab</a> <a href="TShirtsDecisionTree.Rmd">Rmd</a></p>
+<p>TwoProducts <a href="TwoProducts.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/TwoProducts.ipynb">colab</a> <a href="TwoProducts.Rmd">Rmd</a></p>
+<p>Variables <a href="Variables.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Variables.ipynb">colab</a> <a href="Variables.Rmd">Rmd</a></p>
+<p>VariablesHW <a href="VariablesHW.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/VariablesHW.ipynb">colab</a> <a href="VariablesHW.Rmd">Rmd</a></p>
+<p>Vectors-HW <a href="Vectors-HW.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Vectors-HW.ipynb">colab</a> <a href="Vectors-HW.Rmd">Rmd</a></p>
+<p>Vectors <a href="Vectors.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/Vectors.ipynb">colab</a> <a href="Vectors.Rmd">Rmd</a></p>
+<p>VectorsInClass <a href="VectorsInClass.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/VectorsInClass.ipynb">colab</a> <a href="VectorsInClass.Rmd">Rmd</a></p>
+<p>WebscrapeHM <a href="WebscrapeHM.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/WebscrapeHM.ipynb">colab</a> <a href="WebscrapeHM.Rmd">Rmd</a></p>
+<p>WebscrapeLaptops <a href="WebscrapeLaptops.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/WebscrapeLaptops.ipynb">colab</a> <a href="WebscrapeLaptops.Rmd">Rmd</a></p>
+<p>WebscrapeTradesy <a href="WebscrapeTradesy.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/WebscrapeTradesy.ipynb">colab</a> <a href="WebscrapeTradesy.Rmd">Rmd</a></p>
+<p>WebscrapingPoshmark <a href="WebscrapingPoshmark.html">html</a> <a href="https://colab.research.google.com/github/calvinw/machine-learning-rmarkdown/blob/master/WebscrapingPoshmark.ipynb">colab</a> <a href="WebscrapingPoshmark.Rmd">Rmd</a></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
 </body>
 </html>

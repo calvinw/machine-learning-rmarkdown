@@ -20,8 +20,7 @@ pages:
   - Rscript -e "install.packages('Metrics')"
   - make
   - mkdir .public
-  - cp -r *.Rmd *.html *.ipynb *.pdf .public
-  - rm .public/header.html
+  - cp -r *.Rmd *.html *.ipynb .public
   - mv .public public
 
   artifacts:

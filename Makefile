@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
-#SOURCES=$(shell find . -name "*.Rmd")
-SOURCES=$(wildcard *.Rmd)
+SOURCES:=$(wildcard *.Rmd)
+SOURCES:=$(filter-out index.Rmd, $(SOURCES))
 
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
@@ -10,7 +10,7 @@ all : html ipynb
 	@echo All files are now up to date
 
 clean :
-	@echo Removing html, pdf, files...	
+	@echo Removing files...	
 	rm -f $(HTML_FILES) $(PDF_FILES) $(IPYNB_FILES)
 	rm -rf *_files
 
@@ -22,7 +22,7 @@ ipynb  : $(IPYNB_FILES)
 
 %.html : %.Rmd
 	@Rscript -e 'library(knitr); library(rmarkdown)' \
-	         -e 'render("$<","html_document")'
+	         -e 'render("$<", "html_document", output_options=list(self_contained=F))'
 
 %.pdf : %.Rmd
 	@Rscript -e 'library(knitr); library(rmarkdown)' \
