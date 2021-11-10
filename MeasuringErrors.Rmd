@@ -12,6 +12,10 @@ if (!require("Metrics")) install.packages("Metrics")
 library("Metrics")
 ```
 
+```{r include=F}
+ex<-T
+```
+
 We need to look at ways to measure how far off the predictions from our models are from our actuals. In this document we examine what to do if what we are trying to predict is quantitative (so a number). We will look at classification errors (true/false etc) in another document.     
 
 One reason we need to measure errors is to be able to determine what the best model is in machine learning or predictive analytics. When there are several different models possible, which one is the best?    
@@ -36,7 +40,10 @@ Here the actuals and predictions are numbers and we would like to see how far of
 
 Lets create a data frame with the actuals and predictions:
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 actuals <- c(11,27,30,13,25)
 predictions <- c(12,23,32,15,22)
 compare<-data.frame(actuals=actuals,
@@ -50,7 +57,10 @@ Lets find the mean absolute error (MAE) for a prediction and some actuals. This 
 
 We will use the function `mae` from the Metrics package. Actuals go first into this function and then the predictions are second:
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 mae(actuals, predictions)
 ```
 
@@ -60,7 +70,10 @@ This tells us the average error we make by using our model to predict with.
 
 Next let's find the mean absolute percentage error (MAPE) for a prediction and some actuals:
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 mape(actuals, predictions)
 ```
 
@@ -71,7 +84,10 @@ This tells us on average how far off percentage wise the prediction is from the 
 This is an error measure that involves averaging the squares of the errors and then taking a square root: 
 
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```
+```{r include=!ex}
 rmse(actuals, predictions)
 ```
 
@@ -91,7 +107,10 @@ Now suppose we have a new model with these predictions:
 |     13  |     19     |
 |     25  |     22     |
 
-```{r}
+
+```{r include=ex, eval=F}
+CODE
+```{r include=!ex}
 actuals <- c(11,27,30,13,25)
 predictions <- c(13,24,31,19,22)
 compare<-data.frame(actuals=actuals,
@@ -103,19 +122,25 @@ How does this compare to the previous model?
 
 ### Mean Absolute Error (MAE)
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```{r include=!ex}
 mae(actuals, predictions)
 ```
 
 ### Mean Absolute Percentage Error (MAPE)
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```{r include=!ex}
 mape(actuals, predictions)
 ```
 
 ### Root Mean Square Error (RMSE)
 
-```{r}
+```{r include=ex, eval=F}
+CODE
+```{r include=!ex}
 rmse(actuals, predictions)
 ```
 
