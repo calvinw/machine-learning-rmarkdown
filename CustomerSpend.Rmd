@@ -66,7 +66,7 @@ Another quote from the website:
 > -  Cluster 2: Low income, low annual spend
 > -  Cluster 3: High income, high annual spend
 > -  Cluster 4: Low income, high annual spend
-> -  Cluster 5: Medium income, low annual spend
+> -  Cluster 5: Medium income, high annual spend
 > -  Cluster 6: Very high income, high annual spend
 
 >Thus it is evident that 6 clusters provides a more meaningful segmentation of the customers.
@@ -80,5 +80,5 @@ A typical strategy would focus certain promotional efforts for the high value cu
 
 >For Cluster 2 where both the income and annual spend are low, further analysis could be needed to find the reasons for the lower spend and price-sensitive strategies could be introduced to increase the spend from this segment.
 
->Customers in clusters 1 and 5 are not spending enough on the site in spite of a good annual income — further analysis of these segments could lead to insights on the satisfaction / dissatisfaction of these customers or lesser visibility of the e-commerce site to these customers. Strategies could be evolved accordingly.
+>Customers in Cluster 1 are not spending enough on the site in spite of a good annual income — further analysis of this segment could lead to insights on the satisfaction / dissatisfaction of these customers or lesser visibility of the e-commerce site to these customers. Strategies could be evolved accordingly.
 
