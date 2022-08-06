@@ -5,7 +5,7 @@ SOURCES:=$(filter-out index.Rmd, $(SOURCES))
 HTML_FILES = $(SOURCES:%.Rmd=%.html)
 IPYNB_FILES = $(SOURCES:%.Rmd=%.ipynb)
 
-all : html
+all : html ipynb
 	@echo All files are now up to date
 
 clean :
