@@ -5,13 +5,10 @@ pages:
   script:
   - apt-get update
   - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev
-  - wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
-  - wget "https://github.com/jgm/pandoc/releases/download/2.9.1/pandoc-2.9.1-1-amd64.deb"
-  - dpkg -i pandoc-2.9.1-1-amd64.deb
+  - wget "https://github.com/quarto-dev/quarto-cli/releases/download/v1.0.38/quarto-1.0.38-linux-amd64.deb"
+  - dpkg -i quarto-1.0.38-linux-amd64.deb
   - Rscript -e "install.packages('knitr')"
   - Rscript -e "install.packages('rmarkdown')"
-  - Rscript -e "install.packages('remotes')"
-  - Rscript -e "remotes::install_gitlab('calvinw/ipynbdocument')"
   - Rscript -e "install.packages('rvest')"
   - Rscript -e "install.packages('RCurl')"
   - Rscript -e "install.packages('rpart')"

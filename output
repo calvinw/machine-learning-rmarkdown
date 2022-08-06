@@ -1,68 +1,48 @@
-AccuracyInClass.Rmd
-Accuracy.Rmd
-AssignmentNotebook.Rmd
-BakerySales.Rmd
-Basics.Rmd
-BicycleRentals.Rmd
-Boolean.Rmd
-Calculator.Rmd
-ConfusionMatrixExamples.Rmd
-ConfusionMatrixQuestion.Rmd
-ConfusionMatrix.Rmd
-CustomerSpend.Rmd
-DataFrameManipulations.Rmd
-DataFramesInClass.Rmd
-DataFrames.Rmd
-DataTypesInClass.Rmd
-DataTypes.Rmd
-DecisionTrees.Rmd
-DiamondsCaratClarity.Rmd
-DiamondsXYZ.Rmd
-Elasticity.Rmd
-ErrorsExamples.Rmd
-ErrorsQuestion.Rmd
-Factors.Rmd
-HotChoc.Rmd
-IceCreamSales.Rmd
-index.Rmd
-KMeans.Rmd
-Lists.Rmd
-MagicFizz.Rmd
-MeasuringErrors.Rmd
-MoreCalculator.Rmd
-MoreVariables.Rmd
-Multicollinearity.Rmd
-Mysteria.Rmd
-PromotionForecasting.Rmd
-PromotionsQuestion.Rmd
-PromotionsTree.Rmd
-PurchasedKnn.Rmd
-Purchased.Rmd
-RBasicsAndDataFrames.Rmd
-RegressionTreePromotions.Rmd
-RentTheRunway.Rmd
-Restaurant.Rmd
-RExercises.Rmd
-RvestHM.Rmd
-RvestHowTo.Rmd
-SalesNewspaperRadioAds.Rmd
-SatisfactionLoyalty.Rmd
-Sequences.Rmd
-Simple.Rmd
-Strings.Rmd
-Subscriptions.Rmd
-Subsetting.Rmd
-SunflowerStoreSales.Rmd
-TrainingTesting.Rmd
-TShirtsDecisionTree.Rmd
-TShirts.Rmd
-TwoProducts.Rmd
-VariablesHW.Rmd
-Variables.Rmd
-Vectors-HW.Rmd
-VectorsInClass.Rmd
-Vectors.Rmd
-WebscrapeHM.Rmd
-WebscrapeLaptops.Rmd
-WebscrapeTradesy.Rmd
-WebscrapingPoshmark.Rmd
+
+  [1mUsage:[22m   [35mquarto render [input:string] [...args][39m
+  [1mVersion:[22m [33m0.9.183                               
+           [39m                                      
+
+  [1mDescription:[22m
+
+    Render input file(s) to various document types.
+
+  [1mOptions:[22m
+
+    [34m-h[39m, [34m--help[39m                          [31m[1m-[22m[39m Show this help.                                                   
+    [34m-t[39m, [34m--to[39m                            [31m[1m-[22m[39m Specify output format(s).                                         
+    [34m-o[39m, [34m--output[39m                        [31m[1m-[22m[39m Write output to FILE (use '--output -' for stdout).               
+    [34m--output-dir[39m                        [31m[1m-[22m[39m Write project output to DIR (path is project relative)            
+    [34m--execute[39m                           [31m[1m-[22m[39m Execute code (--no-execute to skip execution).                    
+    [34m-P[39m, [34m--execute-param[39m                 [31m[1m-[22m[39m Execution parameter (KEY:VALUE).                                  
+    [34m--execute-params[39m                    [31m[1m-[22m[39m YAML file with execution parameters.                              
+    [34m--execute-dir[39m                       [31m[1m-[22m[39m Working directory for code execution.                             
+    [34m--execute-daemon[39m                    [31m[1m-[22m[39m Keep Jupyter kernel alive (defaults to 300 seconds).              
+    [34m--execute-daemon-restart[39m            [31m[1m-[22m[39m Restart keepalive Jupyter kernel before render.                   
+    [34m--execute-debug[39m                     [31m[1m-[22m[39m Show debug output for Jupyter kernel.                             
+    [34m--use-freezer[39m                       [31m[1m-[22m[39m Force use of frozen computations for an incremental file render.  
+    [34m--cache[39m                             [31m[1m-[22m[39m Cache execution output (--no-cache to prevent cache).             
+    [34m--cache-refresh[39m                     [31m[1m-[22m[39m Force refresh of execution cache.                                 
+    [34m--no-clean[39m                          [31m[1m-[22m[39m Do not clean project output-dir prior to render                   
+    [34m--debug[39m                             [31m[1m-[22m[39m Leave intermediate files in place after render.                   
+    [34mpandoc-args...[39m                      [31m[1m-[22m[39m Additional pandoc command line arguments.                         
+    [34m--log[39m                     [33m<[39m[35mlevel[39m[33m>[39m   [31m[1m-[22m[39m Path to log file                                                  
+    [34m--log-level[39m               [33m<[39m[35mlevel[39m[33m>[39m   [31m[1m-[22m[39m Log level (info, warning, error, critical)                        
+    [34m--log-format[39m              [33m<[39m[35mformat[39m[33m>[39m  [31m[1m-[22m[39m Log format (plain, json-stream)                                   
+    [34m--quiet[39m                             [31m[1m-[22m[39m Suppress console output.                                          
+
+  [1mCommands:[22m
+
+    [34mhelp[39m  [33m[[39m[35mcommand[39m[33m][39m  [31m[1m-[22m[39m Show this help or the help of a sub-command.
+
+  [1mExamples:[22m
+
+    [2m[1mRender Markdown (w/ Knitr engine):[2m[22m   quarto render notebook.Rmd                                     
+                                         quarto render notebook.Rmd --to html                           
+                                         quarto render notebook.Rmd --to pdf --toc                      
+    [2m[1mRender Markdown (w/ Jupyter engine):[2m[22m quarto render notebook.qmd                                     
+                                         quarto render notebook.qmd --to docx --highlight-style=espresso
+    [2m[1mRender Jupyter Notebook:[2m[22m             quarto render notebook.ipynb --to docx                         
+                                         quarto render notebook.ipynb --to pdf --toc                    
+    [2m[1mRender to Standard Output:[2m[22m           quarto render notebook.Rmd --output -                          
+
