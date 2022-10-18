@@ -205,8 +205,8 @@ Make a dataframe to hold our predictors:
 
 Do this:  
 
-- assign a vector `radio` to hold the two radio predictor values
-- assign a vector `newspaper` to hold the two newspaper predictor values
+- assign a vector `radio` to hold the three radio predictor values ($x_1$-values)
+- assign a vector `newspaper` to hold the three newspaper predictor values($x_2$-values)
 - create a dataframe with `predictors<-data.frame(radio,newspaper)` 
 - print `predictors` 
 ```{r include=ex, eval=F}
