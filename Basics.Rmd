@@ -149,7 +149,7 @@ CODE
 df[2,4] <- 1004 
 ```
 
-- Print out the data frame using `head` to make sure her GPA is changed:
+- Print out the data frame using `head` to make sure her id is changed:
 ```{r, eval=FALSE, include=!solution}
 CODE
 ```
